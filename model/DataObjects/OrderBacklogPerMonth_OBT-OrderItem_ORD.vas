@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<asn:AssociationSet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:asn="http://www.versata.com/tl/6.0/association" name="OrderBacklogPerMonth_OBT-OrderItem_ORD" metaModelVersion="6.2.0.0">
+  <association name="OrderBacklogPerMonth_OBT(pOBTfORD)-OrderItem_ORD(cORDfOBT)">
+    <parentRole name="pOBTfORD">
+      <binding href="OrderBacklogPerMonth_OBT-OrderItem_ORD.vrs#OrderBacklogPerMonth_OBT_Target_UPDATED"/>
+      <binding href="OrderBacklogPerMonth_OBT-OrderItem_ORD.vrs#OrderBacklogPerMonth_OBT_Target_DELETED"/>
+    </parentRole>
+    <childRole name="cORDfOBT">
+      <binding href="OrderBacklogPerMonth_OBT-OrderItem_ORD.vrs#cORDfOBT_Target_INSERTED"/>
+      <binding href="OrderBacklogPerMonth_OBT-OrderItem_ORD.vrs#cORDfOBT_Target_UPDATED"/>
+      <binding href="OrderBacklogPerMonth_OBT.vrs#OBT_OrderValueUSD_DerivationSourceChildAssociationRole"/>
+    </childRole>
+    <attributePair>
+      <parent href="OrderBacklogPerMonth_OBT.vdm#OBT_Client"/>
+      <child href="OrderItem_ORD.vdm#ORD_Client"/>
+    </attributePair>
+    <attributePair>
+      <parent href="OrderBacklogPerMonth_OBT.vdm#OBT_Month"/>
+      <child href="OrderItem_ORD.vdm#ORD_Month"/>
+    </attributePair>
+  </association>
+  <parentDataObject href="OrderBacklogPerMonth_OBT.vdm#OrderBacklogPerMonth_OBT"/>
+  <childDataObject href="OrderItem_ORD.vdm#OrderItem_ORD"/>
+</asn:AssociationSet>

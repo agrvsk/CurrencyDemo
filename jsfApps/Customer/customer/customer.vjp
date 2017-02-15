@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<app:Page xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:app="http://www.versata.com/6.0/application" templateFileName="PageTemplateDataPage" name="customer">
+  <containerApplication href="customer.vjm#/"/>
+  <dataControls name="customer" templateFileName="DataControlTemplateListWithQBFSingle">
+    <extendedProperties propertyName="multiAdd" propertyValue="false"/>
+    <extendedProperties propertyName="saveDefaults" propertyValue="true"/>
+    <extendedTemplateProperties propertyName="FooterList" propertyValue=""/>
+    <extendedTemplateProperties propertyName="HeaderList" propertyValue=""/>
+    <extendedTemplateProperties propertyName="FooterSingle" propertyValue=""/>
+    <extendedTemplateProperties propertyName="AllowUpdate" propertyValue="true"/>
+    <extendedTemplateProperties propertyName="FooterQBF" propertyValue="Please enter search criteria (value%)"/>
+    <extendedTemplateProperties propertyName="MaxAttributesSingle" propertyValue="0"/>
+    <extendedTemplateProperties propertyName="HeaderSingle" propertyValue=""/>
+    <extendedTemplateProperties propertyName="PanelHorizontalLayout" propertyValue="false"/>
+    <extendedTemplateProperties propertyName="IsDeleteAllowed" propertyValue="true"/>
+    <extendedTemplateProperties propertyName="AllowInsert" propertyValue="true"/>
+    <extendedTemplateProperties propertyName="MaxAttributesList" propertyValue="0"/>
+    <extendedTemplateProperties propertyName="RenderedSingle" propertyValue=""/>
+    <extendedTemplateProperties propertyName="AllowDelete" propertyValue="true"/>
+    <extendedTemplateProperties propertyName="GadgetDrawOptions" propertyValue=""/>
+    <extendedTemplateProperties propertyName="EditableList" propertyValue="true"/>
+    <extendedTemplateProperties propertyName="List" propertyValue="true"/>
+    <extendedTemplateProperties propertyName="MaxColumnsQBF" propertyValue="0"/>
+    <extendedTemplateProperties propertyName="Inspector" propertyValue="true"/>
+    <extendedTemplateProperties propertyName="EditableSingle" propertyValue="true"/>
+    <extendedTemplateProperties propertyName="HeaderQBF" propertyValue=""/>
+    <extendedTemplateProperties propertyName="SortableGridHeaders" propertyValue="true"/>
+    <extendedTemplateProperties propertyName="Gadget" propertyValue=""/>
+    <extendedTemplateProperties propertyName="$$TemplateFileName$$" propertyValue="DataControlTemplateListWithQBFSingle"/>
+    <extendedTemplateProperties propertyName="GadgetAttributes" propertyValue=""/>
+    <extendedTemplateProperties propertyName="MaxColumnsSingle" propertyValue="3"/>
+    <extendedTemplateProperties propertyName="QBF" propertyValue="true"/>
+    <extendedTemplateProperties propertyName="RowsSingle" propertyValue="1"/>
+    <extendedTemplateProperties propertyName="GadgetScriptSrc" propertyValue=""/>
+    <extendedTemplateProperties propertyName="MaxAttributesQBF" propertyValue="0"/>
+    <extendedTemplateProperties propertyName="SelectMany" propertyValue="false"/>
+    <extendedTemplateProperties propertyName="RowsQBF" propertyValue="1"/>
+    <cqm href="../../../model/jsfCqms/customer/Currency_CUR_customer1.vqm#Currency_CUR_customer1"/>
+  </dataControls>
+</app:Page>

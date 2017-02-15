@@ -1,0 +1,98 @@
+BEGIN .VSForm ButtonArchetypeAllFormTrans
+  ClassName = "VSForm"
+  BackColor = 0xffffff
+  Width = 475
+  Title = "ButtonArchetypeAllFormTrans"
+  Enable = True
+  ForeColor = 0x000000
+  HelpURL = ""
+  ToolTip = ""
+  Visible = True
+  Tag = ""
+  Height = 83
+  AnchorForm = "NONE"
+  Style = "Child"
+  Name = "ButtonArchetypeAllFormTrans"
+  Extended = ""
+  DisplayTitleBar = True
+  BeginProperty VSFont 
+    FontName  = "Helvetica"
+    FontSize  = 12
+    FontStyleBold  = False
+    FontStyleItalic  = False
+  EndProperty 
+  BEGIN .VSPanel fraButtonArchetypeAllFormTrans
+    Top = 5
+    ClassName = "VSPanel"
+    BorderStyle = "GROUP_BORDER"
+    BackColor = 0xffffff
+    Width = 90
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Height = 38
+    Left = 4
+    Extended = ""
+    Name = "fraButtonArchetypeAllFormTrans"
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "ButtonArchetypeAllFormTrans"
+    BEGIN .VSButton btnRSPrefixFormTransitionName
+      Top = 0
+      ClassName = "VSButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = "(Current)"
+      BackColor = 0xffffff
+      Width = 86
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "FormTransitionCaption"
+      Visible = True
+      Tag = ""
+      Action = ""
+      TabOrder = 0
+      Height = 35
+      Left = 6
+      TabStop = True
+      Extended = ""
+      Name = "btnRSPrefixFormTransitionName"
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      Label = "FormTransitionCaption"
+      END
+    END
+  END
+<<BEGIN VSMACRO>>
+<<ArchetypeVersion 06.00.00.00>>
+<<Replace btnRSPrefixFormTransitionName.FormTransition>>
+     FormTransition = FormTransitionID,RSPrefixTableName_FormTransitionName
+<<End Replace>>
+<<Replace btnRSPrefixFormTransitionName.DataSource >>
+   <<if value(VSVBAppFormRecSrcs!srcFormRSNum) = 0 >>
+       <<if value(VSVBAppFormRecSrcs!isTableDisplayed) >>
+           DataSource = datRSPrefixTableName
+       <<else>>
+           DataSource = "(None)"
+       <<end if>>
+   <<else>>
+       <<if value(VSVBAppFormRecSrcs!isTableDisplayed) >>
+           DataSource = datRSPrefixTableName
+       <<else>>
+           DataSource = datRSPrefixFormTransSourceTable
+       <<end if>>
+   <<end if>>
+<<End Replace>>

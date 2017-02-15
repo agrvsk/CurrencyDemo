@@ -1,0 +1,1 @@
+ant -f lightsout.xml build-all -DgeneratePluginProperties=true -Dproject=DataAccessTest -Dworkspace.dir=E:\brms\workspaces\runtime22082008 -Dproject.dir=E:\brms\workspaces\runtime22082008\trade6

@@ -1,0 +1,1 @@
+a bound checkBox control to show or edit true/false values

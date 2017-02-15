@@ -1,0 +1,28 @@
+<project name="com.versata.tl.studio.lightsout.properties"> 
+	<property file="plugin.properties"/>
+	
+	<!-- properties using 'versata.home' property -->
+	<property environment="env"/>
+	
+	<property name="versata.home" location="${env.VERSATA_HOME}"/>
+
+	<property name="java.exe" location="${env.JAVA_HOME}/bin/java.exe"/>
+
+	<property name="versataBinDir" location="${versata.home}/VLS/bin"/>
+	
+	<property name="eclipse.home" location="${versata.home}/../workbench"/>
+	
+	<property name="rcompile.home" location="${eclipse.home}/plugins/com.versata.tl.rcompile_${com.versata.tl.rcompile}"/>
+	
+	<property name="studio.deploy.home" location="${eclipse.home}/plugins/com.versata.tl.studio.deploy_${com.versata.tl.studio.deploy}"/>
+	
+	<property name="studio.ui.home" location="${eclipse.home}/plugins/com.versata.tl.studio.ui_${com.versata.tl.studio.ui}"/>
+	
+	<property name="equinox.launcher" location="${eclipse.home}/plugins/org.eclipse.equinox.launcher_${org.eclipse.equinox.launcher}.jar"/>
+	
+	<property name="torque.home" location="${eclipse.home}/plugins/com.versata.tl.studio.torque_${com.versata.tl.studio.torque}"/>
+	
+	<property name="dbdeploy.home" location="${eclipse.home}/plugins/com.versata.tl.studio.dbdeploy_${com.versata.tl.studio.dbdeploy}"/>
+	
+	
+</project>

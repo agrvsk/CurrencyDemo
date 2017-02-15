@@ -1,0 +1,77 @@
+BEGIN .VSForm ValueArchetypeOptionButton
+  ClassName = "VSForm"
+  BackColor = 0xffffff
+  Width = 475
+  Title = "ValueArchetypeOptionButton"
+  Enable = True
+  ForeColor = 0x000000
+  HelpURL = ""
+  ToolTip = ""
+  Visible = True
+  Tag = ""
+  Height = 168
+  Style = "Child"
+  Name = "ValueArchetypeOptionButton"
+  DisplayTitleBar = True
+  BeginProperty VSFont 
+    FontName  = "Helvetica"
+    FontSize  = 12
+    FontStyleBold  = False
+    FontStyleItalic  = False
+  EndProperty 
+  BEGIN .VSRadioButtonPanel rpbValueArchetypeOptionButton
+    Top = 8
+    ClassName = "ValueArchetypeOptionButton"
+    StatusBarText = ""
+    DataSource = ""
+    BackColor = 0xffffff
+    Width = 162
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    TabOrder = 0
+    Height = 21
+    Left = 9
+    DataField = 0
+    TabStop = True
+    Name = "rpbValueArchetypeOptionButton"
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = ""
+    BEGIN .VSRadioButton rbtValueIndexDisplayedValueName
+      Top = 1
+      ClassName = "VSRadioButton"
+      BackColor = 0xc0c0c0
+      Width = 114
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "DisplayValue"
+      Visible = True
+      Tag = ""
+      Height = 19
+      Left = 1
+      Value = ""
+      Name = "rbtValueIndexDisplayedValueName"
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      Label = "DisplayValue"
+      END
+    END
+  END
+<<BEGIN VSMACRO>>
+<<ArchetypeVersion 06.00.00.00>>
+<<Replace rbtValueIndexDisplayedValueName.Value>>
+   Value = "StoredValue"
+<<End Replace>>

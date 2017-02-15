@@ -1,0 +1,126 @@
+BEGIN .VSForm ColumnArchetypeCheckBox
+  ImageFile = ""
+  ClassName = "VSForm"
+  BackColor = 0xffffff
+  Width = 475
+  ImageDisplayStyle = Stretched
+  Title = "ColumnArchetypeCheckBox"
+  Enable = True
+  ForeColor = 0x000000
+  HelpURL = ""
+  ToolTip = ""
+  Visible = True
+  Tag = ""
+  Height = 83
+  AnchorForm = "NONE"
+  Style = "Child"
+  Name = "ColumnArchetypeCheckBox"
+  Extended = ""
+  DisplayTitleBar = True
+  BeginProperty VSFont 
+    FontName  = "Helvetica"
+    FontSize  = 12
+    FontStyleBold  = False
+    FontStyleItalic  = False
+  EndProperty 
+  BEGIN .VSPanel fraColumnArchetypeCheckBox
+    Top = 5
+    ClassName = "VSPanel"
+    BorderStyle = "GROUP_BORDER"
+    BackColor = 0xffffff
+    Width = 230
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Height = 28
+    Left = 5
+    Extended = ""
+    Name = "fraColumnArchetypeCheckBox"
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = ""
+    BEGIN .VSCheckbox chkRSPrefixColumnName
+      Top = 3
+      ClassName = "VSCheckbox"
+      StatusBarText = ""
+      DataSource = ""
+      BackColor = 0xc0c0c0
+      Width = 20
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = ""
+      Visible = True
+      Tag = ""
+      TabOrder = 0
+      Height = 20
+      Left = 107
+      DataField = 0
+      TabStop = True
+      DisplayMode = "Data/Query"
+      Extended = ""
+      Name = "chkRSPrefixColumnName"
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      Label = ""
+      END
+    BEGIN .VSLabel lblRSPrefixColumnName
+      Top = 4
+      ClassName = "VSLabel"
+      StatusBarText = ""
+      Align = "LEFT"
+      DataSource = ""
+      BackColor = 0xc0c0c0
+      Width = 102
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = ""
+      Visible = True
+      Tag = ""
+      Height = 18
+      Left = 3
+      DataField = 0
+      Extended = ""
+      Name = "lblRSPrefixColumnName"
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      Label = "ColumnCaption"
+      END
+    END
+  END
+<<BEGIN VSMACRO>>
+<<ArchetypeVersion 06.00.00.00>>
+<<Replace chkRSPrefixColumnName.DataSource>>
+    DataSource = datRSPrefixTableName
+<<End Replace>>
+<<Replace chkRSPrefixColumnName.DataField>>
+    DataField = Value(VSVBappFormColumns!colID),"ColumnName"
+<<End Replace>>
+<<Replace chkRSPrefixColumnName.DisplayMode>>
+    <<if Ucase(Value(VSVBappFormRecSrcs!QBFOnlyColumn)) = Ucase("Query") and (not Value(Field.Properties!isVirtual))>>
+        DisplayMode = "Query"
+    <<else>>
+	<<if Value(Field.Properties!isVirtual)>>
+	    DisplayMpde = "Data"
+	<<end if>>
+    <<end if>>
+<<End Replace>>
+<<Replace chkRSPrefixColumnName.StatusBarText>>
+    StatusBarText = "Value(Field.Properties!MicroHelp)"
+<<End Replace>>

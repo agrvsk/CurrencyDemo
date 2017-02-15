@@ -1,0 +1,132 @@
+BEGIN .VSForm ColumnArchetypeDateChoice
+  ImageFile = ""
+  ClassName = "VSForm"
+  BackColor = 0xffffff
+  Width = 475
+  ImageDisplayStyle = Stretched
+  Title = "ColumnArchetypeDateChoice"
+  Enable = True
+  ForeColor = 0x000000
+  HelpURL = ""
+  ToolTip = ""
+  Visible = True
+  Tag = ""
+  Height = 83
+  AnchorForm = "NONE"
+  Style = "Child"
+  Name = "ColumnArchetypeDateChoice"
+  Extended = ""
+  DisplayTitleBar = True
+  BeginProperty VSFont 
+    FontName  = "Helvetica"
+    FontSize  = 12
+    FontStyleBold  = False
+    FontStyleItalic  = False
+  EndProperty 
+  BEGIN .VSPanel fraColumnArchetypeDateChoice
+    Top = 5
+    ClassName = "VSPanel"
+    BorderStyle = "GROUP_BORDER"
+    BackColor = 0xffffff
+    Width = 230
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = "fraColumnArchetypeDateChoice"
+    Visible = True
+    Tag = ""
+    Height = 28
+    Left = 5
+    Extended = ""
+    Name = "fraColumnArchetypeDateChoice"
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "fraColumnArchetypeDateChoice"
+    BEGIN .VSDateChoice vsdRSPrefixColumnName
+      Top = 4
+      ClassName = "VSDateChoice"
+      EndYear = 2100
+      StatusBarText = ""
+      DataSource = ""
+      BackColor = 0xffffff
+      Width = 120
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "ColumnCaption"
+      Visible = True
+      Tag = ""
+      Format = ""
+      TabOrder = 0
+      Height = 20
+      Left = 107
+      DataField = 0
+      TabStop = True
+      StartYear = 1900
+      DisplayMode = "Data/Query"
+      Extended = ""
+      Name = "vsdRSPrefixColumnName"
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      END
+    BEGIN .VSLabel lblRSPrefixColumnName
+      Top = 4
+      ClassName = "VSLabel"
+      StatusBarText = ""
+      Align = "LEFT"
+      DataSource = ""
+      BackColor = 0xc0c0c0
+      Width = 102
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = ""
+      Visible = True
+      Tag = ""
+      Height = 18
+      Left = 3
+      DataField = 0
+      Extended = ""
+      Name = "lblRSPrefixColumnName"
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      Label = "ColumnCaption"
+      END
+    END
+  END
+<<BEGIN VSMACRO>>
+<<ArchetypeVersion 06.00.00.00>>
+<<Replace vsdRSPrefixColumnName.DataSource>>
+    DataSource = datRSPrefixTableName
+<<End Replace>>
+<<Replace vsdRSPrefixColumnName.DataField>>
+    DataField = Value(VSVBappFormColumns!colID),"ColumnName"
+<<End Replace>>
+<<Replace vsdRSPrefixColumnName.Format>>
+    Format = "Value(Field.Properties!Format)"
+<<End Replace>>
+<<Replace vsdRSPrefixColumnName.DisplayMode>>
+    <<if Ucase(Value(VSVBappFormRecSrcs!QBFOnlyColumn)) = Ucase("Query") and (not Value(Field.Properties!isVirtual))>>
+        DisplayMode = "Query"
+    <<else>>
+	<<if Value(Field.Properties!isVirtual)>>
+	    DisplayMpde = "Data"
+	<<end if>>
+    <<end if>>
+<<End Replace>>
+<<Replace vsdRSPrefixColumnName.StatusBarText>>
+    StatusBarText = "Value(Field.Properties!MicroHelp)"
+<<End Replace>>
+

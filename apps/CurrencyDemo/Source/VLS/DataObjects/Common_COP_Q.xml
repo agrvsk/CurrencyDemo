@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE QueryObject SYSTEM "QueryObject.dtd">
+<QueryObject
+	SurrId="null"
+	IsRemoteAccessible="False"
+	SqlDialect="SQLStandard"
+	SuperClass="com.versata.tl.vls.core.QueryObject"
+	SqlTextModified="False"
+	ChildMostDataObject="CommonParms_COP"
+	DistinctRowsOnly="False"
+	DeploySecurityInfo="False"
+	DTDVersion="05.06.01"
+	>
+	<RuntimeSql>
+	<![CDATA[]]>
+	</RuntimeSql>
+	<Where>
+	<![CDATA[]]>
+	</Where>
+	<Having>
+	<![CDATA[]]>
+	</Having>
+	<DataObjects>
+		<DataObject
+			DataObjectName="CommonParms_COP"
+			Alias="CommonParms_COP"
+			/>
+	</DataObjects>
+	<Attributes>
+		
+		<Attribute
+			Name="COP_Id"
+			Alias="COP_Id"
+			AggregationType="None"
+			SourceDataObject="CommonParms_COP"
+			Persistent="True">
+		</Attribute>
+		<Attribute
+			Name="COP_Description"
+			Alias="COP_Description"
+			AggregationType="None"
+			SourceDataObject="CommonParms_COP"
+			Persistent="True">
+		</Attribute>
+	</Attributes>
+	<OrderBy>
+	
+	</OrderBy>
+	<GroupBy>
+		
+	</GroupBy>
+	<Description><![CDATA[]]></Description>
+	<Comments><![CDATA[]]></Comments>
+	
+</QueryObject>

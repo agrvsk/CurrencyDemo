@@ -1,0 +1,136 @@
+<com.versata.tl.metadata.PresentationMetaDataDO>
+  <dataModelName>OrderItem_ORD</dataModelName>
+  <singularCaption>Order Item  O R D</singularCaption>
+  <pluralCaption>Order Item  O R D List</pluralCaption>
+  <attributeProperties>
+    <entry>
+      <string>ORD_Approved</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>ORD_Approved</attributeName>
+        <singularCaption>Approved</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>3</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>ORD_Month</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>ORD_Month</attributeName>
+        <singularCaption>Month</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>3</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>ORD_OrderId</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>ORD_OrderId</attributeName>
+        <singularCaption>OrderId</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>0</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>ORD_ExchangeRate</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>ORD_ExchangeRate</attributeName>
+        <singularCaption>O R D  Exchange Rate</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>0</size>
+          <precision>10</precision>
+          <scale>4</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>ORD_CurrencyCode</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>ORD_CurrencyCode</attributeName>
+        <singularCaption>CurrencyCode</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>3</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>ORD_Client</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>ORD_Client</attributeName>
+        <singularCaption>O R D  Client</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>5</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>ORD_AmountInUSD</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>ORD_AmountInUSD</attributeName>
+        <singularCaption>AmountInUSD</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>0</size>
+          <precision>10</precision>
+          <scale>2</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>ORD_AmountInLocalCurrency</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>ORD_AmountInLocalCurrency</attributeName>
+        <singularCaption>AmountInLocalCurrency</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>0</size>
+          <precision>10</precision>
+          <scale>2</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+  </attributeProperties>
+  <associations/>
+</com.versata.tl.metadata.PresentationMetaDataDO>

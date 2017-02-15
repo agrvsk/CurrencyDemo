@@ -1,0 +1,91 @@
+BEGIN .VSForm CustomArchetypeMapControl
+  ImageFile = ""
+  ClassName = "VSForm"
+  BackColor = 0xffffff
+  Width = 272
+  ImageDisplayStyle = Stretched
+  Title = "fraCustomArchetypeMapControl"
+  Enable = True
+  ForeColor = 0x000000
+  HelpURL = ""
+  ToolTip = ""
+  Visible = True
+  Tag = ""
+  Height = 373
+  AnchorForm = "NONE"
+  Style = "Child"
+  Name = "CustomArchetypeMapControl"
+  Extended = ""
+  DisplayTitleBar = True
+  BeginProperty VSFont 
+    FontName  = "Helvetica"
+    FontSize  = 12
+    FontStyleBold  = False
+    FontStyleItalic  = False
+  EndProperty 
+  BEGIN .VSPanel fraCustomArchetypeMapControl
+    Top = 29
+    ClassName = "VSPanel"
+    BorderStyle = "GROUP_BORDER"
+    BackColor = 0xffffff
+    Width = 129
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Height = 134
+    Left = 80
+    Extended = ""
+    Name = "fraCustomArchetypeMapControl"
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = ""
+    BEGIN .VSImageButton VSMap1
+      ImageFile = ""
+      Top = 7
+      ClassName = "VSMap"
+      Opaque = False
+      ReportTarget = ""
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = ""
+      BackColor = 0xffffff
+      Width = 124
+      ReportURL = ""
+      Enable = True
+      ForeColor = 0x000000
+      AutoToolTip = False
+      HelpURL = ""
+      ToolTip = ""
+      Visible = True
+      Tag = "_$$_"
+      Action = ""
+      TabOrder = 0
+      Height = 121
+      Left = 1
+      AutoSize = False
+      TabStop = True
+      Border = "NO_BORDER"
+      Extended = "AdditionalWhereClause"""""
+      Name = "VSMap1"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = "Add Image"
+      END
+    END
+  END
+<<BEGIN VSMACRO>>
+<<ArchetypeVersion 06.00.00.00>>

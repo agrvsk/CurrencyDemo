@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE Form SYSTEM "Form.dtd">
+<Form
+	DTDVersion="05.06.00"
+	TargetLanguage="Java"
+	Archetype="NoDataDefault"
+	PositionTop="244"
+	PositionLeft="347"
+	PositionWidth="150"
+	PositionHeight="44"
+	IsAddedAfterGen="False"
+	HasCustomFormLayout="True"
+	ObjectsUnusedByFormLayout="False"
+	External="False"
+	NoDataForm="True"
+	>
+	<FormCaption><![CDATA[NoData]]></FormCaption>
+	<Transition
+		FormTransNum="1"
+		Prefix="T2"
+		TargetFormName="fNoData5"
+		IsTargetInitialQueryMode="False"
+		IsTargetInitialAddMode="False"
+		IsVisibleAppline="True"
+		IsAddedAfterGen="False"
+		FormTransCaption=" "
+		ClassName="PageNavigation"
+		RSID="2"
+		BusinessObject="NoData"
+		RelnIsFromParent="True"
+		>
+		<OrderByClause><![CDATA[ ]]></OrderByClause>
+		<ParameterizedWhereClause><![CDATA[ ]]></ParameterizedWhereClause>
+		<AdditionalWhereClause><![CDATA[ ]]></AdditionalWhereClause>
+	</Transition>
+	<FormLayout><![CDATA[BEGIN .VSForm fNoData
+  ImageFile = ""
+  ClassName = "VSForm"
+  BackColor = 0xc0c0c0
+  Width = 579
+  ImageDisplayStyle = Stretched
+  Title = "fNoData"
+  Enable = True
+  ForeColor = 0x000000
+  HelpURL = ""
+  ToolTip = ""
+  Visible = True
+  Tag = "_$$_"
+  Height = 500
+  AnchorForm = "NONE"
+  Constraint = "null"
+  Layout = ""
+  Style = "Child"
+  Name = "fNoData"
+  Extended = ""
+  DisplayTitleBar = True
+  BeginProperty VSFont 
+    FontName  = "Helvetica"
+    FontSize  = 12
+    FontStyleBold  = False
+    FontStyleItalic  = False
+  EndProperty 
+  BEGIN .VSTextArea VSTextArea1
+    Top = 318
+    ClassName = "VSTextArea"
+    StatusBarText = ""
+    HorizAlign = "LEFT"
+    DataSource = ""
+    BackColor = 0xffffff
+    Width = 269
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Format = ""
+    TabOrder = 7
+    Height = 132
+    Left = 204
+    DataField = 0
+    Constraint = "null"
+    TabStop = True
+    DisplayMode = "Data/Query"
+    Extended = ""
+    Name = "VSTextArea1"
+    Text = ""
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+  END
+  BEGIN .VSButton btnDekryptera
+    Top = 398
+    ClassName = "VSButton"
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = ""
+    BackColor = 0xc6c6c6
+    Width = 124
+    ReportURL = ""
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Action = ""
+    TabOrder = 6
+    Height = 28
+    Left = 15
+    Constraint = "null"
+    TabStop = True
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnDekryptera"
+    FormTransition = 0
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "Dekryptera"
+  END
+  BEGIN .VSButton btnKryptera
+    Top = 361
+    ClassName = "VSButton"
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = ""
+    BackColor = 0xc6c6c6
+    Width = 123
+    ReportURL = ""
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Action = ""
+    TabOrder = 5
+    Height = 27
+    Left = 18
+    Constraint = "null"
+    TabStop = True
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnKryptera"
+    FormTransition = 0
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "Kryptera"
+  END
+  BEGIN .VSButton btnIssue37
+    Top = 225
+    ClassName = "VSButton"
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = ""
+    BackColor = 0xc6c6c6
+    Width = 449
+    ReportURL = ""
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Action = ""
+    TabOrder = 4
+    Height = 37
+    Left = 8
+    Constraint = "null"
+    TabStop = True
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnIssue37"
+    FormTransition = 0
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "Issue 37. Transaction control from java client does not work."
+  END
+  BEGIN .VSButton btnRemoting
+    Top = 64
+    ClassName = "VSButton"
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = ""
+    BackColor = 0xc6c6c6
+    Width = 277
+    ReportURL = ""
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Action = ""
+    TabOrder = 3
+    Height = 26
+    Left = 10
+    Constraint = "null"
+    TabStop = True
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnRemoting"
+    FormTransition = 0
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "2 btnRemoting "".setRemoteUpdateCUR"""
+  END
+  BEGIN .VSTextArea txtRemoteParm
+    Top = 64
+    ClassName = "VSTextArea"
+    StatusBarText = ""
+    HorizAlign = "LEFT"
+    DataSource = ""
+    BackColor = 0xffffff
+    Width = 190
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Format = ""
+    TabOrder = 2
+    Height = 27
+    Left = 290
+    DataField = 0
+    Constraint = "null"
+    TabStop = True
+    DisplayMode = "Data/Query"
+    Extended = ""
+    Name = "txtRemoteParm"
+    Text = ""
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+  END
+  BEGIN .VSButton btnRemoteUpdate
+    Top = 28
+    ClassName = "VSButton"
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = ""
+    BackColor = 0xc6c6c6
+    Width = 287
+    ReportURL = ""
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Action = ""
+    TabOrder = 0
+    Height = 26
+    Left = 8
+    Constraint = "null"
+    TabStop = True
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnRemoteUpdate"
+    FormTransition = 0
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "1. btnRemoteUpdate ""Get RemoteObject"""
+  END
+  BEGIN .VSButton btnT2fNoData5
+    Top = 131
+    ClassName = "VSButton"
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = ""
+    BackColor = 0xffffff
+    Width = 439
+    ReportURL = ""
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = "NoData"
+    Visible = True
+    Tag = "_$$_"
+    Action = ""
+    TabOrder = 1
+    Height = 35
+    Left = 13
+    Constraint = "null"
+    TabStop = True
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnT2fNoData5"
+    FormTransition = 20001,""
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "Issue 34 - KeyboardFocusManager is not installed"
+  END
+  END
+]]></FormLayout>
+</Form>

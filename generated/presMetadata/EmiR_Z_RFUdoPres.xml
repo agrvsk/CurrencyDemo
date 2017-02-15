@@ -1,0 +1,233 @@
+<com.versata.tl.metadata.PresentationMetaDataDO>
+  <dataModelName>EmiR_Z_RFU</dataModelName>
+  <singularCaption>Emi R  Z  R F U</singularCaption>
+  <pluralCaption>Emi R  Z  R F U List</pluralCaption>
+  <attributeProperties>
+    <entry>
+      <string>RFU_KT2_FROM</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>RFU_KT2_FROM</attributeName>
+        <singularCaption>Konto del 2 from</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>8</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>RFU_RFURSN</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>RFU_RFURSN</attributeName>
+        <singularCaption>RFUrsn</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>0</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>RFU_KT2_TOM</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>RFU_KT2_TOM</attributeName>
+        <singularCaption>Konto del 2 tom</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>8</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>RFU_RAPPORTID</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>RFU_RAPPORTID</attributeName>
+        <singularCaption>RapportID</singularCaption>
+        <microHelp>Ange rapportens namn UTAN extension (.rpt)</microHelp>
+        <required>false</required>
+        <attrSize>
+          <size>50</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>RFU_BESKRIVNING</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>RFU_BESKRIVNING</attributeName>
+        <singularCaption>Beskrivning.</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>70</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>RFU_NIVA_FROM</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>RFU_NIVA_FROM</attributeName>
+        <singularCaption>Nivå from</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>1</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>RFU_RAPPID</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>RFU_RAPPID</attributeName>
+        <singularCaption>Rapport id</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>8</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>RFU_DATETIME</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>RFU_DATETIME</attributeName>
+        <singularCaption>Körtid</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>0</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>RFU_RGHRSN</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>RFU_RGHRSN</attributeName>
+        <singularCaption>RGHrsn</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>0</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>RFU_BOLNR</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>RFU_BOLNR</attributeName>
+        <singularCaption>Bolag</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>6</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>RFU_UTDATA</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>RFU_UTDATA</attributeName>
+        <singularCaption>Utdata</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>50</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>RFU_ARTAL_FROM</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>RFU_ARTAL_FROM</attributeName>
+        <singularCaption>Årtal from</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>0</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>RFU_SUMMERA_UNIVA</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>RFU_SUMMERA_UNIVA</attributeName>
+        <singularCaption>Summera under</singularCaption>
+        <required>true</required>
+        <attrSize>
+          <size>0</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>RFU_PERIOD_FROM</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>RFU_PERIOD_FROM</attributeName>
+        <singularCaption>Period from</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>0</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+  </attributeProperties>
+  <associations/>
+</com.versata.tl.metadata.PresentationMetaDataDO>

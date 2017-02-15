@@ -1,0 +1,1 @@
+a bound radio button control to show data for code table that have few items

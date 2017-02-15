@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<project name="dbdeploy" default="all" basedir=".">
+
+    <property file="dbdeploy.properties"/>
+    <property name="torque.lib.dir" value="${torque.home}/lib" />
+    <property name="versata.deploy.samples" value="false" />
+    <property name="versata.businesslogic.file" location="model/project.vbr" />
+
+	<!-- Set property to indicate existence of DOsToDeploy.xml file. -->
+	<!-- If it exists user has specified DOs to deploy.              -->
+  	<available property="haveList" file="DOsToDeploy.xml" />
+ 
+	<!--
+    <path id="dbdeploy-classpath">
+		<fileset dir="${torque.lib.dir}">
+		    <include name="**/commons-collections-2.1.jar"/>
+		    <include name="**/commons-lang-2.6.jar"/>
+		    <include name="**/log4j-1.2.8.jar"/>
+		    <include name="**/${torque.jar}"/>
+		    <include name="**/velocity-1.3.1.jar"/>
+		    <include name="**/village-2.0-dev-20030825.jar"/>
+		    <include name="**/xercesImpl-2.0.2.jar"/>
+		    <include name="**/xmlParserAPIs-2.0.2.jar"/>
+		    <include name="**/*.jar"/>
+		    <include name="**/*.zip"/>
+		</fileset>
+		<pathelement location="${dbdeploy.home}/bin/com.versata.tl.studio.dbdeploy.jar" />
+    </path>
+    -->
+
+    <target name="init">
+		<echo message="project.dir = ${project.dir}"/>
+		<echo message="versata.deploy.toServer = ${versata.deploy.toServer}"/>
+    </target>
+
+    <target name="all" depends="sql, datadtd, datasql, insert-sql">
+    	<echo message="torque process complete"/>
+    </target>
+        
+    <target name="sql">
+    	<delete dir="torque" />
+		<ant antfile="${torque.home}/build-torque-versata.xml" dir="${torque.home}" target="sql" inheritAll="false">
+		    <property name="project.dir" value="${project.dir}" />
+		</ant>
+    </target>
+    
+    <target name="datadtd">
+		<ant antfile="${torque.home}/build-torque-versata.xml" dir="${torque.home}" target="datadtd" inheritAll="false">
+		    <property name="project.dir" value="${project.dir}" />
+		</ant>
+    </target>
+
+    <target name="datasql">
+		<ant antfile="${torque.home}/build-torque-versata.xml" dir="${torque.home}" target="datasql" inheritAll="false">
+		    <property name="project.dir" value="${project.dir}" />
+		</ant>
+    </target>
+
+    <target name="insert-sql" if="versata.deploy.toServer">
+		<ant antfile="${torque.home}/build-torque-versata.xml" dir="${torque.home}" target="insert-sql" inheritAll="false">
+		    <property name="project.dir" value="${project.dir}" />
+		</ant>
+    </target>
+
+	<target name="cleanAll" depends="cleanTemp, cleanScripts"/>
+	
+	<target name="cleanTemp">
+		<delete>
+			<fileset dir="${basedir}">
+				<include name="AssociationList.xml"/>
+				<include name="dolist.txt"/>
+				<include name="datalist.txt"/>
+				<include name="RIRules.xml"/>
+			</fileset>
+		</delete>
+		<delete dir="temp"/>
+		<delete dir="schema"/>
+	</target>
+	
+	<target name="cleanScripts" unless="versata.deploy.toServer">
+		<delete>
+			<dirset dir="${basedir}">
+				<include name="torque"/>
+			</dirset>
+		</delete>
+	</target>
+</project>

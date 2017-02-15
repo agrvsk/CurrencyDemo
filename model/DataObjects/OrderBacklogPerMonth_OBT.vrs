@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rule:RuleSet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:asn="http://www.versata.com/tl/6.0/association" xmlns:do="http://www.versata.com/tl/6.0/dataobject" xmlns:rule="http://www.versata.com/tl/6.0/rule" name="OrderBacklogPerMonth_OBT" metaModelVersion="6.2.0.0">
+  <rule name="OBT_OrderValueUSD_Derivation">
+    <event type="SOURCE_CHANGED"/>
+    <action xsi:type="rule:Aggregate" type="SUM" predicate=""/>
+    <binding>
+      <target name="OBT_OrderValueUSD_DerivationTarget">
+        <bindable xsi:type="do:Attribute" href="OrderBacklogPerMonth_OBT.vdm#OBT_OrderValueUSD"/>
+      </target>
+      <source name="OBT_OrderValueUSD_DerivationSourceChildAssociationRole">
+        <bindable xsi:type="asn:AssociationRole" href="OrderBacklogPerMonth_OBT-OrderItem_ORD.vas#cORDfOBT"/>
+      </source>
+      <source name="OBT_OrderValueUSD_DerivationSourceAttribute">
+        <bindable xsi:type="do:Attribute" href="OrderItem_ORD.vdm#ORD_AmountInUSD"/>
+      </source>
+    </binding>
+  </rule>
+  <rule name="BigOrderRule">
+    <event type="TARGET_CHANGED"/>
+    <condition condition="OBT_OrderValueUSD>100000 and :old. OBT_OrderValueUSD&lt;100000"/>
+    <action xsi:type="rule:UserAction" action="bigOrder()"/>
+    <binding>
+      <target name="BigOrderRule_Target">
+        <bindable xsi:type="do:DataObject" href="OrderBacklogPerMonth_OBT.vdm#OrderBacklogPerMonth_OBT"/>
+      </target>
+    </binding>
+  </rule>
+  <rule name="OrderAmountConstraint">
+    <event type="TARGET_CHANGED"/>
+    <condition condition="OBT_OrderValueUSD>=100000"/>
+    <action xsi:type="rule:LogMessage" message="OrderAmountConstraint_ConstraintMsg"/>
+    <action xsi:type="rule:RejectTransaction"/>
+    <binding>
+      <target name="OrderAmountConstraint_Target">
+        <bindable xsi:type="do:DataObject" href="OrderBacklogPerMonth_OBT.vdm#OrderBacklogPerMonth_OBT"/>
+      </target>
+      <source name="OrderAmountConstraint_SourceErrorAttribute">
+        <bindable xsi:type="do:Attribute" href="OrderBacklogPerMonth_OBT.vdm#OBT_OrderValueUSD"/>
+      </source>
+    </binding>
+  </rule>
+  <message name="OrderAmountConstraint_ConstraintMsg" text="Orderamaount USD >= 100000"/>
+</rule:RuleSet>

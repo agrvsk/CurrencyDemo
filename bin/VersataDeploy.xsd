@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">            
+
+	<xsd:annotation>
+		<xsd:documentation xml:lang="en">
+			VJDeploy schema for version.com
+			Copyright 2002 versata.com. All rights reserved.
+		</xsd:documentation>
+	</xsd:annotation>
+	
+	<xsd:element name="DeploymentData">	
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="securityData" type="SecurityDataType" minOccurs="0" maxOccurs="1"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<!--
+		Definition for EJB project VJDeploy.
+	-->
+	<xsd:complexType name="SecurityDataType">
+		<xsd:sequence>
+			<xsd:element name="dataObjects" type="DataObjects" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="queryObjects" type="QueryObjects" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="javaApplications" type="Applications" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="htmlApplications" type="Applications" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+		<xsd:attribute name="repositoryName" type="xsd:string" use="required"/>
+		<xsd:attribute name="useExistingConnection" type="xsd:boolean" default="true"/>
+	</xsd:complexType>
+	<xsd:complexType name="DataObjects">
+		<xsd:sequence>
+			<xsd:element ref="DataObject" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="QueryObjects">
+		<xsd:sequence>
+			<xsd:element ref="QueryObject" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="DataObject">
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="BusinessObject">
+					<xsd:attribute name="xdaObject" type="xsd:boolean" default="false"/>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="QueryObject">
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="BusinessObject"/>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="BusinessObject">
+		<xsd:sequence>
+			<xsd:element name="attribute" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="name" type="xsd:string" use="required"/>
+		<xsd:attribute name="pacakgeName" type="xsd:string" use="required"/>
+		<xsd:attribute name="repositoryName" type="xsd:string" use="required"/>
+		<xsd:attribute name="login" type="xsd:string" default=""/>
+		<xsd:attribute name="password" type="xsd:string" default=""/>
+		<xsd:attribute name="odbcDsn" type="xsd:string" default=""/>
+		<xsd:attribute name="dataSourceType" type="xsd:string" default=""/>
+		<xsd:attribute name="schema" type="xsd:string" default=""/>
+		<xsd:attribute name="database" type="xsd:string" default=""/>
+		<xsd:attribute name="connectionSurrId" type="xsd:string" default=""/>
+		<!--  the following attribute contains a comma delimited string containg all the immediate children -->
+		<xsd:attribute name="childImmediate" type="xsd:string" default=""/>
+	</xsd:complexType>
+	<xsd:complexType name="Applications">
+		<xsd:sequence>
+			<xsd:element name="application" type="Application" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Application">
+		<xsd:sequence>
+			<xsd:element name="form" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="name" type="xsd:string" use="required"/>
+	</xsd:complexType>
+</xsd:schema>

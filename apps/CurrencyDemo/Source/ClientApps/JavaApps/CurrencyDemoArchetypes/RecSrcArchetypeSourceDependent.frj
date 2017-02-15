@@ -1,0 +1,115 @@
+BEGIN .VSForm RecSrcArchetypeSourceDependent
+  ImageFile = ""
+  ClassName = "VSForm"
+  BackColor = 0xc0c0c0
+  Width = 637
+  ImageDisplayStyle = Stretched
+  Title = "RecSrcArchetypeSourceDependent"
+  Enable = True
+  ForeColor = 0x000000
+  HelpURL = ""
+  ToolTip = ""
+  Visible = True
+  Tag = ""
+  Height = 443
+  AnchorForm = "NONE"
+  Constraint = "null"
+  Layout = ""
+  Style = "Child"
+  Name = "RecSrcArchetypeSourceDependent"
+  Extended = ""
+  DisplayTitleBar = True
+  BeginProperty VSFont 
+    FontName  = "Helvetica"
+    FontSize  = 12
+    FontStyleBold  = False
+    FontStyleItalic  = False
+  EndProperty 
+  BEGIN .VSPanel fraRecSrcArchetypeSourceDependent
+    Top = 5
+    ClassName = "VSPanel"
+    BorderStyle = "GROUP_BORDER"
+    BackColor = 0xffffff
+    Width = 596
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Height = 350
+    Left = 5
+    Constraint = "null"
+    Layout = ""
+    Extended = ""
+    Name = "fraRecSrcArchetypeSourceDependent"
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = ""
+    BEGIN .VSPanel IncludeRSGroupArchetypeAny
+      Top = 199
+      ClassName = "VSPanel"
+      BorderStyle = "GROUP_BORDER"
+      BackColor = 0xffffff
+      Width = 591
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = ""
+      Visible = True
+      Tag = ""
+      Height = 195
+      Left = 5
+      Constraint = "null"
+      Layout = ""
+      Extended = ""
+      Name = "IncludeRSGroupArchetypeAny"
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      Label = ""
+    END
+    BEGIN .VSPanel IncludeRecSrcArchetypeAnyStyle
+      Top = 4
+      ClassName = "VSPanel"
+      BorderStyle = "GROUP_BORDER"
+      BackColor = 0xffffff
+      Width = 591
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = ""
+      Visible = True
+      Tag = ""
+      Height = 204
+      Left = 5
+      Constraint = "null"
+      Layout = ""
+      Extended = ""
+      Name = "IncludeRecSrcArchetypeAnyStyle"
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      Label = ""
+    END
+    END
+  END
+<<BEGIN VSMACRO>>
+<<ArchetypeVersion 06.00.00.00>>
+'<<Begin IncludeRSGroupArchetypeAny>>
+  '<<if value(VSVBappFormRecSrcs!areDepRSTabbed)>>
+    '<<Include RSGroupArchetypeTopTabbed>>
+  '<<else>>
+    '<<Include RSGroupArchetypeSiblingsNoTab>>
+  '<<end if>>
+'<<End Include>>

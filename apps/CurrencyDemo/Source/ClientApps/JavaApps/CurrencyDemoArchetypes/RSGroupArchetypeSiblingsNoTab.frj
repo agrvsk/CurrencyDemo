@@ -1,0 +1,81 @@
+BEGIN .VSForm RSGroupArchetypeSiblingsNoTab
+  ClassName = "VSForm"
+  BackColor = 0xc0c0c0
+  Width = 475
+  Title = "RSGroupArchetypeSiblingsNoTab"
+  Enable = True
+  ForeColor = 0x000000
+  HelpURL = ""
+  ToolTip = ""
+  Visible = True
+  Tag = ""
+  Height = 374
+  Style = "Child"
+  Name = "RSGroupArchetypeSiblingsNoTab"
+  DisplayTitleBar = True
+  BeginProperty VSFont 
+    FontName  = "Helvetica"
+    FontSize  = 12
+    FontStyleBold  = False
+    FontStyleItalic  = False
+  EndProperty 
+  BEGIN .VSPanel fraRSGroupArchetypeSiblingsNoTab
+    Top = 5
+    ClassName = "VSPanel"
+    BorderStyle = "GROUP_BORDER"
+    BackColor = 0xc0c0c0
+    Width = 480
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Height = 362
+    Left = 5
+    Name = "fraRSGroupArchetypeSiblingsNoTab"
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = ""
+    BEGIN .VSPanel IncludeRecSrcArchetypeAny
+      Top = 1
+      ClassName = "VSPanel"
+      BorderStyle = "GROUP_BORDER"
+      BackColor = 0xffffff
+      Width = 480
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = ""
+      Visible = True
+      Tag = ""
+      Height = 340
+      Left = 2
+      Name = "IncludeRecSrcArchetypeAny"
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      Label = ""
+      END
+    END
+  END
+<<BEGIN VSMACRO>>
+<<ArchetypeVersion 06.00.00.00>>
+'<<Begin IncludeRecSrcArchetypeAny>>
+  '<<For each DependentRS>>
+    '<<If value(VSVBappFormRecSrcs!isTableDisplayed)>>
+      '<<If value(VSVBappFormRecSrcs!numDepRSDisplayed) > 0 >>
+        '<<Include RecSrcArchetypeSourceDependent>>
+      '<<Else>>
+        '<<include RecSrcArchetypeAnyStyle>>
+      '<<End if>>
+    '<<End if>>
+  '<<Next>>
+'<<End Include>>

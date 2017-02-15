@@ -1,0 +1,569 @@
+BEGIN .VSForm ToolBarArchetypeDefault
+  ClassName = "VSForm"
+  BackColor = 0xffffff
+  Width = 508
+  Title = "ToolBarArchetypeDefault"
+  Enable = True
+  ForeColor = 0x000000
+  HelpURL = ""
+  ToolTip = ""
+  Visible = True
+  Tag = ""
+  Height = 90
+  AnchorForm = "NONE"
+  Style = "Child"
+  Name = "ToolBarArchetypeDefault"
+  Extended = ""
+  DisplayTitleBar = True
+  BeginProperty VSFont 
+    FontName  = "Helvetica"
+    FontSize  = 12
+    FontStyleBold  = False
+    FontStyleItalic  = False
+  EndProperty 
+  BEGIN .VSJavaDataControl VSJavaDataControl2
+    Top = 57
+    ClassName = "VSJavaDataControl"
+    RecordSourceProperties = ""
+    StatusBarText = ""
+    AllowInsert = True
+    BackColor = 0xffffff
+    Width = 68
+    AllowUpdate = True
+    RecordSource = 0
+    Enable = True
+    ForeColor = 0x000000
+    AllowDelete = True
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    TabOrder = 14
+    Height = 8
+    Left = 171
+    SaveMode = "buffered"
+    TabStop = True
+    Extended = ""
+    Name = "VSJavaDataControl2"
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = ""
+    END
+  BEGIN .VSJavaDataControl VSJavaDataControl1
+    Top = 56
+    ClassName = "VSJavaDataControl"
+    RecordSourceProperties = ""
+    StatusBarText = ""
+    AllowInsert = True
+    BackColor = 0xffffff
+    Width = 79
+    AllowUpdate = True
+    RecordSource = 0
+    Enable = True
+    ForeColor = 0x000000
+    AllowDelete = True
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    TabOrder = 13
+    Height = 9
+    Left = 75
+    SaveMode = "buffered"
+    TabStop = True
+    Extended = ""
+    Name = "VSJavaDataControl1"
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = ""
+    END
+  BEGIN .VSPanel fraToolBarArchetypeDefault
+    Top = 7
+    ClassName = "VSPanel"
+    BorderStyle = "GROUP_BORDER"
+    BackColor = 0xffffff
+    Width = 459
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Height = 28
+    Left = 12
+    Extended = ""
+    Name = "fraToolBarArchetypeDefault"
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = ""
+    BEGIN .VSImageButton btnInsert
+      ImageFile = "New.GIF"
+      Top = 2
+      ClassName = "VSImageButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = "(Current)"
+      BackColor = 0xc0c0c0
+      Width = 26
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "Insert"
+      Visible = True
+      Tag = ""
+      Action = "db_insert"
+      TabOrder = 12
+      Height = 26
+      Left = 0
+      AutoSize = False
+      TabStop = True
+      Border = "AUTOSHOW_BORDER"
+      Extended = ""
+      Name = "btnInsert"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = ""
+      END
+    BEGIN .VSImageButton btnDelete
+      ImageFile = "delete.GIF"
+      Top = 2
+      ClassName = "VSImageButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = "(Current)"
+      BackColor = 0xc0c0c0
+      Width = 26
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "Delete"
+      Visible = True
+      Tag = ""
+      Action = "db_delete"
+      TabOrder = 11
+      Height = 26
+      Left = 26
+      AutoSize = False
+      TabStop = True
+      Border = "AUTOSHOW_BORDER"
+      Extended = ""
+      Name = "btnDelete"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = ""
+      END
+    BEGIN .VSImageButton btnSave
+      ImageFile = "Save.GIF"
+      Top = 2
+      ClassName = "VSImageButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = "(Current)"
+      BackColor = 0xc0c0c0
+      Width = 26
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "Save"
+      Visible = True
+      Tag = ""
+      Action = "db_saveAll"
+      TabOrder = 10
+      Height = 26
+      Left = 60
+      AutoSize = False
+      TabStop = True
+      Border = "AUTOSHOW_BORDER"
+      Extended = ""
+      Name = "btnSave"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = ""
+      END
+    BEGIN .VSImageButton btnUndo
+      ImageFile = "Undo.GIF"
+      Top = 2
+      ClassName = "VSImageButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = "(Current)"
+      BackColor = 0xc0c0c0
+      Width = 26
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "Undo"
+      Visible = True
+      Tag = ""
+      Action = "db_undoRecord"
+      TabOrder = 9
+      Height = 26
+      Left = 86
+      AutoSize = False
+      TabStop = True
+      Border = "AUTOSHOW_BORDER"
+      Extended = ""
+      Name = "btnUndo"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = ""
+      END
+    BEGIN .VSImageButton btnMoveFirst
+      ImageFile = "First.GIF"
+      Top = 2
+      ClassName = "VSImageButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = "(Current)"
+      BackColor = 0xc0c0c0
+      Width = 26
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "MoveFirst"
+      Visible = True
+      Tag = ""
+      Action = "db_first"
+      TabOrder = 8
+      Height = 26
+      Left = 124
+      AutoSize = False
+      TabStop = True
+      Border = "AUTOSHOW_BORDER"
+      Extended = ""
+      Name = "btnMoveFirst"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = ""
+      END
+    BEGIN .VSImageButton btnMovePrev
+      ImageFile = "previous.GIF"
+      Top = 2
+      ClassName = "VSImageButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = "(Current)"
+      BackColor = 0xc0c0c0
+      Width = 26
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "Move Previous"
+      Visible = True
+      Tag = ""
+      Action = "db_previous"
+      TabOrder = 7
+      Height = 26
+      Left = 150
+      AutoSize = False
+      TabStop = True
+      Border = "AUTOSHOW_BORDER"
+      Extended = ""
+      Name = "btnMovePrev"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = ""
+      END
+    BEGIN .VSImageButton btnMoveNext
+      ImageFile = "Next.GIF"
+      Top = 2
+      ClassName = "VSImageButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = "(Current)"
+      BackColor = 0xc0c0c0
+      Width = 26
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "Move Next"
+      Visible = True
+      Tag = ""
+      Action = "db_next"
+      TabOrder = 6
+      Height = 26
+      Left = 176
+      AutoSize = False
+      TabStop = True
+      Border = "AUTOSHOW_BORDER"
+      Extended = ""
+      Name = "btnMoveNext"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = ""
+      END
+    BEGIN .VSImageButton btnMoveLast
+      ImageFile = "Last.GIF"
+      Top = 2
+      ClassName = "VSImageButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = "(Current)"
+      BackColor = 0xc0c0c0
+      Width = 26
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "Move Last"
+      Visible = True
+      Tag = ""
+      Action = "db_last"
+      TabOrder = 5
+      Height = 26
+      Left = 202
+      AutoSize = False
+      TabStop = True
+      Border = "AUTOSHOW_BORDER"
+      Extended = ""
+      Name = "btnMoveLast"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = ""
+      END
+    BEGIN .VSImageButton btnRunQuery
+      ImageFile = "runQuery.gif"
+      Top = 2
+      ClassName = "VSImageButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = "(Current)"
+      BackColor = 0xc0c0c0
+      Width = 26
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "Get Data"
+      Visible = True
+      Tag = ""
+      Action = "db_runQuery"
+      TabOrder = 4
+      Height = 26
+      Left = 241
+      AutoSize = False
+      TabStop = True
+      Border = "AUTOSHOW_BORDER"
+      Extended = ""
+      Name = "btnRunQuery"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = ""
+      END
+    BEGIN .VSImageButton btnQueryMode
+      ImageFile = "QueryMode.GIF"
+      Top = 2
+      ClassName = "VSImageButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = "(Current)"
+      BackColor = 0xc0c0c0
+      Width = 26
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "Search Mode"
+      Visible = True
+      Tag = ""
+      Action = "db_queryMode"
+      TabOrder = 3
+      Height = 26
+      Left = 274
+      AutoSize = False
+      TabStop = True
+      Border = "AUTOSHOW_BORDER"
+      Extended = ""
+      Name = "btnQueryMode"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = ""
+      END
+    BEGIN .VSImageButton btnQueryMode1
+      ImageFile = "clearQuery.gif"
+      Top = 2
+      ClassName = "VSImageButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = "(Current)"
+      BackColor = 0xc0c0c0
+      Width = 26
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "Clear Search"
+      Visible = True
+      Tag = ""
+      Action = "db_clearQuery"
+      TabOrder = 2
+      Height = 26
+      Left = 300
+      AutoSize = False
+      TabStop = True
+      Border = "AUTOSHOW_BORDER"
+      Extended = ""
+      Name = "btnQueryMode1"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = ""
+      END
+    BEGIN .VSImageButton btnCancelQuery
+      ImageFile = "UndoQuery.GIF"
+      Top = 2
+      ClassName = "VSImageButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = "(Current)"
+      BackColor = 0xc0c0c0
+      Width = 26
+      Enable = False
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "Cancel Search"
+      Visible = True
+      Tag = ""
+      Action = "db_cancelQuery"
+      TabOrder = 1
+      Height = 26
+      Left = 325
+      AutoSize = False
+      TabStop = True
+      Border = "AUTOSHOW_BORDER"
+      Extended = ""
+      Name = "btnCancelQuery"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = ""
+      END
+    BEGIN .VSImageButton btnEditSql
+      ImageFile = "EditQuery2.GIF"
+      Top = 2
+      ClassName = "VSImageButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = "(Current)"
+      BackColor = 0xc0c0c0
+      Width = 26
+      Enable = False
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "Edit SQL"
+      Visible = True
+      Tag = ""
+      Action = "db_editSQL"
+      TabOrder = 0
+      Height = 26
+      Left = 358
+      AutoSize = False
+      TabStop = True
+      Border = "AUTOSHOW_BORDER"
+      Extended = ""
+      Name = "btnEditSql"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = ""
+      END
+    END
+  END
+<<BEGIN VSMACRO>>
+<<ArchetypeVersion 06.00.00.00>>

@@ -1,0 +1,1 @@
+tabular view of records with scalar fields for on-screen query purposes

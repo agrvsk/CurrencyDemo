@@ -1,0 +1,68 @@
+<com.versata.tl.metadata.PresentationMetaDataQO>
+  <queryObjectName>Currency_CUR_customer</queryObjectName>
+  <attributeProperties>
+    <entry>
+      <string>CUR_CurrencyCode_RelatedTo</string>
+      <com.versata.tl.metadata.PresentationMetaDataQO_-AttributeMetaData>
+        <attributeName>CUR_CurrencyCode_RelatedTo</attributeName>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataQO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>CUR_OrderValueUSD</string>
+      <com.versata.tl.metadata.PresentationMetaDataQO_-AttributeMetaData>
+        <attributeName>CUR_OrderValueUSD</attributeName>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataQO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>CUR_Image</string>
+      <com.versata.tl.metadata.PresentationMetaDataQO_-AttributeMetaData>
+        <attributeName>CUR_Image</attributeName>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataQO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>CUR_Client_RelatedTo</string>
+      <com.versata.tl.metadata.PresentationMetaDataQO_-AttributeMetaData>
+        <attributeName>CUR_Client_RelatedTo</attributeName>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataQO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>CUR_NumberOfOrders</string>
+      <com.versata.tl.metadata.PresentationMetaDataQO_-AttributeMetaData>
+        <attributeName>CUR_NumberOfOrders</attributeName>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataQO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>CUR_Client</string>
+      <com.versata.tl.metadata.PresentationMetaDataQO_-AttributeMetaData>
+        <attributeName>CUR_Client</attributeName>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataQO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>CUR_ExchangeRate</string>
+      <com.versata.tl.metadata.PresentationMetaDataQO_-AttributeMetaData>
+        <attributeName>CUR_ExchangeRate</attributeName>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataQO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>CUR_CurrencyCode</string>
+      <com.versata.tl.metadata.PresentationMetaDataQO_-AttributeMetaData>
+        <attributeName>CUR_CurrencyCode</attributeName>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataQO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>CUR_OrderAmountAverage</string>
+      <com.versata.tl.metadata.PresentationMetaDataQO_-AttributeMetaData>
+        <attributeName>CUR_OrderAmountAverage</attributeName>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataQO_-AttributeMetaData>
+    </entry>
+  </attributeProperties>
+</com.versata.tl.metadata.PresentationMetaDataQO>

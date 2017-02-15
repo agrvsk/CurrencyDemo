@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<do:DataObject xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:do="http://www.versata.com/tl/6.0/dataobject" xmlns:dt="http://www.versata.com/tl/6.0/datatype" name="OrderBacklogPerMonth_OBT" metaModelVersion="6.2.0.0" xdaConnector="com.versata.tl.vls.admin.security.F2KConnector">
+  <binding href="OrderBacklogPerMonth_OBT.vrs#BigOrderRule_Target"/>
+  <binding href="OrderBacklogPerMonth_OBT.vrs#OrderAmountConstraint_Target"/>
+  <attribute name="OBT_Client" preventExternalUpdate="false">
+    <dataType xsi:type="dt:DeclaredType" size="5"/>
+    <supertype xsi:type="dt:UserDefinedType" href="../system/system.vdd#String"/>
+  </attribute>
+  <attribute name="OBT_Month" caption="Month" preventExternalUpdate="false">
+    <dataType xsi:type="dt:DeclaredType" size="3"/>
+    <supertype xsi:type="dt:UserDefinedType" href="../system/system.vdd#Char"/>
+  </attribute>
+  <attribute name="OBT_OrderValueUSD" caption="Order Value USD" preventExternalUpdate="false">
+    <binding href="OrderBacklogPerMonth_OBT.vrs#OBT_OrderValueUSD_DerivationTarget"/>
+    <binding href="OrderBacklogPerMonth_OBT.vrs#OrderAmountConstraint_SourceErrorAttribute"/>
+    <dataType xsi:type="dt:DeclaredType"/>
+    <supertype xsi:type="dt:UserDefinedType" href="../system/system.vdd#Decimal"/>
+  </attribute>
+  <primaryKey name="OrderBacklogPerMonth_OBT_PK1">
+    <attribute attribute="OBT_Client"/>
+    <attribute attribute="OBT_Month"/>
+  </primaryKey>
+  <associationSet href="OrderBacklogPerMonth_OBT-OrderItem_ORD.vas#OrderBacklogPerMonth_OBT-OrderItem_ORD"/>
+</do:DataObject>

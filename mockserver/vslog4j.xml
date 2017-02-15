@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<!-- ===================================================================== -->
+<!--                                                                       -->
+<!--  Log4j Configuration                                                  -->
+<!--                                                                       -->
+<!-- ===================================================================== -->
+
+<!--
+        This is a per-application log configuration.  Changes to this file will
+        only affect the application it is deployed with.  Please note that the
+        file locations are defaults and should be updated based on the current
+        configuration. By default VLS_LOGS_ROOT will be resolved to VERSATA_HOME/logs
+        directory. You can change this behaviour by creating a JNDI String binding in
+        the server context. This JNDI name specifying the VLS_LOGS_ROOT should be 
+        specified in the VLSResource.properties file (present in the earModule directory
+        of this Versata Logic project) by setting it to VLSLogsRootJNDIName property.
+        This way you can prevent overwriting of VLSLogs in a vertical cluster.
+        
+        IMPORTANT: By default, the log settings have been tuned for 'development'
+        environments. Specifically, the server runtime and your business object code
+        will run at the INFO log level, vstrace is enabled and rule event logging is
+        enabled. You almost certainly do not want this configuration for production
+        environments becuase there is a measurable performance overhead.  For production
+        environments, disable vstrace (see VERSATA/VlsComponents/config_dynamic.bsh) and
+        adjust levels in this file appropriately (search for 'production').
+
+        Please apply your changes only to vslog4j-standard.xml or vslog4j-enterprise.xml files, 
+        NOT to vslog4j.xml which is overwritten in every build
+ -->
+
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+   <appender name="VLS_CONSOLE" class="org.apache.log4j.ConsoleAppender">
+      <param name="Threshold" value="INFO"/>
+      <layout class="org.apache.log4j.PatternLayout">
+         <param name="ConversionPattern" value="%-4r [%t] %-5p %c %x - %m%n"/>
+      </layout>
+   </appender>
+
+
+   <!-- log the info message output into the log.txt -->
+   <appender name="VLS_LOG_INFO" class="org.apache.log4j.RollingFileAppender">
+        <param name="Threshold" value="ERROR"/>
+        <!-- modify the property value for change the log.txt path -->
+        <param name="File" value="C:/Versata/BRMS-2016/workbench/workspace_VSK_CurrencyDemo/CurrencyDemoWeb/WebContent/../../log.txt"/>
+        <param name="Append" value="false"/>
+        <param name="MaxBackupIndex" value="10"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%-4r [%t] %-5p %c %x - %m%n"/>
+        </layout>
+    </appender>
+    
+    <!-- log the debug message output into the log.txt -->
+   <appender name="VLS_LOG_DEBUG" class="org.apache.log4j.RollingFileAppender">
+        <param name="Threshold" value="ERROR"/>
+        <!-- modify the property value for change the log.txt path -->
+        <param name="File" value="C:/Versata/BRMS-2016/workbench/workspace_VSK_CurrencyDemo/CurrencyDemoWeb/WebContent/../../log.txt"/>
+        <param name="Append" value="true"/>
+        <param name="MaxBackupIndex" value="10"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%-4r [%t] %-5p %c %x - %m%n"/>
+        </layout>
+    </appender>
+
+    <!-- log the error message output into the log.txt -->
+   <appender name="VLS_LOG_ERROR" class="org.apache.log4j.RollingFileAppender">
+        <param name="Threshold" value="ERROR"/>
+        <!-- modify the property value for change the log.txt path -->
+        <param name="File" value="C:/Versata/BRMS-2016/workbench/workspace_VSK_CurrencyDemo/CurrencyDemoWeb/WebContent/../../log.txt"/>
+        <param name="Append" value="true"/>
+        <param name="MaxBackupIndex" value="10"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%-4r [%t] %-5p %c %x - %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="ASYNC" class="org.apache.log4j.AsyncAppender">
+        <param name="BufferSize" value="256" />
+        <appender-ref ref="VLS_CONSOLE"/>
+        <appender-ref ref="VLS_LOG_INFO"/>
+        <appender-ref ref="VLS_LOG_ERROR"/>
+        <appender-ref ref="VLS_LOG_DEBUG"/>
+    </appender>
+    
+    <!-- log level for the internal Versata classes -->
+    <logger name="com.versata" additivity="true">
+        <level value="INFO"/>
+        <!-- change to DEBUG for more volume, WARN for production systems -->
+       
+    </logger>
+    
+    <!-- log level for rule/sql tracing (INFO for dev, WARN for production) -->
+    <logger name="versata.trace" additivity="true">
+        <priority value="INFO"/>
+        <appender-ref ref="ASYNC" /> 
+        <!-- change to DEBUG for more volume, WARN for production systems -->
+       
+    </logger>    
+    
+    <logger name="org.apache.commons" additivity="true">
+        <level value="ERROR"/>
+        <!-- change to DEBUG for more volume, WARN for production systems -->
+       
+    </logger>
+
+    <logger name="org.apache" additivity="true">
+        <priority value="ERROR"/>
+        <!-- change to DEBUG for more volume, INFO for support, WARN for production systems -->
+       
+    </logger>
+
+    <logger name="com.versata.tl.vfc.jsf.debug" additivity="true">
+        <priority value="INFO"/>
+        <!-- change to DEBUG for more volume, INFO for support, WARN for production systems -->
+       
+    </logger>
+
+   <!-- Dump important messages to the console -->
+   <root>
+      <level value="ERROR"/>
+      <appender-ref ref="ASYNC" />
+   </root>
+</log4j:configuration>

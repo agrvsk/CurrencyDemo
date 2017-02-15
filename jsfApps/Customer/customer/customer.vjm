@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<app:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:app="http://www.versata.com/6.0/application" name="customer" webProjectName="CurrencyDemo-jsf-webproject">
+  <pages href="customer.vjp#/"/>
+  <startupPage href="customer.vjp#/"/>
+</app:Application>

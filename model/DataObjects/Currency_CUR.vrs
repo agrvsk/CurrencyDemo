@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rule:RuleSet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:asn="http://www.versata.com/tl/6.0/association" xmlns:do="http://www.versata.com/tl/6.0/dataobject" xmlns:rule="http://www.versata.com/tl/6.0/rule" name="Currency_CUR" metaModelVersion="6.2.0.0">
+  <rule name="CUR_NumberOfOrders_Derivation">
+    <event/>
+    <action xsi:type="rule:Aggregate" predicate=""/>
+    <binding>
+      <target name="CUR_NumberOfOrders_DerivationTarget">
+        <bindable xsi:type="do:Attribute" href="Currency_CUR.vdm#CUR_NumberOfOrders"/>
+      </target>
+      <source name="CUR_NumberOfOrders_DerivationSourceChildAssociationRole">
+        <bindable xsi:type="asn:AssociationRole" href="Currency_CUR-OrderItem_ORD.vas#cORDfCUR"/>
+      </source>
+    </binding>
+  </rule>
+  <rule name="CUR_OrderValueUSD_Derivation">
+    <event type="SOURCE_CHANGED"/>
+    <action xsi:type="rule:Aggregate" type="SUM" predicate=""/>
+    <binding>
+      <target name="CUR_OrderValueUSD_DerivationTarget">
+        <bindable xsi:type="do:Attribute" href="Currency_CUR.vdm#CUR_OrderValueUSD"/>
+      </target>
+      <source name="CUR_OrderValueUSD_DerivationSourceChildAssociationRole">
+        <bindable xsi:type="asn:AssociationRole" href="Currency_CUR-OrderItem_ORD.vas#cORDfCUR"/>
+      </source>
+      <source name="CUR_OrderValueUSD_DerivationSourceAttribute">
+        <bindable xsi:type="do:Attribute" href="OrderItem_ORD.vdm#ORD_AmountInUSD"/>
+      </source>
+    </binding>
+  </rule>
+  <rule name="CUR_OrderAmountAverage_Derivation">
+    <event type="SOURCE_CHANGED"/>
+    <action xsi:type="rule:Compute" expression="If ( CUR_NumberOfOrders>0) Then &#xA;    &#x9;&#x9;&#x9;$value= CUR_OrderValueUSD / CUR_NumberOfOrders&#xA;    &#x9;&#x9;Else&#xA;    &#x9;&#x9;&#x9;$value= 0&#xA;    &#x9;&#x9;End if"/>
+    <binding>
+      <target name="CUR_OrderAmountAverage_DerivationTarget">
+        <bindable xsi:type="do:Attribute" href="Currency_CUR.vdm#CUR_OrderAmountAverage"/>
+      </target>
+      <source name="CUR_OrderAmountAverage_DerivationSourceDataObject">
+        <bindable xsi:type="do:DataObject" href="Currency_CUR.vdm#Currency_CUR"/>
+      </source>
+    </binding>
+  </rule>
+  <rule name="CUR_Image_Derivation">
+    <event/>
+    <action xsi:type="rule:Compute" expression="getImage()"/>
+    <binding>
+      <target name="CUR_Image_DerivationTarget">
+        <bindable xsi:type="do:Attribute" href="Currency_CUR.vdm#CUR_Image"/>
+      </target>
+      <source name="CUR_Image_DerivationSourceDataObject">
+        <bindable xsi:type="do:DataObject" href="Currency_CUR.vdm#Currency_CUR"/>
+      </source>
+    </binding>
+  </rule>
+  <rule name="CUR_Client_Derivation">
+    <event type="INSERTED"/>
+    <action xsi:type="rule:Compute" expression="'1'" literal="true"/>
+    <binding>
+      <target name="CUR_Client_DerivationTarget">
+        <bindable xsi:type="do:Attribute" href="Currency_CUR.vdm#CUR_Client"/>
+      </target>
+    </binding>
+  </rule>
+</rule:RuleSet>

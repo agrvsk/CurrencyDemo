@@ -1,0 +1,21 @@
+<com.versata.tl.metadata.PresentationMetaDataJSFApplication>
+  <applicationName>customer</applicationName>
+  <pageProperties>
+    <entry>
+      <string>customer</string>
+      <com.versata.tl.metadata.PresentationMetaDataJSFApplication_-Page>
+        <pageName>customer</pageName>
+        <dataControlProperties>
+          <entry>
+            <string>customer</string>
+            <com.versata.tl.metadata.PresentationMetaDataJSFApplication_-Page_-DataControl>
+              <dataControlName>customer</dataControlName>
+              <this_-1 reference="../../../.."/>
+            </com.versata.tl.metadata.PresentationMetaDataJSFApplication_-Page_-DataControl>
+          </entry>
+        </dataControlProperties>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataJSFApplication_-Page>
+    </entry>
+  </pageProperties>
+</com.versata.tl.metadata.PresentationMetaDataJSFApplication>

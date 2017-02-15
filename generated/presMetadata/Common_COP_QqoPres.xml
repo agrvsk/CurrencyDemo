@@ -1,0 +1,19 @@
+<com.versata.tl.metadata.PresentationMetaDataQO>
+  <queryObjectName>Common_COP_Q</queryObjectName>
+  <attributeProperties>
+    <entry>
+      <string>COP_Id</string>
+      <com.versata.tl.metadata.PresentationMetaDataQO_-AttributeMetaData>
+        <attributeName>COP_Id</attributeName>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataQO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>COP_Description</string>
+      <com.versata.tl.metadata.PresentationMetaDataQO_-AttributeMetaData>
+        <attributeName>COP_Description</attributeName>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataQO_-AttributeMetaData>
+    </entry>
+  </attributeProperties>
+</com.versata.tl.metadata.PresentationMetaDataQO>

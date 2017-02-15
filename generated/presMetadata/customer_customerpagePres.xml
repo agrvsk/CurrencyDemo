@@ -1,0 +1,27 @@
+<com.versata.tl.metadata.PresentationMetaDataJSFPage>
+  <applicationName>customer</applicationName>
+  <pageName>customer</pageName>
+  <caption>customer</caption>
+  <dataControlProperties>
+    <entry>
+      <string>customer_customer_Data_customer</string>
+      <com.versata.tl.metadata.PresentationMetaDataJSFPage_-DataControlMetaData>
+        <actionLinks/>
+        <childTransitions/>
+        <blankTransitions/>
+        <returnToTransitions/>
+        <pickDisplays/>
+        <pickAccepts/>
+        <dataControlname>customer</dataControlname>
+        <allowInsert>true</allowInsert>
+        <allowUpdate>true</allowUpdate>
+        <allowDelete>true</allowDelete>
+        <isNested>false</isNested>
+        <pageSize>4</pageSize>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataJSFPage_-DataControlMetaData>
+    </entry>
+  </dataControlProperties>
+  <blankTransitions/>
+  <returnToTransitions/>
+</com.versata.tl.metadata.PresentationMetaDataJSFPage>

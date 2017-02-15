@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Relationships SYSTEM "Relation.dtd">
+<Relationships
+	DTDVersion="05.06.00"
+	>
+	
+	<Relationship
+		ParentRoleName="pOBTfORD"
+		ChildRoleName="cORDfOBT"
+		IsEnforce="True"
+		OnChildInsertOrUpdate="InsertParentIfNone"
+		
+		CountAggregates="1"
+		CountReplicates="1"
+		>
+		<AscendCaption><![CDATA[*]]></AscendCaption>
+		<DescendCaption><![CDATA[*]]></DescendCaption>
+		<ErrPreventUpdateParent><![CDATA[]]></ErrPreventUpdateParent>
+		<ErrPreventDeleteParent><![CDATA[]]></ErrPreventDeleteParent>
+		<ErrPreventInsertOrUpdateChild><![CDATA[]]></ErrPreventInsertOrUpdateChild>
+		<AttributePairs>
+			
+			<AttributePair
+				ParentAttribute="OBT_Client"
+				ChildAttribute="ORD_Client"			
+			/>
+			<AttributePair
+				ParentAttribute="OBT_Month"
+				ChildAttribute="ORD_Month"			
+			/>
+		</AttributePairs>
+	</Relationship>
+		
+</Relationships>

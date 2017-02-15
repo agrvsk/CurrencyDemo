@@ -1,0 +1,188 @@
+BEGIN .VSForm RecSrcArchetypeGridDisplay
+  ImageFile = ""
+  ClassName = "VSForm"
+  BackColor = 0xffffff
+  Width = 475
+  ImageDisplayStyle = Stretched
+  Title = "RecSrcArchetypeGridDisplay"
+  Enable = True
+  ForeColor = 0x000000
+  HelpURL = ""
+  ToolTip = ""
+  Visible = True
+  Tag = ""
+  Height = 372
+  AnchorForm = "NONE"
+  Style = "Child"
+  Name = "RecSrcArchetypeGridDisplay"
+  Extended = ""
+  DisplayTitleBar = True
+  BeginProperty VSFont 
+    FontName  = "Helvetica"
+    FontSize  = 12
+    FontStyleBold  = False
+    FontStyleItalic  = False
+  EndProperty 
+  BEGIN .VSPanel fraRecSrcArchetypeGridDisplay
+    Top = 5
+    ClassName = "VSPanel"
+    BorderStyle = "GROUP_BORDER"
+    BackColor = 0xffffff
+    Width = 467
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Height = 362
+    Left = 4
+    Extended = ""
+    Name = "fraRecSrcArchetypeGridDisplay"
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = ""
+    BEGIN .VSPanel IncludeColumnArchetypeAny
+      Top = 114
+      ClassName = "VSPanel"
+      BorderStyle = "GROUP_BORDER"
+      BackColor = 0xffffff
+      Width = 210
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = ""
+      Visible = True
+      Tag = ""
+      Height = 20
+      Left = 3
+      Extended = ""
+      Name = "IncludeColumnArchetypeAny"
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      Label = ""
+      END
+    BEGIN .VSJavaDataControl datRSPRefixTableName
+      Top = 323
+      ClassName = "VSJavaDataControl"
+      RecordSourceProperties = ""
+      StatusBarText = ""
+      AllowInsert = True
+      BackColor = 0xffffff
+      Width = 252
+      AllowUpdate = True
+      RecordSource = 0
+      Enable = True
+      ForeColor = 0x000000
+      AllowDelete = True
+      HelpURL = ""
+      ToolTip = ""
+      Visible = False
+      Tag = ""
+      MaxRowsPerFetch = 16
+      TabOrder = 0
+      Height = 27
+      Left = 113
+      SaveMode = "buffered"
+      TabStop = False
+      Extended = ""
+      Name = "datRSPRefixTableName"
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      Label = "TableCaption"
+      END
+    BEGIN .VSGrid grdRSPrefixTableName
+      HiliteForeColor = 0xffffff
+      Top = 9
+      ClassName = "VSGrid"
+      DisplayHeader = True
+      BorderStyle = "PLAIN_BORDER"
+      DataSource = "datRSPRefixTableName"
+      BackColor = 0xffffff
+      Width = 461
+      DisplayGridLines = True
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = ""
+      Visible = True
+      Tag = ""
+      RowHeaderBackColor = 0xc0c0c0
+      Columns = ""
+      TabOrder = 1
+      Height = 103
+      Left = 3
+      ColumnHeaderBackColor = 0xc0c0c0
+      RowHeight = 20
+      RowHeaderForeColor = 0x000000
+      DisableBackColor = 0xffffff
+      BeginProperty VSHeaderFont
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      ColumnHeaderForeColor = 0x000000
+      TabStop = True
+      LineColor = 0xc0c0c0
+      DisableForeColor = 0xc0c0c0
+      Editable = True
+      Extended = ""
+      Name = "grdRSPrefixTableName"
+      RowHeaderWidth = 25
+      HiliteBackColor = 0x000080
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      BEGIN .VSGridColumn "IncludeGridColumnArchetypeAny"        
+        GridColumnLabel = "IncludeGridColumnArchetypeAny"
+        GridColumnWidth = 0x50
+        GridColumnDataField = 0
+        GridColumnEditType = "VSTextField"
+        GridColumnControlStyle = ""
+        JUSTIFY = "JUSTIFY_LEFT"
+        VALIGN = "VALIGN_CENTER"
+        GRIDCOLUMNBACKCOLOR = "0xffffff"
+        GRIDCOLUMNFORECOLOR = "0x000000"
+        GRIDCOLUMNHILITEBACKCOLOR = "0x000080"
+        GRIDCOLUMNHILITEFORECOLOR = "0xffffff"
+        GridColumnEnable = True
+        GridColumnFormat = ""
+        GridColumnPickObject = 0
+            ENDGRIDCOLUMN
+      END
+    END
+  END
+<<BEGIN VSMACRO>>
+<<ArchetypeVersion 06.00.00.00>>
+<<ExcludeParentArchetypes="*Startup*">>
+<<ExcludeChildArchetypes="Grid*">>
+'<<Const QBFOnlyColumn = "Data/Query">>
+<<Replace datRSPrefixTableName.RecordSource>>
+    RecordSource = Value(VSVBappFormRecSrcs!formRSNum),"RSPrefixTableName"
+<<End Replace>>
+<<Begin IncludeGridColumnArchetypeAny>>
+  <<For each GridColumn>>
+    <<Include ColumnArchetypeGrid>>
+  <<Next>>
+<<End Include>>
+'<<Begin IncludeColumnArchetypeAny>>
+  '<<For each ScalarColumn>>
+      '<<Include ColumnArchetypeAny>>
+  '<<Next>>
+'<<End Include>>

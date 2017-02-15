@@ -1,0 +1,1605 @@
+<?xml version="1.0"?>
+<!DOCTYPE Form SYSTEM "Form.dtd">
+<Form
+	DTDVersion="05.06.00"
+	TargetLanguage="Java"
+	Archetype="Default"
+	PositionTop="115"
+	PositionLeft="318"
+	PositionWidth="181"
+	PositionHeight="44"
+	IsAddedAfterGen="False"
+	HasCustomFormLayout="True"
+	ObjectsUnusedByFormLayout="True"
+	External="False"
+	NoDataForm="False"
+	>
+	<FormCaption><![CDATA[Currency_CUR(s)]]></FormCaption>
+	<RecordSource
+		RSID="1"
+		Prefix="T1"
+		BusinessObject="Currency_CUR"
+		RelnIsFromParent="False"
+		DoesSourceAffectMe="False"
+		DoIAffectSource="False"
+		IsAddedAfterGen="False"
+		RsAttributesDefault="False"
+		ClassName="DataSource"
+		RecordSourceArchetype="GridDisplay"
+		>
+		<ParameterizedWhereClause><![CDATA[ ]]></ParameterizedWhereClause>
+		<AdditionalWhereClause><![CDATA[ ]]></AdditionalWhereClause>
+		<OrderByClause><![CDATA[ ]]></OrderByClause>
+		<RSAttributesMeta>
+			<DefaultAttributes>
+				<RSDefaultAttribute ID="1" Name="CUR_CurrencyCode" />
+				<RSDefaultAttribute ID="2" Name="CUR_ExchangeRate" />
+				<RSDefaultAttribute ID="3" Name="CUR_OrderValueUSD" />
+				<RSDefaultAttribute ID="4" Name="CUR_NumberOfOrders" />
+				<RSDefaultAttribute ID="5" Name="CUR_OrderAmountAverage" />
+				<RSDefaultAttribute ID="6" Name="CUR_Image" />
+				<RSDefaultAttribute ID="7" Name="CUR_CurrencyCode_RelatedTo" />
+				<RSDefaultAttribute ID="8" Name="CUR_Client" />
+				<RSDefaultAttribute ID="9" Name="CUR_Client_RelatedTo" />
+			</DefaultAttributes>
+			<ScalerAttributes>
+				<RSAttribute Name="CUR_CurrencyCode" Displayed="False" UnPlaced="False" />
+				<RSAttribute Name="CUR_ExchangeRate" Displayed="False" UnPlaced="False" />
+				<RSAttribute Name="CUR_OrderValueUSD" Displayed="False" UnPlaced="False" />
+				<RSAttribute Name="CUR_NumberOfOrders" Displayed="False" UnPlaced="False" />
+				<RSAttribute Name="CUR_OrderAmountAverage" Displayed="False" UnPlaced="False" />
+				<RSAttribute Name="CUR_Image" Displayed="True" UnPlaced="False" />
+				<RSAttribute Name="CUR_CurrencyCode_RelatedTo" Displayed="True" UnPlaced="False" />
+				<RSAttribute Name="CUR_Client" Displayed="True" UnPlaced="False" />
+				<RSAttribute Name="CUR_Client_RelatedTo" Displayed="True" UnPlaced="False" />
+			</ScalerAttributes>
+			<GridAttributes>
+				<RSAttribute Name="CUR_CurrencyCode" Displayed="True" UnPlaced="False" />
+				<RSAttribute Name="CUR_ExchangeRate" Displayed="True" UnPlaced="False" />
+				<RSAttribute Name="CUR_OrderValueUSD" Displayed="True" UnPlaced="False" />
+				<RSAttribute Name="CUR_NumberOfOrders" Displayed="True" UnPlaced="False" />
+				<RSAttribute Name="CUR_OrderAmountAverage" Displayed="True" UnPlaced="False" />
+				<RSAttribute Name="CUR_Image" Displayed="True" UnPlaced="False" />
+				<RSAttribute Name="CUR_CurrencyCode_RelatedTo" Displayed="True" UnPlaced="False" />
+				<RSAttribute Name="CUR_Client" Displayed="True" UnPlaced="False" />
+				<RSAttribute Name="CUR_Client_RelatedTo" Displayed="True" UnPlaced="False" />
+			</GridAttributes>
+		</RSAttributesMeta>
+		<RecordSource
+			RSID="2"
+			Prefix="T2"
+			BusinessObject="OrderItem_ORD"
+			Relationship="pCURfORD(Currency_CUR)-cORDfCUR(OrderItem_ORD)"
+			RelnIsFromParent="True"
+			DoesSourceAffectMe="True"
+			DoIAffectSource="True"
+			IsAddedAfterGen="False"
+			RsAttributesDefault="False"
+			ClassName="DataSource"
+			RecordSourceArchetype="Grid"
+			ParentAlias=""
+			ChildAlias=""
+			>
+			<ParameterizedWhereClause><![CDATA[ [ORD_Client] = [?CUR_Client] and [ORD_CurrencyCode] = [?CUR_CurrencyCode]]]></ParameterizedWhereClause>
+			<AdditionalWhereClause><![CDATA[ ]]></AdditionalWhereClause>
+			<OrderByClause><![CDATA[ ]]></OrderByClause>
+			<RSAttributesMeta>
+				<DefaultAttributes>
+					<RSDefaultAttribute ID="1" Name="ORD_OrderId" />
+					<RSDefaultAttribute ID="2" Name="ORD_Month" />
+					<RSDefaultAttribute ID="3" Name="ORD_CurrencyCode" />
+					<RSDefaultAttribute ID="4" Name="ORD_AmountInLocalCurrency" />
+					<RSDefaultAttribute ID="5" Name="ORD_AmountInUSD" />
+					<RSDefaultAttribute ID="6" Name="ORD_ExchangeRate" />
+					<RSDefaultAttribute ID="7" Name="ORD_Approved" />
+					<RSDefaultAttribute ID="8" Name="ORD_Client" />
+				</DefaultAttributes>
+				<GridAttributes>
+					<RSAttribute Name="ORD_OrderId" Displayed="True" UnPlaced="False" />
+					<RSAttribute Name="ORD_Month" Displayed="True" UnPlaced="False" />
+					<RSAttribute Name="ORD_CurrencyCode" Displayed="True" UnPlaced="False" />
+					<RSAttribute Name="ORD_AmountInLocalCurrency" Displayed="True" UnPlaced="False" />
+					<RSAttribute Name="ORD_AmountInUSD" Displayed="True" UnPlaced="False" />
+					<RSAttribute Name="ORD_ExchangeRate" Displayed="True" UnPlaced="False" />
+					<RSAttribute Name="ORD_Approved" Displayed="True" UnPlaced="False" />
+					<RSAttribute Name="ORD_Client" Displayed="True" UnPlaced="False" />
+				</GridAttributes>
+			</RSAttributesMeta>
+		</RecordSource>
+		<RecordSource
+			RSID="3"
+			Prefix="T3"
+			BusinessObject="Currency_CUR"
+			Relationship="Currency_CURParent(Currency_CUR)-Currency_CURChild(Currency_CUR)"
+			RelnIsFromParent="False"
+			DoesSourceAffectMe="False"
+			DoIAffectSource="False"
+			IsAddedAfterGen="False"
+			RsAttributesDefault="False"
+			ClassName="DataSource"
+			RecordSourceArchetype="Display"
+			ParentAlias=""
+			ChildAlias=""
+			>
+			<ParameterizedWhereClause><![CDATA[ [CUR_Client] = [?CUR_Client_RelatedTo] and [CUR_CurrencyCode] = [?CUR_CurrencyCode_RelatedTo]]]></ParameterizedWhereClause>
+			<AdditionalWhereClause><![CDATA[ ]]></AdditionalWhereClause>
+			<OrderByClause><![CDATA[ ]]></OrderByClause>
+			<RSAttributesMeta>
+				<DefaultAttributes>
+					<RSDefaultAttribute ID="1" Name="CUR_CurrencyCode" />
+					<RSDefaultAttribute ID="2" Name="CUR_ExchangeRate" />
+					<RSDefaultAttribute ID="3" Name="CUR_OrderValueUSD" />
+					<RSDefaultAttribute ID="4" Name="CUR_NumberOfOrders" />
+					<RSDefaultAttribute ID="5" Name="CUR_OrderAmountAverage" />
+					<RSDefaultAttribute ID="6" Name="CUR_Image" />
+					<RSDefaultAttribute ID="7" Name="CUR_CurrencyCode_RelatedTo" />
+					<RSDefaultAttribute ID="8" Name="CUR_Client" />
+					<RSDefaultAttribute ID="9" Name="CUR_Client_RelatedTo" />
+				</DefaultAttributes>
+				<ScalerAttributes>
+					<RSAttribute Name="CUR_ExchangeRate" Displayed="True" UnPlaced="True" />
+					<RSAttribute Name="CUR_CurrencyCode" Displayed="True" UnPlaced="True" />
+					<RSAttribute Name="CUR_OrderValueUSD" Displayed="False" UnPlaced="False" />
+					<RSAttribute Name="CUR_NumberOfOrders" Displayed="False" UnPlaced="False" />
+					<RSAttribute Name="CUR_OrderAmountAverage" Displayed="False" UnPlaced="False" />
+					<RSAttribute Name="CUR_Image" Displayed="False" UnPlaced="False" />
+					<RSAttribute Name="CUR_CurrencyCode_RelatedTo" Displayed="False" UnPlaced="False" />
+					<RSAttribute Name="CUR_Client" Displayed="True" UnPlaced="True" />
+					<RSAttribute Name="CUR_Client_RelatedTo" Displayed="True" UnPlaced="True" />
+				</ScalerAttributes>
+			</RSAttributesMeta>
+		</RecordSource>
+		<PickObject
+			RSID="4"
+			Prefix="T4"
+			BusinessObject="Currency_CUR"
+			Relationship="Currency_CURParent(Currency_CUR)-Currency_CURChild(Currency_CUR)"
+			RelnIsFromParent="False"
+			DoesSourceAffectMe="False"
+			DoIAffectSource="False"
+			IsAddedAfterGen="False"
+			RsAttributesDefault="False"
+			ClassName="VSPick"
+			OnScreenPick="True"
+			>
+			<FKeyParamsClause><![CDATA[ [CUR_Client] = [?CUR_Client_RelatedTo] and [CUR_CurrencyCode] = [?CUR_CurrencyCode_RelatedTo]]]></FKeyParamsClause>
+			<AdditionalWhereClause><![CDATA[ ]]></AdditionalWhereClause>
+			<OrderByClause><![CDATA[ ]]></OrderByClause>
+			<RSAttributesMeta>
+				<DefaultAttributes>
+					<RSDefaultAttribute ID="1" Name="CUR_CurrencyCode" />
+					<RSDefaultAttribute ID="2" Name="CUR_ExchangeRate" />
+					<RSDefaultAttribute ID="3" Name="CUR_OrderValueUSD" />
+					<RSDefaultAttribute ID="4" Name="CUR_NumberOfOrders" />
+					<RSDefaultAttribute ID="5" Name="CUR_OrderAmountAverage" />
+					<RSDefaultAttribute ID="6" Name="CUR_Image" />
+					<RSDefaultAttribute ID="7" Name="CUR_CurrencyCode_RelatedTo" />
+					<RSDefaultAttribute ID="8" Name="CUR_Client" />
+					<RSDefaultAttribute ID="9" Name="CUR_Client_RelatedTo" />
+				</DefaultAttributes>
+				<GridAttributes>
+					<RSAttribute Name="CUR_CurrencyCode" Displayed="True" UnPlaced="True" />
+					<RSAttribute Name="CUR_ExchangeRate" Displayed="True" UnPlaced="True" />
+					<RSAttribute Name="CUR_OrderValueUSD" Displayed="True" UnPlaced="True" />
+					<RSAttribute Name="CUR_NumberOfOrders" Displayed="True" UnPlaced="True" />
+					<RSAttribute Name="CUR_OrderAmountAverage" Displayed="True" UnPlaced="True" />
+					<RSAttribute Name="CUR_Image" Displayed="True" UnPlaced="True" />
+					<RSAttribute Name="CUR_CurrencyCode_RelatedTo" Displayed="True" UnPlaced="True" />
+					<RSAttribute Name="CUR_Client" Displayed="True" UnPlaced="True" />
+					<RSAttribute Name="CUR_Client_RelatedTo" Displayed="True" UnPlaced="True" />
+				</GridAttributes>
+			</RSAttributesMeta>
+		</PickObject>
+	</RecordSource>
+	<FormLayout><![CDATA[BEGIN .VSForm fCurrency_CUR_Grid
+  ImageFile = ""
+  ClassName = "VSForm"
+  BackColor = 0xc0c0c0
+  Width = 716
+  ImageDisplayStyle = Stretched
+  Title = "Currency_CUR(s)"
+  Enable = True
+  ForeColor = 0x000000
+  HelpURL = ""
+  ToolTip = ""
+  Visible = True
+  Tag = "_$$_"
+  Height = 500
+  AnchorForm = "NONE"
+  Constraint = "null"
+  Layout = ""
+  Style = "Child"
+  Name = "fCurrency_CUR_Grid"
+  Extended = ""
+  DisplayTitleBar = True
+  BeginProperty VSFont 
+    FontName  = "Helvetica"
+    FontSize  = 12
+    FontStyleBold  = False
+    FontStyleItalic  = False
+  EndProperty 
+  BEGIN .VSImagePanel imgPanel
+    ImageFile = ""
+    Top = 4
+    ClassName = "VSImagePanel"
+    DataSource = "datT1Currency_CUR"
+    BorderStyle = "PLAIN_BORDER"
+    BackColor = 0xc0c0c0
+    Width = 64
+    Enable = False
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    TabOrder = 22
+    Height = 33
+    Left = 451
+    DataField = 6,"CUR_Image"
+    Constraint = "null"
+    TabStop = False
+    Layout = ""
+    Extended = ""
+    Name = "imgPanel"
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    DisplayStyle = Centered
+  END
+  BEGIN .VSImageButton btnInsert
+    ImageFile = "New.GIF"
+    Top = 7
+    ClassName = "VSImageButton"
+    Opaque = True
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = "(Current)"
+    BackColor = 0xc0c0c0
+    Width = 26
+    ReportURL = ""
+    Enable = True
+    VertTextPos = "CENTER"
+    ForeColor = 0x000000
+    AutoToolTip = False
+    HelpURL = ""
+    ToolTip = "Insert"
+    Visible = True
+    Tag = "_$$_"
+    Action = "db_insert"
+    TabOrder = 3
+    Height = 26
+    Left = 8
+    AutoSize = False
+    Constraint = "null"
+    HorizTextPos = "CENTER"
+    TabStop = True
+    Border = "AUTOSHOW_BORDER"
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnInsert"
+    AutoLabel = False
+    FormTransition = 0
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    DisplayStyle = Centered
+    Label = ""
+  END
+  BEGIN .VSImageButton btnDelete
+    ImageFile = "delete.GIF"
+    Top = 7
+    ClassName = "VSImageButton"
+    Opaque = True
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = "(Current)"
+    BackColor = 0xc0c0c0
+    Width = 26
+    ReportURL = ""
+    Enable = True
+    VertTextPos = "CENTER"
+    ForeColor = 0x000000
+    AutoToolTip = False
+    HelpURL = ""
+    ToolTip = "Delete"
+    Visible = True
+    Tag = "_$$_"
+    Action = "db_delete"
+    TabOrder = 6
+    Height = 26
+    Left = 35
+    AutoSize = False
+    Constraint = "null"
+    HorizTextPos = "CENTER"
+    TabStop = True
+    Border = "AUTOSHOW_BORDER"
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnDelete"
+    AutoLabel = False
+    FormTransition = 0
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    DisplayStyle = Centered
+    Label = ""
+  END
+  BEGIN .VSImageButton btnSave
+    ImageFile = "Save.GIF"
+    Top = 7
+    ClassName = "VSImageButton"
+    Opaque = True
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = "(Current)"
+    BackColor = 0xc0c0c0
+    Width = 26
+    ReportURL = ""
+    Enable = True
+    VertTextPos = "CENTER"
+    ForeColor = 0x000000
+    AutoToolTip = False
+    HelpURL = ""
+    ToolTip = "Save"
+    Visible = True
+    Tag = "_$$_"
+    Action = "db_saveAll"
+    TabOrder = 7
+    Height = 26
+    Left = 70
+    AutoSize = False
+    Constraint = "null"
+    HorizTextPos = "CENTER"
+    TabStop = True
+    Border = "AUTOSHOW_BORDER"
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnSave"
+    AutoLabel = False
+    FormTransition = 0
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    DisplayStyle = Centered
+    Label = ""
+  END
+  BEGIN .VSImageButton btnUndo
+    ImageFile = "Undo.GIF"
+    Top = 7
+    ClassName = "VSImageButton"
+    Opaque = True
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = "(Current)"
+    BackColor = 0xc0c0c0
+    Width = 26
+    ReportURL = ""
+    Enable = True
+    VertTextPos = "CENTER"
+    ForeColor = 0x000000
+    AutoToolTip = False
+    HelpURL = ""
+    ToolTip = "Undo"
+    Visible = True
+    Tag = "_$$_"
+    Action = "db_undoRecord"
+    TabOrder = 8
+    Height = 26
+    Left = 97
+    AutoSize = False
+    Constraint = "null"
+    HorizTextPos = "CENTER"
+    TabStop = True
+    Border = "AUTOSHOW_BORDER"
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnUndo"
+    AutoLabel = False
+    FormTransition = 0
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    DisplayStyle = Centered
+    Label = ""
+  END
+  BEGIN .VSImageButton btnMoveFirst
+    ImageFile = "First.GIF"
+    Top = 7
+    ClassName = "VSImageButton"
+    Opaque = True
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = "(Current)"
+    BackColor = 0xc0c0c0
+    Width = 26
+    ReportURL = ""
+    Enable = True
+    VertTextPos = "CENTER"
+    ForeColor = 0x000000
+    AutoToolTip = False
+    HelpURL = ""
+    ToolTip = "MoveFirst"
+    Visible = True
+    Tag = "_$$_"
+    Action = "db_first"
+    TabOrder = 9
+    Height = 26
+    Left = 137
+    AutoSize = False
+    Constraint = "null"
+    HorizTextPos = "CENTER"
+    TabStop = True
+    Border = "AUTOSHOW_BORDER"
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnMoveFirst"
+    AutoLabel = False
+    FormTransition = 0
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    DisplayStyle = Centered
+    Label = ""
+  END
+  BEGIN .VSImageButton btnMovePrev
+    ImageFile = "previous.GIF"
+    Top = 7
+    ClassName = "VSImageButton"
+    Opaque = True
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = "(Current)"
+    BackColor = 0xc0c0c0
+    Width = 26
+    ReportURL = ""
+    Enable = True
+    VertTextPos = "CENTER"
+    ForeColor = 0x000000
+    AutoToolTip = False
+    HelpURL = ""
+    ToolTip = "Move Previous"
+    Visible = True
+    Tag = "_$$_"
+    Action = "db_previous"
+    TabOrder = 10
+    Height = 26
+    Left = 164
+    AutoSize = False
+    Constraint = "null"
+    HorizTextPos = "CENTER"
+    TabStop = True
+    Border = "AUTOSHOW_BORDER"
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnMovePrev"
+    AutoLabel = False
+    FormTransition = 0
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    DisplayStyle = Centered
+    Label = ""
+  END
+  BEGIN .VSImageButton btnMoveNext
+    ImageFile = "Next.GIF"
+    Top = 7
+    ClassName = "VSImageButton"
+    Opaque = True
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = "(Current)"
+    BackColor = 0xc0c0c0
+    Width = 26
+    ReportURL = ""
+    Enable = True
+    VertTextPos = "CENTER"
+    ForeColor = 0x000000
+    AutoToolTip = False
+    HelpURL = ""
+    ToolTip = "Move Next"
+    Visible = True
+    Tag = "_$$_"
+    Action = "db_next"
+    TabOrder = 11
+    Height = 26
+    Left = 191
+    AutoSize = False
+    Constraint = "null"
+    HorizTextPos = "CENTER"
+    TabStop = True
+    Border = "AUTOSHOW_BORDER"
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnMoveNext"
+    AutoLabel = False
+    FormTransition = 0
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    DisplayStyle = Centered
+    Label = ""
+  END
+  BEGIN .VSImageButton btnMoveLast
+    ImageFile = "Last.GIF"
+    Top = 7
+    ClassName = "VSImageButton"
+    Opaque = True
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = "(Current)"
+    BackColor = 0xc0c0c0
+    Width = 26
+    ReportURL = ""
+    Enable = True
+    VertTextPos = "CENTER"
+    ForeColor = 0x000000
+    AutoToolTip = False
+    HelpURL = ""
+    ToolTip = "Move Last"
+    Visible = True
+    Tag = "_$$_"
+    Action = "db_last"
+    TabOrder = 12
+    Height = 26
+    Left = 218
+    AutoSize = False
+    Constraint = "null"
+    HorizTextPos = "CENTER"
+    TabStop = True
+    Border = "AUTOSHOW_BORDER"
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnMoveLast"
+    AutoLabel = False
+    FormTransition = 0
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    DisplayStyle = Centered
+    Label = ""
+  END
+  BEGIN .VSImageButton btnRunQuery
+    ImageFile = "runQuery.gif"
+    Top = 7
+    ClassName = "VSImageButton"
+    Opaque = True
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = "(Current)"
+    BackColor = 0xc0c0c0
+    Width = 26
+    ReportURL = ""
+    Enable = True
+    VertTextPos = "CENTER"
+    ForeColor = 0x000000
+    AutoToolTip = False
+    HelpURL = ""
+    ToolTip = "Get Data"
+    Visible = True
+    Tag = "_$$_"
+    Action = "db_runQuery"
+    TabOrder = 13
+    Height = 26
+    Left = 258
+    AutoSize = False
+    Constraint = "null"
+    HorizTextPos = "CENTER"
+    TabStop = True
+    Border = "AUTOSHOW_BORDER"
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnRunQuery"
+    AutoLabel = False
+    FormTransition = 0
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    DisplayStyle = Centered
+    Label = ""
+  END
+  BEGIN .VSImageButton btnQueryMode
+    ImageFile = "QueryMode.GIF"
+    Top = 7
+    ClassName = "VSImageButton"
+    Opaque = True
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = "(Current)"
+    BackColor = 0xc0c0c0
+    Width = 26
+    ReportURL = ""
+    Enable = True
+    VertTextPos = "CENTER"
+    ForeColor = 0x000000
+    AutoToolTip = False
+    HelpURL = ""
+    ToolTip = "Search Mode"
+    Visible = True
+    Tag = "_$$_"
+    Action = "db_queryMode"
+    TabOrder = 14
+    Height = 26
+    Left = 293
+    AutoSize = False
+    Constraint = "null"
+    HorizTextPos = "CENTER"
+    TabStop = True
+    Border = "AUTOSHOW_BORDER"
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnQueryMode"
+    AutoLabel = False
+    FormTransition = 0
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    DisplayStyle = Centered
+    Label = ""
+  END
+  BEGIN .VSImageButton btnQueryMode1
+    ImageFile = "clearQuery.gif"
+    Top = 7
+    ClassName = "VSImageButton"
+    Opaque = True
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = "(Current)"
+    BackColor = 0xc0c0c0
+    Width = 26
+    ReportURL = ""
+    Enable = True
+    VertTextPos = "CENTER"
+    ForeColor = 0x000000
+    AutoToolTip = False
+    HelpURL = ""
+    ToolTip = "Clear Search"
+    Visible = True
+    Tag = "_$$_"
+    Action = "db_clearQuery"
+    TabOrder = 15
+    Height = 26
+    Left = 320
+    AutoSize = False
+    Constraint = "null"
+    HorizTextPos = "CENTER"
+    TabStop = True
+    Border = "AUTOSHOW_BORDER"
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnQueryMode1"
+    AutoLabel = False
+    FormTransition = 0
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    DisplayStyle = Centered
+    Label = ""
+  END
+  BEGIN .VSImageButton btnCancelQuery
+    ImageFile = "UndoQuery.GIF"
+    Top = 7
+    ClassName = "VSImageButton"
+    Opaque = True
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = "(Current)"
+    BackColor = 0xc0c0c0
+    Width = 26
+    ReportURL = ""
+    Enable = False
+    VertTextPos = "CENTER"
+    ForeColor = 0x000000
+    AutoToolTip = False
+    HelpURL = ""
+    ToolTip = "Cancel Search"
+    Visible = True
+    Tag = "_$$_"
+    Action = "db_cancelQuery"
+    TabOrder = 16
+    Height = 26
+    Left = 346
+    AutoSize = False
+    Constraint = "null"
+    HorizTextPos = "CENTER"
+    TabStop = True
+    Border = "AUTOSHOW_BORDER"
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnCancelQuery"
+    AutoLabel = False
+    FormTransition = 0
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    DisplayStyle = Centered
+    Label = ""
+  END
+  BEGIN .VSImageButton btnEditSql
+    ImageFile = "EditQuery2.GIF"
+    Top = 7
+    ClassName = "VSImageButton"
+    Opaque = True
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = "(Current)"
+    BackColor = 0xc0c0c0
+    Width = 26
+    ReportURL = ""
+    Enable = False
+    VertTextPos = "CENTER"
+    ForeColor = 0x000000
+    AutoToolTip = False
+    HelpURL = ""
+    ToolTip = "Edit SQL"
+    Visible = True
+    Tag = "_$$_"
+    Action = "db_editSQL"
+    TabOrder = 17
+    Height = 26
+    Left = 380
+    AutoSize = False
+    Constraint = "null"
+    HorizTextPos = "CENTER"
+    TabStop = True
+    Border = "AUTOSHOW_BORDER"
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnEditSql"
+    AutoLabel = False
+    FormTransition = 0
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    DisplayStyle = Centered
+    Label = ""
+  END
+  BEGIN .VSJavaDataControl datT2OrderItem_ORD
+    Top = 465
+    ClassName = "VSJavaDataControl"
+    RecordSourceProperties = ""
+    StatusBarText = ""
+    AllowInsert = True
+    BackColor = 0xffffff
+    Width = 252
+    AllowUpdate = True
+    RecordSource = 2,"T2OrderItem_ORD"
+    Enable = True
+    ForeColor = 0x000000
+    AllowDelete = True
+    HelpURL = ""
+    ToolTip = ""
+    Visible = False
+    Tag = "_$$_"
+    MaxRowsPerFetch = 16
+    TabOrder = 18
+    Height = 27
+    Left = 112
+    SaveMode = "buffered"
+    Constraint = "null"
+    TabStop = False
+    Extended = ""
+    Name = "datT2OrderItem_ORD"
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "OrderItem_ORD(s)"
+  END
+  BEGIN .VSGrid grdT2OrderItem_ORD
+    RowSelectMode = "SINGLE_SELECTION"
+    HiliteForeColor = 0xffffff
+    Top = 273
+    ClassName = "VSGrid"
+    DisplayHeader = True
+    BorderStyle = "PLAIN_BORDER"
+    DataSource = "datT2OrderItem_ORD"
+    BackColor = 0xffffff
+    Width = 681
+    RowSelectionAllowed = False
+    DisplayGridLines = True
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = "_$$_"
+    RowHeaderBackColor = 0xc0c0c0
+    Columns = ""
+    TabOrder = 19
+    Height = 195
+    Left = 10
+    ColumnHeaderBackColor = 0xc0c0c0
+    ShowVerticalLines = True
+    RowHeight = 20
+    RowHeaderForeColor = 0x000000
+    DisableBackColor = 0xffffff
+    BeginProperty VSHeaderFont
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    ColumnHeaderForeColor = 0x000000
+    Constraint = "null"
+    TabStop = True
+    ColResizeMode = "AUTO_RESIZE_OFF"
+    LineColor = 0xc0c0c0
+    DisableForeColor = 0xc0c0c0
+    Editable = True
+    Extended = ""
+    Name = "grdT2OrderItem_ORD"
+    RowHeaderWidth = 25
+    HiliteBackColor = 0x000080
+    ColumnHeaderHeight = 17
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    ShowStarRow = True
+    ShowHorizontalLines = True
+    BEGIN .VSGridColumn "ORD_Client"      
+      GridColumnLabel = "ORD_Client"
+      GridColumnWidth = 0x1A
+      GridColumnDataField = 8
+      GridColumnEditType = "VSTextField"
+      GridColumnControlStyle = ""
+      JUSTIFY = "JUSTIFY_LEFT"
+      VALIGN = "VALIGN_CENTER"
+      GRIDCOLUMNBACKCOLOR = "0xffffff"
+      GRIDCOLUMNFORECOLOR = "0x000000"
+      GRIDCOLUMNHILITEBACKCOLOR = "0x000080"
+      GRIDCOLUMNHILITEFORECOLOR = "0xffffff"
+      GridColumnEnable = True
+      GridColumnSortAllowed = True
+      GridColumnFormat = ""
+      GridColumnPickObject = 0
+    ENDGRIDCOLUMN
+    BEGIN .VSGridColumn "OrderId"      
+      GridColumnLabel = "OrderId"
+      GridColumnWidth = 0x4B
+      GridColumnDataField = 1
+      GridColumnEditType = "VSTextField"
+      GridColumnControlStyle = ""
+      JUSTIFY = "JUSTIFY_LEFT"
+      VALIGN = "VALIGN_CENTER"
+      GRIDCOLUMNBACKCOLOR = "0xffffff"
+      GRIDCOLUMNFORECOLOR = "0x000000"
+      GRIDCOLUMNHILITEBACKCOLOR = "0x000080"
+      GRIDCOLUMNHILITEFORECOLOR = "0xffffff"
+      GridColumnEnable = True
+      GridColumnSortAllowed = True
+      GridColumnFormat = ""
+      GridColumnPickObject = 0
+    ENDGRIDCOLUMN
+    BEGIN .VSGridColumn "Month"      
+      GridColumnLabel = "Month"
+      GridColumnWidth = 0x4B
+      GridColumnDataField = 2
+      GridColumnEditType = "VSTextField"
+      GridColumnControlStyle = ""
+      JUSTIFY = "JUSTIFY_LEFT"
+      VALIGN = "VALIGN_CENTER"
+      GRIDCOLUMNBACKCOLOR = "0xffffff"
+      GRIDCOLUMNFORECOLOR = "0x000000"
+      GRIDCOLUMNHILITEBACKCOLOR = "0x000080"
+      GRIDCOLUMNHILITEFORECOLOR = "0xffffff"
+      GridColumnEnable = True
+      GridColumnSortAllowed = True
+      GridColumnFormat = ""
+      GridColumnPickObject = 0
+    ENDGRIDCOLUMN
+    BEGIN .VSGridColumn "CurrencyCode"      
+      GridColumnLabel = "CurrencyCode"
+      GridColumnWidth = 0x4B
+      GridColumnDataField = 3
+      GridColumnEditType = "VSTextField"
+      GridColumnControlStyle = ""
+      JUSTIFY = "JUSTIFY_LEFT"
+      VALIGN = "VALIGN_CENTER"
+      GRIDCOLUMNBACKCOLOR = "0xffffff"
+      GRIDCOLUMNFORECOLOR = "0x000000"
+      GRIDCOLUMNHILITEBACKCOLOR = "0x000080"
+      GRIDCOLUMNHILITEFORECOLOR = "0xffffff"
+      GridColumnEnable = True
+      GridColumnSortAllowed = True
+      GridColumnFormat = ""
+      GridColumnPickObject = 0
+    ENDGRIDCOLUMN
+    BEGIN .VSGridColumn "AmountInLocalCurrency"      
+      GridColumnLabel = "AmountInLocalCurrency"
+      GridColumnWidth = 0x4B
+      GridColumnDataField = 4
+      GridColumnEditType = "VSTextField"
+      GridColumnControlStyle = ""
+      JUSTIFY = "JUSTIFY_LEFT"
+      VALIGN = "VALIGN_CENTER"
+      GRIDCOLUMNBACKCOLOR = "0xffffff"
+      GRIDCOLUMNFORECOLOR = "0x000000"
+      GRIDCOLUMNHILITEBACKCOLOR = "0x000080"
+      GRIDCOLUMNHILITEFORECOLOR = "0xffffff"
+      GridColumnEnable = True
+      GridColumnSortAllowed = True
+      GridColumnFormat = ""
+      GridColumnPickObject = 0
+    ENDGRIDCOLUMN
+    BEGIN .VSGridColumn "AmountInUSD"      
+      GridColumnLabel = "AmountInUSD"
+      GridColumnWidth = 0x4B
+      GridColumnDataField = 5
+      GridColumnEditType = "VSTextField"
+      GridColumnControlStyle = ""
+      JUSTIFY = "JUSTIFY_LEFT"
+      VALIGN = "VALIGN_CENTER"
+      GRIDCOLUMNBACKCOLOR = "0xffffff"
+      GRIDCOLUMNFORECOLOR = "0x000000"
+      GRIDCOLUMNHILITEBACKCOLOR = "0x000080"
+      GRIDCOLUMNHILITEFORECOLOR = "0xffffff"
+      GridColumnEnable = True
+      GridColumnSortAllowed = True
+      GridColumnFormat = ""
+      GridColumnPickObject = 0
+    ENDGRIDCOLUMN
+    BEGIN .VSGridColumn "ORD_ExchangeRate"      
+      GridColumnLabel = "ORD_ExchangeRate"
+      GridColumnWidth = 0x4B
+      GridColumnDataField = 6
+      GridColumnEditType = "VSTextField"
+      GridColumnControlStyle = ""
+      JUSTIFY = "JUSTIFY_LEFT"
+      VALIGN = "VALIGN_CENTER"
+      GRIDCOLUMNBACKCOLOR = "0xffffff"
+      GRIDCOLUMNFORECOLOR = "0x000000"
+      GRIDCOLUMNHILITEBACKCOLOR = "0x000080"
+      GRIDCOLUMNHILITEFORECOLOR = "0xffffff"
+      GridColumnEnable = True
+      GridColumnSortAllowed = True
+      GridColumnFormat = ""
+      GridColumnPickObject = 0
+    ENDGRIDCOLUMN
+    BEGIN .VSGridColumn "Approved"      
+      GridColumnLabel = "Approved"
+      GridColumnWidth = 0x4B
+      GridColumnDataField = 7
+      GridColumnEditType = "VSChoice"
+      GridColumnControlStyle = ""
+      JUSTIFY = "JUSTIFY_LEFT"
+      VALIGN = "VALIGN_CENTER"
+      GRIDCOLUMNBACKCOLOR = "0xffffff"
+      GRIDCOLUMNFORECOLOR = "0x000000"
+      GRIDCOLUMNHILITEBACKCOLOR = "0x000080"
+      GRIDCOLUMNHILITEFORECOLOR = "0xffffff"
+      GridColumnEnable = True
+      GridColumnSortAllowed = True
+      GridColumnFormat = ""
+      GridColumnPickObject = 0
+    ENDGRIDCOLUMN
+    END
+  BEGIN .VSJavaDataControl datT1Currency_CUR
+    Top = 256
+    ClassName = "VSJavaDataControl"
+    RecordSourceProperties = ""
+    StatusBarText = ""
+    AllowInsert = True
+    BackColor = 0xffffff
+    Width = 252
+    AllowUpdate = True
+    RecordSource = 1,"T1Currency_CUR"
+    Enable = True
+    ForeColor = 0x000000
+    AllowDelete = True
+    HelpURL = ""
+    ToolTip = ""
+    Visible = False
+    Tag = "_$$_"
+    MaxRowsPerFetch = 16
+    TabOrder = 20
+    Height = 27
+    Left = 110
+    SaveMode = "immediate"
+    Constraint = "null"
+    TabStop = False
+    Extended = ""
+    Name = "datT1Currency_CUR"
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "Currency_CUR"
+  END
+  BEGIN .VSGrid grdT1Currency_CUR
+    RowSelectMode = "SINGLE_SELECTION"
+    HiliteForeColor = 0xffffff
+    Top = 66
+    ClassName = "VSGrid"
+    DisplayHeader = True
+    BorderStyle = "PLAIN_BORDER"
+    DataSource = "datT1Currency_CUR"
+    BackColor = 0xffffff
+    Width = 450
+    RowSelectionAllowed = False
+    DisplayGridLines = True
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = "_$$_"
+    RowHeaderBackColor = 0xc0c0c0
+    Columns = ""
+    TabOrder = 21
+    Height = 148
+    Left = 6
+    ColumnHeaderBackColor = 0xc0c0c0
+    ShowVerticalLines = True
+    RowHeight = 20
+    RowHeaderForeColor = 0x000000
+    DisableBackColor = 0xffffff
+    BeginProperty VSHeaderFont
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    ColumnHeaderForeColor = 0x000000
+    Constraint = "null"
+    TabStop = True
+    ColResizeMode = "AUTO_RESIZE_OFF"
+    LineColor = 0xc0c0c0
+    DisableForeColor = 0xc0c0c0
+    Editable = True
+    Extended = ""
+    Name = "grdT1Currency_CUR"
+    RowHeaderWidth = 25
+    HiliteBackColor = 0x000080
+    ColumnHeaderHeight = 17
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    ShowStarRow = True
+    ShowHorizontalLines = True
+    BEGIN .VSGridColumn "CUR_Image"      
+      GridColumnLabel = "CUR_Image"
+      GridColumnWidth = 0x4B
+      GridColumnDataField = 6
+      GridColumnEditType = "VSImage"
+      GridColumnControlStyle = "STYLE_CENTERED"
+      JUSTIFY = "JUSTIFY_LEFT"
+      VALIGN = "VALIGN_CENTER"
+      GRIDCOLUMNBACKCOLOR = "0xffffff"
+      GRIDCOLUMNFORECOLOR = "0x000000"
+      GRIDCOLUMNHILITEBACKCOLOR = "0x000080"
+      GRIDCOLUMNHILITEFORECOLOR = "0xffffff"
+      GridColumnEnable = True
+      GridColumnSortAllowed = True
+      GridColumnFormat = ""
+      GridColumnPickObject = 0
+    ENDGRIDCOLUMN
+    BEGIN .VSGridColumn "CUR_Client"      
+      GridColumnLabel = "CUR_Client"
+      GridColumnWidth = 0x1A
+      GridColumnDataField = 8
+      GridColumnEditType = "VSTextField"
+      GridColumnControlStyle = ""
+      JUSTIFY = "JUSTIFY_LEFT"
+      VALIGN = "VALIGN_CENTER"
+      GRIDCOLUMNBACKCOLOR = "0xffffff"
+      GRIDCOLUMNFORECOLOR = "0x000000"
+      GRIDCOLUMNHILITEBACKCOLOR = "0x000080"
+      GRIDCOLUMNHILITEFORECOLOR = "0xffffff"
+      GridColumnEnable = True
+      GridColumnSortAllowed = True
+      GridColumnFormat = ""
+      GridColumnPickObject = 0
+    ENDGRIDCOLUMN
+    BEGIN .VSGridColumn "Currency Code"      
+      GridColumnLabel = "Currency Code"
+      GridColumnWidth = 0x33
+      GridColumnDataField = 1
+      GridColumnEditType = "VSTextField"
+      GridColumnControlStyle = ""
+      JUSTIFY = "JUSTIFY_LEFT"
+      VALIGN = "VALIGN_CENTER"
+      GRIDCOLUMNBACKCOLOR = "0xffffff"
+      GRIDCOLUMNFORECOLOR = "0x000000"
+      GRIDCOLUMNHILITEBACKCOLOR = "0x000080"
+      GRIDCOLUMNHILITEFORECOLOR = "0xffffff"
+      GridColumnEnable = True
+      GridColumnSortAllowed = True
+      GridColumnFormat = ""
+      GridColumnPickObject = 0
+    ENDGRIDCOLUMN
+    BEGIN .VSGridColumn "CUR_Client_RelatedTo"      
+      GridColumnLabel = "CUR_Client_RelatedTo"
+      GridColumnWidth = 0x18
+      GridColumnDataField = 9
+      GridColumnEditType = "VSPickChoice"
+      GridColumnControlStyle = ""
+      JUSTIFY = "JUSTIFY_LEFT"
+      VALIGN = "VALIGN_CENTER"
+      GRIDCOLUMNBACKCOLOR = "0xffffff"
+      GRIDCOLUMNFORECOLOR = "0x000000"
+      GRIDCOLUMNHILITEBACKCOLOR = "0x000080"
+      GRIDCOLUMNHILITEFORECOLOR = "0xffffff"
+      GridColumnEnable = True
+      GridColumnSortAllowed = True
+      GridColumnFormat = ""
+      GridColumnPickObject = 4
+    ENDGRIDCOLUMN
+    BEGIN .VSGridColumn "CurrencyCode_RelatedTo"      
+      GridColumnLabel = "CurrencyCode_RelatedTo"
+      GridColumnWidth = 0x36
+      GridColumnDataField = 7
+      GridColumnEditType = "VSPickChoice"
+      GridColumnControlStyle = ""
+      JUSTIFY = "JUSTIFY_LEFT"
+      VALIGN = "VALIGN_CENTER"
+      GRIDCOLUMNBACKCOLOR = "0xffffff"
+      GRIDCOLUMNFORECOLOR = "0x000000"
+      GRIDCOLUMNHILITEBACKCOLOR = "0x000080"
+      GRIDCOLUMNHILITEFORECOLOR = "0xffffff"
+      GridColumnEnable = True
+      GridColumnSortAllowed = True
+      GridColumnFormat = ""
+      GridColumnPickObject = 4
+    ENDGRIDCOLUMN
+    BEGIN .VSGridColumn "Exchange Rate"      
+      GridColumnLabel = "Exchange Rate"
+      GridColumnWidth = 0x4B
+      GridColumnDataField = 2
+      GridColumnEditType = "VSTextField"
+      GridColumnControlStyle = ""
+      JUSTIFY = "JUSTIFY_LEFT"
+      VALIGN = "VALIGN_CENTER"
+      GRIDCOLUMNBACKCOLOR = "0xffffff"
+      GRIDCOLUMNFORECOLOR = "0x000000"
+      GRIDCOLUMNHILITEBACKCOLOR = "0x000080"
+      GRIDCOLUMNHILITEFORECOLOR = "0xffffff"
+      GridColumnEnable = True
+      GridColumnSortAllowed = True
+      GridColumnFormat = ""
+      GridColumnPickObject = 0
+    ENDGRIDCOLUMN
+    BEGIN .VSGridColumn "Order Value USD22"      
+      GridColumnLabel = "Order Value USD22"
+      GridColumnWidth = 0x4B
+      GridColumnDataField = 3
+      GridColumnEditType = "VSTextField"
+      GridColumnControlStyle = ""
+      JUSTIFY = "JUSTIFY_LEFT"
+      VALIGN = "VALIGN_CENTER"
+      GRIDCOLUMNBACKCOLOR = "0xffffff"
+      GRIDCOLUMNFORECOLOR = "0x000000"
+      GRIDCOLUMNHILITEBACKCOLOR = "0x000080"
+      GRIDCOLUMNHILITEFORECOLOR = "0xffffff"
+      GridColumnEnable = True
+      GridColumnSortAllowed = True
+      GridColumnFormat = ""
+      GridColumnPickObject = 0
+    ENDGRIDCOLUMN
+    BEGIN .VSGridColumn "Number Of Orders"      
+      GridColumnLabel = "Number Of Orders"
+      GridColumnWidth = 0x4B
+      GridColumnDataField = 4
+      GridColumnEditType = "VSTextField"
+      GridColumnControlStyle = ""
+      JUSTIFY = "JUSTIFY_LEFT"
+      VALIGN = "VALIGN_CENTER"
+      GRIDCOLUMNBACKCOLOR = "0xffffff"
+      GRIDCOLUMNFORECOLOR = "0x000000"
+      GRIDCOLUMNHILITEBACKCOLOR = "0x000080"
+      GRIDCOLUMNHILITEFORECOLOR = "0xffffff"
+      GridColumnEnable = True
+      GridColumnSortAllowed = True
+      GridColumnFormat = ""
+      GridColumnPickObject = 0
+    ENDGRIDCOLUMN
+    BEGIN .VSGridColumn "Order Amount Average USD"      
+      GridColumnLabel = "Order Amount Average USD"
+      GridColumnWidth = 0x4B
+      GridColumnDataField = 5
+      GridColumnEditType = "VSTextField"
+      GridColumnControlStyle = ""
+      JUSTIFY = "JUSTIFY_LEFT"
+      VALIGN = "VALIGN_CENTER"
+      GRIDCOLUMNBACKCOLOR = "0xffffff"
+      GRIDCOLUMNFORECOLOR = "0x000000"
+      GRIDCOLUMNHILITEBACKCOLOR = "0x000080"
+      GRIDCOLUMNHILITEFORECOLOR = "0xffffff"
+      GridColumnEnable = True
+      GridColumnSortAllowed = True
+      GridColumnFormat = ""
+      GridColumnPickObject = 0
+    ENDGRIDCOLUMN
+    END
+  BEGIN .VSLabel lblT1CUR_Image
+    Top = 39
+    ClassName = "VSLabel"
+    Opaque = False
+    StatusBarText = ""
+    BorderStyle = "NO_BORDER"
+    DataSource = ""
+    HorizAlign = "LEFT"
+    BackColor = 0xc0c0c0
+    Width = 102
+    Enable = True
+    VertTextPos = "BOTTOM"
+    DisplayedMnemonic = ""
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = "_$$_"
+    Height = 18
+    Left = 139
+    DataField = 0
+    Icon = ""
+    Constraint = "null"
+    VertAlign = "CENTER"
+    HorizTextPos = "RIGHT"
+    Extended = ""
+    Name = "lblT1CUR_Image"
+    LabelFor = ""
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "CUR_Image"
+  END
+  BEGIN .VSTextField txtT1CUR_Image
+    Top = 38
+    ClassName = "VSTextField"
+    StatusBarText = ""
+    HorizAlign = "LEFT"
+    EchoChar = ""
+    DataSource = "datT1Currency_CUR"
+    BackColor = 0xffffff
+    Width = 350
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = "_$$_"
+    Format = ""
+    Columns = 0
+    TabOrder = 4
+    Height = 18
+    Left = 215
+    DataField = 6,"CUR_Image"
+    Constraint = "null"
+    TabStop = True
+    Editable = True
+    DisplayMode = "Data"
+    Extended = ""
+    Name = "txtT1CUR_Image"
+    Text = ""
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+  END
+  BEGIN .VSJavaDataControl datT3Currency_CUR
+    Top = 240
+    ClassName = "VSJavaDataControl"
+    RecordSourceProperties = ""
+    StatusBarText = ""
+    AllowInsert = True
+    BackColor = 0xffffff
+    Width = 101
+    AllowUpdate = True
+    RecordSource = 3,"T3Currency_CUR"
+    Enable = True
+    ForeColor = 0x000000
+    AllowDelete = True
+    HelpURL = ""
+    ToolTip = ""
+    Visible = False
+    Tag = "_$$_"
+    MaxRowsPerFetch = 1
+    TabOrder = 5
+    Height = 13
+    Left = 457
+    SaveMode = "immediate"
+    Constraint = "null"
+    TabStop = False
+    Extended = ""
+    Name = "datT3Currency_CUR"
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "c"
+  END
+  BEGIN .VSPickChoice pckT1CUR_CurrencyCode_RelatedTo
+    Top = 225
+    ClassName = "VSPickChoice"
+    StatusBarText = ""
+    DataSource = "datT1Currency_CUR"
+    BackColor = 0xffffff
+    Width = 120
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = "CurrencyCode_RelatedTo"
+    Visible = True
+    Tag = "_$$_"
+    TabOrder = 1
+    Height = 20
+    Left = 136
+    PickObjectProperties = ""
+    DataField = 7,"CUR_CurrencyCode_RelatedTo"
+    PickObject = 4,"T4Currency_CUR"
+    Constraint = "null"
+    AllowMultipleValue = True
+    TabStop = True
+    DisplayMode = "Data/Query"
+    Extended = ""
+    Name = "pckT1CUR_CurrencyCode_RelatedTo"
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+  END
+  BEGIN .VSLabel lblT1CUR_CurrencyCode_RelatedTo
+    Top = 225
+    ClassName = "VSLabel"
+    Opaque = False
+    StatusBarText = ""
+    BorderStyle = "NO_BORDER"
+    DataSource = ""
+    HorizAlign = "LEFT"
+    BackColor = 0xc0c0c0
+    Width = 102
+    Enable = True
+    VertTextPos = "BOTTOM"
+    DisplayedMnemonic = ""
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = "_$$_"
+    Height = 18
+    Left = 32
+    DataField = 0
+    Icon = ""
+    Constraint = "null"
+    VertAlign = "CENTER"
+    HorizTextPos = "RIGHT"
+    Extended = ""
+    Name = "lblT1CUR_CurrencyCode_RelatedTo"
+    LabelFor = ""
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "CurrencyCode_RelatedTo"
+  END
+  BEGIN .VSLabel lblT1CUR_Client
+    Top = 73
+    ClassName = "VSLabel"
+    Opaque = False
+    StatusBarText = ""
+    BorderStyle = "NO_BORDER"
+    DataSource = ""
+    HorizAlign = "LEFT"
+    BackColor = 0xc0c0c0
+    Width = 102
+    Enable = True
+    VertTextPos = "BOTTOM"
+    DisplayedMnemonic = ""
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = "_$$_"
+    Height = 18
+    Left = 456
+    DataField = 0
+    Icon = ""
+    Constraint = "null"
+    VertAlign = "CENTER"
+    HorizTextPos = "RIGHT"
+    Extended = ""
+    Name = "lblT1CUR_Client"
+    LabelFor = ""
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "CUR_Client"
+  END
+  BEGIN .VSTextField txtT1CUR_Client
+    Top = 72
+    ClassName = "VSTextField"
+    StatusBarText = ""
+    HorizAlign = "LEFT"
+    EchoChar = ""
+    DataSource = "datT1Currency_CUR"
+    BackColor = 0xffffff
+    Width = 44
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = "_$$_"
+    Format = ""
+    Columns = 0
+    TabOrder = 0
+    Height = 20
+    Left = 558
+    DataField = 8,"CUR_Client"
+    Constraint = "null"
+    TabStop = True
+    Editable = True
+    DisplayMode = "Data/Query"
+    Extended = ""
+    Name = "txtT1CUR_Client"
+    Text = ""
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+  END
+  BEGIN .VSPickChoice pckT1CUR_Client_RelatedTo
+    Top = 101
+    ClassName = "VSPickChoice"
+    StatusBarText = ""
+    DataSource = "datT1Currency_CUR"
+    BackColor = 0xffffff
+    Width = 120
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = "CUR_Client_RelatedTo"
+    Visible = True
+    Tag = "_$$_"
+    TabOrder = 2
+    Height = 20
+    Left = 558
+    PickObjectProperties = ""
+    DataField = 9,"CUR_Client_RelatedTo"
+    PickObject = 4,"T4Currency_CUR"
+    Constraint = "null"
+    AllowMultipleValue = True
+    TabStop = True
+    DisplayMode = "Data/Query"
+    Extended = ""
+    Name = "pckT1CUR_Client_RelatedTo"
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+  END
+  BEGIN .VSLabel lblT1CUR_Client_RelatedTo
+    Top = 101
+    ClassName = "VSLabel"
+    Opaque = False
+    StatusBarText = ""
+    BorderStyle = "NO_BORDER"
+    DataSource = ""
+    HorizAlign = "LEFT"
+    BackColor = 0xc0c0c0
+    Width = 102
+    Enable = True
+    VertTextPos = "BOTTOM"
+    DisplayedMnemonic = ""
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = "_$$_"
+    Height = 18
+    Left = 454
+    DataField = 0
+    Icon = ""
+    Constraint = "null"
+    VertAlign = "CENTER"
+    HorizTextPos = "RIGHT"
+    Extended = ""
+    Name = "lblT1CUR_Client_RelatedTo"
+    LabelFor = ""
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "CUR_Client_RelatedTo"
+  END
+  END
+]]></FormLayout>
+</Form>

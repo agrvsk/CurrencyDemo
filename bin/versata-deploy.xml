@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DeploymentData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="VersataDeploy.xsd">
+<securityData repositoryName="CurrencyDemo">
+<dataObjects>
+  
+  <DataObject xdaObject="false" name="Z_YesNo" packageName="CurrencyDemo" repositoryName="CurrencyDemo" parent=""> 
+  </DataObject>
+  
+  <DataObject xdaObject="false" name="User_USR" packageName="CurrencyDemo" repositoryName="CurrencyDemo" parent=""> 
+  </DataObject>
+  
+  <DataObject xdaObject="false" name="OrderItem_ORD" packageName="CurrencyDemo" repositoryName="CurrencyDemo" parent=""> 
+  </DataObject>
+  
+  <DataObject xdaObject="false" name="OrderBacklogPerMonth_OBT" packageName="CurrencyDemo" repositoryName="CurrencyDemo" parent=""> 
+  </DataObject>
+  
+  <DataObject xdaObject="false" name="OMR1" packageName="CurrencyDemo" repositoryName="CurrencyDemo" parent=""> 
+  </DataObject>
+  
+  <DataObject xdaObject="false" name="OMR" packageName="CurrencyDemo" repositoryName="CurrencyDemo" parent=""> 
+  </DataObject>
+  
+  <DataObject xdaObject="false" name="OBJ" packageName="CurrencyDemo" repositoryName="CurrencyDemo" parent=""> 
+  </DataObject>
+  
+  <DataObject xdaObject="false" name="EmiR_Z_RFU" packageName="CurrencyDemo" repositoryName="CurrencyDemo" parent=""> 
+  </DataObject>
+  
+  <DataObject xdaObject="false" name="Currency_CUR" packageName="CurrencyDemo" repositoryName="CurrencyDemo" parent=""> 
+  </DataObject>
+  
+  <DataObject xdaObject="false" name="CommonParms_COP" packageName="CurrencyDemo" repositoryName="CurrencyDemo" parent=""> 
+  </DataObject>
+</dataObjects>
+<queryObjects>
+  <QueryObject name="Currency_CUR_customer1" packageName="CurrencyDemo" repositoryName="CurrencyDemo">
+  </QueryObject>
+  <QueryObject name="Currency_CUR_customer" packageName="CurrencyDemo" repositoryName="CurrencyDemo">
+  </QueryObject>
+  <QueryObject name="Common_COP_Q" packageName="CurrencyDemo" repositoryName="CurrencyDemo">
+  </QueryObject>
+</queryObjects>
+<javaApplications>
+		
+</javaApplications>
+<htmlApplications>
+	
+	<application name="customer"/>
+	        
+</htmlApplications>
+</securityData>
+</DeploymentData>

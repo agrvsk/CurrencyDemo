@@ -1,0 +1,149 @@
+<project name="deployRepo" default="deployApps" basedir=".">
+	<!--property file="deployApps.properties"/>
+	<target name="stage">
+			
+	</target-->
+	<property file="deployApps.properties"/>
+
+ 	<property name="versata.studio.home" value="${versata.home}/../studio"/>
+	
+	<property name="java.apps.source" value="${repoDir}/Source/ClientApps/JavaApps" />
+	<target name="init">
+		<tstamp>
+			<format property="tstamp" pattern="yyyy.MM.dd-HH.mm.ss.SSS"/>
+		</tstamp>
+		<property name="studio.log.file" value="${versata.studio.home}\Logs\${appName}\${tstamp}-${appName}-apps.log"/>
+
+		<echo level="debug" message="appName ${appName}"/>
+		<echo level="debug" message="repoDir ${repoDir}"/>
+		<echo level="debug" message="htmlApps ${htmlApps}"/>
+		<echo level="debug" message="javaApps ${javaApps}"/>
+		<echo level="debug" message="VERSATA_HOME ${versata.home}"/>
+		<echo level="debug" message="VERSATA_STUDIO_HOME ${versata.studio.home}"/>
+		<echo level="debug" message="eclipse.home ${eclipse.home}"/>
+		<echo level="debug" message="studioStagingDir ${studioStagingDir}"/>
+		<echo level="debug" message="appserver ${appserver}"/>
+
+
+	</target>
+
+	
+	<target name="deployApps" depends="init">
+		<antcall target="-generateApps"/>
+	</target>
+
+	
+	<target name="-deployWithStudio" if="deploy.studio.argLine">
+		<echo message="STUDIO COMMAND: ${versata.studio.home}/VersataStudio.exe ${deploy.studio.argLine}"/>
+		<echo message="This may take a few minutes (depending on the number of clients to deploy)..."/>
+		<echo message="(you can monitor your Studio log files, in ${versata.studio.home}\Logs, for progress and status information)"/>
+		<exec executable="${versata.studio.home}/VersataStudio.exe">
+			<arg line="${deploy.studio.argLine}"/>
+		</exec>
+	</target>
+
+	<target name="-concatLogFile">
+		<concat destfile="${logfile}.bak" append="true">
+			<fileset file="${logfile}"/>
+		</concat>
+		<delete file="${logfile}"/>
+	</target>
+
+	<target name="-check-Local-Folder">
+		<available file="./apps/${appName}/Local/ClientApps" property="local.exists"/>
+	</target>
+
+	<target name="-modify-error-logs" depends="-check-Local-Folder" if="local.exists">
+		<foreach target="-concatLogFile" param="logfile">
+			<path>
+				<fileset dir="./apps/${appName}/Local/ClientApps" casesensitive="false" includes="**/*.Log" />
+			</path>
+		</foreach>
+	</target> 	
+	
+	
+	<target name="-generateApps">
+		<!-- Concatenate client generation logs to their .bak records -->
+		<antcall target="-modify-error-logs"/>
+		
+		<!-- Set command line option for full/incremental rebuild. -->
+		<condition property="rebuild" value="1">
+			<isfalse value="${incremental}"/>
+		</condition>
+		<condition property="rebuild" value="2">
+			<istrue value="${incremental}"/>
+		</condition>
+		<!-- Concatenate htmlApps and javaApps but avoid a leading ',' in the list. -->
+		<condition property="clientList" value="${generateJavaApps}">
+			<equals arg1="${htmlApps}" arg2=""/>
+		</condition>
+		
+		<condition property="clientList" value="${htmlApps},${generateJavaApps}">
+			<not>
+				<equals arg1="${htmlApps}" arg2=""/>
+			</not>
+		</condition>
+
+		<antcall target="-deployWithStudio">
+			<param name="deploy.studio.argLine" value="-Repository &quot;${repoDir}&quot;
+			-Client ${clientList}
+			-Rebuild ${rebuild}
+			-Compile 0
+			-Deploy 0
+			-Silent
+			-Log ${studio.log.file}"/>
+		</antcall>
+		
+		<antcall target="-checkIfSuccessful"/>
+		
+		<!-- To move the images folders inside the application -->
+		<foreach target="-move-images-folder" param="javaAppName" list="${generateJavaApps}" delimiter="," />
+	</target>
+	
+	<target name="-move-images-folder">
+		<echo message="moving images for ${javaAppName} to ${java.apps.source}/${javaAppName}.app/${appName}/${javaAppName}" />
+		<mkdir dir="${java.apps.source}/${javaAppName}.app/${appName}/${javaAppName}/Images" />
+		<move todir="${java.apps.source}/${javaAppName}.app/${appName}/${javaAppName}/Images" failonerror="false">			
+			<fileset dir="${java.apps.source}/${javaAppName}.app/Images" />
+		</move>
+	</target>
+
+	<target name="-checkIfSuccessful">
+		<loadfile property="studio.log" srcFile="${studio.log.file}"/>
+		<condition property="studioFailed">
+		<or>
+		<contains 
+			string="${studio.log}"
+			substring="CLIENT END;;FAIL"/>
+		<contains 
+			string="${studio.log}"
+			substring="An unexpected error occurred."/>
+		<contains 
+			string="${studio.log}"
+			substring="System Error"/>
+		</or>
+		</condition>
+		<antcall target="-exit"/>
+		<!-- Check each app folder for a log, in case of an unreported studio error.  If present fail -->
+		<foreach target="-check-for-error-log" param="log.file">
+			<path>
+				<fileset dir="./apps/${appName}/Local/ClientApps" casesensitive="false" includes="**/*.Log" />
+			</path>			
+		</foreach>
+	</target>
+
+	<target name="-check-for-error-log">
+		<fail message="Studio encountered an error attempting to build the client applications.  Please check your Studio logs in ${versata.studio.home}\Logs for details.">
+			<condition>
+				<available file="${log.file}" property="logFailed"/>
+			</condition>
+		</fail>
+	</target>
+	
+	<target name="-exit" if="studioFailed">
+		<echo message="Studio encountered an error attempting to build the client applications."/>
+		<echo message="${studio.log}"/>
+		<fail message="Studio encountered an error attempting to build the client applications.  Please check your Studio logs in ${versata.studio.home}\Logs for details."/>
+	</target>
+	
+</project>

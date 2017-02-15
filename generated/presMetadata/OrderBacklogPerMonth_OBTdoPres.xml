@@ -1,0 +1,64 @@
+<com.versata.tl.metadata.PresentationMetaDataDO>
+  <dataModelName>OrderBacklogPerMonth_OBT</dataModelName>
+  <singularCaption>Order Backlog Per Month  O B T</singularCaption>
+  <pluralCaption>Order Backlog Per Month  O B T List</pluralCaption>
+  <attributeProperties>
+    <entry>
+      <string>OBT_Month</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>OBT_Month</attributeName>
+        <singularCaption>Month</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>3</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>OBT_OrderValueUSD</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>OBT_OrderValueUSD</attributeName>
+        <singularCaption>Order Value USD</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>0</size>
+          <precision>10</precision>
+          <scale>2</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>OBT_Client</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>OBT_Client</attributeName>
+        <singularCaption>O B T  Client</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>5</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+  </attributeProperties>
+  <associations>
+    <entry>
+      <string>cORDfOBT</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-Association>
+        <associationName>OrderBacklogPerMonth_OBT(pOBTfORD)-OrderItem_ORD(cORDfOBT)</associationName>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-Association>
+    </entry>
+  </associations>
+</com.versata.tl.metadata.PresentationMetaDataDO>

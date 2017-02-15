@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<asn:AssociationSet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:asn="http://www.versata.com/tl/6.0/association" name="Currency_CUR-OrderItem_ORD" metaModelVersion="6.2.0.0">
+  <association name="Currency_CUR(pCURfORD)-OrderItem_ORD(cORDfCUR)">
+    <parentRole name="pCURfORD">
+      <binding href="Currency_CUR-OrderItem_ORD.vrs#Currency_CUR_Target_DELETED"/>
+      <binding href="OrderItem_ORD.vrs#ORD_ExchangeRate_DerivationSourceParentAssociationRole"/>
+      <binding href="Currency_CUR-OrderItem_ORD.vrs#pCURfORD_Target_UPDATED"/>
+    </parentRole>
+    <childRole name="cORDfCUR">
+      <binding href="Currency_CUR-OrderItem_ORD.vrs#OrderItem_ORD_Target_UPDATED"/>
+      <binding href="Currency_CUR-OrderItem_ORD.vrs#OrderItem_ORD_Target_INSERTED"/>
+      <binding href="Currency_CUR.vrs#CUR_NumberOfOrders_DerivationSourceChildAssociationRole"/>
+      <binding href="Currency_CUR.vrs#CUR_OrderValueUSD_DerivationSourceChildAssociationRole"/>
+    </childRole>
+    <attributePair>
+      <parent href="Currency_CUR.vdm#CUR_Client"/>
+      <child href="OrderItem_ORD.vdm#ORD_Client"/>
+    </attributePair>
+    <attributePair>
+      <parent href="Currency_CUR.vdm#CUR_CurrencyCode"/>
+      <child href="OrderItem_ORD.vdm#ORD_CurrencyCode"/>
+    </attributePair>
+  </association>
+  <parentDataObject href="Currency_CUR.vdm#Currency_CUR"/>
+  <childDataObject href="OrderItem_ORD.vdm#OrderItem_ORD"/>
+</asn:AssociationSet>

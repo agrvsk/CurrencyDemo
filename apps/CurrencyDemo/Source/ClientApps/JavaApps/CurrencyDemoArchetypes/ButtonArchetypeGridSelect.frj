@@ -1,0 +1,127 @@
+BEGIN .VSForm ButtonArchetypeGridSelect
+  ClassName = "VSForm"
+  BackColor = 0xffffff
+  Width = 475
+  Title = "ButtonArchetypeGridSelect"
+  Enable = True
+  ForeColor = 0x000000
+  HelpURL = ""
+  ToolTip = ""
+  Visible = True
+  Tag = ""
+  Height = 93
+  AnchorForm = "NONE"
+  Style = "Child"
+  Name = "ButtonArchetypeGridSelect"
+  Extended = ""
+  DisplayTitleBar = True
+  BeginProperty VSFont 
+    FontName  = "Helvetica"
+    FontSize  = 12
+    FontStyleBold  = False
+    FontStyleItalic  = False
+  EndProperty 
+  BEGIN .VSPanel fraButtonArchetypeGridSelect
+    Top = 8
+    ClassName = "VSPanel"
+    BorderStyle = "GROUP_BORDER"
+    BackColor = 0xffffff
+    Width = 54
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Height = 23
+    Left = 8
+    Extended = ""
+    Name = "fraButtonArchetypeGridSelect"
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "ButtonArchetypeGridSelect"
+    BEGIN .VSImageButton VSImageButton1
+      ImageFile = "runQuery.gif"
+      Top = 1
+      ClassName = "VSImageButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = ""
+      BackColor = 0xc0c0c0
+      Width = 23
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "Search"
+      Visible = True
+      Tag = ""
+      Action = "db_runQuery"
+      TabOrder = 1
+      Height = 23
+      Left = 1
+      AutoSize = False
+      TabStop = True
+      Border = "AUTOSHOW_BORDER"
+      Extended = ""
+      Name = "VSImageButton1"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = ""
+      END
+    BEGIN .VSImageButton VSImageButton11
+      ImageFile = "clearQuery.gif"
+      Top = 1
+      ClassName = "VSClearQueryImgButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = ""
+      BackColor = 0xc0c0c0
+      Width = 23
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "Clear Search"
+      Visible = True
+      Tag = ""
+      Action = "db_clearQuery"
+      TabOrder = 0
+      Height = 23
+      Left = 24
+      AutoSize = False
+      TabStop = True
+      Border = "AUTOSHOW_BORDER"
+      Extended = ""
+      Name = "VSImageButton11"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = ""
+      END
+    END
+  END
+<<BEGIN VSMACRO>>
+<<ArchetypeVersion 06.00.00.00>>
+<<Replace VSImageButton1.DataSource>>
+    DataSource = datRSPrefixTableName
+<<End Replace>>
+<<Replace VSImageButton11.DataSource>>
+    DataSource = datRSPrefixTableName
+<<End Replace>>
+

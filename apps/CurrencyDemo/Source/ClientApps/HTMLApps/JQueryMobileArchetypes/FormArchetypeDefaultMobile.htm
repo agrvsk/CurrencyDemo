@@ -1,0 +1,74 @@
+<!--
+* jQuery Default Form Mobile PFU120302
+//-->
+<JADEArchetype>
+<!doctype html>
+<html>
+<head>
+	<title>FormCaption</title>
+	<!--base href="#default"-->
+	<link rel="stylesheet" type="text/css" href="images/style.css"><link rel="icon" href="/matplan.ico"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0-rc.1/jquery.mobile-1.1.0-rc.1.min.css" />
+</head>
+
+
+
+<body>
+<div data-role="page" id="page1">
+
+
+       
+<form action="this" method="post" name="FormName" vsform="true" data-ajax="false">
+<JADEInclude Archetype="ButtonArchetypeDoAllFormTrans"></JADEInclude>
+<JADEInclude archetype="MiscArchetypeJadeError"></JADEInclude>
+<JADEInclude Archetype="RSGroupArchetypeSiblingsNoTab"></JADEInclude>
+</form>
+
+
+<div data-theme="e" data-role="footer">
+<h1>Västerås Systemkonsult AB</h1>
+<h2>Sigurdsgatan 21</h2>
+<h2>721 30 VÄSTERÅS</h2>
+<h2>Tel. +46 (0) 21 - 15 13 00</h2>
+</div>
+
+</div>
+        
+<script LANGUAGE="JavaScript" vsscript="true"></script>
+<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.1.0-rc.1/jquery.mobile-1.1.0-rc.1.min.js"></script>
+</body>
+
+</html>
+<!--JADE_MACRO
+<<ArchetypeVersion 06.02.00.42431>>
+/* directives */
+<<CopyFile JadeScript.html>>
+<<CopyFile images/style.css>>
+
+
+/* properties */
+<<SetProperty className="com.versata.tl.vfc.ui.html.pdx.VSPagePDX">>
+
+/* extended archetype properties */
+<<Dim CommentsTrailing as VSVBExtTemplProp StatusBarMsg="Text to be displayed at the bottom of top-left quadrant. HTML tags are honored.">>
+<<Dim ErrorStyle as VSVBExtTemplProp, default="Popup", validValues="Popup,Onscreen,Both" StatusBarMsg="Determines how error messages are displayed on this page (Popup/Onscreen/Both).">>
+<<Dim ShowFormCaption as VSVBExtTemplProp, default="true", validValues="true,false" StatusBarMsg="Determines if the caption for this page should be displayed.">>
+<<Dim ShowCancelButton as VSVBExtTemplProp, default="true", validValues="true,false" StatusBarMsg="Determines if the 'Cancel' button should be displayed in the upper-left quadrant of this page.">>
+<<Dim ShowReturnButton as VSVBExtTemplProp, default="true", validValues="true,false" StatusBarMsg="Determines if the 'Return' button should be displayed in the upper-left quadrant of this page.">>
+<<Dim TransitionsToHide as VSVBExtTemplProp, validValues="VS_TRANS" StatusBarMsg="Comma-separated list of transition names which should be hidden on this page (case-sensitive).">>
+
+
+<<Begin IncludeButtonArchetypeDoAllFormTrans>>
+	<<For each FormTransitionRS>>
+		<<For each FormTransition>>
+			<<if (value(RecordSource.srcFormRSNum) = 0) and not value(RecordSource.isTableDisplayed) >>
+				<<Include ButtonArchetypeAllFormTrans>>
+			<<else>>
+			<<end if>>
+		<<Next>>
+	<<Next>>
+<<End Include>>
+
+JADE_MACRO-->

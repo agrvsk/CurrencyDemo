@@ -1,0 +1,2104 @@
+// Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.kpdus.com/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   VSORBSessionImpl_ejb.java
+
+package com.versata.tl.vls.core;
+
+import com.versata.tl.api.itext.MessageCode;
+import com.versata.tl.api.logging.VersataLogger;
+import com.versata.tl.common.*;
+import com.versata.tl.common.VSORBSessionPackage.ORBRows;
+import com.versata.tl.common.exception.*;
+import com.versata.tl.common.meta.VSMetaQuery;
+import com.versata.tl.common.meta.VSMetaTable;
+import com.versata.tl.common.statistics.DataServiceStatistics;
+import com.versata.tl.common.statistics.ServerStatistics;
+import com.versata.tl.common.text.*;
+import com.versata.tl.common.transaction.*;
+import com.versata.tl.common.util.*;
+import com.versata.tl.common.vlsobject.*;
+import com.versata.tl.common.vstrace.VSTrace;
+import com.versata.tl.common.vstrace.VSTraceHelper;
+import com.versata.tl.util.SerializationUtil;
+import com.versata.tl.vls.admin.*;
+import com.versata.tl.vls.admin.security.VSSecurityManager;
+import com.versata.tl.vls.cmdconsole.CMDConsoleServer;
+import com.versata.tl.vls.dataaccess.*;
+import com.versata.tl.vls.dataaccess.connection.*;
+import com.versata.tl.vls.dataaccess.sqlgenerator.ISqlGenerator;
+import com.versata.tl.vls.dataaccess.sqlgenerator.SqlGeneratorFactory;
+import com.versata.tl.vls.resource.AppServerResourceAccessor;
+import com.versata.tl.vls.resource.AppServerResourceAccessorFactory;
+import com.versata.tl.vls.service.*;
+import com.versata.tl.vls.transaction.CurrentTransaction;
+import java.util.*;
+import javax.ejb.EJBObject;
+import javax.naming.InitialContext;
+import javax.rmi.PortableRemoteObject;
+import javax.transaction.UserTransaction;
+
+// Referenced classes of package com.versata.tl.vls.core:
+//            VSORBSessionImpl_Base, SecurityObject, SessionsMonitor, VSQueryResultsImpl, 
+//            VSORBSessionImpl, VSORBAppServerImpl, VSTransactionInfo, VSRepositoryMetaCache, 
+//            VSBusinessObjectMetaCache, DataRow, DataObject, Session
+
+public abstract class VSORBSessionImpl_ejb extends VSORBSessionImpl_Base
+{
+
+    protected VSORBSessionImpl_ejb(VSORBAppServerImpl p_AppServer, String p_userName, boolean p_securitySession, boolean internalSession)
+        throws ServerSecurityException
+    {
+        super(p_AppServer, p_userName, p_securitySession, internalSession);
+    }
+
+    protected VSORBSessionImpl_ejb(VSORBAppServerImpl p_AppServer, Vector roleList, String p_userName, boolean p_securitySession, boolean internalSession)
+        throws ServerSecurityException
+    {
+        super(p_AppServer, roleList, p_userName, p_securitySession, internalSession);
+    }
+
+    protected VSORBSessionImpl_ejb(VSORBAppServerImpl p_AppServer, String p_userName, String p_password, String p_clientAppName, boolean internalSession, String repositoryName, boolean p_securitySession)
+        throws ServerSecurityException
+    {
+        sessionIDForTracing = Integer.toString(System.identityHashCode(this));
+        setProperty("VST_SESSION_ID_PROPERTY", sessionIDForTracing);
+        theAppServer = p_AppServer;
+        userName = p_userName;
+        password = p_password;
+        setRepositoryName(repositoryName);
+        m_appName = p_clientAppName;
+        securitySession = p_securitySession;
+        VLSClassLoader.create(repositoryName, ServerEnvironment.getComponentClassPath());
+        if(authenticateUser(new SecurityObject(p_userName, p_password), p_clientAppName, internalSession, true))
+            setExpiryTime();
+        if(sessionsMonitor == null)
+        {
+            sessionsMonitor = new SessionsMonitor(theAppServer);
+            sessionsMonitor.start();
+        }
+    }
+
+    private void setExpiryTime()
+    {
+        if(m_appName != null && "VersataESM".equalsIgnoreCase(m_appName))
+            setExpireTime(40000L);
+        else
+            try
+            {
+                VSORBAppServerImpl _tmp = theAppServer;
+                String timeoutStr = VSORBAppServerImpl.getProperty("SessionTimeout");
+                setExpireTime(1000 * Integer.parseInt(timeoutStr));
+            }
+            catch(Exception ex)
+            {
+                setExpireTime(0x493e0L);
+            }
+    }
+
+    protected VSORBSessionImpl_ejb(VSORBAppServerImpl p_AppServer, Vector roleList, String p_userName, String p_password, String p_clientAppName, boolean internalSession, String repositoryName, 
+            boolean p_securitySession)
+        throws ServerSecurityException
+    {
+        sessionIDForTracing = Integer.toString(System.identityHashCode(this));
+        setProperty("VST_SESSION_ID_PROPERTY", sessionIDForTracing);
+        if(roleList == null || roleList.size() == 0)
+            throw new ServerSecurityException(ErrorMsgCode.VSMSG_SecurityNotEnabled);
+        theAppServer = p_AppServer;
+        userName = p_userName;
+        password = p_password;
+        setRepositoryName(repositoryName);
+        m_appName = p_clientAppName;
+        securitySession = p_securitySession;
+        m_roleList = new Vector();
+        m_roleList.addElement(getRoleForRoleName("Public"));
+        for(int i = 1; i <= roleList.size(); i++)
+        {
+            AppRoleImpl rl = getRoleForRoleName(roleList.elementAt(i - 1).toString());
+            if(rl != null)
+                m_roleList.addElement(rl);
+        }
+
+        if(m_roleList.size() == 0)
+            throw new ServerSecurityException(ErrorMsgCode.VSMSG_NoRoles);
+        VLSClassLoader.create(repositoryName, ServerEnvironment.getComponentClassPath());
+        if(authenticateUser(roleList, new SecurityObject(p_userName, p_password), p_clientAppName, internalSession))
+            setExpiryTime();
+    }
+
+    public void releaseRemoteReferenceForSecuritySession()
+    {
+        ServerEnvironment.getFactoryImpl().releaseRemoteReference(remoteReferenceSecuritySession);
+        remoteReferenceSecuritySession = null;
+    }
+
+    protected boolean authenticateUser(Vector roleList, SecurityObject secObject, String clientAppName, boolean internalSession)
+        throws ServerSecurityException
+    {
+        Parameter filter[] = new Parameter[1];
+        filter[0] = new Parameter("AppUser", "UserName", "System Administrator");
+        userComponent = (AppUserImpl)AppUserImpl.getObjectByKey(new SearchRequest(filter), getServer().getInternalSession());
+        if(secObject != null)
+        {
+            userComponent.setAppSvrLoginID(secObject.getLoginID());
+            userComponent.setAppSvrPassword(secObject.getPassword());
+            userComponent.setUserName(secObject.getLoginID());
+        }
+        Properties props;
+        try
+        {
+            props = getRoleProperties(roleList);
+            if(((Boolean)props.get("SY")).booleanValue())
+                return true;
+        }
+        catch(VSORBException e)
+        {
+            throw new ServerSecurityException(AdminMsgCode.NO_APPLICATION_EXECUTE_PRIV, null, e);
+        }
+        catch(ServerSecurityException e)
+        {
+            throw e;
+        }
+        catch(Throwable e)
+        {
+            throw new ServerSecurityException(AdminMsgCode.NO_APPLICATION_EXECUTE_PRIV, null, (Exception)e);
+        }
+        if(!((Boolean)props.get("C")).booleanValue())
+            throw new ServerSecurityException(AdminMsgCode.NO_APPLICATION_EXECUTE_PRIV);
+        if(isSecuritySession())
+        {
+            if(!((Boolean)props.get("SE")).booleanValue())
+                throw new ServerSecurityException(AdminMsgCode.NO_APPLICATION_EXECUTE_PRIV);
+            if(isConsoleSession())
+                return true;
+        }
+        if(clientAppName != null && !getMyPrivilegeToObjectNameInternal("E", clientAppName, "A"))
+            throw new ServerSecurityException(AdminMsgCode.NO_APPLICATION_EXECUTE_PRIV);
+        return true;
+    }
+
+    /**
+     * @deprecated Method getResultSetBySQL is deprecated
+     */
+
+    public ResultSet getResultSetBySQL(String SQL, String dataServerName, int maxRowsPerFetch)
+        throws VSORBException
+    {
+        VSORBResultSetImpl aResultSet;
+label0:
+        {
+            VSTraceHelper trh = null;
+            if(VSTrace.IS_ON)
+            {
+                trh = new VSTraceHelper(_LOGGER, "VSORBSessionImpl_ejb.getResultSetBySQL");
+                trh.set("User", getUserID());
+                trh.set("SessionID", sessionIDForTracing);
+            }
+            aResultSet = null;
+            try
+            {
+                ResultSet resultset;
+                try
+                {
+                    XDASQLConnector xdac = new XDASQLConnector();
+                    Properties props = getMyDataServiceLogin(dataServerName);
+                    String allowQuery = props.getProperty("SQL Allowed");
+                    if(allowQuery == null || !"True".equalsIgnoreCase(allowQuery))
+                        throw new ServerException(AdminMsgCode.NO_EXEC_SQL, dataServerName);
+                    xdac.setProperties(props);
+                    Connection conn;
+                    if(isTransactionInProgress())
+                        conn = getTransactionInfo().getConnection(xdac);
+                    else
+                        conn = getConnection(xdac, true);
+                    aResultSet = new VSORBResultSetImpl(SQL, maxRowsPerFetch, xdac, conn);
+                    break label0;
+                }
+                catch(ServerException se)
+                {
+                    throw ServerEnvironment.createORBException(se);
+                }
+                catch(Throwable e)
+                {
+                    resultset = handleThrowableException(e);
+                }
+                return resultset;
+            }
+            finally
+            {
+                if(trh != null)
+                    trh.end();
+            }
+        }
+        return aResultSet;
+    }
+
+    private ResultSet handleThrowableException(Throwable e)
+    {
+        if(e instanceof VSORBException)
+            throw (VSORBException)e;
+        else
+            throw new VSORBException(ErrorMsgCode.VSMSG_UnCheckedException, e);
+    }
+
+    /**
+     * @deprecated Method getResultSetBySQLRemote1 is deprecated
+     */
+
+    public VSORBResultSet getResultSetBySQLRemote1(String SQL, String dataServerName, int maxRowsPerFetch, boolean prefetch, int randomAccessPos, boolean isAutoCloseResultSet)
+        throws VSORBException
+    {
+        VSORBResultSet remoteResultSet = null;
+        try
+        {
+            QueryRequest qr = getNewQueryRequest();
+            qr.setSQL(SQL);
+            qr.setDataServerName(dataServerName);
+            qr.setMaxRowsPerFetch(maxRowsPerFetch);
+            qr.setServerPreFetch(prefetch);
+            qr.setRequestRandomAccessPos(randomAccessPos);
+            qr.setUseStatelessRS(isAutoCloseResultSet);
+            if(_LOGGER.isDebugEnabled())
+                _LOGGER.debug((new StringBuilder()).append("VSORBSessionImpl_ejb.getResultSetBySQLRemote1 -> ").append(qr.toString()).toString());
+            ResultSet resultSet = getResultSetBySQLRemote1(qr);
+            if(getCoLocated())
+                remoteResultSet = ((VSORBResultSetImpl)resultSet).getWrapper();
+            else
+                remoteResultSet = ((VSORBResultSetImpl)resultSet).getRemoteReference();
+        }
+        catch(ServerException se)
+        {
+            throw ServerEnvironment.createORBException(se);
+        }
+        catch(Throwable e)
+        {
+            handleThrowableException(e);
+        }
+        return remoteResultSet;
+    }
+
+    private ResultSet getResultSetBySQLRemote1(QueryRequest qreq)
+        throws VSORBException
+    {
+        String SQL = qreq.getSQL();
+        String dataServerName = qreq.getDataServerName();
+        int maxRowsPerFetch = qreq.getMaxRowsPerFetch();
+        boolean prefetch = qreq.getServerPreFetch();
+        int randomAccessPos = qreq.getRequestRandomAccessPos();
+        boolean isAutoCloseResultSet = qreq.getUseStatelessRS();
+        String componentName = qreq.getComponentName();
+        String packageName = VSRepositoryMetaCache.get(getRepositoryName()).getPackageName(componentName);
+        boolean useJTS = Boolean.valueOf(getServerProperty("usejts")).booleanValue();
+        Properties props = getMyDataServiceLogin(dataServerName);
+        String dataSourceType;
+        if(Boolean.valueOf(props.getProperty("Use External Connection Pooling")).booleanValue())
+            dataSourceType = props.getProperty("DriverTypeForExternalPool");
+        else
+            dataSourceType = props.getProperty("DriverType");
+        boolean useNativePoolForVersataReadTx = Boolean.valueOf(props.getProperty("Use Native Pool for Versata Read Tx", "true")).booleanValue();
+        boolean isUsingXADriver = Boolean.valueOf(props.getProperty("Is Using XA Driver", "false")).booleanValue();
+        if(_LOGGER.isDebugEnabled())
+            _LOGGER.debug((new StringBuilder()).append("VSORBSessionImpl_ejb.getResultSetBySQLRemote1 ->  isAutoCloseResultSet :").append(isAutoCloseResultSet).append("getPackageName() :").append(packageName).append("dataServerName :").append(dataServerName).append("Use Native Pool for Versata Read Tx :").append(useNativePoolForVersataReadTx).append("isUsingXADriver :").append(isUsingXADriver).append("useJTS :").append(useJTS).append("isTransactionInProgress :").append(isTransactionInProgress()).append("dataSourceType :").append(dataSourceType).toString());
+        validateDriverType(dataSourceType, dataServerName);
+        validateDataServerConfiguration(isAutoCloseResultSet, isUsingXADriver, useNativePoolForVersataReadTx);
+        if(isAutoCloseResultSet && useJTS && !useNativePoolForVersataReadTx && !isSecuritySession() && !isConsoleSession())
+            return getResultSetBySQLRemote1Tx(qreq);
+        ResultSet resultset = null;
+        try
+        {
+            resultset = getResultSetBySQL1(SQL, dataServerName, maxRowsPerFetch, prefetch, randomAccessPos);
+            resultset = setQueryRequest(isAutoCloseResultSet, qreq, resultset);
+        }
+        catch(Exception ex)
+        {
+            _LOGGER.error(ex);
+        }
+        return resultset;
+    }
+
+    private ResultSet setQueryRequest(boolean autoCloseResultSet, QueryRequest qreq, ResultSet resultset)
+    {
+        if(autoCloseResultSet)
+        {
+            VSQueryResultsImpl queryResults = new VSQueryResultsImpl(this);
+            queryResults.setQueryRequest(qreq);
+            queryResults.fetchAllRows(resultset);
+            resultset = queryResults;
+        } else
+        {
+            resultset.setQueryRequest(qreq);
+        }
+        return resultset;
+    }
+
+    private void validateDriverType(String dataSourceType, String dataServerName)
+    {
+        if((dataSourceType == null || "".equals(dataSourceType)) && !isSecuritySession() && !isConsoleSession())
+            throw ServerEnvironment.createORBException(new ServerException(ErrorMsgCode.VSMSG_MissingDriverType, dataServerName));
+        else
+            return;
+    }
+
+    private ResultSet getResultSetBySQLRemote1Tx(QueryRequest qreq)
+        throws VSORBException
+    {
+        ResultSet resultset = null;
+        String SQL = qreq.getSQL();
+        String dataServerName = qreq.getDataServerName();
+        int maxRowsPerFetch = qreq.getMaxRowsPerFetch();
+        boolean prefetch = qreq.getServerPreFetch();
+        int randomAccessPos = qreq.getRequestRandomAccessPos();
+        boolean isAutoCloseResultSet = qreq.getUseStatelessRS();
+        synchronized(readTxLock)
+        {
+            try
+            {
+                if(!isTransactionInProgress())
+                {
+                    beginTransaction();
+                    IStartedTx = true;
+                    setReadTransactionInProgress(true);
+                    if(_LOGGER.isDebugEnabled())
+                        _LOGGER.debug("VSORBSessionImpl_ejb.getResultSetBySQLRemote1Tx <<< Read Transaction Started >>>");
+                }
+                VSORBResultSetImpl aResultSet = (VSORBResultSetImpl)getResultSetBySQL1(SQL, dataServerName, maxRowsPerFetch, prefetch, randomAccessPos);
+                if(isAutoCloseResultSet)
+                {
+                    VSQueryResultsImpl queryResults = new VSQueryResultsImpl(this);
+                    queryResults.setQueryRequest(qreq);
+                    queryResults.fetchAllRows(aResultSet);
+                    resultset = queryResults;
+                } else
+                {
+                    aResultSet.setQueryRequest(qreq);
+                    resultset = aResultSet;
+                }
+                if(IStartedTx && isTransactionInProgress())
+                {
+                    commit();
+                    IStartedTx = false;
+                    setReadTransactionInProgress(false);
+                    if(_LOGGER.isDebugEnabled())
+                        _LOGGER.debug("VSORBSessionImpl_ejb.getResultSetBySQLRemote1Tx <<< Read Transaction Committed >>>");
+                }
+            }
+            catch(Exception ex)
+            {
+                _LOGGER.error(ex);
+            }
+            finally
+            {
+                try
+                {
+                    if(IStartedTx && isTransactionInProgress())
+                    {
+                        rollback();
+                        IStartedTx = false;
+                        setReadTransactionInProgress(false);
+                        if(_LOGGER.isDebugEnabled())
+                            _LOGGER.debug("VSORBSessionImpl_ejb.getResultSetBySQLRemote1Tx <<< Read Transaction Rolled back >>>");
+                    }
+                }
+                catch(NoTransactionException noTxException)
+                {
+                    _LOGGER.warn(noTxException);
+                }
+                catch(Exception ex)
+                {
+                    _LOGGER.error(ex);
+                }
+            }
+        }
+        return resultset;
+    }
+
+    public void validateDataServerConfiguration(boolean isAutoCloseResultSet, boolean isUsingXADriver, boolean useNativePoolForVersataReadTx)
+        throws VSORBException
+    {
+        if(!isAutoCloseResultSet && isUsingXADriver && !useNativePoolForVersataReadTx)
+            throw new VSORBException(AdminMsgCode.INVALID_CONFIG);
+        else
+            return;
+    }
+
+    public Object executeQuery(QueryRequest qr)
+        throws VSORBException
+    {
+        QueryRequest qreq = qr;
+        QueryResponse qres = getNewQueryResponse();
+        qres.setQueryRequest(qreq);
+        try
+        {
+            if(_LOGGER.isDebugEnabled())
+                _LOGGER.debug((new StringBuilder()).append("VSORBSessionImpl_ejb.executeQuery qreq -> ").append(qreq).toString());
+            ResultSet resultSet;
+            if(qreq.getUseCache())
+            {
+                if(_LOGGER.isDebugEnabled())
+                    _LOGGER.debug("VSORBSessionImpl_ejb.executeQuery Using Cache");
+                resultSet = getResultSetFromCache(qreq);
+            } else
+            if(qreq.isAdhocQuery())
+            {
+                if(_LOGGER.isDebugEnabled())
+                    _LOGGER.debug("VSORBSessionImpl_ejb.executeQuery is AdhocQuery");
+                resultSet = getResultSetBySQLRemote1(qreq);
+            } else
+            {
+                if(_LOGGER.isDebugEnabled())
+                    _LOGGER.debug("VSORBSessionImpl_ejb.executeQuery going directly to the source");
+                resultSet = getResultSetByRequest1(qreq);
+            }
+            if(qreq.getUseStatelessRS())
+            {
+                if(getCoLocated())
+                    qres.setRowsAsObjects(((VSQueryResultsImpl)resultSet).localFetch());
+                else
+                    qres.setRows(resultSet.fetchRows());
+                if(qreq.getPrefetchRowCount())
+                    qres.setRowCount(((VSQueryResultsImpl)resultSet).getPreFetchCount());
+                qres.setMetaColumn(resultSet.registerMetaData());
+            } else
+            {
+                VSQueryResultsImpl queryResults = new VSQueryResultsImpl(this);
+                queryResults.setQueryRequest(qreq);
+                queryResults.fetchAllRows(resultSet);
+                if(qreq.getUseCache())
+                {
+                    if(getCoLocated())
+                    {
+                        qres.setRowsAsObjects(queryResults.localFetch());
+                        if(queryResults.hasMoreRows())
+                        {
+                            VSORBResultSet remoteResultSet = ((BOCollectionImpl)resultSet).getWrapper();
+                            qres.setRS(remoteResultSet);
+                        }
+                    } else
+                    {
+                        qres.setRows(queryResults.fetchRows());
+                        if(queryResults.hasMoreRows())
+                        {
+                            VSORBResultSet remoteResultSet = ((BOCollectionImpl)resultSet).getRemoteReference();
+                            qres.setRS(remoteResultSet);
+                        }
+                    }
+                } else
+                if(getCoLocated())
+                {
+                    qres.setRowsAsObjects(queryResults.localFetch());
+                    if(queryResults.hasMoreRows())
+                    {
+                        VSORBResultSet remoteResultSet = ((VSORBResultSetImpl)resultSet).getWrapper();
+                        qres.setRS(remoteResultSet);
+                    }
+                } else
+                {
+                    qres.setRows(queryResults.fetchRows());
+                    if(queryResults.hasMoreRows())
+                    {
+                        VSORBResultSet remoteResultSet = ((VSORBResultSetImpl)resultSet).getRemoteReference();
+                        qres.setRS(remoteResultSet);
+                    }
+                }
+                if(qreq.getPrefetchRowCount())
+                    qres.setRowCount(queryResults.getPreFetchCount());
+                qres.setMetaColumn(queryResults.registerMetaData());
+            }
+        }
+        catch(VSORBException e)
+        {
+            throw e;
+        }
+        catch(ServerException se)
+        {
+            throw Util.createORBException(se);
+        }
+        catch(Throwable e)
+        {
+            handleThrowableException(e);
+        }
+        return qres;
+    }
+
+    public byte[] executeQuery(byte qr[])
+        throws VSORBException
+    {
+        QueryResponse qres = (QueryResponse)executeQuery((QueryRequest)SerializationUtil.deserializeFromByteArray(qr, com.versata.tl.common.QueryResponse));
+        return SerializationUtil.serializeToByteArray(qres);
+    }
+
+    /**
+     * @deprecated Method getResultSetByRequest1 is deprecated
+     */
+
+    public VSORBResultSet getResultSetByRequest1(String componentName, byte filterInByteArray[], byte sorterInByteArray[], int maxRowsPerFetch, short columnProjectionLevel, boolean prefetch, int randomAccessPos, 
+            boolean isAutoCloseResultSet)
+        throws VSORBException
+    {
+        VSORBResultSet remoteResultSet = null;
+        try
+        {
+            QueryRequest qr = getNewQueryRequest();
+            qr.setComponentName(componentName);
+            qr.setFilter(filterInByteArray);
+            qr.setSorter(sorterInByteArray);
+            qr.setMaxRowsPerFetch(maxRowsPerFetch);
+            qr.setColumnProjectionLevel(columnProjectionLevel);
+            qr.setServerPreFetch(prefetch);
+            qr.setRequestRandomAccessPos(randomAccessPos);
+            qr.setUseStatelessRS(isAutoCloseResultSet);
+            if(_LOGGER.isDebugEnabled())
+                _LOGGER.debug((new StringBuilder()).append("VSORBSessionImpl_ejb.getResultSetByRequest1 -> ").append(qr.toString()).toString());
+            ResultSet resultSet = getResultSetByRequest1(qr);
+            if(getCoLocated())
+                remoteResultSet = ((VSORBResultSetImpl)resultSet).getWrapper();
+            else
+                remoteResultSet = ((VSORBResultSetImpl)resultSet).getRemoteReference();
+        }
+        catch(ServerException se)
+        {
+            throw ServerEnvironment.createORBException(se);
+        }
+        catch(Throwable e)
+        {
+            handleThrowableException(e);
+        }
+        return remoteResultSet;
+    }
+
+    protected ResultSet getResultSetByRequest1(QueryRequest qreq)
+        throws VSORBException
+    {
+        VSTraceHelper trh;
+        ResultSet resultset;
+        String componentName;
+        int maxRowsPerFetch;
+        short columnProjectionLevel;
+        boolean prefetch;
+        int randomAccessPos;
+        boolean isAutoCloseResultSet;
+        String packageName;
+        trh = null;
+        if(VSTrace.IS_ON)
+        {
+            trh = new VSTraceHelper(_LOGGER, "VSORBSessionImpl.getResultSetByRequest1");
+            trh.set("User", getUserID());
+            trh.set("SessionID", sessionIDForTracing);
+        }
+        resultset = null;
+        componentName = qreq.getComponentName();
+        maxRowsPerFetch = qreq.getMaxRowsPerFetch();
+        columnProjectionLevel = qreq.getColumnProjectionLevel();
+        prefetch = qreq.getServerPreFetch();
+        randomAccessPos = qreq.getRequestRandomAccessPos();
+        isAutoCloseResultSet = qreq.getUseStatelessRS();
+        packageName = VSRepositoryMetaCache.get(getRepositoryName()).getPackageName(componentName);
+        SearchRequest filter;
+        SearchRequest sorter;
+        ResultSet resultset1;
+        filter = (SearchRequest)SerializationUtil.deserializeFromByteArray(qreq.getFilter(), com/versata/tl/common/util/SearchRequest);
+        sorter = (SearchRequest)SerializationUtil.deserializeFromByteArray(qreq.getSorter(), com/versata/tl/common/util/SearchRequest);
+        qreq.setSorterAsSR(sorter);
+        qreq.setFilterAsSR(filter);
+        String dataServerName = null;
+        boolean useJTS = Boolean.valueOf(getServerProperty("usejts")).booleanValue();
+        boolean useNativePoolForVersataReadTx = true;
+        boolean isUsingXADriver = false;
+        String dataSourceType = null;
+        if(!"com.versata.tl.vls.admin".equals(packageName) && !"VLSWebConsole".equals(packageName))
+        {
+            if(Boolean.valueOf(getDataServerProperty(componentName, "Use External Connection Pooling")).booleanValue())
+                dataSourceType = getDataServerProperty(componentName, "DriverTypeForExternalPool");
+            else
+                dataSourceType = getDataServerProperty(componentName, "DriverType");
+            dataServerName = getDataServerForObject(componentName);
+            useNativePoolForVersataReadTx = Boolean.valueOf(getDataServerProperty(componentName, "Use Native Pool for Versata Read Tx")).booleanValue();
+            isUsingXADriver = Boolean.valueOf(getDataServerProperty(componentName, "Is Using XA Driver")).booleanValue();
+        }
+        if(_LOGGER.isDebugEnabled())
+            _LOGGER.debug((new StringBuilder()).append("VSORBSessionImpl_ejb.getResultSetByRequest1 -> isAutoCloseResultSet : ").append(isAutoCloseResultSet).append(" componentName : ").append(componentName).append(" getPackageName() :").append(packageName).append(" dataServerName : ").append(dataServerName).append(" Use Native Pool for Versata Read Tx : ").append(useNativePoolForVersataReadTx).append(" useJTS : ").append(useJTS).append(" isUsingXADriver : ").append(isUsingXADriver).append(" isTransactionInProgress : ").append(isTransactionInProgress()).append(" dataSourceType : ").append(dataSourceType).toString());
+        validateDriverType(dataSourceType, dataServerName);
+        validateDataServerConfiguration(isAutoCloseResultSet, isUsingXADriver, useNativePoolForVersataReadTx);
+        if(!isAutoCloseResultSet || !useJTS || useNativePoolForVersataReadTx || isSecuritySession() || isConsoleSession())
+            break MISSING_BLOCK_LABEL_440;
+        resultset1 = getResultSetByRequest1Tx(qreq);
+        return resultset1;
+        try
+        {
+            VSORBResultSetImpl aResultSet = (VSORBResultSetImpl)GenericComponentFactory.getResultSet(packageName, componentName, filter, sorter, maxRowsPerFetch, columnProjectionLevel, randomAccessPos, (VSORBSessionImpl)this);
+            if(prefetch)
+                aResultSet.enablePreFetch();
+            if(isAutoCloseResultSet)
+            {
+                VSQueryResultsImpl queryResults = new VSQueryResultsImpl(this);
+                queryResults.setQueryRequest(qreq);
+                queryResults.fetchAllRows(aResultSet);
+                resultset = queryResults;
+            } else
+            {
+                resultset = aResultSet;
+            }
+            resultset.setQueryRequest(qreq);
+        }
+        catch(ServerException se)
+        {
+            throw ServerEnvironment.createORBException(se);
+        }
+        catch(VSORBException e)
+        {
+            throw e;
+        }
+        catch(Throwable e)
+        {
+            handleThrowableException(e);
+        }
+        break MISSING_BLOCK_LABEL_574;
+        local;
+        if(trh != null)
+            trh.end();
+        JVM INSTR ret 21;
+        return resultset;
+    }
+
+    private ResultSet getResultSetByRequest1Tx(QueryRequest qreq)
+        throws VSORBException
+    {
+        ResultSet resultset = null;
+        String componentName = qreq.getComponentName();
+        SearchRequest filter = qreq.getFilterAsSR();
+        SearchRequest sorter = qreq.getSorterAsSR();
+        int maxRowsPerFetch = qreq.getMaxRowsPerFetch();
+        short columnProjectionLevel = qreq.getColumnProjectionLevel();
+        int randomAccessPos = qreq.getRequestRandomAccessPos();
+        boolean isAutoCloseResultSet = qreq.getUseStatelessRS();
+        synchronized(readTxLock)
+        {
+            boolean IStartedTx = false;
+            try
+            {
+                if(!isTransactionInProgress())
+                {
+                    beginTransaction();
+                    IStartedTx = true;
+                    setReadTransactionInProgress(true);
+                    if(_LOGGER.isDebugEnabled())
+                        _LOGGER.debug("<<< Read Transaction Started >>>");
+                }
+                String packageName = VSRepositoryMetaCache.get(getRepositoryName()).getPackageName(componentName);
+                resultset = GenericComponentFactory.getResultSet(packageName, componentName, filter, sorter, maxRowsPerFetch, columnProjectionLevel, randomAccessPos, (VSORBSessionImpl)this);
+                resultset = setQueryRequest(isAutoCloseResultSet, qreq, resultset);
+                if(IStartedTx && isTransactionInProgress())
+                {
+                    commit();
+                    IStartedTx = false;
+                    setReadTransactionInProgress(false);
+                    if(_LOGGER.isDebugEnabled())
+                        _LOGGER.debug("<<< Read Transaction Committed >>>");
+                }
+            }
+            catch(ServerException se)
+            {
+                _LOGGER.warn(se);
+                throw ServerEnvironment.createORBException(se);
+            }
+            catch(Throwable e)
+            {
+                handleThrowableException(e);
+            }
+            finally
+            {
+                try
+                {
+                    if(IStartedTx && isTransactionInProgress())
+                    {
+                        rollback();
+                        IStartedTx = false;
+                        setReadTransactionInProgress(false);
+                        if(_LOGGER.isDebugEnabled())
+                            _LOGGER.debug("<<< Read Transaction Rolled back >>>");
+                    }
+                }
+                catch(NoTransactionException noTxException)
+                {
+                    Util.logWarning(_LOGGER, noTxException);
+                }
+                catch(Exception ex)
+                {
+                    _LOGGER.error(ex);
+                }
+            }
+        }
+        return resultset;
+    }
+
+    public void refresh()
+    {
+        theAppServer.refreshSecurityData();
+    }
+
+    public void refreshRepoSecurityData()
+    {
+        theAppServer.refreshRepoSecurityData();
+    }
+
+    public Current begin()
+        throws SubtransactionsUnavailableException
+    {
+        Current current = ((VSORBSessionImpl)this).beginTrans(false);
+        ((CurrentTransaction)current).registerRemoteReference();
+        return current;
+    }
+
+    public void replicateTo(String newHostName, String newServerName, String login, String password, String JNDIName)
+        throws ServerSecurityException
+    {
+        ((VSORBSessionImpl)this).replicateToInternal(newHostName, newServerName, login, password, JNDIName);
+    }
+
+    public void replicateTo(String newHostName, String newServerName, String login, String password)
+        throws ServerSecurityException
+    {
+        ((VSORBSessionImpl)this).replicateToInternal(newHostName, newServerName, login, password, null);
+    }
+
+    public synchronized Properties getRoleProperties(Vector v)
+        throws VSORBException, ServerException
+    {
+        if(m_Privileges != null)
+            return m_Privileges;
+        Properties props = new Properties();
+        props.put("C", Boolean.valueOf(false));
+        props.put("SY", Boolean.valueOf(false));
+        props.put("SE", Boolean.valueOf(false));
+        Enumeration e = v.elements();
+        do
+        {
+            if(!e.hasMoreElements())
+                break;
+            AppRoleImpl role = getRoleForRoleName(e.nextElement().toString());
+            if(role == null)
+                continue;
+            if(role.getSysAdmin())
+            {
+                props.put("SY", Boolean.valueOf(true));
+                break;
+            }
+            if(role.getConnecter())
+                props.put("C", Boolean.valueOf(true));
+            if(role.getSecAdmin())
+                props.put("SE", Boolean.valueOf(true));
+        } while(true);
+        if(!((Boolean)props.get("SY")).booleanValue())
+        {
+            Properties publicProps = AppRoleImpl.getPublicRolePrivileges(getServer().getInternalSession());
+            if(((Boolean)publicProps.get("C")).booleanValue())
+                props.put("C", Boolean.valueOf(true));
+            if(((Boolean)publicProps.get("SE")).booleanValue())
+                props.put("SE", Boolean.valueOf(true));
+            if(((Boolean)publicProps.get("SY")).booleanValue())
+                props.put("SY", Boolean.valueOf(true));
+        }
+        if(((Boolean)props.get("SY")).booleanValue())
+        {
+            props.put("C", Boolean.valueOf(true));
+            props.put("SE", Boolean.valueOf(true));
+        }
+        m_Privileges = props;
+        return props;
+    }
+
+    protected static Object getEJBHome(String homeJNDIName, Class homeClass, String providerURL)
+        throws Exception
+    {
+        Properties p = new Properties();
+        p.put("java.naming.provider.url", providerURL);
+        p.put("java.naming.factory.initial", bundle.getProperty("nameService"));
+        InitialContext initCtxt = new InitialContext(p);
+        Object home = initCtxt.lookup(homeJNDIName);
+        home = PortableRemoteObject.narrow(home, homeClass);
+        return home;
+    }
+
+    public String executeCommand(String command)
+        throws VSORBException
+    {
+        if(cmdConsoleServer == null)
+            cmdConsoleServer = new CMDConsoleServer();
+        return cmdConsoleServer.executeCommand(this, command);
+    }
+
+    public void setVLSContextBean(EJBObject bean)
+    {
+        vlsContextBean = bean;
+    }
+
+    public Object getServerSecurityObject()
+    {
+        if(getSecurityManager() != null)
+            return getSecurityManager().getSecurityObject();
+        else
+            return null;
+    }
+
+    public boolean testConnectionProperties(String dataSourceName, String userLogin)
+        throws VSORBException, ServerSecurityException
+    {
+        if(isTransactionInProgress())
+        {
+            getTransactionInfo().flushCache();
+            getTransactionInfo().clearCache();
+        }
+        SearchRequest filter = new SearchRequest();
+        filter.add(new Parameter("AppDataSourceLocation", "DSLocationName", dataSourceName));
+        AppDataSourceLocationImpl dsComponent = (AppDataSourceLocationImpl)AppDataSourceLocationImpl.getObjectByKey(filter, this);
+        Properties conProps = dsComponent.getTestingConProperties();
+        try
+        {
+            VSORBException firstOrbEx = null;
+            try
+            {
+                if(Boolean.valueOf(conProps.getProperty("Use External Connection Pooling", "false")).booleanValue())
+                {
+                    conProps.setProperty("getConnectionFromExternalPool", "true");
+                    if(_LOGGER.isDebugEnabled())
+                        _LOGGER.debug("Testing external connection...");
+                    testConnectionPropertiesInternal(conProps, dsComponent);
+                    if(_LOGGER.isDebugEnabled())
+                        _LOGGER.debug("Testing external connection... done...");
+                } else
+                {
+                    if(_LOGGER.isDebugEnabled())
+                        _LOGGER.debug("Testing native connection...");
+                    conProps.setProperty("getConnectionFromExternalPool", "false");
+                    testConnectionPropertiesInternal(conProps, dsComponent);
+                    if(_LOGGER.isDebugEnabled())
+                        _LOGGER.debug("Testing native connection... done...");
+                }
+            }
+            catch(VSORBException orbEx)
+            {
+                if(orbEx.getMsgCode().equals(RuntimeMsgCode.VSORBSESSIONIMPL696))
+                    throw orbEx;
+                firstOrbEx = orbEx;
+            }
+            if(Boolean.valueOf(conProps.getProperty("Use External Connection Pooling", "false")).booleanValue() && Boolean.valueOf(conProps.getProperty("Use Native Pool for Versata Read Tx", "true")).booleanValue())
+            {
+                conProps.setProperty("getConnectionFromExternalPool", "false");
+                if(_LOGGER.isDebugEnabled())
+                    _LOGGER.debug("Testing native connection in addition to external connection...");
+                testConnectionPropertiesInternal(conProps, dsComponent);
+                if(_LOGGER.isDebugEnabled())
+                    _LOGGER.debug("Testing native connection in addition to external connection...done...");
+            } else
+            if(firstOrbEx != null)
+                throw firstOrbEx;
+        }
+        catch(VSORBException orbEx)
+        {
+            throw orbEx;
+        }
+        catch(Exception ex)
+        {
+            _LOGGER.error(ex);
+        }
+        return true;
+    }
+
+    private boolean testConnectionPropertiesInternal(Properties conProps, AppDataSourceLocationImpl dsComponent)
+        throws VSORBException
+    {
+        UserTransaction ut = null;
+        boolean IStartedTx = false;
+        try
+        {
+            if(Boolean.valueOf(conProps.getProperty("getConnectionFromExternalPool")).booleanValue())
+                try
+                {
+                    ut = getUserTransaction();
+                    ut.begin();
+                    IStartedTx = true;
+                    if(_LOGGER.isDebugEnabled())
+                        _LOGGER.debug("<<< Read Transaction Started >>>");
+                }
+                catch(Exception ex)
+                {
+                    _LOGGER.error(ex);
+                }
+            VSJdbc connection = null;
+            try
+            {
+                connection = new VSJdbc(conProps, false);
+            }
+            catch(Throwable e)
+            {
+                if(connection != null)
+                    connection.close();
+                throw new VSORBException(RuntimeMsgCode.VSORBSESSIONIMPL687, new Object[] {
+                    e.getMessage()
+                });
+            }
+            SearchRequest filter = new SearchRequest();
+            filter.add(new Parameter("AppObject", "LocationID", Long.toString(dsComponent.getDSLocationID())));
+            filter.add(new Parameter("AppObject", "ObjectType", "D"));
+            SearchRequest sorter = new SearchRequest();
+            sorter.add(new Parameter("AppObject", "ObjectName", ""));
+            ResultSet rs = GenericComponentFactory.getResultSet("com.versata.tl.vls.admin", "AppObject", filter, sorter, 1, (VSORBSessionImpl)this);
+            String packageName = null;
+            VSJdbcStatement statement = null;
+            String tableName = null;
+            DataRow row = rs.fetch();
+            if(row == null)
+            {
+                connection.close();
+                throw new VSORBException(RuntimeMsgCode.VSORBSESSIONIMPL690);
+            }
+            String objName = (String)row.getValue("ObjectName");
+            String repositoryName = (String)row.getValue("RepositoryName");
+            VSBusinessObjectMetaCache metaCache = VSRepositoryMetaCache.get(repositoryName);
+            packageName = metaCache.getPackageName(objName);
+            List tableNames = metaCache.getStorageTableList(objName);
+            if(tableNames == null || tableNames.size() == 0)
+            {
+                connection.close();
+                throw new VSORBException(RuntimeMsgCode.VSORBSESSIONIMPL696);
+            }
+            tableName = (String)tableNames.get(0);
+            try
+            {
+                VLSClassLoader.create(packageName, ServerEnvironment.getComponentClassPath());
+                VSMetaQuery aQry = GenericComponentFactory.getMetaQuery(packageName, objName);
+                VSMetaTable aTable = aQry.getBaseTableByTableName(objName);
+                statement = new VSJdbcStatement(connection, false);
+                String tblName = SqlGeneratorFactory.getInstance().getSqlGenerator(connection).qualifiedTableNameForInheritance(connection, tableName, aTable.useQuotedIdentifier());
+                String qry = (new StringBuilder()).append("Select * from ").append(tblName).append(" where 1 = 0 ").toString();
+                statement.execute(qry);
+                if(_LOGGER.isDebugEnabled())
+                    _LOGGER.debug((new StringBuilder()).append("Connection tested Successfully on table : ").append(tblName).toString());
+                statement.close();
+                statement = null;
+                connection.close();
+                connection = null;
+            }
+            catch(Throwable e)
+            {
+                if(statement != null)
+                    statement.close();
+                if(connection != null)
+                    connection.close();
+                throw new VSORBException(RuntimeMsgCode.VSORBSESSIONIMPL696, new Object[] {
+                    objName, e.getMessage()
+                });
+            }
+            if(IStartedTx)
+            {
+                ut.commit();
+                IStartedTx = false;
+                if(_LOGGER.isDebugEnabled())
+                    _LOGGER.debug("<<< Read Transaction Committed >>>");
+            }
+        }
+        catch(VSORBException orbEx)
+        {
+            throw orbEx;
+        }
+        catch(Exception ex)
+        {
+            _LOGGER.error(ex);
+        }
+        finally
+        {
+            try
+            {
+                if(IStartedTx)
+                {
+                    ut.rollback();
+                    IStartedTx = false;
+                    if(_LOGGER.isDebugEnabled())
+                        _LOGGER.debug("<<< Read Transaction Rolled back >>>");
+                }
+            }
+            catch(Exception ex)
+            {
+                _LOGGER.error(ex);
+            }
+        }
+        return true;
+    }
+
+    public UserTransaction getUserTransaction()
+        throws Exception
+    {
+        return AppServerResourceAccessorFactory.getInstance().getUserTransaction();
+    }
+
+    public volatile Vector getConnections()
+    {
+        return super.getConnections();
+    }
+
+    public volatile void setReadTransactionInProgress(boolean x0)
+    {
+        super.setReadTransactionInProgress(x0);
+    }
+
+    public volatile boolean isReadTransactionInProgress()
+    {
+        return super.isReadTransactionInProgress();
+    }
+
+    public volatile VSSecurityManager getSecurityManager()
+    {
+        return super.getSecurityManager();
+    }
+
+    public volatile void setSecurityManager(VSSecurityManager x0)
+    {
+        super.setSecurityManager(x0);
+    }
+
+    public volatile void closeRemoteResultSets()
+    {
+        super.closeRemoteResultSets();
+    }
+
+    public volatile void removeRemoteResultSet(ResultSet x0)
+    {
+        super.removeRemoteResultSet(x0);
+    }
+
+    public volatile void addRemoteResultSet(ResultSet x0)
+    {
+        super.addRemoteResultSet(x0);
+    }
+
+    public volatile void setSerializableAttribute(String x0, byte x1[])
+    {
+        super.setSerializableAttribute(x0, x1);
+    }
+
+    public volatile byte[] getSerializableAttribute(String x0)
+        throws VSORBException
+    {
+        return super.getSerializableAttribute(x0);
+    }
+
+    public volatile void removeAllAttributes()
+    {
+        super.removeAllAttributes();
+    }
+
+    public volatile void removeAttribute(String x0)
+    {
+        super.removeAttribute(x0);
+    }
+
+    public volatile void setAttribute(String x0, Object x1)
+    {
+        super.setAttribute(x0, x1);
+    }
+
+    public volatile Object getAttribute(String x0)
+    {
+        return super.getAttribute(x0);
+    }
+
+    public volatile XDAConnector createXDAConnector(VSMetaQuery x0)
+        throws ServerException
+    {
+        return super.createXDAConnector(x0);
+    }
+
+    public volatile DataObject getObjectByKey(VSMetaQuery x0, SearchRequest x1)
+    {
+        return super.getObjectByKey(x0, x1);
+    }
+
+    public volatile DataObject getObjectByKey(VSMetaQuery x0, XDAConnector x1, SearchRequest x2)
+    {
+        return super.getObjectByKey(x0, x1, x2);
+    }
+
+    public volatile void disableReadOnlyCacheForSession()
+    {
+        super.disableReadOnlyCacheForSession();
+    }
+
+    public volatile void enableReadOnlyCacheForSession()
+    {
+        super.enableReadOnlyCacheForSession();
+    }
+
+    public volatile void disableReadOnlyCacheForQuery(Thread x0)
+    {
+        super.disableReadOnlyCacheForQuery(x0);
+    }
+
+    public volatile void enableReadOnlyCacheForQuery(Thread x0)
+    {
+        super.enableReadOnlyCacheForQuery(x0);
+    }
+
+    public volatile AppRoleImpl getRoleForRoleName(String x0)
+    {
+        return super.getRoleForRoleName(x0);
+    }
+
+    public volatile String[] getRegisteredBusinessObjectList()
+        throws VSORBException
+    {
+        return super.getRegisteredBusinessObjectList();
+    }
+
+    public volatile String[] getRegisteredPageListForApplication(String x0, String x1)
+        throws VSORBException
+    {
+        return super.getRegisteredPageListForApplication(x0, x1);
+    }
+
+    public volatile String[] getRegisteredFormListForApplication(String x0, String x1)
+        throws VSORBException
+    {
+        return super.getRegisteredFormListForApplication(x0, x1);
+    }
+
+    public volatile String[] getRegisteredAttributeListForObject(String x0, String x1)
+        throws VSORBException
+    {
+        return super.getRegisteredAttributeListForObject(x0, x1);
+    }
+
+    public volatile String[] getRegisteredMethodListForObject(String x0, String x1)
+        throws VSORBException
+    {
+        return super.getRegisteredMethodListForObject(x0, x1);
+    }
+
+    public volatile String[] getRegisteredApplicationList()
+        throws VSORBException
+    {
+        return super.getRegisteredApplicationList();
+    }
+
+    public volatile String[] getRegisteredRoleList()
+        throws VSORBException
+    {
+        return super.getRegisteredRoleList();
+    }
+
+    public volatile String[] getRegisteredUserList()
+        throws VSORBException
+    {
+        return super.getRegisteredUserList();
+    }
+
+    public volatile void deleteAppPage(String x0, String x1, String x2)
+        throws VSORBException, ServerSecurityException
+    {
+        super.deleteAppPage(x0, x1, x2);
+    }
+
+    public volatile void deleteAppForm(String x0, String x1, String x2)
+        throws VSORBException, ServerSecurityException
+    {
+        super.deleteAppForm(x0, x1, x2);
+    }
+
+    public volatile void deleteObjectAttribute(String x0, String x1, String x2)
+        throws VSORBException, ServerSecurityException
+    {
+        super.deleteObjectAttribute(x0, x1, x2);
+    }
+
+    public volatile void deleteMethod(String x0, String x1, String x2)
+        throws VSORBException, ServerSecurityException
+    {
+        super.deleteMethod(x0, x1, x2);
+    }
+
+    public volatile void deleteBusinessObject(String x0, String x1)
+        throws VSORBException, ServerSecurityException
+    {
+        super.deleteBusinessObject(x0, x1);
+    }
+
+    public volatile void deleteApplication(String x0, String x1)
+        throws VSORBException, ServerSecurityException
+    {
+        super.deleteApplication(x0, x1);
+    }
+
+    public volatile void deleteRole(String x0)
+        throws VSORBException, ServerSecurityException
+    {
+        super.deleteRole(x0);
+    }
+
+    public volatile void deleteUser(String x0)
+        throws VSORBException, ServerSecurityException
+    {
+        super.deleteUser(x0);
+    }
+
+    public volatile void setApplicationProperty(String x0, String x1, String x2, String x3)
+        throws VSORBException, ServerSecurityException
+    {
+        super.setApplicationProperty(x0, x1, x2, x3);
+    }
+
+    public volatile void setBusinessObjectProperty(String x0, String x1, String x2, String x3)
+        throws VSORBException, ServerSecurityException
+    {
+        super.setBusinessObjectProperty(x0, x1, x2, x3);
+    }
+
+    public volatile void setBusinessObjectPrivilegeProperty(String x0, String x1, String x2, String x3, String x4)
+        throws VSORBException, ServerSecurityException
+    {
+        super.setBusinessObjectPrivilegeProperty(x0, x1, x2, x3, x4);
+    }
+
+    public volatile void setApplicationPrivilegeProperty(String x0, String x1, String x2, String x3, String x4)
+        throws VSORBException, ServerSecurityException
+    {
+        super.setApplicationPrivilegeProperty(x0, x1, x2, x3, x4);
+    }
+
+    public volatile void setRoleProperty(String x0, String x1, String x2)
+        throws VSORBException, ServerSecurityException
+    {
+        super.setRoleProperty(x0, x1, x2);
+    }
+
+    public volatile void setUserAssignmentProperty(String x0, String x1, String x2, String x3)
+        throws VSORBException, ServerSecurityException
+    {
+        super.setUserAssignmentProperty(x0, x1, x2, x3);
+    }
+
+    public volatile void setUserProperty(String x0, String x1, String x2)
+        throws VSORBException, ServerSecurityException
+    {
+        super.setUserProperty(x0, x1, x2);
+    }
+
+    public volatile Property[] getDataServerProperties(String x0)
+    {
+        return super.getDataServerProperties(x0);
+    }
+
+    public volatile String getDataServerProperty(String x0, String x1)
+        throws ServerSecurityException
+    {
+        return super.getDataServerProperty(x0, x1);
+    }
+
+    public volatile void setDataServerProperty(String x0, String x1, String x2)
+        throws VSORBException, ServerSecurityException
+    {
+        super.setDataServerProperty(x0, x1, x2);
+    }
+
+    public volatile void setUserDataServerLogin(String x0, String x1, String x2, String x3)
+        throws VSORBException, ServerSecurityException
+    {
+        super.setUserDataServerLogin(x0, x1, x2, x3);
+    }
+
+    public volatile void setUserAssignment(String x0, String x1, boolean x2, boolean x3)
+        throws VSORBException, ServerSecurityException
+    {
+        super.setUserAssignment(x0, x1, x2, x3);
+    }
+
+    public volatile void setBusinessObjectPrivileges(String x0, String x1, String x2, boolean x3, boolean x4, boolean x5, boolean x6)
+        throws VSORBException, ServerSecurityException
+    {
+        super.setBusinessObjectPrivileges(x0, x1, x2, x3, x4, x5, x6);
+    }
+
+    public volatile void setObjectAttributePrivilege(String x0, String x1, String x2, String x3, boolean x4, boolean x5)
+        throws VSORBException, ServerSecurityException
+    {
+        super.setObjectAttributePrivilege(x0, x1, x2, x3, x4, x5);
+    }
+
+    public volatile void setAppPagePrivilege(String x0, String x1, String x2, String x3, boolean x4)
+        throws VSORBException, ServerSecurityException
+    {
+        super.setAppPagePrivilege(x0, x1, x2, x3, x4);
+    }
+
+    public volatile void setAppFormPrivilege(String x0, String x1, String x2, String x3, boolean x4)
+        throws VSORBException, ServerSecurityException
+    {
+        super.setAppFormPrivilege(x0, x1, x2, x3, x4);
+    }
+
+    public volatile void setMethodPrivilege(String x0, String x1, String x2, String x3, boolean x4)
+        throws VSORBException, ServerSecurityException
+    {
+        super.setMethodPrivilege(x0, x1, x2, x3, x4);
+    }
+
+    public volatile void setApplicationPrivilege(String x0, String x1, String x2, boolean x3)
+        throws VSORBException, ServerSecurityException
+    {
+        super.setApplicationPrivilege(x0, x1, x2, x3);
+    }
+
+    public volatile void registerAppPage(String x0, String x1, String x2)
+        throws VSORBException, ServerSecurityException
+    {
+        super.registerAppPage(x0, x1, x2);
+    }
+
+    public volatile void registerAppForm(String x0, String x1, String x2)
+        throws VSORBException, ServerSecurityException
+    {
+        super.registerAppForm(x0, x1, x2);
+    }
+
+    public volatile void registerObjectAttribute(String x0, String x1, String x2)
+        throws VSORBException, ServerSecurityException
+    {
+        super.registerObjectAttribute(x0, x1, x2);
+    }
+
+    public volatile void registerMethod(String x0, String x1, String x2)
+        throws VSORBException, ServerSecurityException
+    {
+        super.registerMethod(x0, x1, x2);
+    }
+
+    public volatile void registerApplication(String x0, String x1)
+        throws VSORBException, ServerSecurityException
+    {
+        super.registerApplication(x0, x1);
+    }
+
+    public volatile void registerRole(String x0, boolean x1, boolean x2)
+        throws VSORBException, ServerSecurityException
+    {
+        super.registerRole(x0, x1, x2);
+    }
+
+    public volatile void registerUser(String x0, String x1, String x2)
+        throws VSORBException, ServerSecurityException
+    {
+        super.registerUser(x0, x1, x2);
+    }
+
+    public volatile int getSessionPingRate()
+    {
+        return super.getSessionPingRate();
+    }
+
+    public volatile void shutDownTheServer()
+        throws ServerSecurityException
+    {
+        super.shutDownTheServer();
+    }
+
+    public volatile void stopLogDump()
+    {
+        super.stopLogDump();
+    }
+
+    public volatile void writeLogString(String x0)
+    {
+        super.writeLogString(x0);
+    }
+
+    public volatile void startLogDump(String x0, boolean x1)
+    {
+        super.startLogDump(x0, x1);
+    }
+
+    public volatile DataServiceStatistics getDataServiceStatistics(String x0)
+    {
+        return super.getDataServiceStatistics(x0);
+    }
+
+    public volatile String[] getDataServiceIDs()
+        throws ServerSecurityException
+    {
+        return super.getDataServiceIDs();
+    }
+
+    public volatile ServerStatistics getServerStatistics()
+    {
+        return super.getServerStatistics();
+    }
+
+    public volatile VSORBSession[] getSessions()
+        throws ServerSecurityException
+    {
+        return super.getSessions();
+    }
+
+    public volatile void changeMyPassword(String x0, String x1, String x2, String x3)
+        throws VSORBException
+    {
+        super.changeMyPassword(x0, x1, x2, x3);
+    }
+
+    public volatile void clearErrorsAtStartup()
+        throws ServerSecurityException
+    {
+        super.clearErrorsAtStartup();
+    }
+
+    public volatile boolean getErrorsAtStartup()
+    {
+        return super.getErrorsAtStartup();
+    }
+
+    public volatile long getExpireTime()
+    {
+        return super.getExpireTime();
+    }
+
+    public volatile void setExpireTime(long x0)
+    {
+        super.setExpireTime(x0);
+    }
+
+    public volatile void resetSecurityCheck()
+    {
+        super.resetSecurityCheck();
+    }
+
+    public volatile boolean getSecurityCheck()
+    {
+        return super.getSecurityCheck();
+    }
+
+    public volatile void setSecurityCheck(boolean x0)
+    {
+        super.setSecurityCheck(x0);
+    }
+
+    public volatile void clearPrivilegeCache()
+    {
+        super.clearPrivilegeCache();
+    }
+
+    public volatile Properties[] getObjectPrivilegePropertiesForObject(String x0, String x1)
+    {
+        return super.getObjectPrivilegePropertiesForObject(x0, x1);
+    }
+
+    public volatile Properties getObjectPrivilegeProperties(long x0, long x1)
+    {
+        return super.getObjectPrivilegeProperties(x0, x1);
+    }
+
+    public volatile Properties getObjectPrivilegeProperties(String x0, String x1, String x2)
+    {
+        return super.getObjectPrivilegeProperties(x0, x1, x2);
+    }
+
+    public volatile Properties[] getUserRolePropertiesForUser(String x0)
+    {
+        return super.getUserRolePropertiesForUser(x0);
+    }
+
+    public volatile Properties getUserRoleProperties(String x0, String x1)
+    {
+        return super.getUserRoleProperties(x0, x1);
+    }
+
+    public volatile Properties getUserProperties(String x0)
+    {
+        return super.getUserProperties(x0);
+    }
+
+    public volatile Properties getObjectProperties(long x0)
+    {
+        return super.getObjectProperties(x0);
+    }
+
+    public volatile Properties getObjectProperties(String x0, String x1)
+    {
+        return super.getObjectProperties(x0, x1);
+    }
+
+    public volatile Properties getRoleProperties(long x0)
+    {
+        return super.getRoleProperties(x0);
+    }
+
+    public volatile Properties getRoleProperties(String x0)
+    {
+        return super.getRoleProperties(x0);
+    }
+
+    public volatile int getGlobalNestLevel()
+    {
+        return super.getGlobalNestLevel();
+    }
+
+    public volatile void setRepositoryName(String x0)
+    {
+        super.setRepositoryName(x0);
+    }
+
+    public volatile String getAppName()
+    {
+        return super.getAppName();
+    }
+
+    public volatile String getRepositoryName()
+    {
+        return super.getRepositoryName();
+    }
+
+    public volatile Properties getMyDataServiceLogin(String x0)
+    {
+        return super.getMyDataServiceLogin(x0);
+    }
+
+    public volatile Properties getMyDataServiceLoginForObject(String x0)
+        throws ServerException
+    {
+        return super.getMyDataServiceLoginForObject(x0);
+    }
+
+    public volatile String getDataServerForObject(String x0)
+    {
+        return super.getDataServerForObject(x0);
+    }
+
+    public volatile boolean isCallerInRole(String x0)
+    {
+        return super.isCallerInRole(x0);
+    }
+
+    public volatile boolean getMyAccessToRole(String x0)
+        throws VSORBException
+    {
+        return super.getMyAccessToRole(x0);
+    }
+
+    public volatile boolean getMyPrivilegeToAppForm(String x0, String x1)
+        throws VSORBException
+    {
+        return super.getMyPrivilegeToAppForm(x0, x1);
+    }
+
+    public volatile boolean getMyPrivilegeToApp(String x0)
+        throws VSORBException
+    {
+        return super.getMyPrivilegeToApp(x0);
+    }
+
+    public volatile boolean getMyPrivilegeToAppPage(String x0, String x1)
+        throws VSORBException
+    {
+        return super.getMyPrivilegeToAppPage(x0, x1);
+    }
+
+    public volatile boolean getMyPrivilegeToMethod(String x0, String x1, String x2)
+        throws VSORBException
+    {
+        return super.getMyPrivilegeToMethod(x0, x1, x2);
+    }
+
+    public volatile boolean getMyPrivilegeToObjectName(String x0, String x1, String x2)
+        throws VSORBException
+    {
+        return super.getMyPrivilegeToObjectName(x0, x1, x2);
+    }
+
+    public volatile boolean getMyUserPrivilege(String x0)
+        throws VSORBException
+    {
+        return super.getMyUserPrivilege(x0);
+    }
+
+    public volatile Property[] getMyUpdateableColumnPrivileges(String x0)
+        throws VSORBException
+    {
+        return super.getMyUpdateableColumnPrivileges(x0);
+    }
+
+    public volatile Property[] getMyNonViewableColumnPrivileges(String x0)
+        throws VSORBException
+    {
+        return super.getMyNonViewableColumnPrivileges(x0);
+    }
+
+    public volatile Hashtable getMyAttributeSecurityExceptions(String x0)
+        throws VSORBException
+    {
+        return super.getMyAttributeSecurityExceptions(x0);
+    }
+
+    public volatile Property[] getMyObjectPrivileges(String x0, String x1)
+        throws VSORBException
+    {
+        return super.getMyObjectPrivileges(x0, x1);
+    }
+
+    public volatile Properties getMyUserPrivilegesAsProperties()
+        throws VSORBException
+    {
+        return super.getMyUserPrivilegesAsProperties();
+    }
+
+    public volatile Property[] getMyUserPrivileges()
+        throws VSORBException
+    {
+        return super.getMyUserPrivileges();
+    }
+
+    public volatile VSORBResultSet getMyRolesToGrant()
+        throws VSORBException, ServerSecurityException
+    {
+        return super.getMyRolesToGrant();
+    }
+
+    public volatile AppUserImpl getCurrentAppUser()
+    {
+        return super.getCurrentAppUser();
+    }
+
+    public volatile VSORBAppServerImpl getServer()
+    {
+        return super.getServer();
+    }
+
+    public volatile int getCurrentVersion()
+    {
+        return super.getCurrentVersion();
+    }
+
+    public volatile ServerEvent[] getNextServerEvents(VSORBSecuritySession x0)
+    {
+        return super.getNextServerEvents(x0);
+    }
+
+    public volatile ServerEvent[] getNextServerEvents(int x0)
+        throws ServerSecurityException
+    {
+        return super.getNextServerEvents(x0);
+    }
+
+    public volatile void removeEventListener(VSORBSecuritySession x0)
+    {
+        super.removeEventListener(x0);
+    }
+
+    public volatile void removeEventListener(int x0)
+    {
+        super.removeEventListener(x0);
+    }
+
+    public volatile void removeSessionListener(SessionListener x0)
+    {
+        super.removeSessionListener(x0);
+    }
+
+    public volatile void addSessionListener(SessionListener x0)
+    {
+        super.addSessionListener(x0);
+    }
+
+    public volatile void addEventListener(VSORBSecuritySession x0)
+    {
+        super.addEventListener(x0);
+    }
+
+    public volatile void addEventListener(int x0)
+        throws ServerSecurityException
+    {
+        super.addEventListener(x0);
+    }
+
+    public volatile int getSessionID()
+    {
+        return super.getSessionID();
+    }
+
+    public volatile void setSessionID(int x0)
+    {
+        super.setSessionID(x0);
+    }
+
+    public volatile void setTraceEnable(VSORBSecuritySession x0, boolean x1)
+    {
+        super.setTraceEnable(x0, x1);
+    }
+
+    public volatile void setTraceEnable(int x0, boolean x1)
+    {
+        super.setTraceEnable(x0, x1);
+    }
+
+    public volatile void ping2()
+    {
+        super.ping2();
+    }
+
+    public volatile String getPassword()
+    {
+        return super.getPassword();
+    }
+
+    public volatile String getUserID()
+    {
+        return super.getUserID();
+    }
+
+    public volatile String getUserName()
+    {
+        return super.getUserName();
+    }
+
+    public volatile boolean isServerEventTracingEnabled()
+    {
+        return super.isServerEventTracingEnabled();
+    }
+
+    public volatile void addServerEvent(String x0, String x1, int x2)
+    {
+        super.addServerEvent(x0, x1, x2);
+    }
+
+    public volatile void removeTransactionEventListener(TransactionEventListener x0)
+    {
+        super.removeTransactionEventListener(x0);
+    }
+
+    public volatile void addTransactionEventListener(TransactionEventListener x0)
+    {
+        super.addTransactionEventListener(x0);
+    }
+
+    public volatile void setTxEventListenerSortingComparator(Comparator x0)
+    {
+        super.setTxEventListenerSortingComparator(x0);
+    }
+
+    public volatile VSTransactionInfo getTransactionInfo()
+    {
+        return super.getTransactionInfo();
+    }
+
+    public volatile boolean isTransactionInProgress()
+    {
+        return super.isTransactionInProgress();
+    }
+
+    public volatile boolean isFlushAfterSave()
+    {
+        return super.isFlushAfterSave();
+    }
+
+    public volatile boolean flushAfterSave(boolean x0)
+    {
+        return super.flushAfterSave(x0);
+    }
+
+    public volatile void rollback_only()
+    {
+        super.rollback_only();
+    }
+
+    public volatile Current beginTransaction()
+        throws SubtransactionsUnavailableException
+    {
+        return super.beginTransaction();
+    }
+
+    public volatile boolean isOTSEnvironment()
+    {
+        return super.isOTSEnvironment();
+    }
+
+    public volatile boolean clientOverrideSchema()
+    {
+        return super.clientOverrideSchema();
+    }
+
+    public volatile String getOverridedSchema()
+    {
+        return super.getOverridedSchema();
+    }
+
+    public volatile String getOverridedDatabaseName()
+    {
+        return super.getOverridedDatabaseName();
+    }
+
+    public volatile String[] getLocaleStrings()
+    {
+        return super.getLocaleStrings();
+    }
+
+    public volatile void setTableSchema(String x0, String x1)
+    {
+        super.setTableSchema(x0, x1);
+    }
+
+    public volatile String getDatabaseTypeName()
+    {
+        return super.getDatabaseTypeName();
+    }
+
+    public volatile void unregisterConnection(Connection x0)
+    {
+        super.unregisterConnection(x0);
+    }
+
+    public volatile Connection registerNewConnection(XDAConnector x0)
+        throws ServerException
+    {
+        return super.registerNewConnection(x0);
+    }
+
+    public volatile Connection getConnection(XDAConnector x0, boolean x1)
+        throws ServerException
+    {
+        return super.getConnection(x0, x1);
+    }
+
+    public volatile void pushSecurityDataWithLogin(byte x0[], int x1, String x2, String x3)
+    {
+        super.pushSecurityDataWithLogin(x0, x1, x2, x3);
+    }
+
+    public volatile String getSecurityMetadataVersion()
+    {
+        return super.getSecurityMetadataVersion();
+    }
+
+    public volatile String getProductVersion()
+    {
+        return super.getProductVersion();
+    }
+
+    public volatile String getName()
+    {
+        return super.getName();
+    }
+
+    public volatile void setUpdatePackageForApp(String x0)
+    {
+        super.setUpdatePackageForApp(x0);
+    }
+
+    public volatile void setUpdatePackage(String x0)
+    {
+        super.setUpdatePackage(x0);
+    }
+
+    public volatile boolean canUpdatePackage(String x0)
+    {
+        return super.canUpdatePackage(x0);
+    }
+
+    public volatile byte[] getMetaQuery(String x0, String x1)
+    {
+        return super.getMetaQuery(x0, x1);
+    }
+
+    public volatile void setProperties(String x0[][])
+    {
+        super.setProperties(x0);
+    }
+
+    public volatile ResultSet getResultSetFromCache(QueryRequest x0)
+        throws VSORBException, ServerSecurityException
+    {
+        return super.getResultSetFromCache(x0);
+    }
+
+    public volatile VSORBResultSet getResultSetFromCache(String x0, int x1)
+        throws VSORBException
+    {
+        return super.getResultSetFromCache(x0, x1);
+    }
+
+    public volatile Property[] getServerPropertyList()
+    {
+        return super.getServerPropertyList();
+    }
+
+    public volatile void setServerProperty(String x0, String x1, boolean x2)
+        throws ServerSecurityException
+    {
+        super.setServerProperty(x0, x1, x2);
+    }
+
+    public volatile String getServerProperty(String x0)
+    {
+        return super.getServerProperty(x0);
+    }
+
+    public volatile Property[] getPropertyList()
+    {
+        return super.getPropertyList();
+    }
+
+    public volatile Object getPropertyAsObject(String x0)
+    {
+        return super.getPropertyAsObject(x0);
+    }
+
+    public volatile void setPropertyAsObject(String x0, Object x1)
+    {
+        super.setPropertyAsObject(x0, x1);
+    }
+
+    public volatile Object removeProperty(String x0)
+    {
+        return super.removeProperty(x0);
+    }
+
+    public volatile void setProperty(String x0, String x1)
+    {
+        super.setProperty(x0, x1);
+    }
+
+    public volatile String getProperty(String x0)
+    {
+        return super.getProperty(x0);
+    }
+
+    public volatile String getCurrentEvent()
+    {
+        return super.getCurrentEvent();
+    }
+
+    public volatile void setUserDefinedEvent(String x0)
+    {
+        super.setUserDefinedEvent(x0);
+    }
+
+    public volatile String[][] save(ORBRows x0)
+        throws VSORBException, SecurityException
+    {
+        return super.save(x0);
+    }
+
+    public volatile void deactivate()
+    {
+        super.deactivate();
+    }
+
+    public volatile VSORBResultSet getResultSetByRequest(String x0, byte x1[], byte x2[], int x3)
+        throws VSORBException
+    {
+        return super.getResultSetByRequest(x0, x1, x2, x3);
+    }
+
+    public volatile Session cloneSession()
+    {
+        return super.cloneSession();
+    }
+
+    public volatile boolean isConsoleSession()
+    {
+        return super.isConsoleSession();
+    }
+
+    public volatile boolean isSecuritySession()
+    {
+        return super.isSecuritySession();
+    }
+
+    public volatile int executeUpdate(String x0, String x1, boolean x2)
+    {
+        return super.executeUpdate(x0, x1, x2);
+    }
+
+    public volatile int executeUpdate(String x0, String x1)
+    {
+        return super.executeUpdate(x0, x1);
+    }
+
+    public volatile Connection getConnection(String x0)
+    {
+        return super.getConnection(x0);
+    }
+
+    public volatile VSORBResultSet getResultSetBySQLRemote(String x0, String x1, int x2, boolean x3)
+        throws VSORBException
+    {
+        return super.getResultSetBySQLRemote(x0, x1, x2, x3);
+    }
+
+    public volatile ResultSet getResultSetBySQL1(String x0, String x1, int x2, boolean x3, int x4)
+        throws VSORBException
+    {
+        return super.getResultSetBySQL1(x0, x1, x2, x3, x4);
+    }
+
+    public volatile ResultSet getResultSetBySQL1(String x0, String x1, int x2, boolean x3)
+        throws VSORBException
+    {
+        return super.getResultSetBySQL1(x0, x1, x2, x3);
+    }
+
+    public volatile void sendMail(String x0[], String x1[], String x2, String x3, String x4, String x5, short x6)
+        throws MailException
+    {
+        super.sendMail(x0, x1, x2, x3, x4, x5, x6);
+    }
+
+    public volatile boolean preAuthenticated()
+    {
+        return super.preAuthenticated();
+    }
+
+    public volatile Vector getRoleList()
+    {
+        return super.getRoleList();
+    }
+
+    public volatile VSORBSecuritySession getRemoteReferenceForSecuritySession()
+    {
+        return super.getRemoteReferenceForSecuritySession();
+    }
+
+    public volatile void releaseRemoteReference()
+    {
+        super.releaseRemoteReference();
+    }
+
+    public volatile VSORBSession getRemoteReference()
+    {
+        return super.getRemoteReference();
+    }
+
+    public volatile VSORBSecuritySession getLocalReferenceForSecuritySession()
+    {
+        return super.getLocalReferenceForSecuritySession();
+    }
+
+    public volatile void setCoLocated(boolean x0)
+    {
+        super.setCoLocated(x0);
+    }
+
+    public volatile boolean getCoLocated()
+    {
+        return super.getCoLocated();
+    }
+
+    private static final String _RCS_HEADER = "$Header: //depot/main/products/brms/runtime/src/core/com/versata/tl/vls/core/VSORBSessionImpl_ejb.java#2 $";
+    protected static VersataLogger _LOGGER = VersataLogger.getLogger(com/versata/tl/vls/core/VSORBSessionImpl_ejb);
+    protected static Properties bundle;
+    protected EJBObject vlsContextBean;
+    protected CurrentTransaction currentTransaction;
+    static SessionsMonitor sessionsMonitor;
+    protected static final Hashtable sessionTxMap = new Hashtable(17, 0.7F);
+    protected static final Hashtable sessionTxMapReverse = new Hashtable(17, 0.7F);
+    protected Throwable txException;
+
+    static 
+    {
+        VersataLogger.getRCSTraceLogger().trace("$Header: //depot/main/products/brms/runtime/src/core/com/versata/tl/vls/core/VSORBSessionImpl_ejb.java#2 $");
+    }
+}

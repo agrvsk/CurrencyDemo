@@ -1,0 +1,1 @@
+a bound comboBox control to show data from a code table

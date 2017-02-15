@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.7.0
+Created-By: 20.1-b02 (Sun Microsystems Inc.)
+Class-Path: VLSShare.jar VLSWebConsole_Web.jar aspectjrt-1.2.jar bcel-
+ 5.2.jar bsh-1.0.jar commons-lang-2.6.jar consoleVLS-1.0.jar engine.ja
+ r google-collect-1.0.jar javassist.jar jax-qname-1.0.1.jar jaxb-api-1
+ .0.3.jar jaxb-impl-1.0.2.jar jaxb-libs-1.0.2.jar jaxb-xjc-1.0.2.jar k
+ ryo-1.04.jar log4j-1.2.16.jar myfaces-api-1.1.5.jar namespace-1.0.2.j
+ ar org.eclipse.core.runtime_3.3.100.v20070530.jar org.eclipse.emf.com
+ mon_2.3.0.v200706262000.jar org.eclipse.emf.commonj.sdo_2.3.0.v200706
+ 262000.jar org.eclipse.emf.ecore.change_2.3.0.v200706262000.jar org.e
+ clipse.emf.ecore.sdo_2.3.0.v200706262000.jar org.eclipse.emf.ecore.xm
+ i_2.3.0.v200706262000.jar org.eclipse.emf.ecore_2.3.0.v200706262000.j
+ ar org.eclipse.osgi_3.3.1.R33x_v20070828.jar quickrulesinterface20.ja
+ r relaxngDatatype-1.0.1.jar tl-common.jar trinidad-api-1.0.8.jar trin
+ idad-impl-1.0.8.jar vs-common-util.jar vs-tle-beans-client.jar vs-tle
+ -client.jar vs-tle-common.jar vs-tle-config.jar vs-tle-server.jar xml
+ pull-1.1.3.1.jar xpp3_min-1.1.3.4.O.jar xsdlib-1.0.2.jar xstream-1.4.
+ 4.jar
+

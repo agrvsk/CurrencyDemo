@@ -1,0 +1,1 @@
+Default archetypes as shipped with the product. Most of the form layouts have context sensitive toolbar on top of the form. Color scheme is gray with black text.

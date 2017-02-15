@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<do:DataObject xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:do="http://www.versata.com/tl/6.0/dataobject" xmlns:dt="http://www.versata.com/tl/6.0/datatype" name="User_USR" metaModelVersion="6.2.0.0">
+  <xdaConnector xsi:nil="true"/>
+  <attribute name="USR_Rsn" caption="User_SeqNumber" preventExternalUpdate="false">
+    <dataType xsi:type="dt:DeclaredType"/>
+    <supertype xsi:type="dt:UserDefinedType" href="../system/system.vdd#Int64"/>
+  </attribute>
+  <attribute name="USR_Login" caption="Login" preventExternalUpdate="false">
+    <dataType xsi:type="dt:DeclaredType"/>
+    <supertype xsi:type="dt:UserDefinedType" href="../system/system.vdd#String"/>
+  </attribute>
+  <attribute name="USR_Password" caption="Password" preventExternalUpdate="false">
+    <dataType xsi:type="dt:DeclaredType"/>
+    <supertype xsi:type="dt:UserDefinedType" href="../system/system.vdd#String"/>
+  </attribute>
+  <attribute name="USR_Role" caption="Role" preventExternalUpdate="false">
+    <dataType xsi:type="dt:DeclaredType"/>
+    <supertype xsi:type="dt:UserDefinedType" href="../system/system.vdd#String"/>
+  </attribute>
+  <primaryKey name="PK_USR">
+    <attribute attribute="USR_Rsn"/>
+  </primaryKey>
+</do:DataObject>

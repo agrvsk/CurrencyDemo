@@ -1,0 +1,1 @@
+a place holder archetype to allow you to specify the java class to paint.  See documentation on Custom Archetypes.

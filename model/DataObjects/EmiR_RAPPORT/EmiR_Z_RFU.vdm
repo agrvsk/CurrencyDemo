@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<do:DataObject xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:do="http://www.versata.com/tl/6.0/dataobject" xmlns:dt="http://www.versata.com/tl/6.0/datatype" name="EmiR_Z_RFU" metaModelVersion="6.2.0.0" surrId="0386259912.eunvsk.0000" singularCaption="">
+  <binding href="EmiR_Z_RFU.vrs#SkapaRapport_Target"/>
+  <attribute name="RFU_RFURSN" caption="RFUrsn" layoutByDefault="true" preventExternalUpdate="true" required="false" identity="true">
+    <dataType xsi:type="dt:DeclaredType"/>
+    <supertype xsi:type="dt:UserDefinedType" href="../../system/system.vdd#Int64"/>
+  </attribute>
+  <attribute name="RFU_ARTAL_FROM" caption="Årtal from" layoutByDefault="true" preventExternalUpdate="false" required="false">
+    <dataType xsi:type="dt:DeclaredType"/>
+    <supertype xsi:type="dt:UserDefinedType" href="../../system/system.vdd#Int64"/>
+  </attribute>
+  <attribute name="RFU_PERIOD_FROM" caption="Period from" layoutByDefault="true" preventExternalUpdate="false" required="false">
+    <dataType xsi:type="dt:DeclaredType"/>
+    <supertype xsi:type="dt:UserDefinedType" href="../../system/system.vdd#Int64"/>
+  </attribute>
+  <attribute name="RFU_KT2_FROM" caption="Konto del 2 from" layoutByDefault="true" preventExternalUpdate="false" required="false">
+    <dataType xsi:type="dt:DeclaredType" size="8"/>
+    <supertype xsi:type="dt:UserDefinedType" href="../../system/system.vdd#String"/>
+  </attribute>
+  <attribute name="RFU_KT2_TOM" caption="Konto del 2 tom" layoutByDefault="true" preventExternalUpdate="false" required="false">
+    <dataType xsi:type="dt:DeclaredType" size="8"/>
+    <supertype xsi:type="dt:UserDefinedType" href="../../system/system.vdd#String"/>
+  </attribute>
+  <attribute name="RFU_NIVA_FROM" caption="Nivå from" layoutByDefault="true" preventExternalUpdate="false" required="false">
+    <dataType xsi:type="dt:DeclaredType" size="1"/>
+    <supertype xsi:type="dt:UserDefinedType" href="../../system/system.vdd#String"/>
+  </attribute>
+  <attribute name="RFU_SUMMERA_UNIVA" caption="Summera under" layoutByDefault="true" preventExternalUpdate="false" required="true">
+    <binding href="EmiR_Z_RFU.vrs#RFU_SUMMERA_UNIVA_DerivationTarget"/>
+    <dataType xsi:type="dt:DeclaredType"/>
+    <supertype xsi:type="dt:UserDefinedType" href="../../system/system.vdd#Boolean"/>
+  </attribute>
+  <attribute name="RFU_RAPPID" caption="Rapport id" layoutByDefault="true" preventExternalUpdate="false" required="false">
+    <dataType xsi:type="dt:DeclaredType" size="8"/>
+    <supertype xsi:type="dt:UserDefinedType" href="../../system/system.vdd#String"/>
+  </attribute>
+  <attribute name="RFU_UTDATA" caption="Utdata" layoutByDefault="true" preventExternalUpdate="false" required="false">
+    <dataType xsi:type="dt:DeclaredType" size="50"/>
+    <supertype xsi:type="dt:UserDefinedType" href="../../system/system.vdd#String"/>
+  </attribute>
+  <attribute name="RFU_RGHRSN" caption="RGHrsn" layoutByDefault="true" preventExternalUpdate="false" required="false">
+    <dataType xsi:type="dt:DeclaredType"/>
+    <supertype xsi:type="dt:UserDefinedType" href="../../system/system.vdd#Int64"/>
+  </attribute>
+  <attribute name="RFU_BOLNR" caption="Bolag" layoutByDefault="true" preventExternalUpdate="false" required="false">
+    <dataType xsi:type="dt:DeclaredType" size="6"/>
+    <supertype xsi:type="dt:UserDefinedType" href="../../system/system.vdd#String"/>
+  </attribute>
+  <attribute name="RFU_BESKRIVNING" caption="Beskrivning." layoutByDefault="true" preventExternalUpdate="false" required="false">
+    <dataType xsi:type="dt:DeclaredType" size="70"/>
+    <supertype xsi:type="dt:UserDefinedType" href="../../system/system.vdd#String"/>
+  </attribute>
+  <attribute name="RFU_RAPPORTID" caption="RapportID" microHelp="Ange rapportens namn UTAN extension (.rpt)" layoutByDefault="true" preventExternalUpdate="false" required="false">
+    <dataType xsi:type="dt:DeclaredType" size="50"/>
+    <supertype xsi:type="dt:UserDefinedType" href="../../system/system.vdd#String"/>
+  </attribute>
+  <attribute name="RFU_DATETIME" caption="Körtid" preventExternalUpdate="false">
+    <dataType xsi:type="dt:DeclaredType"/>
+    <supertype xsi:type="dt:UserDefinedType" href="../../system/system.vdd#DateTime"/>
+  </attribute>
+  <primaryKey name="pk_RFU_Rfursn">
+    <attribute attribute="RFU_RFURSN"/>
+  </primaryKey>
+</do:DataObject>

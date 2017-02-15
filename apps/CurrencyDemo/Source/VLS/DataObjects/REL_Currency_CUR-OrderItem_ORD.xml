@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Relationships SYSTEM "Relation.dtd">
+<Relationships
+	DTDVersion="05.06.00"
+	>
+	
+	<Relationship
+		ParentRoleName="pCURfORD"
+		ChildRoleName="cORDfCUR"
+		IsEnforce="True"
+		OnParentUpdate="UpdateChildren"
+		
+		CountAggregates="1"
+		CountReplicates="1"
+		>
+		<AscendCaption><![CDATA[*]]></AscendCaption>
+		<DescendCaption><![CDATA[*]]></DescendCaption>
+		<ErrPreventUpdateParent><![CDATA[]]></ErrPreventUpdateParent>
+		<ErrPreventDeleteParent><![CDATA[]]></ErrPreventDeleteParent>
+		<ErrPreventInsertOrUpdateChild><![CDATA[]]></ErrPreventInsertOrUpdateChild>
+		<AttributePairs>
+			
+			<AttributePair
+				ParentAttribute="CUR_Client"
+				ChildAttribute="ORD_Client"			
+			/>
+			<AttributePair
+				ParentAttribute="CUR_CurrencyCode"
+				ChildAttribute="ORD_CurrencyCode"			
+			/>
+		</AttributePairs>
+	</Relationship>
+		
+</Relationships>

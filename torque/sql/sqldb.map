@@ -1,0 +1,5 @@
+#Sqlfile -> Database map
+#Thu Jan 26 11:37:07 CET 2017
+CurrencyDemo-schemafk.sql=default
+CurrencyDemo-schema.sql=default
+CurrencyDemo-data.sql=default

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<do:DataObject xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:do="http://www.versata.com/tl/6.0/dataobject" xmlns:dt="http://www.versata.com/tl/6.0/datatype" name="Currency_CUR" metaModelVersion="6.2.0.0">
+  <binding href="Currency_CUR.vrs#CUR_OrderAmountAverage_DerivationSourceDataObject"/>
+  <binding href="Currency_CUR.vrs#CUR_Image_DerivationSourceDataObject"/>
+  <xdaConnector xsi:nil="true"/>
+  <attribute name="CUR_Client" preventExternalUpdate="false">
+    <binding href="Currency_CUR.vrs#CUR_Client_DerivationTarget"/>
+    <dataType xsi:type="dt:DeclaredType" size="5"/>
+    <supertype xsi:type="dt:UserDefinedType" href="../system/system.vdd#String"/>
+  </attribute>
+  <attribute name="CUR_CurrencyCode" caption="Currency Code" preventExternalUpdate="false">
+    <dataType xsi:type="dt:DeclaredType" size="3"/>
+    <supertype xsi:type="dt:UserDefinedType" href="../system/system.vdd#Char"/>
+  </attribute>
+  <attribute name="CUR_ExchangeRate" caption="Exchange Rate" preventExternalUpdate="false">
+    <binding href="OrderItem_ORD.vrs#ORD_ExchangeRate_DerivationSourceAttribute"/>
+    <dataType xsi:type="dt:DeclaredType" scale="4"/>
+    <supertype xsi:type="dt:UserDefinedType" href="../system/system.vdd#Decimal"/>
+  </attribute>
+  <attribute name="CUR_NumberOfOrders" caption="Number Of Orders" preventExternalUpdate="false" persistent="false">
+    <binding href="Currency_CUR.vrs#CUR_NumberOfOrders_DerivationTarget"/>
+    <dataType xsi:type="dt:DeclaredType"/>
+    <supertype xsi:type="dt:UserDefinedType" href="../system/system.vdd#Int32"/>
+  </attribute>
+  <attribute name="CUR_OrderValueUSD" caption="Order Value USD22" preventExternalUpdate="false">
+    <binding href="Currency_CUR.vrs#CUR_OrderValueUSD_DerivationTarget"/>
+    <dataType xsi:type="dt:DeclaredType"/>
+    <supertype xsi:type="dt:UserDefinedType" href="../system/system.vdd#Decimal"/>
+  </attribute>
+  <attribute name="CUR_OrderAmountAverage" caption="Order Amount Average USD" preventExternalUpdate="false">
+    <binding href="Currency_CUR.vrs#CUR_OrderAmountAverage_DerivationTarget"/>
+    <dataType xsi:type="dt:DeclaredType"/>
+    <supertype xsi:type="dt:UserDefinedType" href="../system/system.vdd#Decimal"/>
+  </attribute>
+  <attribute name="CUR_Image" caption="Image" preventExternalUpdate="false" persistent="false">
+    <binding href="Currency_CUR.vrs#CUR_Image_DerivationTarget"/>
+    <dataType xsi:type="dt:DeclaredType" size="255"/>
+    <supertype xsi:type="dt:UserDefinedType" href="../system/system.vdd#String"/>
+  </attribute>
+  <attribute name="CUR_Client_RelatedTo" preventExternalUpdate="false">
+    <dataType xsi:type="dt:DeclaredType" size="5"/>
+    <supertype xsi:type="dt:UserDefinedType" href="../system/system.vdd#String"/>
+  </attribute>
+  <attribute name="CUR_CurrencyCode_RelatedTo" caption="CurrencyCode_RelatedTo" preventExternalUpdate="false">
+    <dataType xsi:type="dt:DeclaredType" size="3"/>
+    <supertype xsi:type="dt:UserDefinedType" href="../system/system.vdd#Char"/>
+  </attribute>
+  <primaryKey name="Currency_CUR_PK1">
+    <attribute attribute="CUR_Client"/>
+    <attribute attribute="CUR_CurrencyCode"/>
+  </primaryKey>
+  <index name="Currency_CUR_ALT1">
+    <attribute attribute="CUR_Client_RelatedTo"/>
+    <attribute attribute="CUR_CurrencyCode_RelatedTo"/>
+  </index>
+  <associationSet href="Currency_CUR-OrderItem_ORD.vas#Currency_CUR-OrderItem_ORD"/>
+  <associationSet href="Currency_CUR-Currency_CUR.vas#Currency_CUR-Currency_CUR"/>
+</do:DataObject>

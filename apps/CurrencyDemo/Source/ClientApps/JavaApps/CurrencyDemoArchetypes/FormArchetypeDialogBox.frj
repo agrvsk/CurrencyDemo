@@ -1,0 +1,211 @@
+BEGIN .VSForm FormArchetypeDialogBox
+  ImageFile = ""
+  ClassName = "VSForm"
+  BackColor = 0xc0c0c0
+  Width = 597
+  ImageDisplayStyle = Stretched
+  Title = "FormCaption"
+  Enable = True
+  ForeColor = 0x000000
+  HelpURL = ""
+  ToolTip = ""
+  Visible = True
+  Tag = ""
+  Height = 500
+  AnchorForm = "NONE"
+  Constraint = "null"
+  Layout = ""
+  Style = "ModalPopup"
+  Name = "FormArchetypeDialogBox"
+  Extended = ""
+  DisplayTitleBar = True
+  BeginProperty VSFont 
+    FontName  = "Helvetica"
+    FontSize  = 12
+    FontStyleBold  = False
+    FontStyleItalic  = False
+  EndProperty 
+  BEGIN .VSButton VSApplyButton
+    Top = 68
+    ClassName = "VSButton"
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = "(Current)"
+    BackColor = 0xffffff
+    Width = 74
+    ReportURL = ""
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Action = "db_saveAll"
+    TabOrder = 2
+    Height = 26
+    Left = 510
+    Constraint = "null"
+    TabStop = True
+    Mnemonic = ""
+    Extended = ""
+    Name = "VSApplyButton"
+    FormTransition = 0
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "Apply"
+    END
+  BEGIN .VSButton VSCancelButton
+    Top = 40
+    ClassName = "VSButton"
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = "(Current)"
+    BackColor = 0xffffff
+    Width = 74
+    ReportURL = ""
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Action = "cancel"
+    TabOrder = 1
+    Height = 26
+    Left = 510
+    Constraint = "null"
+    TabStop = True
+    Mnemonic = ""
+    Extended = ""
+    Name = "VSCancelButton"
+    FormTransition = 0
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "Cancel"
+    END
+  BEGIN .VSButton VSOKButton
+    Top = 12
+    ClassName = "VSButton"
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = "(Current)"
+    BackColor = 0xffffff
+    Width = 74
+    ReportURL = ""
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Action = "ok"
+    TabOrder = 0
+    Height = 26
+    Left = 510
+    Constraint = "null"
+    TabStop = True
+    Mnemonic = ""
+    Extended = ""
+    Name = "VSOKButton"
+    FormTransition = 0
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "OK"
+    END
+  BEGIN .VSPanel IncludeButtonArchetypeAllFormTrans
+    Top = 125
+    ClassName = "VSPanel"
+    BorderStyle = "GROUP_BORDER"
+    BackColor = 0xffffff
+    Width = 86
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Height = 35
+    Left = 504
+    Constraint = "null"
+    Layout = ""
+    Extended = ""
+    Name = "IncludeButtonArchetypeAllFormTrans"
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "IncludeButtonArchetypeAllFormTrans"
+    END
+  BEGIN .VSPanel IncludeRSGroupArchetypeAny
+    Top = 7
+    ClassName = "VSPanel"
+    BorderStyle = "GROUP_BORDER"
+    BackColor = 0xffffff
+    Width = 480
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Height = 440
+    Left = 1
+    Constraint = "null"
+    Layout = ""
+    Extended = ""
+    Name = "IncludeRSGroupArchetypeAny"
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = ""
+    END
+  END
+<<BEGIN VSMACRO>>
+<<ArchetypeVersion 06.00.00.00>>
+'<<Begin IncludeRSGroupArchetypeAny>>
+  '<<if value(VSVBAppForms!areIndepRSTabbed)>>
+    '<<Include RSGroupArchetypeTopTabbed>>
+  '<<else>>
+     '<<Include RSGroupArchetypeSiblingsNoTab>>
+  '<<end if>>
+'<<End Include>>
+'<<Begin IncludeButtonArchetypeAllFormTrans>>
+  '<<For each FormTransitionRS>>
+    '<<For each FormTransition>>
+      '<<Include ButtonArchetypeAllFormTrans>>
+    '<<Next>>
+  '<<Next>>
+  '<<For each RecSrc>>
+    '<<if value(VSVBappFormRecSrcs!isTableDisplayed)>>
+      '<<For each TableEvent>>
+        '<<Include ButtonArchetypeEventCommand>>
+      '<<Next>>
+    '<<end if>>
+  '<<Next>>
+'<<End Include>>
+<<Replace FormArchetypeDialogBox.Style>>
+    Style= "ModalPopup"
+<<End Replace>>
