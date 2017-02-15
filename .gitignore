@@ -17,6 +17,9 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# Undanta klassfiler
+*.class
+
 # =========================
 # Operating System Files
 # =========================
