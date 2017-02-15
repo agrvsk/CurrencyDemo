@@ -639,6 +639,11 @@ public abstract class VSORBSessionImpl_ejb extends VSORBSessionImpl_Base {
                         if (queryResults.hasMoreRows()) {
                             remoteResultSet = ((VSORBResultSetImpl)resultSet).getRemoteReference();
                             qres.setRS(remoteResultSet);
+                            System.out.println("VSORBSessionImpl_ejb executeQuery(qr) respons förses med Remote pekare");
+                        }
+                        else
+                        {
+                            System.out.println("VSORBSessionImpl_ejb executeQuery(qr) respons saknar Remote pekare");
                         }
                     }
                 }

@@ -88,12 +88,12 @@ public class Vsk_tie_VSORBSecuritySession extends _tie_VSORBSecuritySession
 //      RMIClientSocketFactory csf = new SslRMIClientSocketFactory();
         
 //    	2. Subklass av ovanstående med Output som visar att SSL kanaler används
-        RMIServerSocketFactory ssf = new SslServerSocketFactory();	
-        RMIClientSocketFactory csf = new SslClientSocketFactory();	
+//        RMIServerSocketFactory ssf = new SslServerSocketFactory();	
+//        RMIClientSocketFactory csf = new SslClientSocketFactory();	
 
 //		3. Factoryklasser för att kryptera strömmarna med Xor.            
-//      RMIServerSocketFactory ssf = new XorServerSocketFactory(pattern, this.port);
-//      RMIClientSocketFactory csf = new XorClientSocketFactory(pattern, this.port);
+      RMIServerSocketFactory ssf = new XorServerSocketFactory(pattern, this.port);
+      RMIClientSocketFactory csf = new XorClientSocketFactory(pattern, this.port);
 
     	
     	Current stub = (Current)UnicastRemoteObject.exportObject(curr, this.port, csf, ssf);
@@ -179,20 +179,20 @@ public class Vsk_tie_VSORBSecuritySession extends _tie_VSORBSecuritySession
 		qr.setIsCompressRows(true);
 		qreq.setIsCompressRows(true);
 		Object o = super.executeQuery(qr);
-		try
-		{
-			QueryResponse qresp = (QueryResponse)o;
-			QueryResponseVSK q = new QueryResponseVSK();
-			q.setQueryRequest(qr);
-			q.setMetaColumn(qresp.getMetaColumn());
-			q.setRS(qresp.getRS());
-			q.setRowsAsObjects(qresp.getRowsAsObjects());
-			q.setRows(qresp.getRows());
-			q.setRowCount(qresp.getRowCount());
-			o = q;
-		}
-		catch(atEndException ae){;}
-		catch(Throwable th){System.out.println(th.toString());}
+//		try
+//		{
+//			QueryResponse qresp = (QueryResponse)o;
+//			QueryResponseVSK q = new QueryResponseVSK();
+//			q.setQueryRequest(qr);
+//			q.setMetaColumn(qresp.getMetaColumn());
+//			q.setRS(qresp.getRS());
+//			q.setRowsAsObjects(qresp.getRowsAsObjects());
+//			q.setRows(qresp.getRows());
+//			q.setRowCount(qresp.getRowCount());
+//			o = q;
+//		}
+//		catch(atEndException ae){;}
+//		catch(Throwable th){System.out.println(th.toString());}
 		
 		
 		System.out.println( "QueryResponse? :"+(o instanceof QueryResponse)  );

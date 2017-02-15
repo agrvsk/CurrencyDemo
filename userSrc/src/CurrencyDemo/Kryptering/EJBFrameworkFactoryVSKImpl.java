@@ -256,13 +256,13 @@ public class EJBFrameworkFactoryVSKImpl extends EJBFrameworkFactoryImpl
 //          RMIClientSocketFactory csf = new SslRMIClientSocketFactory();
             
 //        	2. Subklass av ovanstående med Output som visar att SSL kanaler används
-            RMIServerSocketFactory ssf = new SslServerSocketFactory();	
-            RMIClientSocketFactory csf = new SslClientSocketFactory();	
+//            RMIServerSocketFactory ssf = new SslServerSocketFactory();	
+//            RMIClientSocketFactory csf = new SslClientSocketFactory();	
 
 //			3. Factoryklasser för att kryptera strömmarna med Xor.            
-//        	byte pattern = (byte) 0xAC;
-//          RMIServerSocketFactory ssf = new XorServerSocketFactory(pattern, this.port);
-//          RMIClientSocketFactory csf = new XorClientSocketFactory(pattern, this.port);
+        	byte pattern = (byte) 0xAC;
+          RMIServerSocketFactory ssf = new XorServerSocketFactory(pattern, this.port);
+          RMIClientSocketFactory csf = new XorClientSocketFactory(pattern, this.port);
             
             stub = (VSORBResultSet)
             UnicastRemoteObject.exportObject(resultSet, this.port, csf, ssf);  //eftersom Unicastporten binds vid inloggningen...

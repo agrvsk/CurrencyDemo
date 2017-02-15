@@ -407,7 +407,7 @@ public class fNoData extends fNoDataBase
 		VSQuery query = new VSQuery();
 //		String sSql = "SELECT COP_Description FROM CommonParms_COP WHERE COP_Id=1 ";
 		String sSql = "SELECT * FROM Z_YesNo where stored < '18' ";
-		query.setMaxRowsPerFetch(100);
+		query.setMaxRowsPerFetch(1);
 //		query.setPreFetchRowCount(true);
 //		query.setAutoCloseRemoteRS(true);
 //		query.setUseExclusionRS(useExclusion);
