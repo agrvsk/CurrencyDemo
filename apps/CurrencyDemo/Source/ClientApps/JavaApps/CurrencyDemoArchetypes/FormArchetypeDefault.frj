@@ -1,0 +1,162 @@
+BEGIN .VSForm FormArchetypeDefault
+  ClassName = "VSForm"
+  BackColor = 0xc0c0c0
+  Width = 579
+  Title = "FormCaption"
+  Enable = True
+  ForeColor = 0x000000
+  HelpURL = ""
+  ToolTip = ""
+  Visible = True
+  Tag = ""
+  Height = 500
+  AnchorForm = "NONE"
+  Style = "Child"
+  Name = "FormArchetypeDefault"
+  Extended = ""
+  DisplayTitleBar = True
+  BeginProperty VSFont 
+    FontName  = "Helvetica"
+    FontSize  = 12
+    FontStyleBold  = False
+    FontStyleItalic  = False
+  EndProperty 
+  BEGIN .VSPanel IncludeButtonArchetypeAllFormTrans
+    Top = 5
+    ClassName = "VSPanel"
+    BorderStyle = "GROUP_BORDER"
+    BackColor = 0xffffff
+    Width = 86
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Height = 35
+    Left = 485
+    Extended = ""
+    Name = "IncludeButtonArchetypeAllFormTrans"
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "IncludeButtonArchetypeAllFormTrans"
+    END
+  BEGIN .VSPanel IncludeToolBarArchetypeDefault
+    Top = 5
+    ClassName = "VSPanel"
+    BorderStyle = "GROUP_BORDER"
+    BackColor = 0xffffff
+    Width = 477
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Height = 28
+    Left = 8
+    Extended = ""
+    Name = "IncludeToolBarArchetypeDefault"
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = ""
+    END
+  BEGIN .VSPanel IncludeRSGroupArchetypeAny
+    Top = 35
+    ClassName = "VSPanel"
+    BorderStyle = "GROUP_BORDER"
+    BackColor = 0xffffff
+    Width = 480
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Height = 440
+    Left = 1
+    Extended = ""
+    Name = "IncludeRSGroupArchetypeAny"
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = ""
+    END
+  END
+<<BEGIN VSMACRO>>
+<<ArchetypeVersion 06.00.00.00>>
+<<CopyFile Images/logo.gif>>
+<<CopyFile Images/order.jpg>>
+<<CopyFile Images/orderstock.jpg>>
+<<CopyFile Images/valuta.jpg>>
+<<CopyFile Images/salesorder.jpg>>
+<<CopyFile Images/orderbacklog.jpg>>
+<<CopyFile Images/currency.jpg>>
+<<CopyFile Images/AUD.gif>>
+<<CopyFile Images/BRL.gif>>
+<<CopyFile Images/CAD.gif>>
+<<CopyFile Images/CHF.gif>>
+<<CopyFile Images/CNY.gif>>
+<<CopyFile Images/CYP.gif>>
+<<CopyFile Images/CZK.gif>>
+<<CopyFile Images/DKK.gif>>
+<<CopyFile Images/EEK.gif>>
+<<CopyFile Images/EUR.gif>>
+<<CopyFile Images/GBP.gif>>
+<<CopyFile Images/HKD.gif>>
+<<CopyFile Images/HUF.gif>>
+<<CopyFile Images/IDR.gif>>
+<<CopyFile Images/INR.gif>>
+<<CopyFile Images/ISK.gif>>
+<<CopyFile Images/JPY.gif>>
+<<CopyFile Images/LTL.gif>>
+<<CopyFile Images/LVL.gif>>
+<<CopyFile Images/MAD.gif>>
+<<CopyFile Images/MXP.gif>>
+<<CopyFile Images/NOK.gif>>
+<<CopyFile Images/NZD.gif>>
+<<CopyFile Images/PLN.gif>>
+<<CopyFile Images/RUB.gif>>
+<<CopyFile Images/SAR.gif>>
+<<CopyFile Images/SGD.gif>>
+<<CopyFile Images/SIT.gif>>
+<<CopyFile Images/THB.gif>>
+<<CopyFile Images/USD.gif>>
+<<CopyFile Images/ZAR.gif>>
+
+<<Begin IncludeRSGroupArchetypeAny>>
+  <<if value(VSVBAppForms!areIndepRSTabbed)>>
+    <<Include RSGroupArchetypeTopTabbed>>
+  <<else>>
+     <<Include RSGroupArchetypeSiblingsNoTab>>
+  <<end if>>
+<<End Include>>
+<<Begin IncludeButtonArchetypeAllFormTrans>>
+  <<For each FormTransitionRS>>
+    <<For each FormTransition>>
+      <<Include ButtonArchetypeAllFormTrans>>
+    <<Next>>
+  <<Next>>
+ <<End Include>>
+<<Begin IncludeToolBarArchetypeDefault>>
+  <<For Each RecSrc>>
+    <<if value(VSVBappFormRecSrcs!srcFormRSNum) = 0>>
+      <<if mid(Ucase("value(VSVBappFormRecSrcs!Style)"),1,10) = Ucase("GridSelect")>>
+      <<else>>
+        <<Include ToolBarArchetypeDefault>>
+      <<end if>>
+      <<Exit for>>
+    <<End if>>
+  <<Next>>
+<<End Include>>

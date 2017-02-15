@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<do:DataObject xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:do="http://www.versata.com/tl/6.0/dataobject" xmlns:dt="http://www.versata.com/tl/6.0/datatype" name="OBJ" metaModelVersion="6.2.0.0" surrId="0283246862.pfuvsk.0000" remotelyAccessible="true" xdaConnector="com.versata.tl.vls.admin.security.F2KConnector" lockMode="NO_OPTIMISTIC_LOCKING">
+  <superClass xsi:nil="true"/>
+  <attribute name="OBJ_OBJNR" description="Objekt" caption="Objekt" microHelp="Objektsidentitet - A15" preventExternalUpdate="false" required="true">
+    <dataType xsi:type="dt:DeclaredType" size="15"/>
+    <supertype xsi:type="dt:UserDefinedType" href="../system/system.vdd#String"/>
+  </attribute>
+  <attribute name="OBJ_BOSOK1_OMR" caption="BosÃÂ¶k1omrÃÂ¥de" microHelp="- Alfanum 6 tkn" preventExternalUpdate="false">
+    <dataType xsi:type="dt:DeclaredType" size="6"/>
+    <supertype xsi:type="dt:UserDefinedType" href="../system/system.vdd#String"/>
+  </attribute>
+  <attribute name="OBJ_BOSOK2_OMR" caption="BosÃÂ¶k2omrÃÂ¥de" microHelp="- Alfanum 6 tkn" preventExternalUpdate="false">
+    <dataType xsi:type="dt:DeclaredType" size="6"/>
+    <supertype xsi:type="dt:UserDefinedType" href="../system/system.vdd#String"/>
+  </attribute>
+  <primaryKey name="OBJ_PK">
+    <attribute attribute="OBJ_OBJNR"/>
+  </primaryKey>
+</do:DataObject>

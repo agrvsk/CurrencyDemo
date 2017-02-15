@@ -1,0 +1,1 @@
+a control that recieves a click on the opaque portions of the image and sends a user specified AdditionalWhereClause to the specified form transition.

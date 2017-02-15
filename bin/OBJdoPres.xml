@@ -1,0 +1,59 @@
+<com.versata.tl.metadata.PresentationMetaDataDO>
+  <dataModelName>OBJ</dataModelName>
+  <singularCaption>O B J</singularCaption>
+  <pluralCaption>O B J List</pluralCaption>
+  <attributeProperties>
+    <entry>
+      <string>OBJ_BOSOK1_OMR</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>OBJ_BOSOK1_OMR</attributeName>
+        <singularCaption>BosÃ&#x83;Â¶k1omrÃ&#x83;Â¥de</singularCaption>
+        <microHelp>- Alfanum 6 tkn</microHelp>
+        <required>false</required>
+        <attrSize>
+          <size>6</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>OBJ_OBJNR</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>OBJ_OBJNR</attributeName>
+        <singularCaption>Objekt</singularCaption>
+        <microHelp>Objektsidentitet - A15</microHelp>
+        <required>true</required>
+        <attrSize>
+          <size>15</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>OBJ_BOSOK2_OMR</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>OBJ_BOSOK2_OMR</attributeName>
+        <singularCaption>BosÃ&#x83;Â¶k2omrÃ&#x83;Â¥de</singularCaption>
+        <microHelp>- Alfanum 6 tkn</microHelp>
+        <required>false</required>
+        <attrSize>
+          <size>6</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+  </attributeProperties>
+  <associations/>
+</com.versata.tl.metadata.PresentationMetaDataDO>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	
+	<!-- This post processor enables using parameters set as system properties to be used as tokens	-->
+	<bean id="runtimeEnvironmentProperties" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				 <value>${basePath}/environment.properties</value>
+			</list>
+		</property>
+		<property name="systemPropertiesMode" value="2"/>
+	</bean>
+	
+	<bean id="mockContainer" class="com.versata.tl.studio.mockserver.mock.VersataMockContainer" />
+	
+	<bean id="mockJdbc" class="com.versata.tl.studio.mockserver.mock.MockDbSupport">
+		<property name="userId" value="${database.userid}" />
+		<property name="password" value="${database.password}" />
+		<property name="type" value="${database.type}" />
+		<property name="url" value="${database.url}" />
+		<property name="jndiName" value="${datasource.jndi}" />
+		<property name="mockContainer">
+			<ref bean="mockContainer"/>
+		</property>		
+	</bean>
+	
+	<bean id="versata" class="com.versata.tl.studio.mockserver.environment.VersataEnvironment">
+		<property name="mockContainer">
+			<ref bean="mockContainer"/>
+		</property>
+		<property name="repositoryName" value="${repo.name}" />
+		<property name="webRoot" value="${webRoot}" />
+	</bean>
+	
+	<bean id="webContainer" class="com.versata.tl.studio.mockserver.environment.ServletContainer">
+		<property name="webRoot" value="${webRoot}" />
+		<property name="httpPort" value="${httpPort}" />
+		<property name="additionalParams">
+		<map>
+			<entry key="useJasper" value="${jsfApp}"/>
+<!-- 			<entry key="commonLibFolder" value="${commonLibFolder}"/>
+			<entry key="javaHome" value="${javaHome}"/> -->
+		</map>
+		</property>
+	</bean>
+</beans>

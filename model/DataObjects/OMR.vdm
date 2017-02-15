@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<do:DataObject xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:do="http://www.versata.com/tl/6.0/dataobject" xmlns:dt="http://www.versata.com/tl/6.0/datatype" name="OMR" metaModelVersion="6.2.0.0" surrId="0328804261.AdministratÃ¶r.0001" xdaConnector="com.versata.tl.vls.admin.security.F2KConnector">
+  <attribute name="OMR_OMR" description="OmrÃ¥de" caption="Id" layoutByDefault="true" preventExternalUpdate="false" required="true">
+    <dataType xsi:type="dt:DeclaredType" size="6"/>
+    <supertype xsi:type="dt:UserDefinedType" href="../system/system.vdd#String"/>
+  </attribute>
+  <attribute name="OMR_BESK" caption="Beskrivning" layoutByDefault="true" preventExternalUpdate="false" required="false">
+    <dataType xsi:type="dt:DeclaredType" size="50"/>
+    <supertype xsi:type="dt:UserDefinedType" href="../system/system.vdd#String"/>
+  </attribute>
+  <attribute name="OMR_INGIOMR" layoutByDefault="true" preventExternalUpdate="false" required="false">
+    <dataType xsi:type="dt:DeclaredType" size="6"/>
+    <supertype xsi:type="dt:UserDefinedType" href="../system/system.vdd#String"/>
+  </attribute>
+  <primaryKey name="OMR_PK">
+    <attribute attribute="OMR_OMR"/>
+  </primaryKey>
+  <index name="OMR_ALT_INGIOMR">
+    <attribute attribute="OMR_INGIOMR"/>
+  </index>
+</do:DataObject>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svc:Service xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dt="http://www.versata.com/tl/6.0/datatype" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:svc="http://www.versata.com/tl/6.0/service" name="Common_COP_S" description="" metaModelVersion="6.2.0.0" delegateClass="CurrencyDemo.Common_COP_S_Delegate" sessionBean="true">
+  <operation name="setRemoteUpdateCUR" description="Dummy only for test">
+    <parameter name="sCurrencyCode">
+      <dataType xsi:type="dt:EcoreType" sqlType="VARCHAR" size="20">
+        <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </dataType>
+      <supertype xsi:type="dt:UserDefinedType" href="../system/system.vdd#String"/>
+    </parameter>
+    <parameter name="sRemoteParm">
+      <dataType xsi:type="dt:EcoreType" sqlType="VARCHAR" size="20">
+        <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </dataType>
+      <supertype xsi:type="dt:UserDefinedType" href="../system/system.vdd#String"/>
+    </parameter>
+    <parameter name="bOk" mode="RETURN">
+      <dataType xsi:type="dt:EcoreType">
+        <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      </dataType>
+      <supertype xsi:type="dt:UserDefinedType" href="../system/system.vdd#String"/>
+    </parameter>
+  </operation>
+  <queryObject href="Common_COP_Q.vqm#Common_COP_Q"/>
+</svc:Service>

@@ -1,0 +1,11 @@
+[General]
+XMLDateTime=2017-01-19 15:36:24
+FrmCustomImpl=2017-01-19 15:36:23
+FrmBaseImpl=2017-01-19 15:37:03
+[Relationship]
+REL_OrderBacklogPerMonth_OBT-OrderItem_ORD=2017-01-24 16:04:56
+REL_Currency_CUR-OrderItem_ORD=2017-01-24 16:04:56
+[BussinessCol]
+OrderItem_ORD=2017-01-24 16:04:56
+OrderBacklogPerMonth_OBT=2017-01-24 16:04:56
+Currency_CUR=2017-01-24 16:04:56

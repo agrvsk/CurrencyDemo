@@ -1,0 +1,96 @@
+BEGIN .VSForm FormArchetypeStartup
+  ClassName = "VSForm"
+  BackColor = 0xc0c0c0
+  Width = 129
+  Title = ""
+  Enable = True
+  ForeColor = 0x000000
+  HelpURL = ""
+  ToolTip = ""
+  Visible = True
+  Tag = ""
+  Height = 486
+  AnchorForm = "LEFT"
+  Style = "Child"
+  Name = "FormArchetypeStartup"
+  Extended = ""
+  DisplayTitleBar = False
+  BeginProperty VSFont 
+    FontName  = "Helvetica"
+    FontSize  = 12
+    FontStyleBold  = False
+    FontStyleItalic  = False
+  EndProperty 
+  BEGIN .VSPanel IncludeButtonArchetypeAllFormTransImage
+    Top = 8
+    ClassName = "VSPanel"
+    BorderStyle = "GROUP_BORDER"
+    BackColor = 0xffffff
+    Width = 114
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = "IncludeButtonArchetypeAllFormTransImage"
+    Visible = True
+    Tag = ""
+    Height = 95
+    Left = 6
+    Extended = ""
+    Name = "IncludeButtonArchetypeAllFormTransImage"
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "IncludeButtonArchetypeAllFormTransImage"
+    END
+  END
+<<BEGIN VSMACRO>>
+<<ArchetypeVersion 06.00.00.00>>
+<<CopyFile Images/logo.gif>>
+<<CopyFile Images/order.jpg>>
+<<CopyFile Images/orderstock.jpg>>
+<<CopyFile Images/valuta.jpg>>
+<<CopyFile Images/salesorder.jpg>>
+<<CopyFile Images/orderbacklog.jpg>>
+<<CopyFile Images/currency.jpg>>
+<<CopyFile Images/AUD.gif>>
+<<CopyFile Images/BRL.gif>>
+<<CopyFile Images/CAD.gif>>
+<<CopyFile Images/CHF.gif>>
+<<CopyFile Images/CNY.gif>>
+<<CopyFile Images/CYP.gif>>
+<<CopyFile Images/CZK.gif>>
+<<CopyFile Images/DKK.gif>>
+<<CopyFile Images/EEK.gif>>
+<<CopyFile Images/EUR.gif>>
+<<CopyFile Images/GBP.gif>>
+<<CopyFile Images/HKD.gif>>
+<<CopyFile Images/HUF.gif>>
+<<CopyFile Images/IDR.gif>>
+<<CopyFile Images/INR.gif>>
+<<CopyFile Images/ISK.gif>>
+<<CopyFile Images/JPY.gif>>
+<<CopyFile Images/LTL.gif>>
+<<CopyFile Images/LVL.gif>>
+<<CopyFile Images/MAD.gif>>
+<<CopyFile Images/MXP.gif>>
+<<CopyFile Images/NOK.gif>>
+<<CopyFile Images/NZD.gif>>
+<<CopyFile Images/PLN.gif>>
+<<CopyFile Images/RUB.gif>>
+<<CopyFile Images/SAR.gif>>
+<<CopyFile Images/SGD.gif>>
+<<CopyFile Images/SIT.gif>>
+<<CopyFile Images/THB.gif>>
+<<CopyFile Images/USD.gif>>
+<<CopyFile Images/ZAR.gif>>
+
+'<<Begin IncludeButtonArchetypeAllFormTransImage>>
+  '<<For each FormTransitionRS>>
+    '<<For each FormTransition>>
+      '<<Include ButtonArchetypeAllFormTransImage>>
+    '<<Next>>
+  '<<Next>>
+'<<End Include>>

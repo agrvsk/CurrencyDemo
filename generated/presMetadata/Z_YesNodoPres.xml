@@ -1,0 +1,40 @@
+<com.versata.tl.metadata.PresentationMetaDataDO>
+  <dataModelName>Z_YesNo</dataModelName>
+  <singularCaption>Z  Yes No</singularCaption>
+  <pluralCaption>Z  Yes No List</pluralCaption>
+  <attributeProperties>
+    <entry>
+      <string>Displayed</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>Displayed</attributeName>
+        <singularCaption>Displayed</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>3</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>Stored</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>Stored</attributeName>
+        <singularCaption>Stored</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>3</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+  </attributeProperties>
+  <associations/>
+</com.versata.tl.metadata.PresentationMetaDataDO>

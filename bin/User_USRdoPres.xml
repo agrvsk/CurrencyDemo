@@ -1,0 +1,72 @@
+<com.versata.tl.metadata.PresentationMetaDataDO>
+  <dataModelName>User_USR</dataModelName>
+  <singularCaption>User  U S R</singularCaption>
+  <pluralCaption>User  U S R List</pluralCaption>
+  <attributeProperties>
+    <entry>
+      <string>USR_Password</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>USR_Password</attributeName>
+        <singularCaption>Password</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>50</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>USR_Rsn</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>USR_Rsn</attributeName>
+        <singularCaption>User_SeqNumber</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>0</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>USR_Role</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>USR_Role</attributeName>
+        <singularCaption>Role</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>50</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>USR_Login</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>USR_Login</attributeName>
+        <singularCaption>Login</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>50</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+  </attributeProperties>
+  <associations/>
+</com.versata.tl.metadata.PresentationMetaDataDO>

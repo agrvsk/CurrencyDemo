@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<!-- ===================================================================== -->
+<!--                                                                       -->
+<!--  Log4j Configuration                                                  -->
+<!--                                                                       -->
+<!-- ===================================================================== -->
+
+<!--
+		This is a per-application log configuration.  Changes to this file will
+		only affect the application it is deployed with.  Please note that the
+		file locations are defaults and should be updated based on the current
+		configuration. By default VLS_LOGS_ROOT will be resolved to VERSATA_HOME/logs
+		directory. You can change this behaviour by creating a JNDI String binding in
+		the server context. This JNDI name specifying the VLS_LOGS_ROOT should be 
+		specified in the VLSResource.properties file (present in the earModule directory
+		of this Versata Logic project) by setting it to VLSLogsRootJNDIName property.
+		This way you can prevent overwriting of VLSLogs in a vertical cluster.
+		
+		IMPORTANT: By default, the log settings have been tuned for 'development'
+		environments. Specifically, the server runtime and your business object code
+		will run at the INFO log level, vstrace is enabled and rule event logging is
+		enabled. You almost certainly do not want this configuration for production
+		environments becuase there is a measurable performance overhead.  For production
+		environments, disable vstrace (see VERSATA/VlsComponents/config_dynamic.bsh) and
+		adjust levels in this file appropriately (search for 'production').
+ -->
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+
+ 
+    <!-- an appender to create a separate log file for each Versata application (EAR) -->
+    <appender name="APPLICATION_LOG" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="${VLS_LOGS_ROOT}/${project.name}/vls-server.log"/>
+        <param name="Append" value="false"/>
+        <param name="MaxFileSize" value="100MB"/>
+        <param name="MaxBackupIndex" value="1"/>
+
+        <layout class="org.apache.log4j.PatternLayout">
+            <!-- The default pattern: Date Priority [Category] Message\n -->
+            <param name="ConversionPattern" value="%d{ISO8601} %-4r %-5p %c{8} %x - %m\n"/>
+        </layout>
+    </appender>
+
+    <!--
+         an appender which creates files that Chainsaw can easily interpret
+         http://logging.apache.org/log4j/docs/chainsaw.html
+     -->
+    <appender name="APPLICATION_LOG_XML" class="org.apache.log4j.FileAppender">
+        <param name="File" value="${VLS_LOGS_ROOT}/${project.name}/vls-server-log.xml"/>
+        <param name="Append" value="false"/>
+        <layout class="org.apache.log4j.xml.XMLLayout"/>
+    </appender>
+
+    <!--
+         console appender - log to System.out, which is usually redirected to
+         the application server log
+     -->
+    <appender name="SYSTEM_OUT" class="org.apache.log4j.ConsoleAppender">
+        <!--param name="Threshold" value="INFO"/-->
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%c %x - %m%n"/>
+            <!--param name="ConversionPattern" value="%-4r [%t] %-5p %c %x - %m%n"/   Includes threadId and milliseconds since server start -->
+        </layout>
+    </appender>
+
+    <!--
+     Server event logger. Server events include rules firing, SQLs generated, session begin/commit/rollback
+     and any user defined events.  Adding a call to addServerEvent() in your business object code will eventually
+     lead to the message being added to this logger.
+
+     In addition to being a useful debugging aid, this logger is designed for auditing and would most likely
+     be redirected to a JMS or SQL appender in production environments in order to meet local audit compliance
+     regulations.
+     -->
+
+    <appender name="SERVER_EVENT_LOG" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="${VLS_LOGS_ROOT}/${project.name}/server_event.log"/>
+        <param name="Append" value="false"/>
+        <param name="MaxFileSize" value="100MB"/>
+        <param name="MaxBackupIndex" value="1"/>
+
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} %x %m\n"/>
+        </layout>
+    </appender>
+
+    <!--
+     Used to keep pdx logs in a separate place for debugging purposes. This is done to help debugging as
+     well as keep all pdx logs seperate to avoid confusion.
+     -->
+
+    <appender name="PDX_LOG" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="${VLS_LOGS_ROOT}/${project.name}/pdx.log"/>
+        <param name="Append" value="false"/>
+        <param name="MaxFileSize" value="100MB"/>
+        <param name="MaxBackupIndex" value="1"/>
+
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} %x %m\n"/>
+        </layout>
+    </appender>
+
+    <!--
+         RCS log. This log is updated with class version information as the VLS classes are loaded
+         at runtime. Used primarily by Versata support to determine the exact version of any classes
+         and to verify that hotfixes have been correctly applied. Changing this section is not
+         recommended.
+      -->
+
+    <!-- an appender to create a separate file for class version information -->
+    <appender name="RCS_FILE" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="${VLS_LOGS_ROOT}/${project.name}/rcs-server.log"/>
+        <param name="Append" value="false"/>
+        <param name="MaxFileSize" value="100MB"/>
+        <param name="MaxBackupIndex" value="1"/>
+		<filter class="com.versata.tl.common.vstrace.logger.VSTraceFilter"/>
+
+		<!-- 
+			This custom layout class appends the actual calling class name and the location
+			it was loaded from to the RCS file. Remove or comment out to revert to pre 6.3 behaviour
+		-->
+        <layout class="com.versata.tl.api.logging.RcsLoggerLayout"/>  
+    </appender>
+
+    <!--
+     VSTrace.
+
+     Gathers performance metrics for key sections of code such as the
+     execution time of SQL statements, derivation rules, generated service methods, etc.
+
+     By default VSTrace is enabled, so this log file will grow quickly.
+     You can disable VSTrace	by editing the VERSATA/VlsComponents/config_dynamic.bsh
+     file - see the comments in that	file for more information.
+
+     VSTrace should NOT be enabled on production systems - there is a performance penalty.
+     -->
+
+    <appender name="VSTRACE" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="${VLS_LOGS_ROOT}/${project.name}/vstrace.log"/>
+        <param name="Append" value="false"/>
+        <param name="MaxFileSize" value="100MB"/>
+        <param name="MaxBackupIndex" value="1"/>
+
+        <layout class="org.apache.log4j.PatternLayout">
+            <!-- The default pattern: Date  Message\n -->
+            <param name="ConversionPattern" value="%d{ISO8601} - %m"/>
+            <!--
+                   The 'old' pattern: Date Priority [Category] Message\n . You may need to use this if you
+                   are post-processing the log with external tools
+               -->
+            <!--param name="ConversionPattern" value="%d{ISO8601} %-4r %-5p %c{8} %x - %m"/-->
+        </layout>
+    </appender>
+
+    <!-- log level for the internal Versata classes -->
+    <logger name="com.versata.tl" additivity="true">
+        <level value="INFO"/>
+        <!-- change to DEBUG for more volume, WARN for production systems -->
+        <appender-ref ref="APPLICATION_LOG"/>
+        <!--
+          STRONGLY RECOMMENDED: If you wish to use Chainsaw (http://logging.apache.org/log4j/docs/chainsaw.html) to
+          view the log, uncomment the following appender
+          -->
+        <!--appender-ref ref="APPLICATION_LOG_XML"/-->
+    </logger>
+
+    <!--  VERY verbose if you change INFO to DEBUG.  Use to trace pdx matters (eg, conditional behavior) -->
+    <logger name="com.versata.tl.vfc.ui.html.pdx" additivity="true">
+        <level value="INFO"/>
+        <appender-ref ref="PDX_LOG"/>
+        <!--
+          STRONGLY RECOMMENDED: If you wish to use Chainsaw (http://logging.apache.org/log4j/docs/chainsaw.html) to
+          view the log, uncomment the following appender
+          -->
+        <!--appender-ref ref="APPLICATION_LOG_XML"/-->
+    </logger>
+
+    <!-- logger for the the application classes (e.g. Trade6.Security business objects -->
+    <logger name="${project.name}" additivity="true">
+        <level value="INFO"/>
+        <!-- change to DEBUG for more volume, INFO for development and WARN in production systems -->
+        <appender-ref ref="APPLICATION_LOG"/>
+    </logger>
+
+    <!-- log important messages to the console -->
+    <root>
+        <level value="INFO"/>
+        <appender-ref ref="SYSTEM_OUT"/>
+    </root>
+    
+ 
+
+    <!--
+       note that this logger has additivity=true; this means the messages will also be passed
+       to the root logger, which in our case is then appended to 'SYSTEM_OUT'. This means the
+       server events will be logged in a separate file but also be displayed in the eclipse console
+      -->
+
+    <logger name="versata.trace.ruleExec" additivity="true">
+        <level value="INFO"/>
+        <appender-ref ref="SERVER_EVENT_LOG"/>
+        <!-- possibly remove for production (or set the priority to OFF) -->
+    </logger>
+
+    <logger name="versata.trace.rcs" additivity="false">
+        <level value="TRACE#com.versata.tl.api.logging.TraceLevel"/>
+        <appender-ref ref="RCS_FILE"/>
+    </logger>
+
+    <!-- Change to DEBUG to watch dynamic event adapter construction. -->
+    <logger name="com.versata.tl.common.util.EventAdapterFactory" additivity="true">
+        <level value="INFO" />
+        <appender-ref ref="APPLICATION_LOG"/>	
+    </logger>
+
+    <!--
+        VSTrace always logs at TRACE level, so don't change this or you will lose information
+    -->
+    <logger name="versata.trace.default" additivity="false">
+        <level value="TRACE#com.versata.tl.api.logging.TraceLevel"/>
+        <appender-ref ref="VSTRACE"/>
+    </logger>
+
+    <!-- Properly render the VSTraceRecord object -->
+    <renderer
+        renderedClass="com.versata.tl.common.vstrace.impl.VSTraceRecord"
+        renderingClass="com.versata.tl.common.vstrace.logger.VSTraceRecordRenderer"/>
+
+
+    <!--
+         BAM configuration.
+      -->    
+   
+
+   <!--  <appender name="BAM_JMS_APPENDER" class="com.versata.tl.vls.bam.client.Log4jJmsQueueAppender">
+        <param name="InitialContextFactory" value="org.jnp.interfaces.NamingContextFactory"/>
+        <param name="ProviderUrl" value="localhost:1099"/>
+        <param name="QueueConnectionFactoryBindingName" value="XAConnectionFactory"/>
+       	<param name="QueueBindingName" value="queue/BAM"/>
+       </appender> -->
+    
+    <!-- useful for debugging BAM -->
+     <!--   <appender name="BAM_LOG_APPENDER" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="${VLS_LOGS_ROOT}/${project.name}/BAM.log"/>
+        <param name="Append" value="false"/>
+        <param name="MaxFileSize" value="100MB"/>
+        <param name="MaxBackupIndex" value="1"/>
+        <layout class="org.apache.log4j.PatternLayout"> 
+            <param name="ConversionPattern" value="%d{ISO8601} %-4r %-5p %c{8} %x - %m\n"/>
+        </layout>
+    </appender> -->
+    
+    
+       
+     <!--   <logger name="BAM" additivity="false">
+      
+            <priority value="OFF"/>         
+            <appender-ref ref="BAM_JMS_APPENDER"/>
+        </logger> -->
+
+
+</log4j:configuration>

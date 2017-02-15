@@ -1,0 +1,130 @@
+BEGIN .VSForm ColumnArchetypeGrid
+  ImageFile = ""
+  ClassName = "VSForm"
+  BackColor = 0xffffff
+  Width = 475
+  ImageDisplayStyle = Stretched
+  Title = "ColumnArchetypeGrid"
+  Enable = True
+  ForeColor = 0x000000
+  HelpURL = ""
+  ToolTip = ""
+  Visible = True
+  Tag = ""
+  Height = 372
+  AnchorForm = "NONE"
+  Style = "Child"
+  Name = "ColumnArchetypeGrid"
+  Extended = ""
+  DisplayTitleBar = True
+  BeginProperty VSFont 
+    FontName  = "Helvetica"
+    FontSize  = 12
+    FontStyleBold  = False
+    FontStyleItalic  = False
+  EndProperty 
+  BEGIN .VSGrid grdColumnArchetypeGrid
+    HiliteForeColor = 0xffffff
+    Top = 10
+    ClassName = "VSGrid"
+    DisplayHeader = True
+    BorderStyle = "PLAIN_BORDER"
+    DataSource = ""
+    BackColor = 0xffffff
+    Width = 461
+    DisplayGridLines = True
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    RowHeaderBackColor = 0xc0c0c0
+    Columns = ""
+    TabOrder = 0
+    Height = 319
+    Left = 3
+    ColumnHeaderBackColor = 0xc0c0c0
+    RowHeight = 20
+    RowHeaderForeColor = 0x000000
+    DisableBackColor = 0xffffff
+    BeginProperty VSHeaderFont
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    ColumnHeaderForeColor = 0x000000
+    TabStop = True
+    LineColor = 0xc0c0c0
+    DisableForeColor = 0xc0c0c0
+    Editable = True
+    Extended = ""
+    Name = "grdColumnArchetypeGrid"
+    RowHeaderWidth = 25
+    HiliteBackColor = 0x000080
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 11
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    BEGIN .VSGridColumn "ColumnCaption"      
+      GridColumnLabel = "ColumnCaption"
+      GridColumnWidth = 0x4B
+      GridColumnDataField = 0
+      GridColumnEditType = "VSTextField"
+      GridColumnControlStyle = ""
+      JUSTIFY = "JUSTIFY_LEFT"
+      VALIGN = "VALIGN_CENTER"
+      GRIDCOLUMNBACKCOLOR = "0xffffff"
+      GRIDCOLUMNFORECOLOR = "0x000000"
+      GRIDCOLUMNHILITEBACKCOLOR = "0x000080"
+      GRIDCOLUMNHILITEFORECOLOR = "0xffffff"
+      GridColumnEnable = True
+      GridColumnFormat = "Value(Field.Properties!Format)"
+      GridColumnPickObject = 0
+        ENDGRIDCOLUMN
+    END
+  END
+<<BEGIN VSMACRO>>
+<<ArchetypeVersion 06.00.00.00>>
+<<Replace .VSGridColumn.GridColumnDataField>>
+    GridColumnDataField = Value(VSVBappFormColumns!colID)
+<<End Replace>>
+
+<<Replace .VSGridColumn.GridColumnEditType>>
+  <<if ForeignKeyField >>
+    GridColumnEditType = "VSPickChoice"
+  <<Else>>
+      <<if trim("value(Field.Properties!controlName)") = "Image" >>
+         GridColumnEditType = "VSImage"
+       <<Else>>	
+    	<<if trim("value(Field.Properties!CodeTable)") <> "" >>
+    	  GridColumnEditType = "VSChoice"
+   	 <<Else>>
+  	    <<if value(Field.Properties!VSVBType) = 8 >>
+  	       GridColumnEditType = "VSDateChoice"
+ 	     <<Else>>
+ 	       <<if value(Field.Properties!VSVBType) = 1 >>
+ 	          GridColumnEditType = "VSChoice"
+ 	       <<Else>>
+ 	           <<if value(Field.Properties!VSVBType) = 12 >>
+ 	               GridColumnEditType = "VSMultiLineText"
+ 	            <<Else>>
+	               GridColumnEditType = "VSTextField"
+                           <<End If>>
+ 	       <<End If>>
+ 	     <<End If>>
+ 	   <<End If>>
+	  <<End If>>
+	<<End if>>
+<<End Replace>>
+
+<<Replace .VSGridColumn.GridColumnPickObject>>
+  <<if ForeignKeyField >>
+    GridColumnPickObject = PickNumForField,PickNameForField
+  <<Else>>
+    GridColumnPickObject = 0
+  <<End If>>
+<<End Replace>>

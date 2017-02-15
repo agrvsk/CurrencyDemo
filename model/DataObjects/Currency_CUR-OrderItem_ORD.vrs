@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rule:RuleSet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:asn="http://www.versata.com/tl/6.0/association" xmlns:rule="http://www.versata.com/tl/6.0/rule" name="Currency_CUR-OrderItem_ORD" metaModelVersion="6.2.0.0">
+  <rule name="Currency_CUR_DELETED">
+    <event type="DELETED"/>
+    <condition xsi:type="rule:RICondition"/>
+    <action xsi:type="rule:RejectTransaction"/>
+    <action xsi:type="rule:LogMessage">
+      <message href="http://www.versata.com/tl/6.0/system.vrs#SYSTEM_MSG"/>
+    </action>
+    <binding>
+      <target name="Currency_CUR_Target_DELETED">
+        <bindable xsi:type="asn:AssociationRole" href="Currency_CUR-OrderItem_ORD.vas#pCURfORD"/>
+      </target>
+    </binding>
+  </rule>
+  <rule name="OrderItem_ORD_UPDATED">
+    <event type="UPDATED"/>
+    <condition xsi:type="rule:RICondition"/>
+    <action xsi:type="rule:RejectTransaction"/>
+    <action xsi:type="rule:LogMessage" message="cORDfCUR_Target_UPDATED_Msg"/>
+    <binding>
+      <target name="OrderItem_ORD_Target_UPDATED">
+        <bindable xsi:type="asn:AssociationRole" href="Currency_CUR-OrderItem_ORD.vas#cORDfCUR"/>
+      </target>
+    </binding>
+  </rule>
+  <rule name="OrderItem_ORD_INSERTED">
+    <event type="INSERTED"/>
+    <condition xsi:type="rule:RICondition"/>
+    <action xsi:type="rule:RejectTransaction"/>
+    <action xsi:type="rule:LogMessage" message="cORDfCUR_Target_UPDATED_Msg"/>
+    <binding>
+      <target name="OrderItem_ORD_Target_INSERTED">
+        <bindable xsi:type="asn:AssociationRole" href="Currency_CUR-OrderItem_ORD.vas#cORDfCUR"/>
+      </target>
+    </binding>
+  </rule>
+  <rule name="pCURfORD_UPDATED">
+    <event type="UPDATED"/>
+    <condition xsi:type="rule:RICondition"/>
+    <action xsi:type="rule:PreserveIntegrity"/>
+    <binding>
+      <target name="pCURfORD_Target_UPDATED">
+        <bindable xsi:type="asn:AssociationRole" href="Currency_CUR-OrderItem_ORD.vas#pCURfORD"/>
+      </target>
+    </binding>
+  </rule>
+  <message name="cORDfCUR_Target_UPDATED_Msg" text="Currency Code Missing!"/>
+</rule:RuleSet>

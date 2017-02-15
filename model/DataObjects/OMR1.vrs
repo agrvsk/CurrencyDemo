@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rule:RuleSet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:do="http://www.versata.com/tl/6.0/dataobject" xmlns:rule="http://www.versata.com/tl/6.0/rule" name="OMR1" metaModelVersion="6.2.0.0">
+</rule:RuleSet>

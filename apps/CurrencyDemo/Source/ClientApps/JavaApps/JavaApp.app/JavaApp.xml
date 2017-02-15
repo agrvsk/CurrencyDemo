@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE Application SYSTEM "Application.dtd">
+<Application
+	SurrId="0697715889.pfuvsk.0004"
+	TargetLanguage="Java"
+	DefaultLogonUserId="sa"
+	ExecutionEnvironment="Applet"
+	AppletHeight="800"
+	AppletWidth="800"
+	SuppressDefaultLoginScreen="True"
+	InitialFramesetPage=""
+	StartupPageFrameName=""
+	InitialFrameNameForStartupTrans=""
+	AppRepositoryVersion="05.06.01"
+	isMDIApp="False"
+	DeploySecurityInfo="False"
+	DTDVersion="05.06.00"
+	>
+	<ServerLocation><![CDATA[<localVLSServer>]]></ServerLocation>
+	<!-- APPLICATION FORMS -->
+	<Forms>
+		<Form>StartupForm</Form>
+		<Form>fOrderItem_ORD</Form>
+		<Form>fCurrency_CUR_Grid</Form>
+		<Form>fOrderBacklogPerMonth_OBT_Grid</Form>
+		<Form>fNoData</Form>
+		<Form>fNoData5</Form>
+		<Form>fNoData8</Form>
+		<Form>fNoDataTop</Form>
+		<Form>fLogin</Form>
+		<Form>fCommonParms_COP</Form>
+		<Form>fAdapterTest</Form>
+		<Form>fCurrency_CUR</Form>
+		<Form>fEmiR_Z_RFU</Form>
+		<Form>fOBJ_Grid</Form>
+		<Form>fOMR_Grid</Form>
+		<Form>fOrderItem_ORD15</Form>
+		<Form>fUser_USR_Grid</Form>
+		<Form>fZ_YesNo_Grid</Form>
+		<Form>fUser_USR</Form>
+		<Form>fOMR</Form>
+		<Form>fOBJ</Form>
+		<Form>fOrderItem_ORD21_Grid</Form>
+	</Forms>
+	<SourceFiles>
+	</SourceFiles>
+</Application>

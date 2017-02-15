@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DataObject SYSTEM "DataObject.dtd">
+<DataObject
+	DTDVersion="05.06.00"
+	SurrId="null"
+	CodedValuesList="False"
+	ImageReference=""
+	IsRemoteAccessible="False"
+	UseQuotedIdentifiers="False"
+	XdaConnector="SQL"
+	SuperClass="com.versata.tl.vls.core.DataObject"
+	LockMode="AllApplicableAttributes"
+	>
+	<Attributes>
+		
+		<Attribute
+			Name="USR_Rsn"
+			ValueRequired="False"
+			LayoutByDefault="True"
+			Persistent="True"
+			PreventUserUpdates="False"
+			>
+			<DataType
+				DataType="Long"
+
+			/>
+			<Validation
+				ValidationType="Condition"
+			/>
+			<Comments><![CDATA[]]></Comments>
+			<Format><![CDATA[]]></Format>
+			<Caption><![CDATA[User_SeqNumber]]></Caption>
+		</Attribute>
+		   
+		<Attribute
+			Name="USR_Login"
+			ValueRequired="False"
+			LayoutByDefault="True"
+			Persistent="True"
+			PreventUserUpdates="False"
+			>
+			<DataType
+				DataType="VarChar"
+Size="50"
+			/>
+			<Validation
+				ValidationType="Condition"
+			/>
+			<Comments><![CDATA[]]></Comments>
+			<Format><![CDATA[]]></Format>
+			<Caption><![CDATA[Login]]></Caption>
+		</Attribute>
+		   
+		<Attribute
+			Name="USR_Password"
+			ValueRequired="False"
+			LayoutByDefault="True"
+			Persistent="True"
+			PreventUserUpdates="False"
+			>
+			<DataType
+				DataType="VarChar"
+Size="50"
+			/>
+			<Validation
+				ValidationType="Condition"
+			/>
+			<Comments><![CDATA[]]></Comments>
+			<Format><![CDATA[]]></Format>
+			<Caption><![CDATA[Password]]></Caption>
+		</Attribute>
+		   
+		<Attribute
+			Name="USR_Role"
+			ValueRequired="False"
+			LayoutByDefault="True"
+			Persistent="True"
+			PreventUserUpdates="False"
+			>
+			<DataType
+				DataType="VarChar"
+Size="50"
+			/>
+			<Validation
+				ValidationType="Condition"
+			/>
+			<Comments><![CDATA[]]></Comments>
+			<Format><![CDATA[]]></Format>
+			<Caption><![CDATA[Role]]></Caption>
+		</Attribute>
+		   
+	</Attributes>
+	<Indexes>
+		
+		   <Index
+		   		Name="PK_USR"
+				Primary="True"
+				Unique="True"
+				IgnoreNulls="False"
+				>
+				
+				<Index_Attribute
+					Name="USR_Rsn"
+					Descending="False"
+				/>		   		
+		   </Index> 
+	</Indexes>
+	<SingularCaption><![CDATA[*]]></SingularCaption>
+	<PluralCaption><![CDATA[*]]></PluralCaption>
+	<VLSDeployment
+		DeploySecurityInfo="False"
+	/>
+	<Description><![CDATA[]]></Description>
+	<Comments><![CDATA[]]></Comments>
+	
+	<CodedValuesList
+		StoredAttribute=" "
+		DisplayAttribute=" "
+	/>
+	<Constraints></Constraints>
+</DataObject>

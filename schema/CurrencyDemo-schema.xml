@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "file:/C:/Versata/BRMS-2016/workbench/workspace_VSK_CurrencyDemo/CurrencyDemo/schema/versata_database_3_1.dtd">
+<database defaultJavaNamingMethod="nochange">
+
+	<table xmlns:sys="java.lang.System" name="CommonParms_COP" idMethod="native" seqName="CommonParms_COP_SN">	
+		<column name="COP_Id" type="BIGINT" 
+					autoIncrement="true" required="true" primaryKey="true" 
+					
+					
+					description=""/>
+		<column name="COP_Description" type="LONGVARCHAR" 
+					 
+					
+					
+					description=""/>
+		<column name="COP_Dummy" type="VARCHAR" size="50" 
+					 
+					
+					
+					description=""/>
+		
+		
+			
+	</table>
+	
+  		
+	<table xmlns:sys="java.lang.System" name="Currency_CUR" idMethod="native" seqName="Currency_CUR_SN">	
+		<column name="CUR_Client" type="VARCHAR" size="5" 
+					 required="true" primaryKey="true" 
+					
+					
+					description=""/>
+		<column name="CUR_CurrencyCode" type="CHAR" size="3" 
+					 required="true" primaryKey="true" 
+					
+					
+					description=""/>
+		<column name="CUR_ExchangeRate" type="DECIMAL" size="10,4" 
+					 
+					
+					
+					description=""/>
+		<column name="CUR_OrderValueUSD" type="DECIMAL" size="10,2" 
+					 
+					
+					
+					description=""/>
+		<column name="CUR_OrderAmountAverage" type="DECIMAL" size="10,2" 
+					 
+					
+					
+					description=""/>
+		<column name="CUR_Client_RelatedTo" type="VARCHAR" size="5" 
+					 
+					
+					
+					description=""/>
+		<column name="CUR_CurrencyCode_RelatedTo" type="CHAR" size="3" 
+					 
+					
+					
+					description=""/>
+		
+			<association name="Currency_CUR-OrderItem_ORD" parentDM="Currency_CUR" childDM="OrderItem_ORD" assocPairs="CUR_Client:ORD_Client,CUR_CurrencyCode:ORD_CurrencyCode"/>
+		
+			<association name="Currency_CUR-Currency_CUR" parentDM="Currency_CUR" childDM="Currency_CUR" assocPairs="CUR_Client:CUR_Client_RelatedTo,CUR_CurrencyCode:CUR_CurrencyCode_RelatedTo"/>
+		
+		
+		<index ignoreNulls="false" name="Currency_CUR_ALT1">
+			<index-column name="CUR_Client_RelatedTo"/>
+			<index-column name="CUR_CurrencyCode_RelatedTo"/>
+		</index>
+			
+	</table>
+	
+  		
+	<table xmlns:sys="java.lang.System" name="EmiR_Z_RFU" idMethod="native" seqName="EmiR_Z_RFU_SN">	
+		<column name="RFU_RFURSN" type="BIGINT" 
+					autoIncrement="true" required="true" primaryKey="true" 
+					
+					
+					description=""/>
+		<column name="RFU_ARTAL_FROM" type="BIGINT" 
+					 
+					
+					
+					description=""/>
+		<column name="RFU_PERIOD_FROM" type="BIGINT" 
+					 
+					
+					
+					description=""/>
+		<column name="RFU_KT2_FROM" type="VARCHAR" size="8" 
+					 
+					
+					
+					description=""/>
+		<column name="RFU_KT2_TOM" type="VARCHAR" size="8" 
+					 
+					
+					
+					description=""/>
+		<column name="RFU_NIVA_FROM" type="VARCHAR" size="1" 
+					 
+					
+					
+					description=""/>
+		<column name="RFU_SUMMERA_UNIVA" type="BIT" 
+					 required="true" 
+					
+					
+					description=""/>
+		<column name="RFU_RAPPID" type="VARCHAR" size="8" 
+					 
+					
+					
+					description=""/>
+		<column name="RFU_UTDATA" type="VARCHAR" size="50" 
+					 
+					
+					
+					description=""/>
+		<column name="RFU_RGHRSN" type="BIGINT" 
+					 
+					
+					
+					description=""/>
+		<column name="RFU_BOLNR" type="VARCHAR" size="6" 
+					 
+					
+					
+					description=""/>
+		<column name="RFU_BESKRIVNING" type="VARCHAR" size="70" 
+					 
+					
+					
+					description=""/>
+		<column name="RFU_RAPPORTID" type="VARCHAR" size="50" 
+					 
+					
+					
+					description=""/>
+		<column name="RFU_DATETIME" type="TIMESTAMP" 
+					 
+					
+					
+					description=""/>
+		
+		
+			
+	</table>
+	
+  		
+	<table xmlns:sys="java.lang.System" name="OBJ" idMethod="native" seqName="OBJ_SN">	
+		<column name="OBJ_OBJNR" type="VARCHAR" size="15" 
+					 required="true" primaryKey="true" 
+					
+					
+					description="Objekt"/>
+		<column name="OBJ_BOSOK1_OMR" type="VARCHAR" size="6" 
+					 
+					
+					
+					description=""/>
+		<column name="OBJ_BOSOK2_OMR" type="VARCHAR" size="6" 
+					 
+					
+					
+					description=""/>
+		
+		
+			
+	</table>
+	
+  		
+	<table xmlns:sys="java.lang.System" name="OMR" idMethod="native" seqName="OMR_SN">	
+		<column name="OMR_OMR" type="VARCHAR" size="6" 
+					 required="true" primaryKey="true" 
+					
+					
+					description="OmrÃ¥de"/>
+		<column name="OMR_BESK" type="VARCHAR" size="50" 
+					 
+					
+					
+					description=""/>
+		<column name="OMR_INGIOMR" type="VARCHAR" size="6" 
+					 
+					
+					
+					description=""/>
+		
+		
+		<index ignoreNulls="false" name="OMR_ALT_INGIOMR">
+			<index-column name="OMR_INGIOMR"/>
+		</index>
+			
+	</table>
+	
+  		
+	<table xmlns:sys="java.lang.System" name="OMR1" idMethod="native" seqName="OMR1_SN">	
+		<column name="OMR1_OMR" type="VARCHAR" size="6" 
+					 required="true" primaryKey="true" 
+					
+					
+					description="Omr1"/>
+		<column name="OMR1_BESK" type="VARCHAR" size="50" 
+					 
+					
+					
+					description=""/>
+		<column name="OMR1_INGIOMR" type="VARCHAR" size="6" 
+					 
+					
+					
+					description=""/>
+		
+		
+		<index ignoreNulls="false" name="OMR1_ALT_INGIOMR">
+			<index-column name="OMR1_INGIOMR"/>
+		</index>
+			
+	</table>
+	
+  		
+	<table xmlns:sys="java.lang.System" name="OrderBacklogPerMonth_OBT" idMethod="native" seqName="OrderBacklogPerMonth_OBT_SN">	
+		<column name="OBT_Client" type="VARCHAR" size="5" 
+					 required="true" primaryKey="true" 
+					
+					
+					description=""/>
+		<column name="OBT_Month" type="CHAR" size="3" 
+					 required="true" primaryKey="true" 
+					
+					
+					description=""/>
+		<column name="OBT_OrderValueUSD" type="DECIMAL" size="10,2" 
+					 
+					
+					
+					description=""/>
+		
+			<association name="OrderBacklogPerMonth_OBT-OrderItem_ORD" parentDM="OrderBacklogPerMonth_OBT" childDM="OrderItem_ORD" assocPairs="OBT_Client:ORD_Client,OBT_Month:ORD_Month"/>
+		
+		
+			
+	</table>
+	
+  		
+	<table xmlns:sys="java.lang.System" name="OrderItem_ORD" idMethod="native" seqName="OrderItem_ORD_SN">	
+		<column name="ORD_Client" type="VARCHAR" size="5" 
+					 
+					
+					
+					description=""/>
+		<column name="ORD_OrderId" type="BIGINT" 
+					autoIncrement="true" required="true" primaryKey="true" 
+					
+					
+					description=""/>
+		<column name="ORD_Month" type="CHAR" size="3" 
+					 
+					
+					
+					description=""/>
+		<column name="ORD_CurrencyCode" type="CHAR" size="3" 
+					 
+					
+					
+					description=""/>
+		<column name="ORD_AmountInLocalCurrency" type="DECIMAL" size="10,2" 
+					 
+					
+					
+					description=""/>
+		<column name="ORD_AmountInUSD" type="DECIMAL" size="10,2" 
+					 
+					
+					
+					description=""/>
+		<column name="ORD_ExchangeRate" type="DECIMAL" size="10,4" 
+					 
+					
+					
+					description=""/>
+		<column name="ORD_Approved" type="VARCHAR" size="3" 
+					 
+					
+					
+					description=""/>
+		
+			<association name="Currency_CUR-OrderItem_ORD" parentDM="Currency_CUR" childDM="OrderItem_ORD" assocPairs="CUR_Client:ORD_Client,CUR_CurrencyCode:ORD_CurrencyCode"/>
+		
+			<association name="OrderBacklogPerMonth_OBT-OrderItem_ORD" parentDM="OrderBacklogPerMonth_OBT" childDM="OrderItem_ORD" assocPairs="OBT_Client:ORD_Client,OBT_Month:ORD_Month"/>
+		
+		
+			
+	</table>
+	
+  		
+	<table xmlns:sys="java.lang.System" name="User_USR" idMethod="native" seqName="User_USR_SN">	
+		<column name="USR_Rsn" type="BIGINT" 
+					 required="true" primaryKey="true" 
+					
+					
+					description=""/>
+		<column name="USR_Login" type="VARCHAR" size="50" 
+					 
+					
+					
+					description=""/>
+		<column name="USR_Password" type="VARCHAR" size="50" 
+					 
+					
+					
+					description=""/>
+		<column name="USR_Role" type="VARCHAR" size="50" 
+					 
+					
+					
+					description=""/>
+		
+		
+			
+	</table>
+	
+  		
+	<table xmlns:sys="java.lang.System" name="Z_YesNo" idMethod="native" seqName="Z_YesNo_SN">	
+		<column name="Stored" type="VARCHAR" size="3" 
+					 required="true" primaryKey="true" 
+					
+					
+					description=""/>
+		<column name="Displayed" type="VARCHAR" size="3" 
+					 
+					
+					
+					description=""/>
+		
+		
+			
+	</table>
+	
+  		
+
+</database>

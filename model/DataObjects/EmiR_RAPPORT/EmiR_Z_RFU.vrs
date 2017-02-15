@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rule:RuleSet xmlns:dt="http://www.versata.com/tl/6.0/datatype" xmlns:rule="http://www.versata.com/tl/6.0/rule" xmlns:qo="http://www.versata.com/tl/6.0/queryobject" xmlns:do="http://www.versata.com/tl/6.0/dataobject" xmlns:cmn="http://www.versata.com/tl/6.0/common" xmlns:bl="http://www.versata.com/tl/6.0/businesslogic" xmlns:asn="http://www.versata.com/tl/6.0/association" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmi:version="2.0" name="EmiR_Z_RFU" metaModelVersion="6.2.0.0">
+  <rule name="SkapaRapport" evaluation="DEFERRED">
+    <event type="TARGET_CHANGED"/>
+    <condition condition="isCurrentEvent('skapaRapport') = true AND (Updating)"/>
+    <action xsi:type="rule:UserAction" execution="IMMEDIATE" action="skapaRapport()"/>
+    <binding>
+      <target name="SkapaRapport_Target">
+        <bindable xsi:type="do:DataObject" href="EmiR_Z_RFU.vdm#EmiR_Z_RFU"/>
+      </target>
+    </binding>
+  </rule>
+  <rule name="RFU_SUMMERA_UNIVA_Derivation" evaluation="DEFERRED">
+    <event type="INSERTED"/>
+    <action xsi:type="rule:Compute" expression="False" literal="true" execution="IMMEDIATE"/>
+    <binding>
+      <target name="RFU_SUMMERA_UNIVA_DerivationTarget">
+        <bindable xsi:type="do:Attribute" href="EmiR_Z_RFU.vdm#RFU_SUMMERA_UNIVA"/>
+      </target>
+    </binding>
+  </rule>
+</rule:RuleSet>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qo:QueryObject xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:qo="http://www.versata.com/tl/6.0/queryobject" name="Currency_CUR_customer" metaModelVersion="6.2.0.0" childmostDataObject="Currency_CUR">
+  <dataObject name="Currency_CUR">
+    <dataObject href="../../DataObjects/Currency_CUR.vdm#Currency_CUR"/>
+  </dataObject>
+  <attribute name="CUR_Client" sourceDataObject="Currency_CUR">
+    <sourceAttribute href="../../DataObjects/Currency_CUR.vdm#CUR_Client"/>
+  </attribute>
+  <attribute name="CUR_CurrencyCode" sourceDataObject="Currency_CUR">
+    <sourceAttribute href="../../DataObjects/Currency_CUR.vdm#CUR_CurrencyCode"/>
+  </attribute>
+  <attribute name="CUR_ExchangeRate" sourceDataObject="Currency_CUR">
+    <sourceAttribute href="../../DataObjects/Currency_CUR.vdm#CUR_ExchangeRate"/>
+  </attribute>
+  <attribute name="CUR_NumberOfOrders" sourceDataObject="Currency_CUR">
+    <sourceAttribute href="../../DataObjects/Currency_CUR.vdm#CUR_NumberOfOrders"/>
+  </attribute>
+  <attribute name="CUR_OrderValueUSD" sourceDataObject="Currency_CUR">
+    <sourceAttribute href="../../DataObjects/Currency_CUR.vdm#CUR_OrderValueUSD"/>
+  </attribute>
+  <attribute name="CUR_OrderAmountAverage" sourceDataObject="Currency_CUR">
+    <sourceAttribute href="../../DataObjects/Currency_CUR.vdm#CUR_OrderAmountAverage"/>
+  </attribute>
+  <attribute name="CUR_Image" sourceDataObject="Currency_CUR">
+    <sourceAttribute href="../../DataObjects/Currency_CUR.vdm#CUR_Image"/>
+  </attribute>
+  <attribute name="CUR_Client_RelatedTo" sourceDataObject="Currency_CUR">
+    <sourceAttribute href="../../DataObjects/Currency_CUR.vdm#CUR_Client_RelatedTo"/>
+  </attribute>
+  <attribute name="CUR_CurrencyCode_RelatedTo" sourceDataObject="Currency_CUR">
+    <sourceAttribute href="../../DataObjects/Currency_CUR.vdm#CUR_CurrencyCode_RelatedTo"/>
+  </attribute>
+</qo:QueryObject>

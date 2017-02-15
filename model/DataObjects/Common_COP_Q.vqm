@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qo:QueryObject xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dt="http://www.versata.com/tl/6.0/datatype" xmlns:qo="http://www.versata.com/tl/6.0/queryobject" name="Common_COP_Q" metaModelVersion="6.2.0.0" childmostDataObject="CommonParms_COP">
+  <dataObject name="CommonParms_COP">
+    <dataObject href="CommonParms_COP.vdm#CommonParms_COP"/>
+  </dataObject>
+  <attribute name="COP_Id" sourceDataObject="CommonParms_COP">
+    <supertype xsi:type="dt:UserDefinedType" href="../system/system.vdd#String"/>
+    <sourceAttribute href="CommonParms_COP.vdm#COP_Id"/>
+  </attribute>
+  <attribute name="COP_Description" sourceDataObject="CommonParms_COP">
+    <supertype xsi:type="dt:UserDefinedType" href="../system/system.vdd#String"/>
+    <sourceAttribute href="CommonParms_COP.vdm#COP_Description"/>
+  </attribute>
+</qo:QueryObject>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<asn:AssociationSet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:asn="http://www.versata.com/tl/6.0/association" name="Currency_CUR-Currency_CUR" metaModelVersion="6.2.0.0">
+  <association name="Currency_CURParent(Currency_CURParent)-Currency_CURChild(Currency_CURChild)">
+    <parentRole name="Currency_CURParent" caption="p">
+      <binding href="Currency_CUR-Currency_CUR.vrs#Currency_CURParent_Target_UPDATED"/>
+      <binding href="Currency_CUR-Currency_CUR.vrs#Currency_CURParent_Target_DELETED"/>
+    </parentRole>
+    <childRole name="Currency_CURChild" caption="c">
+      <binding href="Currency_CUR-Currency_CUR.vrs#Currency_CURChild_Target_UPDATED"/>
+      <binding href="Currency_CUR-Currency_CUR.vrs#Currency_CURChild_Target_INSERTED"/>
+    </childRole>
+    <attributePair>
+      <parent href="Currency_CUR.vdm#CUR_Client"/>
+      <child href="Currency_CUR.vdm#CUR_Client_RelatedTo"/>
+    </attributePair>
+    <attributePair>
+      <parent href="Currency_CUR.vdm#CUR_CurrencyCode"/>
+      <child href="Currency_CUR.vdm#CUR_CurrencyCode_RelatedTo"/>
+    </attributePair>
+  </association>
+  <parentDataObject href="Currency_CUR.vdm#Currency_CUR"/>
+  <childDataObject href="Currency_CUR.vdm#Currency_CUR"/>
+</asn:AssociationSet>

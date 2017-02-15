@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DataObject SYSTEM "DataObject.dtd">
+<DataObject
+	DTDVersion="05.06.00"
+	SurrId="0283246862.pfuvsk.0000"
+	CodedValuesList="False"
+	ImageReference=""
+	IsRemoteAccessible="True"
+	UseQuotedIdentifiers="False"
+	XdaConnector="com.versata.tl.vls.admin.security.F2KConnector"
+	SuperClass="com.versata.tl.vls.core.DataObject"
+	LockMode="NoOptimisticLocking"
+	>
+	<Attributes>
+		
+		<Attribute
+			Name="OBJ_OBJNR"
+			ValueRequired="True"
+			LayoutByDefault="True"
+			Persistent="True"
+			PreventUserUpdates="False"
+			>
+			<DataType
+				DataType="VarChar"
+Size="15"
+			/>
+			<Validation
+				ValidationType="Condition"
+			/>
+			<Comments><![CDATA[]]></Comments>
+			<Format><![CDATA[]]></Format>
+			<Caption><![CDATA[Objekt]]></Caption>
+			<Description><![CDATA[Objekt]]></Description>
+		</Attribute>
+		   
+		<Attribute
+			Name="OBJ_BOSOK1_OMR"
+			ValueRequired="False"
+			LayoutByDefault="True"
+			Persistent="True"
+			PreventUserUpdates="False"
+			>
+			<DataType
+				DataType="VarChar"
+Size="6"
+			/>
+			<Validation
+				ValidationType="Condition"
+			/>
+			<Comments><![CDATA[]]></Comments>
+			<Format><![CDATA[]]></Format>
+			<Caption><![CDATA[BosÃÂ¶k1omrÃÂ¥de]]></Caption>
+		</Attribute>
+		   
+		<Attribute
+			Name="OBJ_BOSOK2_OMR"
+			ValueRequired="False"
+			LayoutByDefault="True"
+			Persistent="True"
+			PreventUserUpdates="False"
+			>
+			<DataType
+				DataType="VarChar"
+Size="6"
+			/>
+			<Validation
+				ValidationType="Condition"
+			/>
+			<Comments><![CDATA[]]></Comments>
+			<Format><![CDATA[]]></Format>
+			<Caption><![CDATA[BosÃÂ¶k2omrÃÂ¥de]]></Caption>
+		</Attribute>
+		   
+	</Attributes>
+	<Indexes>
+		
+		   <Index
+		   		Name="OBJ_PK"
+				Primary="True"
+				Unique="True"
+				IgnoreNulls="False"
+				>
+				
+				<Index_Attribute
+					Name="OBJ_OBJNR"
+					Descending="False"
+				/>		   		
+		   </Index> 
+	</Indexes>
+	<SingularCaption><![CDATA[*]]></SingularCaption>
+	<PluralCaption><![CDATA[*]]></PluralCaption>
+	<VLSDeployment
+		DeploySecurityInfo="False"
+	/>
+	<Description><![CDATA[]]></Description>
+	<Comments><![CDATA[]]></Comments>
+	
+	<CodedValuesList
+		StoredAttribute=" "
+		DisplayAttribute=" "
+	/>
+	<Constraints></Constraints>
+</DataObject>

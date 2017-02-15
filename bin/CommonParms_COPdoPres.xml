@@ -1,0 +1,56 @@
+<com.versata.tl.metadata.PresentationMetaDataDO>
+  <dataModelName>CommonParms_COP</dataModelName>
+  <singularCaption>Common Parms  C O P</singularCaption>
+  <pluralCaption>Common Parms  C O P List</pluralCaption>
+  <attributeProperties>
+    <entry>
+      <string>COP_Id</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>COP_Id</attributeName>
+        <singularCaption>ID1</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>0</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>COP_Dummy</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>COP_Dummy</attributeName>
+        <singularCaption>C O P  Dummy</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>50</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>COP_Description</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>COP_Description</attributeName>
+        <singularCaption>Description</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>0</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+  </attributeProperties>
+  <associations/>
+</com.versata.tl.metadata.PresentationMetaDataDO>

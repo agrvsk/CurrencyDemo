@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<do:DataObject xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:do="http://www.versata.com/tl/6.0/dataobject" xmlns:dt="http://www.versata.com/tl/6.0/datatype" name="Z_YesNo" metaModelVersion="6.2.0.0">
+  <attribute name="Stored" preventExternalUpdate="false">
+    <dataType xsi:type="dt:DeclaredType" size="3"/>
+    <supertype xsi:type="dt:UserDefinedType" href="../system/system.vdd#String"/>
+  </attribute>
+  <attribute name="Displayed" preventExternalUpdate="false">
+    <dataType xsi:type="dt:DeclaredType" size="3"/>
+    <supertype xsi:type="dt:UserDefinedType" href="../system/system.vdd#String"/>
+  </attribute>
+  <enumeratedType name="Z_YesNo_Enum" key="Stored" value="Displayed">
+    <binding href="OrderItem_ORD.vrs#ORD_Approved_ValidationSourceEnumeratedType"/>
+  </enumeratedType>
+  <primaryKey name="PK_Z_YesNo">
+    <attribute attribute="Stored"/>
+  </primaryKey>
+</do:DataObject>

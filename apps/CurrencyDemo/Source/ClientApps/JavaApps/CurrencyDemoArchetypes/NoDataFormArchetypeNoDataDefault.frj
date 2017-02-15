@@ -1,0 +1,54 @@
+BEGIN .VSForm NoDataFormArchetypeNoDataDefault
+  ClassName = "VSForm"
+  BackColor = 0xc0c0c0
+  Width = 579
+  Title = "NoDataFormArchetypeNoDataDefault"
+  Enable = True
+  ForeColor = 0x000000
+  HelpURL = ""
+  ToolTip = ""
+  Visible = True
+  Tag = ""
+  Height = 500
+  Style = "Child"
+  Name = "NoDataFormArchetypeNoDataDefault"
+  DisplayTitleBar = True
+  BeginProperty VSFont 
+    FontName  = "Helvetica"
+    FontSize  = 12
+    FontStyleBold  = False
+    FontStyleItalic  = False
+  EndProperty 
+  BEGIN .VSPanel IncludeButtonArchetypeAllFormTrans
+    Top = 5
+    ClassName = "VSPanel"
+    BorderStyle = "GROUP_BORDER"
+    BackColor = 0xffffff
+    Width = 86
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Height = 35
+    Left = 485
+    Name = "IncludeButtonArchetypeAllFormTrans"
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = ""
+    END
+  END
+<<BEGIN VSMACRO>>
+<<ArchetypeVersion 06.00.00.00>>
+'<<Begin IncludeButtonArchetypeAllFormTrans>>
+  '<<For each FormTransitionRS>>
+    '<<For each FormTransition>>
+      '<<Include ButtonArchetypeAllFormTrans>>
+    '<<Next>>
+  '<<Next>>
+'<<End Include>>

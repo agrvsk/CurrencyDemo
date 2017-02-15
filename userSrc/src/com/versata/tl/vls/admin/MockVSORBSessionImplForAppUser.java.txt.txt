@@ -1,0 +1,1874 @@
+package com.versata.tl.vls.admin;
+
+import java.util.Comparator;
+import java.util.Enumeration;
+import java.util.Hashtable;
+import java.util.Properties;
+import java.util.Vector;
+
+import javax.ejb.EJBObject;
+import javax.transaction.UserTransaction;
+
+//import org.powermock.api.easymock.PowerMock;
+
+import com.versata.tl.common.Property;
+import com.versata.tl.common.QueryRequest;
+import com.versata.tl.common.QueryResponse;
+import com.versata.tl.common.ServerEvent;
+import com.versata.tl.common.VSORBSessionPackage.ORBRows;
+import com.versata.tl.common.exception.ServerException;
+import com.versata.tl.common.exception.ServerSecurityException;
+import com.versata.tl.common.meta.VSMetaColumn;
+import com.versata.tl.common.meta.VSMetaQuery;
+import com.versata.tl.common.meta.VSMetaTable;
+import com.versata.tl.common.meta.VSQueryDefinition;
+import com.versata.tl.common.statistics.DataServiceStatistics;
+import com.versata.tl.common.statistics.ServerStatistics;
+import com.versata.tl.common.transaction.Current;
+import com.versata.tl.common.util.DataConst;
+import com.versata.tl.common.util.SearchRequest;
+import com.versata.tl.common.vlsobject.VSORBResultSet;
+import com.versata.tl.common.vlsobject.VSORBSecuritySession;
+import com.versata.tl.common.vlsobject.VSORBSession;
+import com.versata.tl.vls.admin.security.VSSecurityManager;
+import com.versata.tl.vls.core.DataObject;
+import com.versata.tl.vls.core.DataRow;
+import com.versata.tl.vls.core.MockBusinessObjectImpl;
+import com.versata.tl.vls.core.MockVSORBSessionImplForAppUser_Factory;
+import com.versata.tl.vls.core.SecurityObject;
+import com.versata.tl.vls.core.Session;
+import com.versata.tl.vls.core.VSORBAppServerImpl;
+import com.versata.tl.vls.core.VSORBSessionImpl;
+import com.versata.tl.vls.core.VSTransactionInfo;
+import com.versata.tl.vls.dataaccess.ResultSet;
+import com.versata.tl.vls.dataaccess.XDAConnector;
+import com.versata.tl.vls.dataaccess.connection.Connection;
+import com.versata.tl.vls.dataaccess.connection.VSJdbc;
+import com.versata.tl.vls.service.Response;
+import com.versata.tl.vls.service.SessionListener;
+import com.versata.tl.vls.service.TransactionEventListener;
+import com.versata.tl.vls.transaction.CurrentTransaction;
+
+/**
+ * This class is a child class of VSORBSessionImpl class.
+ * It overrides some of it's super class method.
+ * This class is used by tests to create session objects.
+ * @author Administrator
+ *
+ */
+public class MockVSORBSessionImplForAppUser extends VSORBSessionImpl {
+	
+	MockVSORBSessionImplForAppUser mockAppUser;
+	VSORBAppServerImpl appServerImpl;
+	AppUserImpl app = PowerMock.createPartialMock(AppUserImpl.class, "getAppSvrLoginID");
+	
+	public void setUpForMockAppUser()  throws Exception {
+	transactionInfo = new NestedVSTransactionInfo(new CurrentTransaction(true), this, true);
+	}
+	
+	/**
+	 * Cosntructor
+	 * @param appServer
+	 * @param name
+	 * @param session
+	 * @param internalSession
+	 * @throws ServerSecurityException
+	 */
+	public MockVSORBSessionImplForAppUser(VSORBAppServerImpl appServer, String name, boolean session,
+			boolean internalSession) throws ServerSecurityException {
+		
+		super(appServer, name, session, internalSession);
+		// TODO Auto-generated constructor stub
+	}
+	
+	@Override
+	public void close() {
+		// TODO Auto-generated method stub
+		super.close();
+	}
+
+	@Override
+	public Properties getUserRoleProperties(String loginID, long roleID) {
+		// TODO Auto-generated method stub
+		return super.getUserRoleProperties(loginID, roleID);
+	}
+
+	@Override
+	public boolean isAnotherEsmRunning() {
+		// TODO Auto-generated method stub
+		return super.isAnotherEsmRunning();
+	}
+
+	@Override
+	public void ping() {
+		// TODO Auto-generated method stub
+		super.ping();
+	}
+
+	@Override
+	public void addServerEvent2(ServerEvent evt) {
+		// TODO Auto-generated method stub
+		super.addServerEvent2(evt);
+	}
+
+	@Override
+	public Current beginTrans(boolean local) {
+		// TODO Auto-generated method stub
+		return super.beginTrans(local);
+	}
+
+	@Override
+	public void commit() {
+		// TODO Auto-generated method stub
+		super.commit();
+	}
+
+	@Override
+	public Current get_current() {
+		// TODO Auto-generated method stub
+		return super.get_current();
+	}
+
+	@Override
+	public void replicateToInternal(String newHostName,
+			String newServerName, String login, String password,
+			String JNDIName)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		super
+				.replicateToInternal(newHostName, newServerName, login, password,
+						JNDIName);
+	}
+
+	@Override
+	public void rollback() {
+		// TODO Auto-generated method stub
+		super.rollback();
+	}
+
+	@Override
+	protected boolean authenticateUser(Vector roleList,
+			SecurityObject secObject, String clientAppName,
+			boolean internalSession)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		return super.authenticateUser(roleList, secObject, clientAppName,
+				internalSession);
+	}
+
+	@Override
+	public Current begin() {
+		// TODO Auto-generated method stub
+		return super.begin();
+	}
+
+	@Override
+	public String executeCommand(String command) {
+		// TODO Auto-generated method stub
+		return super.executeCommand(command);
+	}
+
+	@Override
+	public byte[] executeQuery(byte[] qr) {
+		// TODO Auto-generated method stub
+		return super.executeQuery(qr);
+	}
+
+	@Override
+	public Object executeQuery(QueryRequest qr) {
+		// TODO Auto-generated method stub
+		return super.executeQuery(qr);
+	}
+
+	@Override
+	protected ResultSet getResultSetByRequest1(QueryRequest qreq) {
+		// TODO Auto-generated method stub
+		return super.getResultSetByRequest1(qreq);
+	}
+
+	@Override
+	public VSORBResultSet getResultSetByRequest1(String componentName,
+			byte[] filterInByteArray, byte[] sorterInByteArray,
+			int maxRowsPerFetch, short columnProjectionLevel,
+			boolean prefetch, int randomAccessPos,
+			boolean isAutoCloseResultSet) {
+		// TODO Auto-generated method stub
+		return super.getResultSetByRequest1(componentName, filterInByteArray,
+				sorterInByteArray, maxRowsPerFetch, columnProjectionLevel, prefetch,
+				randomAccessPos, isAutoCloseResultSet);
+	}
+
+	@Override
+	public ResultSet getResultSetBySQL(String SQL, String dataServerName,
+			int maxRowsPerFetch) {
+		// TODO Auto-generated method stub
+		return super.getResultSetBySQL(SQL, dataServerName, maxRowsPerFetch);
+	}
+
+	@Override
+	public VSORBResultSet getResultSetBySQLRemote1(String SQL,
+			String dataServerName, int maxRowsPerFetch, boolean prefetch,
+			int randomAccessPos, boolean isAutoCloseResultSet) {
+		// TODO Auto-generated method stub
+		return super.getResultSetBySQLRemote1(SQL, dataServerName, maxRowsPerFetch,
+				prefetch, randomAccessPos, isAutoCloseResultSet);
+	}
+
+	@Override
+	public synchronized Properties getRoleProperties(Vector v) {
+		// TODO Auto-generated method stub
+		return super.getRoleProperties(v);
+	}
+
+	@Override
+	public Object getServerSecurityObject() {
+		// TODO Auto-generated method stub
+		return super.getServerSecurityObject();
+	}
+
+	@Override
+	public UserTransaction getUserTransaction() throws Exception {
+		// TODO Auto-generated method stub
+		return super.getUserTransaction();
+	}
+
+	@Override
+	public void refresh() {
+		// TODO Auto-generated method stub
+		super.refresh();
+	}
+
+	@Override
+	public void refreshRepoSecurityData() {
+		// TODO Auto-generated method stub
+		super.refreshRepoSecurityData();
+	}
+
+	@Override
+	public void releaseRemoteReferenceForSecuritySession() {
+		// TODO Auto-generated method stub
+		super.releaseRemoteReferenceForSecuritySession();
+	}
+
+	@Override
+	public void replicateTo(String newHostName, String newServerName,
+			String login, String password, String JNDIName)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		super.replicateTo(newHostName, newServerName, login, password, JNDIName);
+	}
+
+	@Override
+	public void replicateTo(String newHostName, String newServerName,
+			String login, String password)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		super.replicateTo(newHostName, newServerName, login, password);
+	}
+
+	@Override
+	public void setVLSContextBean(EJBObject bean) {
+		// TODO Auto-generated method stub
+		super.setVLSContextBean(bean);
+	}
+
+	@Override
+	public boolean testConnectionProperties(String dataSourceName,
+			String userLogin)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		return super.testConnectionProperties(dataSourceName, userLogin);
+	}
+
+	@Override
+	public void validateDataServerConfiguration(
+			boolean isAutoCloseResultSet, boolean isUsingXADriver,
+			boolean useNativePoolForVersataReadTx) {
+		// TODO Auto-generated method stub
+		super.validateDataServerConfiguration(isAutoCloseResultSet, isUsingXADriver,
+				useNativePoolForVersataReadTx);
+	}
+
+	@Override
+	public void addEventListener(int userSessionId)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		super.addEventListener(userSessionId);
+	}
+
+	@Override
+	public void addEventListener(VSORBSecuritySession adminSession) {
+		// TODO Auto-generated method stub
+		super.addEventListener(adminSession);
+	}
+
+	@Override
+	public void addRemoteResultSet(ResultSet rs) {
+		// TODO Auto-generated method stub
+		super.addRemoteResultSet(rs);
+	}
+
+	@Override
+	public void addServerEvent(String title, String details, int type) {
+		// TODO Auto-generated method stub
+		super.addServerEvent(title, details, type);
+	}
+
+	@Override
+	public void addSessionListener(SessionListener listener) {
+		// TODO Auto-generated method stub
+		super.addSessionListener(listener);
+	}
+
+	@Override
+	public void addTransactionEventListener(
+			TransactionEventListener listener) {
+		// TODO Auto-generated method stub
+		super.addTransactionEventListener(listener);
+	}
+
+	/*@Override
+	protected boolean authenticateUser(SecurityObject secObject,
+			String clientAppName, boolean internalSession,
+			boolean validatePassword)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		return super.authenticateUser(secObject, clientAppName, internalSession,
+				validatePassword);
+	}*/
+
+	@Override
+	public Current beginTransaction() {
+		// TODO Auto-generated method stub
+		return super.beginTransaction();
+	}
+
+	@Override
+	public boolean canUpdatePackage(String id) {
+		// TODO Auto-generated method stub
+		return super.canUpdatePackage(id);
+	}
+
+	@Override
+	public void changeMyPassword(String login, String oldPassword,
+			String newPassword, String confirmPassword) {
+		// TODO Auto-generated method stub
+		super.changeMyPassword(login, oldPassword, newPassword, confirmPassword);
+	}
+
+	@Override
+	public void clearErrorsAtStartup()  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		super.clearErrorsAtStartup();
+	}
+
+	@Override
+	public void clearPrivilegeCache() {
+		// TODO Auto-generated method stub
+		super.clearPrivilegeCache();
+	}
+
+	@Override
+	protected void clearSecurityCache() {
+		// TODO Auto-generated method stub
+		super.clearSecurityCache();
+	}
+
+	@Override
+	public boolean clientOverrideSchema() {
+		// TODO Auto-generated method stub
+		return super.clientOverrideSchema();
+	}
+
+	@Override
+	public Session cloneSession() {
+		// TODO Auto-generated method stub
+		return super.cloneSession();
+	}
+
+	@Override
+	public void closeRemoteResultSets() {
+		// TODO Auto-generated method stub
+		super.closeRemoteResultSets();
+	}
+
+	@Override
+	public XDAConnector createXDAConnector(VSMetaQuery metaQuery) {
+		// TODO Auto-generated method stub
+		return super.createXDAConnector(metaQuery);
+	}
+
+	@Override
+	public void deactivate() {
+		// TODO Auto-generated method stub
+		super.deactivate();
+	}
+
+	@Override
+	public void deleteAppForm(String formName, String applicationName,
+			String repositoryName)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		super.deleteAppForm(formName, applicationName, repositoryName);
+	}
+
+	@Override
+	public void deleteApplication(String applicationName,
+			String repositoryName)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		super.deleteApplication(applicationName, repositoryName);
+	}
+
+	@Override
+	public void deleteAppPage(String pageName, String applicationName,
+			String repositoryName)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		super.deleteAppPage(pageName, applicationName, repositoryName);
+	}
+
+	@Override
+	public void deleteBusinessObject(String businessObjectName,
+			String repositoryName)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		super.deleteBusinessObject(businessObjectName, repositoryName);
+	}
+
+	@Override
+	public void deleteMethod(String methodName, String businessObjectName,
+			String repositoryName)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		super.deleteMethod(methodName, businessObjectName, repositoryName);
+	}
+
+	@Override
+	public void deleteObjectAttribute(String attributeName,
+			String businessObjectName, String repositoryName)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		super.deleteObjectAttribute(attributeName, businessObjectName, repositoryName);
+	}
+
+	@Override
+	public void deleteRole(String roleName)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		super.deleteRole(roleName);
+	}
+
+	@Override
+	public void deleteUser(String appServerlogin)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		super.deleteUser(appServerlogin);
+	}
+
+	@Override
+	public void disableReadOnlyCacheForQuery(Thread thd) {
+		// TODO Auto-generated method stub
+		super.disableReadOnlyCacheForQuery(thd);
+	}
+
+	@Override
+	public void disableReadOnlyCacheForSession() {
+		// TODO Auto-generated method stub
+		super.disableReadOnlyCacheForSession();
+	}
+
+	@Override
+	public void enableReadOnlyCacheForQuery(Thread thd) {
+		// TODO Auto-generated method stub
+		super.enableReadOnlyCacheForQuery(thd);
+	}
+
+	@Override
+	public void enableReadOnlyCacheForSession() {
+		// TODO Auto-generated method stub
+		super.enableReadOnlyCacheForSession();
+	}
+
+	@Override
+	public int executeUpdate(String sql, String dataServerName,
+			boolean joinTransaction) {
+		// TODO Auto-generated method stub
+		return super.executeUpdate(sql, dataServerName, joinTransaction);
+	}
+
+	@Override
+	public int executeUpdate(String sql, String dataServerName) {
+		// TODO Auto-generated method stub
+		return super.executeUpdate(sql, dataServerName);
+	}
+
+	@Override
+	public boolean flushAfterSave(boolean value) {
+		// TODO Auto-generated method stub
+		return super.flushAfterSave(value);
+	}
+
+	@Override
+	public String getAppName() {
+		// TODO Auto-generated method stub
+		return super.getAppName();
+	}
+
+	@Override
+	public Object getAttribute(String name) {
+		// TODO Auto-generated method stub
+		return super.getAttribute(name);
+	}
+
+	@Override
+	public boolean getCoLocated() {
+		// TODO Auto-generated method stub
+		return super.getCoLocated();
+	}
+
+	@Override
+	public Connection getConnection(String dataServerName) {
+		// TODO Auto-generated method stub
+		return super.getConnection(dataServerName);
+	}
+
+	@Override
+	public Connection getConnection(XDAConnector xdac, boolean sharable) {
+		// TODO Auto-generated method stub
+		return super.getConnection(xdac, sharable);
+	}
+
+	@Override
+	public Vector getConnections() {
+		// TODO Auto-generated method stub
+		return super.getConnections();
+	}
+
+	@Override
+	public AppUserImpl getCurrentAppUser() {
+		// TODO Auto-generated method stub
+		AppUserImpl appUserImpl = new AppUserImpl();
+		MockVSORBSessionImplForAppUser mockVSORBSessionImplForAppUser = null;
+		try {
+		mockVSORBSessionImplForAppUser = MockVSORBSessionImplForAppUser_Factory.createMockVSORBSessionImplForAppUser();
+		mockVSORBSessionImplForAppUser.setUpForMockAppUser();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		appUserImpl.setSession(mockVSORBSessionImplForAppUser);
+		appUserImpl.addMetaQuery(createVSMetaQuery(), null);
+		
+		xMockBusinessObjectImpl mockBusiness = new MockBusinessObjectImpl();
+		DataRow row = new DataRow(mockVSORBSessionImplForAppUser, createVSMetaQuery(), true, mockBusiness);
+		
+		appUserImpl.initBusinessObject(mockVSORBSessionImplForAppUser, row);
+		appUserImpl.setAppSvrLoginID("dummy");
+		return appUserImpl;
+	}
+
+	@Override
+	public String getCurrentEvent() {
+		// TODO Auto-generated method stub
+		return super.getCurrentEvent();
+	}
+
+	@Override
+	public int getCurrentVersion() {
+		// TODO Auto-generated method stub
+		return super.getCurrentVersion();
+	}
+
+	@Override
+	public String getDatabaseTypeName() {
+		// TODO Auto-generated method stub
+		return super.getDatabaseTypeName();
+	}
+
+	@Override
+	public String getDataServerForObject(String objectName) {
+		// TODO Auto-generated method stub
+		return super.getDataServerForObject(objectName);
+	}
+
+	@Override
+	public Property[] getDataServerProperties(String dataServer) {
+		// TODO Auto-generated method stub
+		return super.getDataServerProperties(dataServer);
+	}
+
+	@Override
+	public String getDataServerProperty(String objectName, String property)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		return super.getDataServerProperty(objectName, property);
+	}
+
+	@Override
+	public String[] getDataServiceIDs()  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		return super.getDataServiceIDs();
+	}
+
+	@Override
+	public DataServiceStatistics getDataServiceStatistics(String s) {
+		// TODO Auto-generated method stub
+		return super.getDataServiceStatistics(s);
+	}
+
+	@Override
+	public boolean getErrorsAtStartup() {
+		// TODO Auto-generated method stub
+		return super.getErrorsAtStartup();
+	}
+
+	@Override
+	public long getExpireTime() {
+		// TODO Auto-generated method stub
+		return super.getExpireTime();
+	}
+
+	@Override
+	public int getGlobalNestLevel() {
+		// TODO Auto-generated method stub
+		return super.getGlobalNestLevel();
+	}
+
+	@Override
+	public String[] getLocaleStrings() {
+		// TODO Auto-generated method stub
+		return super.getLocaleStrings();
+	}
+
+	@Override
+	public VSORBSecuritySession getLocalReferenceForSecuritySession() {
+		// TODO Auto-generated method stub
+		return super.getLocalReferenceForSecuritySession();
+	}
+
+	@Override
+	public byte[] getMetaQuery(String repositoryName, String componentName) {
+		// TODO Auto-generated method stub
+		return super.getMetaQuery(repositoryName, componentName);
+	}
+
+	@Override
+	public boolean getMyAccessToRole(String roleName) {
+		// TODO Auto-generated method stub
+		return super.getMyAccessToRole(roleName);
+	}
+
+	@Override
+	public Hashtable getMyAttributeSecurityExceptions(String objectName) {
+		// TODO Auto-generated method stub
+		return super.getMyAttributeSecurityExceptions(objectName);
+	}
+
+	@Override
+	public Properties getMyDataServiceLogin(String dsLocationName) {
+		// TODO Auto-generated method stub
+		return super.getMyDataServiceLogin(dsLocationName);
+	}
+
+	@Override
+	public Properties getMyDataServiceLoginForObject(String objectName) {
+		// TODO Auto-generated method stub
+		return new Properties();
+	}
+
+	@Override
+	public Property[] getMyNonViewableColumnPrivileges(String objectName) {
+		// TODO Auto-generated method stub
+		return super.getMyNonViewableColumnPrivileges(objectName);
+	}
+
+	@Override
+	public Property[] getMyObjectPrivileges(String objectName,
+			String objectType) {
+		// TODO Auto-generated method stub
+		return super.getMyObjectPrivileges(objectName, objectType);
+	}
+
+	@Override
+	public boolean getMyPrivilegeToApp(String appName) {
+		// TODO Auto-generated method stub
+		return super.getMyPrivilegeToApp(appName);
+	}
+
+	@Override
+	public boolean getMyPrivilegeToAppForm(String appName, String formName) {
+		// TODO Auto-generated method stub
+		return super.getMyPrivilegeToAppForm(appName, formName);
+	}
+
+	@Override
+	public boolean getMyPrivilegeToAppPage(String appName, String pageName) {
+		// TODO Auto-generated method stub
+		return super.getMyPrivilegeToAppPage(appName, pageName);
+	}
+
+	@Override
+	public boolean getMyPrivilegeToMethod(String privilegeType,
+			String objectName, String methodOrColumnName) {
+		// TODO Auto-generated method stub
+		return super.getMyPrivilegeToMethod(privilegeType, objectName,
+				methodOrColumnName);
+	}
+
+	@Override
+	public boolean getMyPrivilegeToObjectName(String privilegeType,
+			String objectName, String objectType) {
+		// TODO Auto-generated method stub
+		return super.getMyPrivilegeToObjectName(privilegeType, objectName, objectType);
+	}
+
+	@Override
+	protected boolean getMyPrivilegeToObjectNameInternal(
+			String privilegeType, String objectName, String objectType) {
+		// TODO Auto-generated method stub
+		return super.getMyPrivilegeToObjectNameInternal(privilegeType, objectName,
+				objectType);
+	}
+
+	@Override
+	public VSORBResultSet getMyRolesToGrant()  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		return super.getMyRolesToGrant();
+	}
+
+	@Override
+	public Property[] getMyUpdateableColumnPrivileges(String objectName) {
+		// TODO Auto-generated method stub
+		return super.getMyUpdateableColumnPrivileges(objectName);
+	}
+
+	@Override
+	public boolean getMyUserPrivilege(String privilegeType) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Property[] getMyUserPrivileges() {
+		// TODO Auto-generated method stub
+		return super.getMyUserPrivileges();
+	}
+
+	@Override
+	public Properties getMyUserPrivilegesAsProperties() {
+		// TODO Auto-generated method stub
+		return super.getMyUserPrivilegesAsProperties();
+	}
+
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return super.getName();
+	}
+
+	@Override
+	protected QueryRequest getNewQueryRequest() {
+		// TODO Auto-generated method stub
+		return super.getNewQueryRequest();
+	}
+
+	@Override
+	protected QueryResponse getNewQueryResponse() {
+		// TODO Auto-generated method stub
+		return super.getNewQueryResponse();
+	}
+
+	@Override
+	public ServerEvent[] getNextServerEvents(int userSessionId)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		return super.getNextServerEvents(userSessionId);
+	}
+
+	@Override
+	public ServerEvent[] getNextServerEvents(
+			VSORBSecuritySession adminSession) {
+		// TODO Auto-generated method stub
+		return super.getNextServerEvents(adminSession);
+	}
+
+	@Override
+	public DataObject getObjectByKey(VSMetaQuery metaQuery,
+			com.versata.tl.common.util.SearchRequest pkey) {
+		// TODO Auto-generated method stub
+		return super.getObjectByKey(metaQuery, pkey);
+	}
+
+	@Override
+	public DataObject getObjectByKey(VSMetaQuery metaQuery,
+			XDAConnector xdac, com.versata.tl.common.util.SearchRequest pkey) {
+		// TODO Auto-generated method stub
+		return super.getObjectByKey(metaQuery, xdac, pkey);
+	}
+
+	@Override
+	public Properties getObjectPrivilegeProperties(long objectID,
+			long roleID) {
+		// TODO Auto-generated method stub
+		return super.getObjectPrivilegeProperties(objectID, roleID);
+	}
+
+	@Override
+	public Properties getObjectPrivilegeProperties(String objectName,
+			String objectType, String roleName) {
+		// TODO Auto-generated method stub
+		return super.getObjectPrivilegeProperties(objectName, objectType, roleName);
+	}
+
+	@Override
+	public Properties[] getObjectPrivilegePropertiesForObject(
+			String objectName, String objectType) {
+		// TODO Auto-generated method stub
+		return super.getObjectPrivilegePropertiesForObject(objectName, objectType);
+	}
+
+	@Override
+	public Properties getObjectProperties(long id) {
+		// TODO Auto-generated method stub
+		return super.getObjectProperties(id);
+	}
+
+	@Override
+	public Properties getObjectProperties(String name, String type) {
+		// TODO Auto-generated method stub
+		return super.getObjectProperties(name, type);
+	}
+
+	@Override
+	public String getOverridedDatabaseName() {
+		// TODO Auto-generated method stub
+		return super.getOverridedDatabaseName();
+	}
+
+	@Override
+	public String getOverridedSchema() {
+		// TODO Auto-generated method stub
+		return super.getOverridedSchema();
+	}
+
+	@Override
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return super.getPassword();
+	}
+
+	@Override
+	public String getProductVersion() {
+		// TODO Auto-generated method stub
+		return super.getProductVersion();
+	}
+
+	@Override
+	public String getProperty(String propName) {
+		// TODO Auto-generated method stub
+		return super.getProperty(propName);
+	}
+
+	@Override
+	public Object getPropertyAsObject(String propertyName) {
+		// TODO Auto-generated method stub
+		return super.getPropertyAsObject(propertyName);
+	}
+
+	@Override
+	public Property[] getPropertyList() {
+		// TODO Auto-generated method stub
+		return super.getPropertyList();
+	}
+
+	@Override
+	protected synchronized Hashtable getReadOnlyCaches() {
+		// TODO Auto-generated method stub
+		return super.getReadOnlyCaches();
+	}
+
+	@Override
+	public String[] getRegisteredApplicationList() {
+		// TODO Auto-generated method stub
+		return super.getRegisteredApplicationList();
+	}
+
+	@Override
+	public String[] getRegisteredAttributeListForObject(
+			String businessObjectName, String repositoryName) {
+		// TODO Auto-generated method stub
+		return super.getRegisteredAttributeListForObject(businessObjectName,
+				repositoryName);
+	}
+
+	@Override
+	public String[] getRegisteredBusinessObjectList() {
+		// TODO Auto-generated method stub
+		return super.getRegisteredBusinessObjectList();
+	}
+
+	@Override
+	public String[] getRegisteredFormListForApplication(
+			String applicationName, String repositoryName) {
+		// TODO Auto-generated method stub
+		return super.getRegisteredFormListForApplication(applicationName,
+				repositoryName);
+	}
+
+	@Override
+	public String[] getRegisteredMethodListForObject(
+			String businessObjectName, String repositoryName) {
+		// TODO Auto-generated method stub
+		return super.getRegisteredMethodListForObject(businessObjectName,
+				repositoryName);
+	}
+
+	@Override
+	public String[] getRegisteredPageListForApplication(
+			String applicationName, String repositoryName) {
+		// TODO Auto-generated method stub
+		return super.getRegisteredPageListForApplication(applicationName,
+				repositoryName);
+	}
+
+	@Override
+	public String[] getRegisteredRoleList() {
+		// TODO Auto-generated method stub
+		return super.getRegisteredRoleList();
+	}
+
+	@Override
+	public String[] getRegisteredUserList() {
+		// TODO Auto-generated method stub
+		return super.getRegisteredUserList();
+	}
+
+	@Override
+	public VSORBSession getRemoteReference() {
+		// TODO Auto-generated method stub
+		return super.getRemoteReference();
+	}
+
+	@Override
+	public VSORBSecuritySession getRemoteReferenceForSecuritySession() {
+		// TODO Auto-generated method stub
+		return super.getRemoteReferenceForSecuritySession();
+	}
+
+	@Override
+	public String getRepositoryName() {
+		// TODO Auto-generated method stub
+		return super.getRepositoryName();
+	}
+
+	@Override
+	public VSORBResultSet getResultSetByRequest(String componentName,
+			byte[] filterInByteArray, byte[] sorterInByteArray,
+			int maxRowsPerFetch) {
+		// TODO Auto-generated method stub
+		return super.getResultSetByRequest(componentName, filterInByteArray,
+				sorterInByteArray, maxRowsPerFetch);
+	}
+
+	@Override
+	public ResultSet getResultSetBySQL1(String SQL, String dataServerName,
+			int maxRowsPerFetch, boolean prefetch, int randomAccessPos) {
+		// TODO Auto-generated method stub
+		return super.getResultSetBySQL1(SQL, dataServerName, maxRowsPerFetch, prefetch,
+				randomAccessPos);
+	}
+
+	@Override
+	public ResultSet getResultSetBySQL1(String SQL, String dataServerName,
+			int maxRowsPerFetch, boolean prefetch) {
+		// TODO Auto-generated method stub
+		return super.getResultSetBySQL1(SQL, dataServerName, maxRowsPerFetch, prefetch);
+	}
+
+	@Override
+	public VSORBResultSet getResultSetBySQLRemote(String SQL,
+			String dataServerName, int maxRowsPerFetch, boolean prefetch) {
+		// TODO Auto-generated method stub
+		return super.getResultSetBySQLRemote(SQL, dataServerName, maxRowsPerFetch,
+				prefetch);
+	}
+
+	@Override
+	public ResultSet getResultSetFromCache(QueryRequest qreq)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		return super.getResultSetFromCache(qreq);
+	}
+
+	@Override
+	public VSORBResultSet getResultSetFromCache(String componentName,
+			int maxRowsPerFetch) {
+		// TODO Auto-generated method stub
+		return super.getResultSetFromCache(componentName, maxRowsPerFetch);
+	}
+
+	@Override
+	public AppRoleImpl getRoleForRoleName(String name) {
+		// TODO Auto-generated method stub
+		return super.getRoleForRoleName(name);
+	}
+
+	@Override
+	public Vector getRoleList() {
+		// TODO Auto-generated method stub
+		return super.getRoleList();
+	}
+
+	@Override
+	public Properties getRoleProperties(long id) {
+		// TODO Auto-generated method stub
+		return super.getRoleProperties(id);
+	}
+
+	@Override
+	public Properties getRoleProperties(String name) {
+		// TODO Auto-generated method stub
+		return super.getRoleProperties(name);
+	}
+
+	@Override
+	public boolean getSecurityCheck() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public VSSecurityManager getSecurityManager() {
+		// TODO Auto-generated method stub
+		return super.getSecurityManager();
+	}
+
+	@Override
+	public String getSecurityMetadataVersion() {
+		// TODO Auto-generated method stub
+		return super.getSecurityMetadataVersion();
+	}
+
+	@Override
+	public byte[] getSerializableAttribute(String name) {
+		// TODO Auto-generated method stub
+		return super.getSerializableAttribute(name);
+	}
+
+	@Override
+	public VSORBAppServerImpl getServer() {
+		// TODO Auto-generated method stub
+		return super.getServer();
+	}
+
+	@Override
+	public String getServerProperty(String propName) {
+		// TODO Auto-generated method stub
+		return super.getServerProperty(propName);
+	}
+
+	@Override
+	public Property[] getServerPropertyList() {
+		// TODO Auto-generated method stub
+		return super.getServerPropertyList();
+	}
+
+	@Override
+	public ServerStatistics getServerStatistics() {
+		// TODO Auto-generated method stub
+		return super.getServerStatistics();
+	}
+
+	@Override
+	public int getSessionID() {
+		// TODO Auto-generated method stub
+		return super.getSessionID();
+	}
+
+	@Override
+	public int getSessionPingRate() {
+		// TODO Auto-generated method stub
+		return super.getSessionPingRate();
+	}
+
+	@Override
+	public VSORBSession[] getSessions()  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		return super.getSessions();
+	}
+
+	@Override
+	public VSTransactionInfo getTransactionInfo() {
+		// TODO Auto-generated method stub
+		return new NestedVSTransactionInfo(new CurrentTransaction(true), this, true);
+	}
+
+	@Override
+	public String getUserID() {
+		// TODO Auto-generated method stub
+		return super.getUserID();
+	}
+
+	@Override
+	public String getUserName() {
+		// TODO Auto-generated method stub
+		return super.getUserName();
+	}
+
+	@Override
+	public Properties getUserProperties(String loginID) {
+		// TODO Auto-generated method stub
+		return super.getUserProperties(loginID);
+	}
+
+	@Override
+	public Properties getUserRoleProperties(String loginID, String roleName) {
+		// TODO Auto-generated method stub
+		return super.getUserRoleProperties(loginID, roleName);
+	}
+
+	@Override
+	public Properties[] getUserRolePropertiesForUser(String loginID) {
+		// TODO Auto-generated method stub
+		return super.getUserRolePropertiesForUser(loginID);
+	}
+
+	@Override
+	public boolean isCallerInRole(String roleName) {
+		// TODO Auto-generated method stub
+		return super.isCallerInRole(roleName);
+	}
+
+	@Override
+	public boolean isConsoleSession() {
+		// TODO Auto-generated method stub
+		return super.isConsoleSession();
+	}
+
+	@Override
+	public boolean isFlushAfterSave() {
+		// TODO Auto-generated method stub
+		return super.isFlushAfterSave();
+	}
+
+	@Override
+	public boolean isOTSEnvironment() {
+		// TODO Auto-generated method stub
+		return super.isOTSEnvironment();
+	}
+
+	@Override
+	public boolean isReadTransactionInProgress() {
+		// TODO Auto-generated method stub
+		return super.isReadTransactionInProgress();
+	}
+
+	@Override
+	public boolean isSecuritySession() {
+		// TODO Auto-generated method stub
+		return super.isSecuritySession();
+	}
+
+	@Override
+	public boolean isServerEventTracingEnabled() {
+		// TODO Auto-generated method stub
+		return super.isServerEventTracingEnabled();
+	}
+
+	@Override
+	public boolean isTransactionInProgress() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public void ping2() {
+		// TODO Auto-generated method stub
+		super.ping2();
+	}
+
+	@Override
+	protected void postAfterCommit() {
+		// TODO Auto-generated method stub
+		super.postAfterCommit();
+	}
+
+	@Override
+	protected void postAfterRollback() {
+		// TODO Auto-generated method stub
+		super.postAfterRollback();
+	}
+
+	@Override
+	protected Response postBeforeCommit() {
+		// TODO Auto-generated method stub
+		return super.postBeforeCommit();
+	}
+
+	@Override
+	protected void postBeforeRollback() {
+		// TODO Auto-generated method stub
+		super.postBeforeRollback();
+	}
+
+	@Override
+	protected boolean postBeginTrans() {
+		// TODO Auto-generated method stub
+		return super.postBeginTrans();
+	}
+
+	@Override
+	public boolean preAuthenticated() {
+		// TODO Auto-generated method stub
+		return super.preAuthenticated();
+	}
+
+	@Override
+	protected void printTransactionInfo() {
+		// TODO Auto-generated method stub
+		super.printTransactionInfo();
+	}
+
+	@Override
+	public void pushSecurityDataWithLogin(byte[] sd, int masterVersion,
+			String login, String password) {
+		// TODO Auto-generated method stub
+		super.pushSecurityDataWithLogin(sd, masterVersion, login, password);
+	}
+
+	@Override
+	public void registerAppForm(String formName, String applicationName,
+			String repositoryName)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		super.registerAppForm(formName, applicationName, repositoryName);
+	}
+
+	@Override
+	public void registerApplication(String appName, String repositoryName)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		super.registerApplication(appName, repositoryName);
+	}
+
+	@Override
+	public void registerAppPage(String pageName, String applicationName,
+			String repositoryName)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		super.registerAppPage(pageName, applicationName, repositoryName);
+	}
+
+	@Override
+	public void registerMethod(String methodName,
+			String businessObjectName, String repositoryName)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		super.registerMethod(methodName, businessObjectName, repositoryName);
+	}
+
+	@Override
+	public Connection registerNewConnection(XDAConnector xdac) {
+		// TODO Auto-generated method stub
+		return super.registerNewConnection(xdac);
+	}
+
+	@Override
+	public void registerObjectAttribute(String attributeName,
+			String businessObjectName, String repositoryName)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		super
+				.registerObjectAttribute(attributeName, businessObjectName,
+						repositoryName);
+	}
+
+	@Override
+	public void registerRole(String roleName, boolean manageUser,
+			boolean connect)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		super.registerRole(roleName, manageUser, connect);
+	}
+
+	@Override
+	public void registerUser(String appServerlogin, String password,
+			String userName)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		super.registerUser(appServerlogin, password, userName);
+	}
+
+	@Override
+	public void releaseRemoteReference() {
+		// TODO Auto-generated method stub
+		super.releaseRemoteReference();
+	}
+
+	@Override
+	public void removeAllAttributes() {
+		// TODO Auto-generated method stub
+		super.removeAllAttributes();
+	}
+
+	@Override
+	public void removeAttribute(String name) {
+		// TODO Auto-generated method stub
+		super.removeAttribute(name);
+	}
+
+	@Override
+	public void removeEventListener(int userSessionId) {
+		// TODO Auto-generated method stub
+		super.removeEventListener(userSessionId);
+	}
+
+	@Override
+	public void removeEventListener(VSORBSecuritySession adminSession) {
+		// TODO Auto-generated method stub
+		super.removeEventListener(adminSession);
+	}
+
+	@Override
+	public Object removeProperty(String property) {
+		// TODO Auto-generated method stub
+		return super.removeProperty(property);
+	}
+
+	@Override
+	public void removeRemoteResultSet(ResultSet rs) {
+		// TODO Auto-generated method stub
+		super.removeRemoteResultSet(rs);
+	}
+
+	@Override
+	public void removeSessionListener(SessionListener listener) {
+		// TODO Auto-generated method stub
+		super.removeSessionListener(listener);
+	}
+
+	@Override
+	public void removeTransactionEventListener(
+			TransactionEventListener listener) {
+		// TODO Auto-generated method stub
+		super.removeTransactionEventListener(listener);
+	}
+
+	@Override
+	public void resetSecurityCheck() {
+		// TODO Auto-generated method stub
+		super.resetSecurityCheck();
+	}
+
+	@Override
+	public void rollback_only() {
+		// TODO Auto-generated method stub
+		super.rollback_only();
+	}
+
+	@Override
+	public String[][] save(ORBRows orbRows) throws SecurityException {
+		// TODO Auto-generated method stub
+		return super.save(orbRows);
+	}
+
+	@Override
+	public void sendMail(String[] to, String[] cc, String from,
+			String mailServer, String subject, String msg,
+			short transactionalType) {
+		// TODO Auto-generated method stub
+		super.sendMail(to, cc, from, mailServer, subject, msg, transactionalType);
+	}
+
+	@Override
+	public void setAppFormPrivilege(String appFormName,
+			String applicationName, String repositoryName, String roleName,
+			boolean execute)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		super.setAppFormPrivilege(appFormName, applicationName, repositoryName,
+				roleName, execute);
+	}
+
+	@Override
+	public void setApplicationPrivilege(String appName,
+			String repositoryName, String roleName, boolean execute)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		super.setApplicationPrivilege(appName, repositoryName, roleName, execute);
+	}
+
+	@Override
+	public void setApplicationPrivilegeProperty(String applicationName,
+			String repositoryName, String roleName, String property,
+			String value)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		super.setApplicationPrivilegeProperty(applicationName, repositoryName,
+				roleName, property, value);
+	}
+
+	@Override
+	public void setApplicationProperty(String applicationName,
+			String repositoryName, String property, String value)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		super.setApplicationProperty(applicationName, repositoryName, property, value);
+	}
+
+	@Override
+	public void setAppPagePrivilege(String appPageName,
+			String applicationName, String repositoryName, String roleName,
+			boolean execute)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		super.setAppPagePrivilege(appPageName, applicationName, repositoryName,
+				roleName, execute);
+	}
+
+	@Override
+	public void setAttribute(String name, Object value) {
+		// TODO Auto-generated method stub
+		super.setAttribute(name, value);
+	}
+
+	@Override
+	public void setBusinessObjectPrivilegeProperty(
+			String businessObjectName, String repositoryName,
+			String roleName, String property, String value)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		super.setBusinessObjectPrivilegeProperty(businessObjectName, repositoryName,
+				roleName, property, value);
+	}
+
+	@Override
+	public void setBusinessObjectPrivileges(String businessObjectName,
+			String repositoryName, String roleName, boolean read,
+			boolean create, boolean update, boolean delete)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		super.setBusinessObjectPrivileges(businessObjectName, repositoryName, roleName,
+				read, create, update, delete);
+	}
+
+	@Override
+	public void setBusinessObjectProperty(String businessObjectName,
+			String repositoryName, String property, String value)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		super.setBusinessObjectProperty(businessObjectName, repositoryName, property,
+				value);
+	}
+
+	@Override
+	public void setCoLocated(boolean c) {
+		// TODO Auto-generated method stub
+		super.setCoLocated(c);
+	}
+
+	@Override
+	public void setDataServerProperty(String dataServer, String property,
+			String value)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		super.setDataServerProperty(dataServer, property, value);
+	}
+
+	@Override
+	public void setExpireTime(long expireTime) {
+		// TODO Auto-generated method stub
+		super.setExpireTime(expireTime);
+	}
+
+	@Override
+	public void setMethodPrivilege(String methodName,
+			String businessObjectName, String repositoryName,
+			String roleName, boolean execute)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		super.setMethodPrivilege(methodName, businessObjectName, repositoryName,
+				roleName, execute);
+	}
+
+	@Override
+	public void setObjectAttributePrivilege(String attributeName,
+			String businessObjectName, String repositoryName,
+			String roleName, boolean edit, boolean view)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		super.setObjectAttributePrivilege(attributeName, businessObjectName,
+				repositoryName, roleName, edit, view);
+	}
+
+	@Override
+	public void setProperties(String[][] newProperties) {
+		// TODO Auto-generated method stub
+		super.setProperties(newProperties);
+	}
+
+	@Override
+	public void setProperty(String property, String value) {
+		// TODO Auto-generated method stub
+		super.setProperty(property, value);
+	}
+
+	@Override
+	public void setPropertyAsObject(String property, Object value) {
+		// TODO Auto-generated method stub
+		super.setPropertyAsObject(property, value);
+	}
+
+	@Override
+	protected void setPropertyInternal(String property, Object value) {
+		// TODO Auto-generated method stub
+		super.setPropertyInternal(property, value);
+	}
+
+	@Override
+	public void setReadTransactionInProgress(
+			boolean isReadTransactionInProgress) {
+		// TODO Auto-generated method stub
+		super.setReadTransactionInProgress(isReadTransactionInProgress);
+	}
+
+	@Override
+	public void setRepositoryName(String repositoryName) {
+		// TODO Auto-generated method stub
+		super.setRepositoryName(repositoryName);
+	}
+
+	@Override
+	public void setRoleProperty(String roleName, String property,
+			String value)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		super.setRoleProperty(roleName, property, value);
+	}
+
+	@Override
+	public void setSecurityCheck(boolean flag) {
+		// TODO Auto-generated method stub
+		super.setSecurityCheck(flag);
+	}
+
+	@Override
+	public void setSecurityManager(VSSecurityManager securityManager) {
+		// TODO Auto-generated method stub
+		super.setSecurityManager(securityManager);
+	}
+
+	@Override
+	public void setSerializableAttribute(String name, byte[] value) {
+		// TODO Auto-generated method stub
+		super.setSerializableAttribute(name, value);
+	}
+
+	@Override
+	public void setServerProperty(String property, String value,
+			boolean flush)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		super.setServerProperty(property, value, flush);
+	}
+
+	@Override
+	public void setSessionID(int id) {
+		// TODO Auto-generated method stub
+		super.setSessionID(id);
+	}
+
+	@Override
+	public void setTableSchema(String databaseName, String schema) {
+		// TODO Auto-generated method stub
+		super.setTableSchema(databaseName, schema);
+	}
+
+	@Override
+	public void setTraceEnable(int userSessionId, boolean state) {
+		// TODO Auto-generated method stub
+		super.setTraceEnable(userSessionId, state);
+	}
+
+	@Override
+	public void setTraceEnable(VSORBSecuritySession adminSession,
+			boolean state) {
+		// TODO Auto-generated method stub
+		super.setTraceEnable(adminSession, state);
+	}
+
+	@Override
+	public void setTxEventListenerSortingComparator(Comparator comparator) {
+		// TODO Auto-generated method stub
+		super.setTxEventListenerSortingComparator(comparator);
+	}
+
+	@Override
+	public void setUpdatePackage(String id) {
+		// TODO Auto-generated method stub
+		super.setUpdatePackage(id);
+	}
+
+	@Override
+	public void setUpdatePackageForApp(String id) {
+		// TODO Auto-generated method stub
+		super.setUpdatePackageForApp(id);
+	}
+
+	@Override
+	public void setUserAssignment(String appServerlogin, String roleName,
+			boolean assigned, boolean granting)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		super.setUserAssignment(appServerlogin, roleName, assigned, granting);
+	}
+
+	@Override
+	public void setUserAssignmentProperty(String appLoginID,
+			String roleName, String property, String value)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		super.setUserAssignmentProperty(appLoginID, roleName, property, value);
+	}
+
+	@Override
+	public void setUserDataServerLogin(String appServerlogin,
+			String dataServer, String dataServerLogin,
+			String dataServerPassword)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		super.setUserDataServerLogin(appServerlogin, dataServer, dataServerLogin,
+				dataServerPassword);
+	}
+
+	@Override
+	public void setUserDefinedEvent(String eventName) {
+		// TODO Auto-generated method stub
+		super.setUserDefinedEvent(eventName);
+	}
+
+	@Override
+	public void setUserProperty(String appLoginID, String property,
+			String value)  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		super.setUserProperty(appLoginID, property, value);
+	}
+
+	@Override
+	public void shutDownTheServer()  throws ServerSecurityException {
+		// TODO Auto-generated method stub
+		super.shutDownTheServer();
+	}
+
+	@Override
+	public void startLogDump(String fileName, boolean append) {
+		// TODO Auto-generated method stub
+		super.startLogDump(fileName, append);
+	}
+
+	@Override
+	public void stopLogDump() {
+		// TODO Auto-generated method stub
+		super.stopLogDump();
+	}
+
+	@Override
+	protected void unregisterAllConnections() {
+		// TODO Auto-generated method stub
+		super.unregisterAllConnections();
+	}
+
+	@Override
+	public void unregisterConnection(Connection con) {
+		// TODO Auto-generated method stub
+		super.unregisterConnection(con);
+	}
+
+	@Override
+	public void writeLogString(String logString) {
+		// TODO Auto-generated method stub
+		super.writeLogString(logString);
+	}
+	
+	/**
+	 * This Nested class is a child class of {@link VSTransactionInfo}
+	 * It is used to override some of its method.
+	 * This class is used to tests the functionality.
+	 * @author Administrator
+	 *
+	 */
+	public class NestedVSTransactionInfo extends VSTransactionInfo {
+		
+		public NestedVSTransactionInfo(Current ct, Session session, boolean local) {
+			super(ct, session, local);
+			// TODO Auto-generated constructor stub
+		}
+
+		/* (non-Javadoc)
+		 * @see com.versata.tl.vls.core.VSTransactionInfo#getObjectFromWriteCache(com.versata.tl.common.meta.VSMetaQuery, java.util.Vector)
+		 */
+		@Override
+		protected DataObject getObjectFromWriteCache(VSMetaQuery mq, Vector pkey) {
+			// TODO Auto-generated method stub
+			return super.getObjectFromWriteCache(mq, pkey);
+		}
+		
+		@Override
+		public DataObject getObjectByKey(VSMetaQuery metaQuery, XDAConnector xdac, SearchRequest pkey) {
+			
+			AppUserRoleImpl appUserRoleImpl = new AppUserRoleImpl();
+			
+			MockVSORBSessionImplForAppUser mockVSORBSessionImplForAppUser = null;
+			try {
+			mockVSORBSessionImplForAppUser = MockVSORBSessionImplForAppUser_Factory.createMockVSORBSessionImplForAppUser();
+			mockVSORBSessionImplForAppUser.setUpForMockAppUser();
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			
+			appUserRoleImpl.setSession(mockVSORBSessionImplForAppUser);
+			appUserRoleImpl.addMetaQuery(createVSMetaQueryForUserRoleImpl(), null);
+			
+			MockBusinessObjectImpl mockBusiness = new MockBusinessObjectImpl();
+			DataRow row = new DataRow(mockVSORBSessionImplForAppUser, createVSMetaQueryForUserRoleImpl(), true, mockBusiness);
+			
+			appUserRoleImpl.initBusinessObject(mockVSORBSessionImplForAppUser, row);
+			appUserRoleImpl.setGrantingRight(true);
+			return appUserRoleImpl;
+			
+		}
+				
+		 /**
+	     * @return int
+	     * @internal.tle
+	     */
+	    public int getGlobalNestLevel() {
+	        return 0;
+	    }
+	    
+	    @Override
+	    public void save(DataObject dataObject) {
+	    	// TODO Auto-generated method stub
+	    }
+	    
+	    @Override
+	    public int getObjectsCount(VSMetaQuery metaQuery, XDAConnector xdac, SearchRequest filter) {
+	        return 1;
+	    }
+
+		/* (non-Javadoc)
+		 * @see com.versata.tl.vls.core.VSTransactionInfo#getObjects(com.versata.tl.common.meta.VSMetaQuery, com.versata.tl.vls.dataaccess.XDAConnector, com.versata.tl.common.util.SearchRequest)
+		 */
+		@Override
+		public Enumeration getObjects(VSMetaQuery metaQuery, XDAConnector xdac,
+				SearchRequest filter) {
+			NestedAppExtended nestedAppExtended = new NestedAppExtended();
+			Vector vector = new Vector();
+			vector.add(nestedAppExtended);
+			return vector.elements();
+		}
+		
+		public Connection getConnection(XDAConnector xdac) {
+			Connection conn = new VSJdbc(new Properties(), true);
+			return conn;
+		}
+		
+	}
+	
+	/**
+	 * This Nested class is a child class of {@link AppExtendedPropValueImpl}
+	 * It is used to override some of its method.
+	 * This class is used to tests the functionality.
+	 * @author Administrator
+	 *
+	 */
+	public class NestedAppExtended extends AppExtendedPropValueImpl {
+		public NestedAppExtended() {
+			
+		}
+		
+		public void setDelete() {
+	        
+		}
+		 
+		public void save() throws ServerException {
+			 
+		}
+		
+		public void setTblKey1(String value) {
+			
+		}
+		
+		public void setUpdate() {
+			
+		}
+	}
+	
+    /**
+     * Method to create dummy VSMetaQuery for AppUserImpl class.
+     * @return
+     */
+	public VSMetaQuery createVSMetaQuery() {
+	    VSQueryDefinition q = new VSQueryDefinition("AppUser");
+	    q.setPackageName("com.versata.tl.vls.admin");
+	        VSMetaTable t = new VSMetaTable("AppUser");
+
+	        VSMetaColumn c = new VSMetaColumn("AppSvrLoginID", DataConst.VARCHAR);
+	        c.setSize(50);
+	    c.setAlterability(true);
+	    c.setNullability(VSMetaColumn.columnNoNulls);
+	    t.addColumn(c);
+	    
+	    c = new VSMetaColumn("AppSvrPassword", DataConst.VARCHAR);
+	    c.setSize(50);
+	    c.setAlterability(true);
+	    c.setNullability(VSMetaColumn.columnNullable);
+	    t.addColumn(c);
+	    
+	    c = new VSMetaColumn("UserName", DataConst.VARCHAR);
+	    c.setSize(50);
+	    c.setAlterability(true);
+	    c.setNullability(VSMetaColumn.columnNullable);
+	    t.addColumn(c);
+	    t.addUniqueKeyColumn("AppUser Unique Key", "AppSvrLoginID");
+	    t.setStoredColumnName("AppSvrLoginID");
+	    t.setDisplayColumnName("UserName");
+	    t.setSchema("BARRY");
+	    t.setDatabaseName("OnPremise");
+	    t.useQuotedIdentifier(false);
+	    t.setOptLock(DataConst.OptLockingOnApplicable);
+	    t.setXDAConnectorClassName(AppUserImpl.getAdminXDAClassName());
+	    q.addTable(t);
+	    q.populateQCArray();
+	    q.setSQL("SELECT AppUser.AppSvrLoginID AS AppSvrLoginID, AppUser.AppSvrPassword AS AppSvrPassword, AppUser.UserName AS UserName FROM AppUser");
+	    q.setDataObject(true);
+	    q.setSQLComplete(true);
+	    
+	    return q;
+	  }
+	
+    /**
+     * Method to create dummy VSMetaQuery for AppUserRoleImpl class.
+     * @return
+     */
+	public VSMetaQuery createVSMetaQueryForUserRoleImpl() {
+		
+		VSQueryDefinition q = new VSQueryDefinition("AppUserRole");
+		q.setPackageName("com.versata.tl.vls.admin");
+        VSMetaTable t = new VSMetaTable("AppUserRole");
+        VSMetaColumn c = new VSMetaColumn("AppUserLoginID", DataConst.VARCHAR);
+        c.setSize(50);
+		c.setAlterability(true);
+		c.setNullability(VSMetaColumn.columnNoNulls);
+		t.addColumn(c);
+		c = new VSMetaColumn("RoleID", DataConst.INTEGER);
+		c.setAlterability(true);
+		c.setNullability(VSMetaColumn.columnNoNulls);
+		t.addColumn(c);
+		c = new VSMetaColumn("AssignedRight", DataConst.BIT);
+		c.setAlterability(true);
+		c.setNullability(VSMetaColumn.columnNoNulls);
+		c.setDefaultValue(" false");
+		t.addColumn(c);
+		c = new VSMetaColumn("GrantingRight", DataConst.BIT);
+		c.setAlterability(true);
+		c.setNullability(VSMetaColumn.columnNoNulls);
+		c.setDefaultValue("true");
+		t.addColumn(c);
+		c = new VSMetaColumn("ParentName", DataConst.VARCHAR);
+		c.setSize(50);
+		c.setAlterability(true);
+		c.setNullability(VSMetaColumn.columnNullable);
+		t.addColumn(c);
+
+		t.addUniqueKeyColumn("AppUserRole Unique Key", "AppUserLoginID");
+		t.addUniqueKeyColumn("AppUserRole Unique Key", "RoleID");
+
+		// Register a foreign key from AppUserRole to AppUser.
+		t.addForeignKeyColumn("Foreign Key To AppUser", "AppUserLoginID");
+		// Register a foreign key from AppUserRole to AppRole.
+		t.addForeignKeyColumn("Foreign Key To AppRole", "RoleID");
+
+		t.setSchema("BARRY");
+		t.setDatabaseName("OnPremise");
+
+		t.useQuotedIdentifier(false);
+		t.setOptLock(DataConst.OptLockingOnApplicable);
+
+		t.setXDAConnectorClassName(AppUserRoleImpl.getSpecialAdminXDAClassName());
+
+		q.addTable(t);
+		q.populateQCArray();
+		
+		q.setSQL("SELECT AppUserRole.AppUserLoginID AS AppUserLoginID, AppUserRole.RoleID AS RoleID, AppUserRole.AssignedRight AS AssignedRight, AppUserRole.GrantingRight AS GrantingRight, AppUserRole.ParentName AS ParentName FROM AppUserRole");
+		q.setDataObject(true);
+		q.setSQLComplete(true);
+		
+		t.setDerivationType("AssignedRight", VSMetaColumn.derivationDefault);
+		t.setDerivationType("GrantingRight", VSMetaColumn.derivationDefault);
+		
+		return q;
+		
+	}
+		
+}

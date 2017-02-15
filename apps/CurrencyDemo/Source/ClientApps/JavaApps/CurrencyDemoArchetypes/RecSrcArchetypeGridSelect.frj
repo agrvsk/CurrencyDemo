@@ -1,0 +1,675 @@
+BEGIN .VSForm RecSrcArchetypeGridSelect
+  ImageFile = ""
+  ClassName = "VSForm"
+  BackColor = 0xffffff
+  Width = 755
+  ImageDisplayStyle = Stretched
+  Title = "RecSrcArchetypeGridSelect"
+  Enable = True
+  ForeColor = 0x000000
+  HelpURL = ""
+  ToolTip = ""
+  Visible = True
+  Tag = ""
+  Height = 505
+  AnchorForm = "NONE"
+  Constraint = "null"
+  Layout = ""
+  Style = "Child"
+  Name = "RecSrcArchetypeGridSelect"
+  Extended = ""
+  DisplayTitleBar = True
+  BeginProperty VSFont 
+    FontName  = "Helvetica"
+    FontSize  = 12
+    FontStyleBold  = False
+    FontStyleItalic  = False
+  EndProperty 
+  BEGIN .VSPanel fraRecSrcArchetypeGridSelect
+    Top = 5
+    ClassName = "VSPanel"
+    BorderStyle = "GROUP_BORDER"
+    BackColor = 0xffffff
+    Width = 483
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Height = 274
+    Left = 3
+    Constraint = "null"
+    Layout = ""
+    Extended = ""
+    Name = "fraRecSrcArchetypeGridSelect"
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = ""
+    BEGIN .VSLabel VSLabel1
+      Top = -7
+      ClassName = "VSLabel"
+      Opaque = False
+      StatusBarText = ""
+      BorderStyle = "NO_BORDER"
+      DataSource = ""
+      HorizAlign = "LEFT"
+      BackColor = 0xc0c0c0
+      Width = 155
+      Enable = True
+      VertTextPos = "BOTTOM"
+      DisplayedMnemonic = ""
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = ""
+      Visible = True
+      Tag = ""
+      Height = 13
+      Left = 3
+      DataField = 0
+      Icon = ""
+      Constraint = "null"
+      VertAlign = "CENTER"
+      HorizTextPos = "RIGHT"
+      Extended = ""
+      Name = "VSLabel1"
+      LabelFor = ""
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      Label = "Search"
+    END
+    BEGIN .VSPanel VSPanel2
+      Top = 68
+      ClassName = "VSPanel"
+      BorderStyle = "RAISED_BORDER"
+      BackColor = 0xc0c0c0
+      Width = 579
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = ""
+      Visible = True
+      Tag = ""
+      Height = 234
+      Left = -3
+      Constraint = "null"
+      Layout = ""
+      Extended = ""
+      Name = "VSPanel2"
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      Label = ""
+      BEGIN .VSImageButton btnInsert
+        ImageFile = "New.GIF"
+        Top = 261
+        ClassName = "VSImageButton"
+        Opaque = True
+        BorderPainted = True
+        ReportTarget = ""
+        StatusBarText = ""
+        FormTransitionProperties = ""
+        DataSource = "(Current)"
+        BackColor = 0xc0c0c0
+        Width = 26
+        ReportURL = ""
+        Enable = True
+        VertTextPos = "CENTER"
+        ForeColor = 0x000000
+        AutoToolTip = False
+        HelpURL = ""
+        ToolTip = "Insert"
+        Visible = True
+        Tag = ""
+        Action = "db_insert"
+        TabOrder = 9
+        Height = 26
+        Left = 13
+        AutoSize = False
+        Constraint = "null"
+        HorizTextPos = "CENTER"
+        TabStop = False
+        Border = "AUTOSHOW_BORDER"
+        Mnemonic = ""
+        Extended = ""
+        Name = "btnInsert"
+        AutoLabel = False
+        FormTransition = 0
+        BeginProperty VSFont 
+          FontName  = "Helvetica"
+          FontSize  = 12
+          FontStyleBold  = False
+          FontStyleItalic  = False
+        EndProperty 
+        DisplayStyle = Centered
+        Label = ""
+      END
+      BEGIN .VSImageButton btnDelete
+        ImageFile = "delete.GIF"
+        Top = 261
+        ClassName = "VSImageButton"
+        Opaque = True
+        BorderPainted = True
+        ReportTarget = ""
+        StatusBarText = ""
+        FormTransitionProperties = ""
+        DataSource = "(Current)"
+        BackColor = 0xc0c0c0
+        Width = 26
+        ReportURL = ""
+        Enable = True
+        VertTextPos = "CENTER"
+        ForeColor = 0x000000
+        AutoToolTip = False
+        HelpURL = ""
+        ToolTip = "Delete"
+        Visible = True
+        Tag = ""
+        Action = "db_delete"
+        TabOrder = 8
+        Height = 26
+        Left = 40
+        AutoSize = False
+        Constraint = "null"
+        HorizTextPos = "CENTER"
+        TabStop = False
+        Border = "AUTOSHOW_BORDER"
+        Mnemonic = ""
+        Extended = ""
+        Name = "btnDelete"
+        AutoLabel = False
+        FormTransition = 0
+        BeginProperty VSFont 
+          FontName  = "Helvetica"
+          FontSize  = 12
+          FontStyleBold  = False
+          FontStyleItalic  = False
+        EndProperty 
+        DisplayStyle = Centered
+        Label = ""
+      END
+      BEGIN .VSImageButton btnSave
+        ImageFile = "Save.GIF"
+        Top = 261
+        ClassName = "VSImageButton"
+        Opaque = True
+        BorderPainted = True
+        ReportTarget = ""
+        StatusBarText = ""
+        FormTransitionProperties = ""
+        DataSource = "(Current)"
+        BackColor = 0xc0c0c0
+        Width = 26
+        ReportURL = ""
+        Enable = True
+        VertTextPos = "CENTER"
+        ForeColor = 0x000000
+        AutoToolTip = False
+        HelpURL = ""
+        ToolTip = "Save"
+        Visible = True
+        Tag = ""
+        Action = "db_saveAll"
+        TabOrder = 7
+        Height = 26
+        Left = 76
+        AutoSize = False
+        Constraint = "null"
+        HorizTextPos = "CENTER"
+        TabStop = False
+        Border = "AUTOSHOW_BORDER"
+        Mnemonic = ""
+        Extended = ""
+        Name = "btnSave"
+        AutoLabel = False
+        FormTransition = 0
+        BeginProperty VSFont 
+          FontName  = "Helvetica"
+          FontSize  = 12
+          FontStyleBold  = False
+          FontStyleItalic  = False
+        EndProperty 
+        DisplayStyle = Centered
+        Label = ""
+      END
+      BEGIN .VSImageButton btnUndo
+        ImageFile = "Undo.GIF"
+        Top = 261
+        ClassName = "VSImageButton"
+        Opaque = True
+        BorderPainted = True
+        ReportTarget = ""
+        StatusBarText = ""
+        FormTransitionProperties = ""
+        DataSource = "(Current)"
+        BackColor = 0xc0c0c0
+        Width = 26
+        ReportURL = ""
+        Enable = True
+        VertTextPos = "CENTER"
+        ForeColor = 0x000000
+        AutoToolTip = False
+        HelpURL = ""
+        ToolTip = "Undo"
+        Visible = True
+        Tag = ""
+        Action = "db_undoRecord"
+        TabOrder = 6
+        Height = 26
+        Left = 101
+        AutoSize = False
+        Constraint = "null"
+        HorizTextPos = "CENTER"
+        TabStop = False
+        Border = "AUTOSHOW_BORDER"
+        Mnemonic = ""
+        Extended = ""
+        Name = "btnUndo"
+        AutoLabel = False
+        FormTransition = 0
+        BeginProperty VSFont 
+          FontName  = "Helvetica"
+          FontSize  = 12
+          FontStyleBold  = False
+          FontStyleItalic  = False
+        EndProperty 
+        DisplayStyle = Centered
+        Label = ""
+      END
+      BEGIN .VSImageButton btnMoveFirst
+        ImageFile = "First.GIF"
+        Top = 261
+        ClassName = "VSImageButton"
+        Opaque = True
+        BorderPainted = True
+        ReportTarget = ""
+        StatusBarText = ""
+        FormTransitionProperties = ""
+        DataSource = "(Current)"
+        BackColor = 0xc0c0c0
+        Width = 26
+        ReportURL = ""
+        Enable = True
+        VertTextPos = "CENTER"
+        ForeColor = 0x000000
+        AutoToolTip = False
+        HelpURL = ""
+        ToolTip = "MoveFirst"
+        Visible = True
+        Tag = ""
+        Action = "db_first"
+        TabOrder = 5
+        Height = 26
+        Left = 349
+        AutoSize = False
+        Constraint = "null"
+        HorizTextPos = "CENTER"
+        TabStop = False
+        Border = "AUTOSHOW_BORDER"
+        Mnemonic = ""
+        Extended = ""
+        Name = "btnMoveFirst"
+        AutoLabel = False
+        FormTransition = 0
+        BeginProperty VSFont 
+          FontName  = "Helvetica"
+          FontSize  = 12
+          FontStyleBold  = False
+          FontStyleItalic  = False
+        EndProperty 
+        DisplayStyle = Centered
+        Label = ""
+      END
+      BEGIN .VSImageButton btnMovePrev
+        ImageFile = "previous.GIF"
+        Top = 261
+        ClassName = "VSImageButton"
+        Opaque = True
+        BorderPainted = True
+        ReportTarget = ""
+        StatusBarText = ""
+        FormTransitionProperties = ""
+        DataSource = "(Current)"
+        BackColor = 0xc0c0c0
+        Width = 26
+        ReportURL = ""
+        Enable = True
+        VertTextPos = "CENTER"
+        ForeColor = 0x000000
+        AutoToolTip = False
+        HelpURL = ""
+        ToolTip = "Move Previous"
+        Visible = True
+        Tag = ""
+        Action = "db_previous"
+        TabOrder = 4
+        Height = 26
+        Left = 375
+        AutoSize = False
+        Constraint = "null"
+        HorizTextPos = "CENTER"
+        TabStop = False
+        Border = "AUTOSHOW_BORDER"
+        Mnemonic = ""
+        Extended = ""
+        Name = "btnMovePrev"
+        AutoLabel = False
+        FormTransition = 0
+        BeginProperty VSFont 
+          FontName  = "Helvetica"
+          FontSize  = 12
+          FontStyleBold  = False
+          FontStyleItalic  = False
+        EndProperty 
+        DisplayStyle = Centered
+        Label = ""
+      END
+      BEGIN .VSImageButton btnMoveNext
+        ImageFile = "Next.GIF"
+        Top = 261
+        ClassName = "VSImageButton"
+        Opaque = True
+        BorderPainted = True
+        ReportTarget = ""
+        StatusBarText = ""
+        FormTransitionProperties = ""
+        DataSource = "(Current)"
+        BackColor = 0xc0c0c0
+        Width = 26
+        ReportURL = ""
+        Enable = True
+        VertTextPos = "CENTER"
+        ForeColor = 0x000000
+        AutoToolTip = False
+        HelpURL = ""
+        ToolTip = "Move Next"
+        Visible = True
+        Tag = ""
+        Action = "db_next"
+        TabOrder = 3
+        Height = 26
+        Left = 401
+        AutoSize = False
+        Constraint = "null"
+        HorizTextPos = "CENTER"
+        TabStop = False
+        Border = "AUTOSHOW_BORDER"
+        Mnemonic = ""
+        Extended = ""
+        Name = "btnMoveNext"
+        AutoLabel = False
+        FormTransition = 0
+        BeginProperty VSFont 
+          FontName  = "Helvetica"
+          FontSize  = 12
+          FontStyleBold  = False
+          FontStyleItalic  = False
+        EndProperty 
+        DisplayStyle = Centered
+        Label = ""
+      END
+      BEGIN .VSImageButton btnMoveLast
+        ImageFile = "Last.GIF"
+        Top = 261
+        ClassName = "VSImageButton"
+        Opaque = True
+        BorderPainted = True
+        ReportTarget = ""
+        StatusBarText = ""
+        FormTransitionProperties = ""
+        DataSource = "(Current)"
+        BackColor = 0xc0c0c0
+        Width = 26
+        ReportURL = ""
+        Enable = True
+        VertTextPos = "CENTER"
+        ForeColor = 0x000000
+        AutoToolTip = False
+        HelpURL = ""
+        ToolTip = "Move Last"
+        Visible = True
+        Tag = ""
+        Action = "db_last"
+        TabOrder = 2
+        Height = 26
+        Left = 427
+        AutoSize = False
+        Constraint = "null"
+        HorizTextPos = "CENTER"
+        TabStop = False
+        Border = "AUTOSHOW_BORDER"
+        Mnemonic = ""
+        Extended = ""
+        Name = "btnMoveLast"
+        AutoLabel = False
+        FormTransition = 0
+        BeginProperty VSFont 
+          FontName  = "Helvetica"
+          FontSize  = 12
+          FontStyleBold  = False
+          FontStyleItalic  = False
+        EndProperty 
+        DisplayStyle = Centered
+        Label = ""
+      END
+      BEGIN .VSJavaDataControl datRSPRefixTableName
+        Top = 260
+        ClassName = "VSJavaDataControl"
+        RecordSourceProperties = ""
+        StatusBarText = ""
+        AllowInsert = True
+        BackColor = 0xffffff
+        Width = 154
+        AllowUpdate = True
+        RecordSource = 0
+        Enable = True
+        ForeColor = 0x000000
+        AllowDelete = True
+        HelpURL = ""
+        ToolTip = ""
+        Visible = False
+        Tag = ""
+        MaxRowsPerFetch = 16
+        TabOrder = 0
+        Height = 17
+        Left = 162
+        SaveMode = "buffered"
+        Constraint = "null"
+        TabStop = False
+        Extended = ""
+        Name = "datRSPRefixTableName"
+        BeginProperty VSFont 
+          FontName  = "Helvetica"
+          FontSize  = 12
+          FontStyleBold  = False
+          FontStyleItalic  = False
+        EndProperty 
+        Label = "TableCaption"
+      END
+      BEGIN .VSGrid grdRSPrefixTableName
+        RowSelectMode = "SINGLE_SELECTION"
+        HiliteForeColor = 0xffffff
+        Top = 0
+        ClassName = "VSGrid"
+        DisplayHeader = True
+        BorderStyle = "PLAIN_BORDER"
+        DataSource = "datRSPRefixTableName"
+        BackColor = 0xffffff
+        Width = 564
+        RowSelectionAllowed = False
+        DisplayGridLines = True
+        Enable = True
+        ForeColor = 0x000000
+        HelpURL = ""
+        ToolTip = ""
+        Visible = True
+        Tag = ""
+        RowHeaderBackColor = 0xc0c0c0
+        Columns = ""
+        TabOrder = 1
+        Height = 234
+        Left = 6
+        ColumnHeaderBackColor = 0xc0c0c0
+        ShowVerticalLines = True
+        RowHeight = 20
+        RowHeaderForeColor = 0x000000
+        DisableBackColor = 0xffffff
+        BeginProperty VSHeaderFont
+          FontName  = "Helvetica"
+          FontSize  = 12
+          FontStyleBold  = False
+          FontStyleItalic  = False
+        EndProperty 
+        ColumnHeaderForeColor = 0x000000
+        Constraint = "null"
+        TabStop = True
+        ColResizeMode = "AUTO_RESIZE_OFF"
+        LineColor = 0xc0c0c0
+        DisableForeColor = 0xc0c0c0
+        Editable = True
+        Extended = ""
+        Name = "grdRSPrefixTableName"
+        RowHeaderWidth = 25
+        HiliteBackColor = 0x000080
+        ColumnHeaderHeight = 17
+        BeginProperty VSFont 
+          FontName  = "Helvetica"
+          FontSize  = 12
+          FontStyleBold  = False
+          FontStyleItalic  = False
+        EndProperty 
+        ShowStarRow = True
+        ShowHorizontalLines = True
+        BEGIN .VSGridColumn "IncludeGridColumnArchetypeAny"          
+          GridColumnLabel = "IncludeGridColumnArchetypeAny"
+          GridColumnWidth = 0x5F
+          GridColumnDataField = 0
+          GridColumnEditType = "VSTextField"
+          GridColumnControlStyle = ""
+          JUSTIFY = "JUSTIFY_LEFT"
+          VALIGN = "VALIGN_CENTER"
+          GRIDCOLUMNBACKCOLOR = "0xffffff"
+          GRIDCOLUMNFORECOLOR = "0x000000"
+          GRIDCOLUMNHILITEBACKCOLOR = "0x000080"
+          GRIDCOLUMNHILITEFORECOLOR = "0xffffff"
+          GridColumnEnable = True
+          GridColumnSortAllowed = True
+          GridColumnFormat = ""
+          GridColumnPickObject = 0
+        ENDGRIDCOLUMN
+        END
+      END
+    BEGIN .VSPanel VSPanel1
+      Top = 7
+      ClassName = "VSPanel"
+      BorderStyle = "LOWERED_BORDER"
+      BackColor = 0xc0c0c0
+      Width = 576
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = ""
+      Visible = True
+      Tag = ""
+      Height = 54
+      Left = 0
+      Constraint = "null"
+      Layout = ""
+      Extended = ""
+      Name = "VSPanel1"
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      Label = ""
+      BEGIN .VSPanel IncludeButtonArchetypeGridSelect
+        Top = 3
+        ClassName = "VSPanel"
+        BorderStyle = "GROUP_BORDER"
+        BackColor = 0xffffff
+        Width = 53
+        Enable = True
+        ForeColor = 0x000000
+        HelpURL = ""
+        ToolTip = ""
+        Visible = True
+        Tag = ""
+        Height = 20
+        Left = 399
+        Constraint = "null"
+        Layout = ""
+        Extended = ""
+        Name = "IncludeButtonArchetypeGridSelect"
+        BeginProperty VSFont 
+          FontName  = "Helvetica"
+          FontSize  = 12
+          FontStyleBold  = False
+          FontStyleItalic  = False
+        EndProperty 
+        Label = ""
+      END
+      BEGIN .VSPanel IncludeColumnArchetypeAny
+        Top = 6
+        ClassName = "VSPanel"
+        BorderStyle = "GROUP_BORDER"
+        BackColor = 0xffffff
+        Width = 207
+        Enable = True
+        ForeColor = 0x000000
+        HelpURL = ""
+        ToolTip = ""
+        Visible = True
+        Tag = ""
+        Height = 20
+        Left = 4
+        Constraint = "null"
+        Layout = ""
+        Extended = ""
+        Name = "IncludeColumnArchetypeAny"
+        BeginProperty VSFont 
+          FontName  = "Helvetica"
+          FontSize  = 12
+          FontStyleBold  = False
+          FontStyleItalic  = False
+        EndProperty 
+        Label = ""
+      END
+      END
+    END
+  END
+<<BEGIN VSMACRO>>
+<<ArchetypeVersion 06.00.00.00>>
+<<Const QBFOnlyColumn = "Query">>
+<<ExcludeParentArchetypes="*Startup*">>
+<<ExcludeChildArchetypes="Grid*">>
+<<Replace datRSPrefixTableName.RecordSource>>
+    RecordSource = Value(VSVBappFormRecSrcs!formRSNum),"RSPrefixTableName"
+<<End Replace>>
+<<Replace VSLabel1.Label>>
+    Label = "Search TableName"
+<<End Replace>>
+<<Begin IncludeGridColumnArchetypeAny>>
+  <<For each GridColumn>>
+    <<Include ColumnArchetypeGrid>>
+  <<Next>>
+<<End Include>>
+<<Begin IncludeColumnArchetypeAny>>
+  <<For each ScalarColumn>>
+       <<If Ucase("Value(VSVBRSColumns!Template)") <> Ucase("OptionButton")>>
+          <<Include ColumnArchetypeAny>>
+      <<End If>>
+  <<Next>>
+<<End Include>>

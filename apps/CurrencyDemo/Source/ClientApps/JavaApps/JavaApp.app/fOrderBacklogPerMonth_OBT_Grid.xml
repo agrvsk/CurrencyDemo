@@ -1,0 +1,809 @@
+<?xml version="1.0"?>
+<!DOCTYPE Form SYSTEM "Form.dtd">
+<Form
+	DTDVersion="05.06.00"
+	TargetLanguage="Java"
+	Archetype="Default"
+	PositionTop="211"
+	PositionLeft="566"
+	PositionWidth="271"
+	PositionHeight="44"
+	IsAddedAfterGen="False"
+	HasCustomFormLayout="True"
+	ObjectsUnusedByFormLayout="False"
+	External="False"
+	NoDataForm="False"
+	>
+	<FormCaption><![CDATA[OrderBacklogPerMonth_OBT(s)]]></FormCaption>
+	<RecordSource
+		RSID="1"
+		Prefix="T1"
+		BusinessObject="OrderBacklogPerMonth_OBT"
+		RelnIsFromParent="False"
+		DoesSourceAffectMe="False"
+		DoIAffectSource="False"
+		IsAddedAfterGen="False"
+		RsAttributesDefault="False"
+		ClassName="DataSource"
+		RecordSourceArchetype="Grid"
+		>
+		<ParameterizedWhereClause><![CDATA[ ]]></ParameterizedWhereClause>
+		<AdditionalWhereClause><![CDATA[ ]]></AdditionalWhereClause>
+		<OrderByClause><![CDATA[ ]]></OrderByClause>
+		<RSAttributesMeta>
+			<DefaultAttributes>
+				<RSDefaultAttribute ID="1" Name="OBT_Month" />
+				<RSDefaultAttribute ID="2" Name="OBT_OrderValueUSD" />
+				<RSDefaultAttribute ID="3" Name="OBT_Client" />
+			</DefaultAttributes>
+			<ScalerAttributes>
+				<RSAttribute Name="OBT_Month" Displayed="True" UnPlaced="True" />
+				<RSAttribute Name="OBT_OrderValueUSD" Displayed="True" UnPlaced="True" />
+				<RSAttribute Name="OBT_Client" Displayed="True" UnPlaced="True" />
+			</ScalerAttributes>
+			<GridAttributes>
+				<RSAttribute Name="OBT_Month" Displayed="True" UnPlaced="False" />
+				<RSAttribute Name="OBT_OrderValueUSD" Displayed="True" UnPlaced="False" />
+				<RSAttribute Name="OBT_Client" Displayed="True" UnPlaced="False" />
+			</GridAttributes>
+		</RSAttributesMeta>
+	</RecordSource>
+	<FormLayout><![CDATA[BEGIN .VSForm fOrderBacklogPerMonth_OBT_Grid
+  ImageFile = ""
+  ClassName = "VSForm"
+  BackColor = 0xc0c0c0
+  Width = 579
+  ImageDisplayStyle = Stretched
+  Title = "OrderBacklogPerMonth_OBT(s)"
+  Enable = True
+  ForeColor = 0x000000
+  HelpURL = ""
+  ToolTip = ""
+  Visible = True
+  Tag = "_$$_"
+  Height = 500
+  AnchorForm = "NONE"
+  Constraint = "null"
+  Layout = ""
+  Style = "Child"
+  Name = "fOrderBacklogPerMonth_OBT_Grid"
+  Extended = ""
+  DisplayTitleBar = True
+  BeginProperty VSFont 
+    FontName  = "Helvetica"
+    FontSize  = 12
+    FontStyleBold  = False
+    FontStyleItalic  = False
+  EndProperty 
+  BEGIN .VSImageButton btnInsert
+    ImageFile = "New.GIF"
+    Top = 7
+    ClassName = "VSImageButton"
+    Opaque = True
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = "(Current)"
+    BackColor = 0xc0c0c0
+    Width = 26
+    ReportURL = ""
+    Enable = True
+    VertTextPos = "CENTER"
+    ForeColor = 0x000000
+    AutoToolTip = False
+    HelpURL = ""
+    ToolTip = "Insert"
+    Visible = True
+    Tag = "_$$_"
+    Action = "db_insert"
+    TabOrder = 0
+    Height = 26
+    Left = 8
+    AutoSize = False
+    Constraint = "null"
+    HorizTextPos = "CENTER"
+    TabStop = True
+    Border = "AUTOSHOW_BORDER"
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnInsert"
+    AutoLabel = False
+    FormTransition = 0
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    DisplayStyle = Centered
+    Label = ""
+  END
+  BEGIN .VSImageButton btnDelete
+    ImageFile = "delete.GIF"
+    Top = 7
+    ClassName = "VSImageButton"
+    Opaque = True
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = "(Current)"
+    BackColor = 0xc0c0c0
+    Width = 26
+    ReportURL = ""
+    Enable = True
+    VertTextPos = "CENTER"
+    ForeColor = 0x000000
+    AutoToolTip = False
+    HelpURL = ""
+    ToolTip = "Delete"
+    Visible = True
+    Tag = "_$$_"
+    Action = "db_delete"
+    TabOrder = 1
+    Height = 26
+    Left = 35
+    AutoSize = False
+    Constraint = "null"
+    HorizTextPos = "CENTER"
+    TabStop = True
+    Border = "AUTOSHOW_BORDER"
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnDelete"
+    AutoLabel = False
+    FormTransition = 0
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    DisplayStyle = Centered
+    Label = ""
+  END
+  BEGIN .VSImageButton btnSave
+    ImageFile = "Save.GIF"
+    Top = 7
+    ClassName = "VSImageButton"
+    Opaque = True
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = "(Current)"
+    BackColor = 0xc0c0c0
+    Width = 26
+    ReportURL = ""
+    Enable = True
+    VertTextPos = "CENTER"
+    ForeColor = 0x000000
+    AutoToolTip = False
+    HelpURL = ""
+    ToolTip = "Save"
+    Visible = True
+    Tag = "_$$_"
+    Action = "db_saveAll"
+    TabOrder = 2
+    Height = 26
+    Left = 70
+    AutoSize = False
+    Constraint = "null"
+    HorizTextPos = "CENTER"
+    TabStop = True
+    Border = "AUTOSHOW_BORDER"
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnSave"
+    AutoLabel = False
+    FormTransition = 0
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    DisplayStyle = Centered
+    Label = ""
+  END
+  BEGIN .VSImageButton btnUndo
+    ImageFile = "Undo.GIF"
+    Top = 7
+    ClassName = "VSImageButton"
+    Opaque = True
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = "(Current)"
+    BackColor = 0xc0c0c0
+    Width = 26
+    ReportURL = ""
+    Enable = True
+    VertTextPos = "CENTER"
+    ForeColor = 0x000000
+    AutoToolTip = False
+    HelpURL = ""
+    ToolTip = "Undo"
+    Visible = True
+    Tag = "_$$_"
+    Action = "db_undoRecord"
+    TabOrder = 3
+    Height = 26
+    Left = 97
+    AutoSize = False
+    Constraint = "null"
+    HorizTextPos = "CENTER"
+    TabStop = True
+    Border = "AUTOSHOW_BORDER"
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnUndo"
+    AutoLabel = False
+    FormTransition = 0
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    DisplayStyle = Centered
+    Label = ""
+  END
+  BEGIN .VSImageButton btnMoveFirst
+    ImageFile = "First.GIF"
+    Top = 7
+    ClassName = "VSImageButton"
+    Opaque = True
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = "(Current)"
+    BackColor = 0xc0c0c0
+    Width = 26
+    ReportURL = ""
+    Enable = True
+    VertTextPos = "CENTER"
+    ForeColor = 0x000000
+    AutoToolTip = False
+    HelpURL = ""
+    ToolTip = "MoveFirst"
+    Visible = True
+    Tag = "_$$_"
+    Action = "db_first"
+    TabOrder = 4
+    Height = 26
+    Left = 137
+    AutoSize = False
+    Constraint = "null"
+    HorizTextPos = "CENTER"
+    TabStop = True
+    Border = "AUTOSHOW_BORDER"
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnMoveFirst"
+    AutoLabel = False
+    FormTransition = 0
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    DisplayStyle = Centered
+    Label = ""
+  END
+  BEGIN .VSImageButton btnMovePrev
+    ImageFile = "previous.GIF"
+    Top = 7
+    ClassName = "VSImageButton"
+    Opaque = True
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = "(Current)"
+    BackColor = 0xc0c0c0
+    Width = 26
+    ReportURL = ""
+    Enable = True
+    VertTextPos = "CENTER"
+    ForeColor = 0x000000
+    AutoToolTip = False
+    HelpURL = ""
+    ToolTip = "Move Previous"
+    Visible = True
+    Tag = "_$$_"
+    Action = "db_previous"
+    TabOrder = 5
+    Height = 26
+    Left = 164
+    AutoSize = False
+    Constraint = "null"
+    HorizTextPos = "CENTER"
+    TabStop = True
+    Border = "AUTOSHOW_BORDER"
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnMovePrev"
+    AutoLabel = False
+    FormTransition = 0
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    DisplayStyle = Centered
+    Label = ""
+  END
+  BEGIN .VSImageButton btnMoveNext
+    ImageFile = "Next.GIF"
+    Top = 7
+    ClassName = "VSImageButton"
+    Opaque = True
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = "(Current)"
+    BackColor = 0xc0c0c0
+    Width = 26
+    ReportURL = ""
+    Enable = True
+    VertTextPos = "CENTER"
+    ForeColor = 0x000000
+    AutoToolTip = False
+    HelpURL = ""
+    ToolTip = "Move Next"
+    Visible = True
+    Tag = "_$$_"
+    Action = "db_next"
+    TabOrder = 6
+    Height = 26
+    Left = 191
+    AutoSize = False
+    Constraint = "null"
+    HorizTextPos = "CENTER"
+    TabStop = True
+    Border = "AUTOSHOW_BORDER"
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnMoveNext"
+    AutoLabel = False
+    FormTransition = 0
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    DisplayStyle = Centered
+    Label = ""
+  END
+  BEGIN .VSImageButton btnMoveLast
+    ImageFile = "Last.GIF"
+    Top = 7
+    ClassName = "VSImageButton"
+    Opaque = True
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = "(Current)"
+    BackColor = 0xc0c0c0
+    Width = 26
+    ReportURL = ""
+    Enable = True
+    VertTextPos = "CENTER"
+    ForeColor = 0x000000
+    AutoToolTip = False
+    HelpURL = ""
+    ToolTip = "Move Last"
+    Visible = True
+    Tag = "_$$_"
+    Action = "db_last"
+    TabOrder = 7
+    Height = 26
+    Left = 218
+    AutoSize = False
+    Constraint = "null"
+    HorizTextPos = "CENTER"
+    TabStop = True
+    Border = "AUTOSHOW_BORDER"
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnMoveLast"
+    AutoLabel = False
+    FormTransition = 0
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    DisplayStyle = Centered
+    Label = ""
+  END
+  BEGIN .VSImageButton btnRunQuery
+    ImageFile = "runQuery.gif"
+    Top = 7
+    ClassName = "VSImageButton"
+    Opaque = True
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = "(Current)"
+    BackColor = 0xc0c0c0
+    Width = 26
+    ReportURL = ""
+    Enable = True
+    VertTextPos = "CENTER"
+    ForeColor = 0x000000
+    AutoToolTip = False
+    HelpURL = ""
+    ToolTip = "Get Data"
+    Visible = True
+    Tag = "_$$_"
+    Action = "db_runQuery"
+    TabOrder = 8
+    Height = 26
+    Left = 258
+    AutoSize = False
+    Constraint = "null"
+    HorizTextPos = "CENTER"
+    TabStop = True
+    Border = "AUTOSHOW_BORDER"
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnRunQuery"
+    AutoLabel = False
+    FormTransition = 0
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    DisplayStyle = Centered
+    Label = ""
+  END
+  BEGIN .VSImageButton btnQueryMode
+    ImageFile = "QueryMode.GIF"
+    Top = 7
+    ClassName = "VSImageButton"
+    Opaque = True
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = "(Current)"
+    BackColor = 0xc0c0c0
+    Width = 26
+    ReportURL = ""
+    Enable = True
+    VertTextPos = "CENTER"
+    ForeColor = 0x000000
+    AutoToolTip = False
+    HelpURL = ""
+    ToolTip = "Search Mode"
+    Visible = True
+    Tag = "_$$_"
+    Action = "db_queryMode"
+    TabOrder = 9
+    Height = 26
+    Left = 293
+    AutoSize = False
+    Constraint = "null"
+    HorizTextPos = "CENTER"
+    TabStop = True
+    Border = "AUTOSHOW_BORDER"
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnQueryMode"
+    AutoLabel = False
+    FormTransition = 0
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    DisplayStyle = Centered
+    Label = ""
+  END
+  BEGIN .VSImageButton btnQueryMode1
+    ImageFile = "clearQuery.gif"
+    Top = 7
+    ClassName = "VSImageButton"
+    Opaque = True
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = "(Current)"
+    BackColor = 0xc0c0c0
+    Width = 26
+    ReportURL = ""
+    Enable = True
+    VertTextPos = "CENTER"
+    ForeColor = 0x000000
+    AutoToolTip = False
+    HelpURL = ""
+    ToolTip = "Clear Search"
+    Visible = True
+    Tag = "_$$_"
+    Action = "db_clearQuery"
+    TabOrder = 10
+    Height = 26
+    Left = 320
+    AutoSize = False
+    Constraint = "null"
+    HorizTextPos = "CENTER"
+    TabStop = True
+    Border = "AUTOSHOW_BORDER"
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnQueryMode1"
+    AutoLabel = False
+    FormTransition = 0
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    DisplayStyle = Centered
+    Label = ""
+  END
+  BEGIN .VSImageButton btnCancelQuery
+    ImageFile = "UndoQuery.GIF"
+    Top = 7
+    ClassName = "VSImageButton"
+    Opaque = True
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = "(Current)"
+    BackColor = 0xc0c0c0
+    Width = 26
+    ReportURL = ""
+    Enable = False
+    VertTextPos = "CENTER"
+    ForeColor = 0x000000
+    AutoToolTip = False
+    HelpURL = ""
+    ToolTip = "Cancel Search"
+    Visible = True
+    Tag = "_$$_"
+    Action = "db_cancelQuery"
+    TabOrder = 11
+    Height = 26
+    Left = 346
+    AutoSize = False
+    Constraint = "null"
+    HorizTextPos = "CENTER"
+    TabStop = True
+    Border = "AUTOSHOW_BORDER"
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnCancelQuery"
+    AutoLabel = False
+    FormTransition = 0
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    DisplayStyle = Centered
+    Label = ""
+  END
+  BEGIN .VSImageButton btnEditSql
+    ImageFile = "EditQuery2.GIF"
+    Top = 7
+    ClassName = "VSImageButton"
+    Opaque = True
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = "(Current)"
+    BackColor = 0xc0c0c0
+    Width = 26
+    ReportURL = ""
+    Enable = False
+    VertTextPos = "CENTER"
+    ForeColor = 0x000000
+    AutoToolTip = False
+    HelpURL = ""
+    ToolTip = "Edit SQL"
+    Visible = True
+    Tag = "_$$_"
+    Action = "db_editSQL"
+    TabOrder = 12
+    Height = 26
+    Left = 380
+    AutoSize = False
+    Constraint = "null"
+    HorizTextPos = "CENTER"
+    TabStop = True
+    Border = "AUTOSHOW_BORDER"
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnEditSql"
+    AutoLabel = False
+    FormTransition = 0
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    DisplayStyle = Centered
+    Label = ""
+  END
+  BEGIN .VSJavaDataControl datT1OrderBacklogPerMonth_OBT
+    Top = 405
+    ClassName = "VSJavaDataControl"
+    RecordSourceProperties = ""
+    StatusBarText = ""
+    AllowInsert = True
+    BackColor = 0xffffff
+    Width = 252
+    AllowUpdate = True
+    RecordSource = 1,"T1OrderBacklogPerMonth_OBT"
+    Enable = True
+    ForeColor = 0x000000
+    AllowDelete = True
+    HelpURL = ""
+    ToolTip = ""
+    Visible = False
+    Tag = "_$$_"
+    MaxRowsPerFetch = 16
+    TabOrder = 13
+    Height = 27
+    Left = 119
+    SaveMode = "buffered"
+    Constraint = "null"
+    TabStop = False
+    Extended = ""
+    Name = "datT1OrderBacklogPerMonth_OBT"
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "OrderBacklogPerMonth_OBT"
+  END
+  BEGIN .VSGrid grdT1OrderBacklogPerMonth_OBT
+    RowSelectMode = "SINGLE_SELECTION"
+    HiliteForeColor = 0xffffff
+    Top = 37
+    ClassName = "VSGrid"
+    DisplayHeader = True
+    BorderStyle = "PLAIN_BORDER"
+    DataSource = "datT1OrderBacklogPerMonth_OBT"
+    BackColor = 0xffffff
+    Width = 474
+    RowSelectionAllowed = False
+    DisplayGridLines = True
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = "_$$_"
+    RowHeaderBackColor = 0xc0c0c0
+    Columns = ""
+    TabOrder = 14
+    Height = 372
+    Left = 4
+    ColumnHeaderBackColor = 0xc0c0c0
+    ShowVerticalLines = True
+    RowHeight = 20
+    RowHeaderForeColor = 0x000000
+    DisableBackColor = 0xffffff
+    BeginProperty VSHeaderFont
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    ColumnHeaderForeColor = 0x000000
+    Constraint = "null"
+    TabStop = True
+    ColResizeMode = "AUTO_RESIZE_OFF"
+    LineColor = 0xc0c0c0
+    DisableForeColor = 0xc0c0c0
+    Editable = True
+    Extended = ""
+    Name = "grdT1OrderBacklogPerMonth_OBT"
+    RowHeaderWidth = 25
+    HiliteBackColor = 0x000080
+    ColumnHeaderHeight = 17
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    ShowStarRow = True
+    ShowHorizontalLines = True
+    BEGIN .VSGridColumn "OBT_Client"      
+      GridColumnLabel = "OBT_Client"
+      GridColumnWidth = 0x4B
+      GridColumnDataField = 3
+      GridColumnEditType = "VSTextField"
+      GridColumnControlStyle = ""
+      JUSTIFY = "JUSTIFY_LEFT"
+      VALIGN = "VALIGN_CENTER"
+      GRIDCOLUMNBACKCOLOR = "0xffffff"
+      GRIDCOLUMNFORECOLOR = "0x000000"
+      GRIDCOLUMNHILITEBACKCOLOR = "0x000080"
+      GRIDCOLUMNHILITEFORECOLOR = "0xffffff"
+      GridColumnEnable = True
+      GridColumnSortAllowed = True
+      GridColumnFormat = ""
+      GridColumnPickObject = 0
+    ENDGRIDCOLUMN
+    BEGIN .VSGridColumn "Month"      
+      GridColumnLabel = "Month"
+      GridColumnWidth = 0x4B
+      GridColumnDataField = 1
+      GridColumnEditType = "VSTextField"
+      GridColumnControlStyle = ""
+      JUSTIFY = "JUSTIFY_LEFT"
+      VALIGN = "VALIGN_CENTER"
+      GRIDCOLUMNBACKCOLOR = "0xffffff"
+      GRIDCOLUMNFORECOLOR = "0x000000"
+      GRIDCOLUMNHILITEBACKCOLOR = "0x000080"
+      GRIDCOLUMNHILITEFORECOLOR = "0xffffff"
+      GridColumnEnable = True
+      GridColumnSortAllowed = True
+      GridColumnFormat = ""
+      GridColumnPickObject = 0
+    ENDGRIDCOLUMN
+    BEGIN .VSGridColumn "Order Value USD"      
+      GridColumnLabel = "Order Value USD"
+      GridColumnWidth = 0x4B
+      GridColumnDataField = 2
+      GridColumnEditType = "VSTextField"
+      GridColumnControlStyle = ""
+      JUSTIFY = "JUSTIFY_LEFT"
+      VALIGN = "VALIGN_CENTER"
+      GRIDCOLUMNBACKCOLOR = "0xffffff"
+      GRIDCOLUMNFORECOLOR = "0x000000"
+      GRIDCOLUMNHILITEBACKCOLOR = "0x000080"
+      GRIDCOLUMNHILITEFORECOLOR = "0xffffff"
+      GridColumnEnable = True
+      GridColumnSortAllowed = True
+      GridColumnFormat = ""
+      GridColumnPickObject = 0
+    ENDGRIDCOLUMN
+    BEGIN .VSGridColumn "OBT_Client"      
+      GridColumnLabel = "OBT_Client"
+      GridColumnWidth = 0x4B
+      GridColumnDataField = 3
+      GridColumnEditType = "VSTextField"
+      GridColumnControlStyle = ""
+      JUSTIFY = "JUSTIFY_LEFT"
+      VALIGN = "VALIGN_CENTER"
+      GRIDCOLUMNBACKCOLOR = "0xffffff"
+      GRIDCOLUMNFORECOLOR = "0x000000"
+      GRIDCOLUMNHILITEBACKCOLOR = "0x000080"
+      GRIDCOLUMNHILITEFORECOLOR = "0xffffff"
+      GridColumnEnable = True
+      GridColumnSortAllowed = True
+      GridColumnFormat = ""
+      GridColumnPickObject = 0
+    ENDGRIDCOLUMN
+    END
+  END
+]]></FormLayout>
+</Form>

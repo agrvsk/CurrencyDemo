@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DataObject SYSTEM "DataObject.dtd">
+<DataObject
+	DTDVersion="05.06.00"
+	SurrId="null"
+	CodedValuesList="False"
+	ImageReference=""
+	IsRemoteAccessible="False"
+	UseQuotedIdentifiers="False"
+	XdaConnector="SQL"
+	SuperClass="com.versata.tl.vls.core.DataObject"
+	LockMode="AllApplicableAttributes"
+	>
+	<Attributes>
+		
+		<Attribute
+			Name="CUR_Client"
+			ValueRequired="False"
+			LayoutByDefault="True"
+			Persistent="True"
+			PreventUserUpdates="False"
+			>
+			<DataType
+				DataType="VarChar"
+Size="5"
+			/>
+			<Derivation
+   DerivationType="Default"
+>
+<DefaultValue>
+<![CDATA['1']]>
+</DefaultValue>
+</Derivation>
+			<Validation
+				ValidationType="Condition"
+			/>
+			<Comments><![CDATA[]]></Comments>
+			<Format><![CDATA[]]></Format>
+		</Attribute>
+		   
+		<Attribute
+			Name="CUR_CurrencyCode"
+			ValueRequired="False"
+			LayoutByDefault="True"
+			Persistent="True"
+			PreventUserUpdates="False"
+			>
+			<DataType
+				DataType="Char"
+Size="3"
+			/>
+			<Validation
+				ValidationType="Condition"
+			/>
+			<Comments><![CDATA[]]></Comments>
+			<Format><![CDATA[]]></Format>
+			<Caption><![CDATA[Currency Code]]></Caption>
+		</Attribute>
+		   
+		<Attribute
+			Name="CUR_ExchangeRate"
+			ValueRequired="False"
+			LayoutByDefault="True"
+			Persistent="True"
+			PreventUserUpdates="False"
+			>
+			<DataType
+				DataType="Decimal"
+Size="0"
+Precision="10"
+Scale="4"
+			/>
+			<Validation
+				ValidationType="Condition"
+			/>
+			<Comments><![CDATA[]]></Comments>
+			<Format><![CDATA[]]></Format>
+			<Caption><![CDATA[Exchange Rate]]></Caption>
+		</Attribute>
+		   
+		<Attribute
+			Name="CUR_NumberOfOrders"
+			ValueRequired="False"
+			LayoutByDefault="True"
+			Persistent="False"
+			PreventUserUpdates="False"
+			>
+			<DataType
+				DataType="Integer"
+
+			/>
+			<Derivation
+   DerivationType="Count"
+SourceDataObject="cORDfCUR(OrderItem_ORD)"
+>
+</Derivation>
+			<Validation
+				ValidationType="Condition"
+			/>
+			<Comments><![CDATA[]]></Comments>
+			<Format><![CDATA[]]></Format>
+			<Caption><![CDATA[Number Of Orders]]></Caption>
+		</Attribute>
+		   
+		<Attribute
+			Name="CUR_OrderValueUSD"
+			ValueRequired="False"
+			LayoutByDefault="True"
+			Persistent="True"
+			PreventUserUpdates="False"
+			>
+			<DataType
+				DataType="Decimal"
+Size="0"
+Precision="10"
+Scale="2"
+			/>
+			<Derivation
+   DerivationType="Sum"
+SourceAttribute="ORD_AmountInUSD"
+SourceDataObject="cORDfCUR(OrderItem_ORD)"
+>
+</Derivation>
+			<Validation
+				ValidationType="Condition"
+			/>
+			<Comments><![CDATA[]]></Comments>
+			<Format><![CDATA[]]></Format>
+			<Caption><![CDATA[Order Value USD22]]></Caption>
+		</Attribute>
+		   
+		<Attribute
+			Name="CUR_OrderAmountAverage"
+			ValueRequired="False"
+			LayoutByDefault="True"
+			Persistent="True"
+			PreventUserUpdates="False"
+			>
+			<DataType
+				DataType="Decimal"
+Size="0"
+Precision="10"
+Scale="2"
+			/>
+			<Derivation
+   DerivationType="Formula"
+>
+<Formula>
+<![CDATA[If ( CUR_NumberOfOrders&gt;0) Then &#xA;    &#x9;&#x9;&#x9;$value= CUR_OrderValueUSD / CUR_NumberOfOrders&#xA;    &#x9;&#x9;Else&#xA;    &#x9;&#x9;&#x9;$value= 0&#xA;    &#x9;&#x9;End if]]>
+</Formula>
+</Derivation>
+			<Validation
+				ValidationType="Condition"
+			/>
+			<Comments><![CDATA[]]></Comments>
+			<Format><![CDATA[]]></Format>
+			<Caption><![CDATA[Order Amount Average USD]]></Caption>
+		</Attribute>
+		   
+		<Attribute
+			Name="CUR_Image"
+			ValueRequired="False"
+			LayoutByDefault="True"
+			Persistent="False"
+			PreventUserUpdates="False"
+			>
+			<DataType
+				DataType="VarChar"
+Size="255"
+			/>
+			<Derivation
+   DerivationType="Formula"
+>
+<Formula>
+<![CDATA[getImage()]]>
+</Formula>
+</Derivation>
+			<Validation
+				ValidationType="Condition"
+			/>
+			<Comments><![CDATA[]]></Comments>
+			<Format><![CDATA[]]></Format>
+			<Caption><![CDATA[Image]]></Caption>
+		</Attribute>
+		   
+		<Attribute
+			Name="CUR_Client_RelatedTo"
+			ValueRequired="False"
+			LayoutByDefault="True"
+			Persistent="True"
+			PreventUserUpdates="False"
+			>
+			<DataType
+				DataType="VarChar"
+Size="5"
+			/>
+			<Validation
+				ValidationType="Condition"
+			/>
+			<Comments><![CDATA[]]></Comments>
+			<Format><![CDATA[]]></Format>
+		</Attribute>
+		   
+		<Attribute
+			Name="CUR_CurrencyCode_RelatedTo"
+			ValueRequired="False"
+			LayoutByDefault="True"
+			Persistent="True"
+			PreventUserUpdates="False"
+			>
+			<DataType
+				DataType="Char"
+Size="3"
+			/>
+			<Validation
+				ValidationType="Condition"
+			/>
+			<Comments><![CDATA[]]></Comments>
+			<Format><![CDATA[]]></Format>
+			<Caption><![CDATA[CurrencyCode_RelatedTo]]></Caption>
+		</Attribute>
+		   
+	</Attributes>
+	<Indexes>
+		
+		   <Index
+		   		Name="Currency_CUR_PK1"
+				Primary="True"
+				Unique="True"
+				IgnoreNulls="False"
+				>
+				
+				<Index_Attribute
+					Name="CUR_Client"
+					Descending="False"
+				/>
+				<Index_Attribute
+					Name="CUR_CurrencyCode"
+					Descending="False"
+				/>		   		
+		   </Index> 
+		   	<Index
+		   		Name="Currency_CUR_ALT1"
+				Primary="False"
+				Unique="False"
+				IgnoreNulls="False"
+				>
+				
+				<Index_Attribute
+					Name="CUR_Client_RelatedTo"
+					Descending="False"
+				/>
+				<Index_Attribute
+					Name="CUR_CurrencyCode_RelatedTo"
+					Descending="False"
+				/>		   		
+		   	</Index>
+		   
+	</Indexes>
+	<SingularCaption><![CDATA[*]]></SingularCaption>
+	<PluralCaption><![CDATA[*]]></PluralCaption>
+	<VLSDeployment
+		DeploySecurityInfo="False"
+	/>
+	<Description><![CDATA[]]></Description>
+	<Comments><![CDATA[]]></Comments>
+	
+	<CodedValuesList
+		StoredAttribute=" "
+		DisplayAttribute=" "
+	/>
+	<Constraints></Constraints>
+</DataObject>

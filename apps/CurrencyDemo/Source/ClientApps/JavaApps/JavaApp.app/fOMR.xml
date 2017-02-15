@@ -1,0 +1,733 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE Form SYSTEM "Form.dtd">
+<Form
+	DTDVersion="05.06.00"
+	TargetLanguage="Java"
+	Archetype="Default"
+	PositionTop="473"
+	PositionLeft="204"
+	PositionWidth="150"
+	PositionHeight="44"
+	IsAddedAfterGen="False"
+	HasCustomFormLayout="False"
+	ObjectsUnusedByFormLayout="False"
+	External="False"
+	NoDataForm="False"
+	>
+	<FormCaption><![CDATA[OMR]]></FormCaption>
+	<RecordSource
+		RSID="1"
+		Prefix="T1"
+		BusinessObject="OMR"
+		RelnIsFromParent="False"
+		DoesSourceAffectMe="False"
+		DoIAffectSource="False"
+		IsAddedAfterGen="False"
+		RsAttributesDefault="True"
+		ClassName="DataSource"
+		RecordSourceArchetype="Display"
+		>
+		<ParameterizedWhereClause><![CDATA[ ]]></ParameterizedWhereClause>
+		<AdditionalWhereClause><![CDATA[ ]]></AdditionalWhereClause>
+		<OrderByClause><![CDATA[ ]]></OrderByClause>
+		<RSAttributesMeta>
+			<DefaultAttributes>
+				<RSDefaultAttribute ID="1" Name="OMR_OMR" />
+				<RSDefaultAttribute ID="2" Name="OMR_BESK" />
+				<RSDefaultAttribute ID="3" Name="OMR_INGIOMR" />
+			</DefaultAttributes>
+			<ScalerAttributes>
+				<RSAttribute Name="OMR_OMR" Displayed="True" UnPlaced="False" />
+				<RSAttribute Name="OMR_BESK" Displayed="True" UnPlaced="False" />
+				<RSAttribute Name="OMR_INGIOMR" Displayed="True" UnPlaced="False" />
+			</ScalerAttributes>
+		</RSAttributesMeta>
+	</RecordSource>
+	<FormLayout><![CDATA[BEGIN .VSForm fOMR
+  ClassName = "VSForm"
+  BackColor = 0xc0c0c0
+Width=579
+  Title = "OMR"
+  Enable = True
+  ForeColor = 0x000000
+  HelpURL = ""
+  ToolTip = ""
+  Visible = True
+  Tag = "_$$_"
+Height=500
+  AnchorForm = "NONE"
+  Style = "Child"
+  Name = "fOMR"
+  Extended = ""
+  DisplayTitleBar = True
+  BeginProperty VSFont 
+    FontName  = "Helvetica"
+    FontSize  = 12
+    FontStyleBold  = False
+    FontStyleItalic  = False
+  EndProperty 
+    BEGIN .VSImageButton btnInsert
+      ImageFile = "New.GIF"
+Top=7
+      ClassName = "VSImageButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = "(Current)"
+      BackColor = 0xc0c0c0
+Width=26
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "Insert"
+      Visible = True
+      Tag = "_$$_"
+      Action = "db_insert"
+TabOrder = 0
+Height=26
+Left=8
+      AutoSize = False
+      TabStop = True
+      Border = "AUTOSHOW_BORDER"
+      Extended = ""
+      Name = "btnInsert"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = ""
+      END
+    BEGIN .VSImageButton btnDelete
+      ImageFile = "delete.GIF"
+Top=7
+      ClassName = "VSImageButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = "(Current)"
+      BackColor = 0xc0c0c0
+Width=26
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "Delete"
+      Visible = True
+      Tag = "_$$_"
+      Action = "db_delete"
+TabOrder = 1
+Height=26
+Left=35
+      AutoSize = False
+      TabStop = True
+      Border = "AUTOSHOW_BORDER"
+      Extended = ""
+      Name = "btnDelete"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = ""
+      END
+    BEGIN .VSImageButton btnSave
+      ImageFile = "Save.GIF"
+Top=7
+      ClassName = "VSImageButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = "(Current)"
+      BackColor = 0xc0c0c0
+Width=26
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "Save"
+      Visible = True
+      Tag = "_$$_"
+      Action = "db_saveAll"
+TabOrder = 2
+Height=26
+Left=70
+      AutoSize = False
+      TabStop = True
+      Border = "AUTOSHOW_BORDER"
+      Extended = ""
+      Name = "btnSave"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = ""
+      END
+    BEGIN .VSImageButton btnUndo
+      ImageFile = "Undo.GIF"
+Top=7
+      ClassName = "VSImageButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = "(Current)"
+      BackColor = 0xc0c0c0
+Width=26
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "Undo"
+      Visible = True
+      Tag = "_$$_"
+      Action = "db_undoRecord"
+TabOrder = 3
+Height=26
+Left=97
+      AutoSize = False
+      TabStop = True
+      Border = "AUTOSHOW_BORDER"
+      Extended = ""
+      Name = "btnUndo"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = ""
+      END
+    BEGIN .VSImageButton btnMoveFirst
+      ImageFile = "First.GIF"
+Top=7
+      ClassName = "VSImageButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = "(Current)"
+      BackColor = 0xc0c0c0
+Width=26
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "MoveFirst"
+      Visible = True
+      Tag = "_$$_"
+      Action = "db_first"
+TabOrder = 4
+Height=26
+Left=137
+      AutoSize = False
+      TabStop = True
+      Border = "AUTOSHOW_BORDER"
+      Extended = ""
+      Name = "btnMoveFirst"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = ""
+      END
+    BEGIN .VSImageButton btnMovePrev
+      ImageFile = "previous.GIF"
+Top=7
+      ClassName = "VSImageButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = "(Current)"
+      BackColor = 0xc0c0c0
+Width=26
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "Move Previous"
+      Visible = True
+      Tag = "_$$_"
+      Action = "db_previous"
+TabOrder = 5
+Height=26
+Left=164
+      AutoSize = False
+      TabStop = True
+      Border = "AUTOSHOW_BORDER"
+      Extended = ""
+      Name = "btnMovePrev"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = ""
+      END
+    BEGIN .VSImageButton btnMoveNext
+      ImageFile = "Next.GIF"
+Top=7
+      ClassName = "VSImageButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = "(Current)"
+      BackColor = 0xc0c0c0
+Width=26
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "Move Next"
+      Visible = True
+      Tag = "_$$_"
+      Action = "db_next"
+TabOrder = 6
+Height=26
+Left=191
+      AutoSize = False
+      TabStop = True
+      Border = "AUTOSHOW_BORDER"
+      Extended = ""
+      Name = "btnMoveNext"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = ""
+      END
+    BEGIN .VSImageButton btnMoveLast
+      ImageFile = "Last.GIF"
+Top=7
+      ClassName = "VSImageButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = "(Current)"
+      BackColor = 0xc0c0c0
+Width=26
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "Move Last"
+      Visible = True
+      Tag = "_$$_"
+      Action = "db_last"
+TabOrder = 7
+Height=26
+Left=218
+      AutoSize = False
+      TabStop = True
+      Border = "AUTOSHOW_BORDER"
+      Extended = ""
+      Name = "btnMoveLast"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = ""
+      END
+    BEGIN .VSImageButton btnRunQuery
+      ImageFile = "runQuery.gif"
+Top=7
+      ClassName = "VSImageButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = "(Current)"
+      BackColor = 0xc0c0c0
+Width=26
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "Get Data"
+      Visible = True
+      Tag = "_$$_"
+      Action = "db_runQuery"
+TabOrder = 8
+Height=26
+Left=258
+      AutoSize = False
+      TabStop = True
+      Border = "AUTOSHOW_BORDER"
+      Extended = ""
+      Name = "btnRunQuery"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = ""
+      END
+    BEGIN .VSImageButton btnQueryMode
+      ImageFile = "QueryMode.GIF"
+Top=7
+      ClassName = "VSImageButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = "(Current)"
+      BackColor = 0xc0c0c0
+Width=26
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "Search Mode"
+      Visible = True
+      Tag = "_$$_"
+      Action = "db_queryMode"
+TabOrder = 9
+Height=26
+Left=293
+      AutoSize = False
+      TabStop = True
+      Border = "AUTOSHOW_BORDER"
+      Extended = ""
+      Name = "btnQueryMode"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = ""
+      END
+    BEGIN .VSImageButton btnQueryMode1
+      ImageFile = "clearQuery.gif"
+Top=7
+      ClassName = "VSImageButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = "(Current)"
+      BackColor = 0xc0c0c0
+Width=26
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "Clear Search"
+      Visible = True
+      Tag = "_$$_"
+      Action = "db_clearQuery"
+TabOrder = 10
+Height=26
+Left=320
+      AutoSize = False
+      TabStop = True
+      Border = "AUTOSHOW_BORDER"
+      Extended = ""
+      Name = "btnQueryMode1"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = ""
+      END
+    BEGIN .VSImageButton btnCancelQuery
+      ImageFile = "UndoQuery.GIF"
+Top=7
+      ClassName = "VSImageButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = "(Current)"
+      BackColor = 0xc0c0c0
+Width=26
+      Enable = False
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "Cancel Search"
+      Visible = True
+      Tag = "_$$_"
+      Action = "db_cancelQuery"
+TabOrder = 11
+Height=26
+Left=346
+      AutoSize = False
+      TabStop = True
+      Border = "AUTOSHOW_BORDER"
+      Extended = ""
+      Name = "btnCancelQuery"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = ""
+      END
+    BEGIN .VSImageButton btnEditSql
+      ImageFile = "EditQuery2.GIF"
+Top=7
+      ClassName = "VSImageButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = "(Current)"
+      BackColor = 0xc0c0c0
+Width=26
+      Enable = False
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "Edit SQL"
+      Visible = True
+      Tag = "_$$_"
+      Action = "db_editSQL"
+TabOrder = 12
+Height=26
+Left=380
+      AutoSize = False
+      TabStop = True
+      Border = "AUTOSHOW_BORDER"
+      Extended = ""
+      Name = "btnEditSql"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = ""
+      END
+    BEGIN .VSLabel lblT1OMR_OMR
+Top=42
+      ClassName = "VSLabel"
+      StatusBarText = ""
+      Align = "LEFT"
+      DataSource = ""
+      BackColor = 0xc0c0c0
+Width=102
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = ""
+      Visible = True
+      Tag = "_$$_"
+Height=18
+Left=7
+      DataField = 0
+      Extended = ""
+      Name = "lblT1OMR_OMR"
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      Label = "Id"
+      END
+    BEGIN .VSTextField txtT1OMR_OMR
+Top=41
+      ClassName = "VSTextField"
+    StatusBarText = ""
+      EchoChar = ""
+    DataSource = datT1OMR
+      BackColor = 0xffffff
+Width=51
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = ""
+      Visible = True
+      Tag = "_$$_"
+    Format = ""
+TabOrder = 13
+Height=20
+Left=111
+    DataField = 1,"OMR_OMR"
+      TabStop = True
+      Editable = True
+      Extended = ""
+      Name = "txtT1OMR_OMR"
+      Text = ""
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      END
+    BEGIN .VSLabel lblT1OMR_BESK
+Top=70
+      ClassName = "VSLabel"
+      StatusBarText = ""
+      Align = "LEFT"
+      DataSource = ""
+      BackColor = 0xc0c0c0
+Width=102
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = ""
+      Visible = True
+      Tag = "_$$_"
+Height=18
+Left=7
+      DataField = 0
+      Extended = ""
+      Name = "lblT1OMR_BESK"
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      Label = "Beskrivning"
+      END
+    BEGIN .VSTextField txtT1OMR_BESK
+Top=69
+      ClassName = "VSTextField"
+    StatusBarText = ""
+      EchoChar = ""
+    DataSource = datT1OMR
+      BackColor = 0xffffff
+Width=114
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = ""
+      Visible = True
+      Tag = "_$$_"
+    Format = ""
+TabOrder = 14
+Height=20
+Left=111
+    DataField = 2,"OMR_BESK"
+      TabStop = True
+      Editable = True
+      Extended = ""
+      Name = "txtT1OMR_BESK"
+      Text = ""
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      END
+    BEGIN .VSLabel lblT1OMR_INGIOMR
+Top=98
+      ClassName = "VSLabel"
+      StatusBarText = ""
+      Align = "LEFT"
+      DataSource = ""
+      BackColor = 0xc0c0c0
+Width=102
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = ""
+      Visible = True
+      Tag = "_$$_"
+Height=18
+Left=7
+      DataField = 0
+      Extended = ""
+      Name = "lblT1OMR_INGIOMR"
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      Label = "OMR_INGIOMR"
+      END
+    BEGIN .VSTextField txtT1OMR_INGIOMR
+Top=97
+      ClassName = "VSTextField"
+    StatusBarText = ""
+      EchoChar = ""
+    DataSource = datT1OMR
+      BackColor = 0xffffff
+Width=51
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = ""
+      Visible = True
+      Tag = "_$$_"
+    Format = ""
+TabOrder = 15
+Height=20
+Left=111
+    DataField = 3,"OMR_INGIOMR"
+      TabStop = True
+      Editable = True
+      Extended = ""
+      Name = "txtT1OMR_INGIOMR"
+      Text = ""
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      END
+    BEGIN .VSJavaDataControl datT1OMR
+Top=420
+      ClassName = "VSJavaDataControl"
+      RecordSourceProperties = ""
+      StatusBarText = ""
+      AllowInsert = True
+      BackColor = 0xffffff
+Width=201
+      AllowUpdate = True
+    RecordSource = 1,"T1OMR"
+      Enable = True
+      ForeColor = 0x000000
+      AllowDelete = True
+      HelpURL = ""
+      ToolTip = ""
+      Visible = False
+      Tag = "_$$_"
+      MaxRowsPerFetch = 1
+TabOrder = 16
+Height=25
+Left=140
+      SaveMode = "immediate"
+      TabStop = False
+      Extended = ""
+      Name = "datT1OMR"
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      Label = "OMR"
+      END
+  END
+]]></FormLayout>
+</Form>

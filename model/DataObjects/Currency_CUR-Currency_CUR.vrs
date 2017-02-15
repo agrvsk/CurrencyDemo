@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rule:RuleSet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:asn="http://www.versata.com/tl/6.0/association" xmlns:rule="http://www.versata.com/tl/6.0/rule" name="Currency_CUR-Currency_CUR" metaModelVersion="6.2.0.0">
+  <rule name="Currency_CURParent_UPDATED">
+    <event type="UPDATED"/>
+    <condition xsi:type="rule:RICondition"/>
+    <action xsi:type="rule:RejectTransaction"/>
+    <action xsi:type="rule:LogMessage">
+      <message href="http://www.versata.com/tl/6.0/system.vrs#SYSTEM_MSG"/>
+    </action>
+    <binding>
+      <target name="Currency_CURParent_Target_UPDATED">
+        <bindable xsi:type="asn:AssociationRole" href="Currency_CUR-Currency_CUR.vas#Currency_CURParent"/>
+      </target>
+    </binding>
+  </rule>
+  <rule name="Currency_CURParent_DELETED">
+    <event type="DELETED"/>
+    <condition xsi:type="rule:RICondition"/>
+    <action xsi:type="rule:RejectTransaction"/>
+    <action xsi:type="rule:LogMessage">
+      <message href="http://www.versata.com/tl/6.0/system.vrs#SYSTEM_MSG"/>
+    </action>
+    <binding>
+      <target name="Currency_CURParent_Target_DELETED">
+        <bindable xsi:type="asn:AssociationRole" href="Currency_CUR-Currency_CUR.vas#Currency_CURParent"/>
+      </target>
+    </binding>
+  </rule>
+  <rule name="Currency_CURChild_UPDATED">
+    <event type="UPDATED"/>
+    <condition xsi:type="rule:RICondition"/>
+    <action xsi:type="rule:RejectTransaction"/>
+    <action xsi:type="rule:LogMessage">
+      <message href="http://www.versata.com/tl/6.0/system.vrs#SYSTEM_MSG"/>
+    </action>
+    <binding>
+      <target name="Currency_CURChild_Target_UPDATED">
+        <bindable xsi:type="asn:AssociationRole" href="Currency_CUR-Currency_CUR.vas#Currency_CURChild"/>
+      </target>
+    </binding>
+  </rule>
+  <rule name="Currency_CURChild_INSERTED">
+    <event type="INSERTED"/>
+    <condition xsi:type="rule:RICondition"/>
+    <action xsi:type="rule:RejectTransaction"/>
+    <action xsi:type="rule:LogMessage">
+      <message href="http://www.versata.com/tl/6.0/system.vrs#SYSTEM_MSG"/>
+    </action>
+    <binding>
+      <target name="Currency_CURChild_Target_INSERTED">
+        <bindable xsi:type="asn:AssociationRole" href="Currency_CUR-Currency_CUR.vas#Currency_CURChild"/>
+      </target>
+    </binding>
+  </rule>
+</rule:RuleSet>

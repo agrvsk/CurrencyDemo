@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DataObject SYSTEM "DataObject.dtd">
+<DataObject
+	DTDVersion="05.06.00"
+	SurrId="null"
+	CodedValuesList="False"
+	ImageReference=""
+	IsRemoteAccessible="False"
+	UseQuotedIdentifiers="False"
+	XdaConnector="SQL"
+	SuperClass="com.versata.tl.vls.core.DataObject"
+	LockMode="NoOptimisticLocking"
+	>
+	<Attributes>
+		
+		<Attribute
+			Name="ORD_Client"
+			ValueRequired="False"
+			LayoutByDefault="True"
+			Persistent="True"
+			PreventUserUpdates="False"
+			>
+			<DataType
+				DataType="VarChar"
+Size="5"
+			/>
+			<Derivation
+   DerivationType="Default"
+>
+<DefaultValue>
+<![CDATA['1']]>
+</DefaultValue>
+</Derivation>
+			<Validation
+				ValidationType="Condition"
+			/>
+			<Comments><![CDATA[]]></Comments>
+			<Format><![CDATA[]]></Format>
+		</Attribute>
+		   
+		<Attribute
+			Name="ORD_OrderId"
+			ValueRequired="False"
+			LayoutByDefault="True"
+			Persistent="True"
+			PreventUserUpdates="True"
+			>
+			<DataType
+				DataType="AutoNumber"
+			/>
+			<Validation
+				ValidationType="Condition"
+			/>
+			<Comments><![CDATA[]]></Comments>
+			<Format><![CDATA[]]></Format>
+			<Caption><![CDATA[OrderId]]></Caption>
+		</Attribute>
+		   
+		<Attribute
+			Name="ORD_Month"
+			ValueRequired="False"
+			LayoutByDefault="True"
+			Persistent="True"
+			PreventUserUpdates="False"
+			>
+			<DataType
+				DataType="Char"
+Size="3"
+			/>
+			<Derivation
+   DerivationType="Default"
+>
+<DefaultValue>
+<![CDATA['1']]>
+</DefaultValue>
+</Derivation>
+			<Validation
+				ValidationType="Condition"
+			/>
+			<Comments><![CDATA[]]></Comments>
+			<Format><![CDATA[]]></Format>
+			<Caption><![CDATA[Month]]></Caption>
+		</Attribute>
+		   
+		<Attribute
+			Name="ORD_CurrencyCode"
+			ValueRequired="False"
+			LayoutByDefault="True"
+			Persistent="True"
+			PreventUserUpdates="False"
+			>
+			<DataType
+				DataType="Char"
+Size="3"
+			/>
+			<Derivation
+   DerivationType="Default"
+>
+<DefaultValue>
+<![CDATA['SEK']]>
+</DefaultValue>
+</Derivation>
+			<Validation
+				ValidationType="Condition"
+			/>
+			<Comments><![CDATA[]]></Comments>
+			<Format><![CDATA[]]></Format>
+			<Caption><![CDATA[CurrencyCode]]></Caption>
+		</Attribute>
+		   
+		<Attribute
+			Name="ORD_AmountInLocalCurrency"
+			ValueRequired="False"
+			LayoutByDefault="True"
+			Persistent="True"
+			PreventUserUpdates="False"
+			>
+			<DataType
+				DataType="Decimal"
+Size="0"
+Precision="10"
+Scale="2"
+			/>
+			<Derivation
+   DerivationType="Default"
+>
+<DefaultValue>
+<![CDATA[100]]>
+</DefaultValue>
+</Derivation>
+			<Validation
+				ValidationType="Condition"
+			/>
+			<Comments><![CDATA[]]></Comments>
+			<Format><![CDATA[]]></Format>
+			<Caption><![CDATA[AmountInLocalCurrency]]></Caption>
+		</Attribute>
+		   
+		<Attribute
+			Name="ORD_AmountInUSD"
+			ValueRequired="False"
+			LayoutByDefault="True"
+			Persistent="True"
+			PreventUserUpdates="False"
+			>
+			<DataType
+				DataType="Decimal"
+Size="0"
+Precision="10"
+Scale="2"
+			/>
+			<Derivation
+   DerivationType="Formula"
+>
+<Formula>
+<![CDATA[ORD_AmountInLocalCurrency * ORD_ExchangeRate]]>
+</Formula>
+</Derivation>
+			<Validation
+				ValidationType="Condition"
+			/>
+			<Comments><![CDATA[]]></Comments>
+			<Format><![CDATA[]]></Format>
+			<Caption><![CDATA[AmountInUSD]]></Caption>
+		</Attribute>
+		   
+		<Attribute
+			Name="ORD_ExchangeRate"
+			ValueRequired="False"
+			LayoutByDefault="True"
+			Persistent="True"
+			PreventUserUpdates="False"
+			>
+			<DataType
+				DataType="Decimal"
+Size="0"
+Precision="10"
+Scale="4"
+			/>
+			<Derivation
+   DerivationType="ParentReplicate"
+SourceAttribute="CUR_ExchangeRate"
+SourceDataObject="pCURfORD(Currency_CUR)"
+ParentReplicateIsMaintained="True"
+>
+</Derivation>
+			<Validation
+				ValidationType="Condition"
+			/>
+			<Comments><![CDATA[]]></Comments>
+			<Format><![CDATA[]]></Format>
+		</Attribute>
+		   
+		<Attribute
+			Name="ORD_Approved"
+			ValueRequired="False"
+			LayoutByDefault="True"
+			Persistent="True"
+			PreventUserUpdates="False"
+			>
+			<DataType
+				DataType="VarChar"
+Size="3"
+			/>
+			<Validation
+				ValidationType="CodedValuesList"
+				CodedValuesList="Z_YesNo"
+				
+			/>
+			<Comments><![CDATA[]]></Comments>
+			<Format><![CDATA[]]></Format>
+			<Caption><![CDATA[Approved]]></Caption>
+		</Attribute>
+		   
+	</Attributes>
+	<Indexes>
+		
+		   <Index
+		   		Name="OrderItem_ORD_PK1"
+				Primary="True"
+				Unique="True"
+				IgnoreNulls="False"
+				>
+				
+				<Index_Attribute
+					Name="ORD_OrderId"
+					Descending="False"
+				/>		   		
+		   </Index> 
+	</Indexes>
+	<SingularCaption><![CDATA[*]]></SingularCaption>
+	<PluralCaption><![CDATA[*]]></PluralCaption>
+	<VLSDeployment
+		DeploySecurityInfo="False"
+	/>
+	<Description><![CDATA[]]></Description>
+	<Comments><![CDATA[]]></Comments>
+	
+	<CodedValuesList
+		StoredAttribute=" "
+		DisplayAttribute=" "
+	/>
+	<Constraints></Constraints>
+</DataObject>

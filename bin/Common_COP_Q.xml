@@ -1,0 +1,76 @@
+<com.versata.tl.metadata.MetaData>
+  <primaryDataModel>
+    <primaryKey>
+      <keys class="linked-list">
+        <string>COP_Id</string>
+      </keys>
+    </primaryKey>
+    <columnNames>
+      <keys class="linked-list">
+        <string>COP_Id</string>
+        <string>COP_Description</string>
+        <string>COP_Dummy</string>
+      </keys>
+    </columnNames>
+    <dataModelName>CommonParms_COP</dataModelName>
+    <columnToCaption>
+      <entry>
+        <string>COP_Id</string>
+        <string>ID1</string>
+      </entry>
+      <entry>
+        <string>COP_Dummy</string>
+        <null/>
+      </entry>
+      <entry>
+        <string>COP_Description</string>
+        <string>Description</string>
+      </entry>
+    </columnToCaption>
+  </primaryDataModel>
+  <additionalDataModels class="linked-list"/>
+  <rcaAssociations class="linked-list"/>
+  <joinAssociations class="linked-list"/>
+  <aliasToDataModelMap>
+    <entry>
+      <string>CommonParms_COP</string>
+      <string>CommonParms_COP</string>
+    </entry>
+  </aliasToDataModelMap>
+  <columnToDataModelMap>
+    <entry>
+      <string>COP_Id</string>
+      <string>CommonParms_COP</string>
+    </entry>
+    <entry>
+      <string>COP_Description</string>
+      <string>CommonParms_COP</string>
+    </entry>
+  </columnToDataModelMap>
+  <columnToSourceAttributeMap>
+    <entry>
+      <string>COP_Id</string>
+      <string>COP_Id</string>
+    </entry>
+    <entry>
+      <string>COP_Description</string>
+      <string>COP_Description</string>
+    </entry>
+  </columnToSourceAttributeMap>
+  <columsToCaptionMap/>
+  <recordIdKeys>
+    <keys class="linked-list">
+      <string>COP_Id</string>
+    </keys>
+  </recordIdKeys>
+  <allKeys>
+    <keys class="linked-list">
+      <string>COP_Id</string>
+      <string>COP_Description</string>
+    </keys>
+  </allKeys>
+  <orderByAttributes class="linked-list"/>
+  <repositoryName>CurrencyDemo</repositoryName>
+  <packageName>CurrencyDemo</packageName>
+  <queryName>Common_COP_Q</queryName>
+</com.versata.tl.metadata.MetaData>

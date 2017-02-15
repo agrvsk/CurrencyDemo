@@ -1,0 +1,56 @@
+<com.versata.tl.metadata.PresentationMetaDataDO>
+  <dataModelName>OMR</dataModelName>
+  <singularCaption>O M R</singularCaption>
+  <pluralCaption>O M R List</pluralCaption>
+  <attributeProperties>
+    <entry>
+      <string>OMR_OMR</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>OMR_OMR</attributeName>
+        <singularCaption>Id</singularCaption>
+        <required>true</required>
+        <attrSize>
+          <size>6</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>OMR_INGIOMR</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>OMR_INGIOMR</attributeName>
+        <singularCaption>O M R  I N G I O M R</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>6</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>OMR_BESK</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>OMR_BESK</attributeName>
+        <singularCaption>Beskrivning</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>50</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+  </attributeProperties>
+  <associations/>
+</com.versata.tl.metadata.PresentationMetaDataDO>

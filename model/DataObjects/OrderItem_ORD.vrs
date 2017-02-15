@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rule:RuleSet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:asn="http://www.versata.com/tl/6.0/association" xmlns:do="http://www.versata.com/tl/6.0/dataobject" xmlns:rule="http://www.versata.com/tl/6.0/rule" name="OrderItem_ORD" metaModelVersion="6.2.0.0">
+  <rule name="ORD_ExchangeRate_Derivation">
+    <event type="SOURCE_CHANGED"/>
+    <action xsi:type="rule:Replicate" maintained="true"/>
+    <binding>
+      <target name="ORD_ExchangeRate_DerivationTarget">
+        <bindable xsi:type="do:Attribute" href="OrderItem_ORD.vdm#ORD_ExchangeRate"/>
+      </target>
+      <source name="ORD_ExchangeRate_DerivationSourceParentAssociationRole">
+        <bindable xsi:type="asn:AssociationRole" href="Currency_CUR-OrderItem_ORD.vas#pCURfORD"/>
+      </source>
+      <source name="ORD_ExchangeRate_DerivationSourceAttribute">
+        <bindable xsi:type="do:Attribute" href="Currency_CUR.vdm#CUR_ExchangeRate"/>
+      </source>
+    </binding>
+  </rule>
+  <rule name="ORD_AmountInUSD_Derivation">
+    <event type="SOURCE_CHANGED"/>
+    <action xsi:type="rule:Compute" expression="ORD_AmountInLocalCurrency * ORD_ExchangeRate"/>
+    <binding>
+      <target name="ORD_AmountInUSD_DerivationTarget">
+        <bindable xsi:type="do:Attribute" href="OrderItem_ORD.vdm#ORD_AmountInUSD"/>
+      </target>
+      <source name="ORD_AmountInUSD_DerivationSourceDataObject">
+        <bindable xsi:type="do:DataObject" href="OrderItem_ORD.vdm#OrderItem_ORD"/>
+      </source>
+    </binding>
+  </rule>
+  <rule name="ORD_Approved_Validation">
+    <event type="TARGET_CHANGED"/>
+    <condition xsi:type="rule:EnumCondition"/>
+    <action xsi:type="rule:LogMessage">
+      <message href="http://www.versata.com/tl/6.0/system.vrs#SYSTEM_MSG"/>
+    </action>
+    <action xsi:type="rule:RejectTransaction"/>
+    <binding>
+      <target name="ORD_Approved_ValidationTarget">
+        <bindable xsi:type="do:Attribute" href="OrderItem_ORD.vdm#ORD_Approved"/>
+      </target>
+      <source name="ORD_Approved_ValidationSourceEnumeratedType">
+        <bindable xsi:type="do:EnumeratedType" href="Z_YesNo.vdm#Z_YesNo_Enum"/>
+      </source>
+    </binding>
+  </rule>
+  <rule name="ORD_Client_Derivation">
+    <event type="INSERTED"/>
+    <action xsi:type="rule:Compute" expression="'1'" literal="true"/>
+    <binding>
+      <target name="ORD_Client_DerivationTarget">
+        <bindable xsi:type="do:Attribute" href="OrderItem_ORD.vdm#ORD_Client"/>
+      </target>
+    </binding>
+  </rule>
+  <rule name="ORD_Month_Derivation">
+    <event type="INSERTED"/>
+    <action xsi:type="rule:Compute" expression="'1'" literal="true"/>
+    <binding>
+      <target name="ORD_Month_DerivationTarget">
+        <bindable xsi:type="do:Attribute" href="OrderItem_ORD.vdm#ORD_Month"/>
+      </target>
+    </binding>
+  </rule>
+  <rule name="ORD_CurrencyCode_Derivation">
+    <event type="INSERTED"/>
+    <action xsi:type="rule:Compute" expression="'SEK'" literal="true"/>
+    <binding>
+      <target name="ORD_CurrencyCode_DerivationTarget">
+        <bindable xsi:type="do:Attribute" href="OrderItem_ORD.vdm#ORD_CurrencyCode"/>
+      </target>
+    </binding>
+  </rule>
+  <rule name="ORD_AmountInLocalCurrency_Derivation">
+    <event type="INSERTED"/>
+    <action xsi:type="rule:Compute" expression="100" literal="true"/>
+    <binding>
+      <target name="ORD_AmountInLocalCurrency_DerivationTarget">
+        <bindable xsi:type="do:Attribute" href="OrderItem_ORD.vdm#ORD_AmountInLocalCurrency"/>
+      </target>
+    </binding>
+  </rule>
+</rule:RuleSet>

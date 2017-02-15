@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>CurrencyDemo</name>
+	<comment>Versata version 7.0.0.6114.</comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>com.versata.tl.studio.common.VersataLogicBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>com.versata.tl.studio.builderextension.VersataBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.wst.common.project.facet.core.builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.wst.validation.validationbuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>com.versata.tl.studio.VersataLogicProjectNature</nature>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+		<nature>org.eclipse.wst.common.project.facet.core.nature</nature>
+		<nature>org.eclipse.wst.common.modulecore.ModuleCoreNature</nature>
+		<nature>org.eclipse.jem.workbench.JavaEMFNature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>logs</name>
+			<type>2</type>
+			<locationURI>BRE_HOME/studio/Logs/CurrencyDemo</locationURI>
+		</link>
+	</linkedResources>
+</projectDescription>

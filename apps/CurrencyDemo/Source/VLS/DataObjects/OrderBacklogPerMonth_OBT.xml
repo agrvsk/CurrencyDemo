@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DataObject SYSTEM "DataObject.dtd">
+<DataObject
+	DTDVersion="05.06.00"
+	SurrId="null"
+	CodedValuesList="False"
+	ImageReference=""
+	IsRemoteAccessible="False"
+	UseQuotedIdentifiers="False"
+	XdaConnector="com.versata.tl.vls.admin.security.F2KConnector"
+	SuperClass="com.versata.tl.vls.core.DataObject"
+	LockMode="AllApplicableAttributes"
+	>
+	<Attributes>
+		
+		<Attribute
+			Name="OBT_Client"
+			ValueRequired="False"
+			LayoutByDefault="True"
+			Persistent="True"
+			PreventUserUpdates="False"
+			>
+			<DataType
+				DataType="VarChar"
+Size="5"
+			/>
+			<Validation
+				ValidationType="Condition"
+			/>
+			<Comments><![CDATA[]]></Comments>
+			<Format><![CDATA[]]></Format>
+		</Attribute>
+		   
+		<Attribute
+			Name="OBT_Month"
+			ValueRequired="False"
+			LayoutByDefault="True"
+			Persistent="True"
+			PreventUserUpdates="False"
+			>
+			<DataType
+				DataType="Char"
+Size="3"
+			/>
+			<Validation
+				ValidationType="Condition"
+			/>
+			<Comments><![CDATA[]]></Comments>
+			<Format><![CDATA[]]></Format>
+			<Caption><![CDATA[Month]]></Caption>
+		</Attribute>
+		   
+		<Attribute
+			Name="OBT_OrderValueUSD"
+			ValueRequired="False"
+			LayoutByDefault="True"
+			Persistent="True"
+			PreventUserUpdates="False"
+			>
+			<DataType
+				DataType="Decimal"
+Size="0"
+Precision="10"
+Scale="2"
+			/>
+			<Derivation
+   DerivationType="Sum"
+SourceAttribute="ORD_AmountInUSD"
+SourceDataObject="cORDfOBT(OrderItem_ORD)"
+>
+</Derivation>
+			<Validation
+				ValidationType="Condition"
+			/>
+			<Comments><![CDATA[]]></Comments>
+			<Format><![CDATA[]]></Format>
+			<Caption><![CDATA[Order Value USD]]></Caption>
+		</Attribute>
+		   
+	</Attributes>
+	<Indexes>
+		
+		   <Index
+		   		Name="OrderBacklogPerMonth_OBT_PK1"
+				Primary="True"
+				Unique="True"
+				IgnoreNulls="False"
+				>
+				
+				<Index_Attribute
+					Name="OBT_Client"
+					Descending="False"
+				/>
+				<Index_Attribute
+					Name="OBT_Month"
+					Descending="False"
+				/>		   		
+		   </Index> 
+	</Indexes>
+	<SingularCaption><![CDATA[*]]></SingularCaption>
+	<PluralCaption><![CDATA[*]]></PluralCaption>
+	<VLSDeployment
+		DeploySecurityInfo="False"
+	/>
+	<Description><![CDATA[]]></Description>
+	<Comments><![CDATA[]]></Comments>
+	
+	<CodedValuesList
+		StoredAttribute=" "
+		DisplayAttribute=" "
+	/>
+	<Constraints></Constraints>
+</DataObject>

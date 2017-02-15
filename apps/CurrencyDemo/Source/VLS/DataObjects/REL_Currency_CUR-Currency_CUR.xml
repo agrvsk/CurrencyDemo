@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Relationships SYSTEM "Relation.dtd">
+<Relationships
+	DTDVersion="05.06.00"
+	>
+	
+	<Relationship
+		ParentRoleName="Currency_CURParent"
+		ChildRoleName="Currency_CURChild"
+		IsEnforce="True"
+		OnParentUpdate="PreventIfChildren"
+		
+		OnParentDelete="PreventIfChildren"
+		
+		OnChildInsertOrUpdate="PreventIfNoParent"
+		
+		CountAggregates="1"
+		CountReplicates="1"
+		>
+		<AscendCaption><![CDATA[p]]></AscendCaption>
+		<DescendCaption><![CDATA[c]]></DescendCaption>
+		<ErrPreventUpdateParent><![CDATA[<System Supplied>]]></ErrPreventUpdateParent>
+		<ErrPreventDeleteParent><![CDATA[<System Supplied>]]></ErrPreventDeleteParent>
+		<ErrPreventInsertOrUpdateChild><![CDATA[<System Supplied>]]></ErrPreventInsertOrUpdateChild>
+		<AttributePairs>
+			
+			<AttributePair
+				ParentAttribute="CUR_Client"
+				ChildAttribute="CUR_Client_RelatedTo"			
+			/>
+			<AttributePair
+				ParentAttribute="CUR_CurrencyCode"
+				ChildAttribute="CUR_CurrencyCode_RelatedTo"			
+			/>
+		</AttributePairs>
+	</Relationship>
+		
+</Relationships>

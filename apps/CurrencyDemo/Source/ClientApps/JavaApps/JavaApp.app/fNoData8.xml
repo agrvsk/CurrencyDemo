@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE Form SYSTEM "Form.dtd">
+<Form
+	DTDVersion="05.06.00"
+	TargetLanguage="Java"
+	Archetype="NoDataDefault"
+	PositionTop="387"
+	PositionLeft="708"
+	PositionWidth="150"
+	PositionHeight="34"
+	IsAddedAfterGen="False"
+	HasCustomFormLayout="True"
+	ObjectsUnusedByFormLayout="False"
+	External="False"
+	NoDataForm="True"
+	>
+	<FormCaption><![CDATA[NoData]]></FormCaption>
+	<FormLayout><![CDATA[BEGIN .VSForm fNoData8
+  ImageFile = ""
+  ClassName = "VSForm"
+  BackColor = 0xc0c0c0
+  Width = 271
+  ImageDisplayStyle = Stretched
+  Title = "fNoData8"
+  Enable = True
+  ForeColor = 0x000000
+  HelpURL = ""
+  ToolTip = ""
+  Visible = True
+  Tag = "_$$_"
+  Height = 160
+  AnchorForm = "NONE"
+  Constraint = "null"
+  Layout = ""
+  Style = "ModelessPopup"
+  Name = "fNoData8"
+  Extended = ""
+  DisplayTitleBar = True
+  BeginProperty VSFont 
+    FontName  = "Helvetica"
+    FontSize  = 12
+    FontStyleBold  = False
+    FontStyleItalic  = False
+  EndProperty 
+  BEGIN .VSLabel VSLabel11
+    Top = 82
+    ClassName = "VSLabel"
+    Opaque = False
+    StatusBarText = ""
+    BorderStyle = "NO_BORDER"
+    DataSource = ""
+    HorizAlign = "LEFT"
+    BackColor = 0xc0c0c0
+    Width = 203
+    Enable = True
+    VertTextPos = "BOTTOM"
+    DisplayedMnemonic = ""
+    ForeColor = 0xff0000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Height = 43
+    Left = 11
+    DataField = 0
+    Icon = ""
+    Constraint = "null"
+    VertAlign = "CENTER"
+    HorizTextPos = "RIGHT"
+    Extended = ""
+    Name = "VSLabel11"
+    LabelFor = ""
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 15
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "Closing this panel raise error"
+  END
+  BEGIN .VSLabel VSLabel1
+    Top = 22
+    ClassName = "VSLabel"
+    Opaque = False
+    StatusBarText = ""
+    BorderStyle = "NO_BORDER"
+    DataSource = ""
+    HorizAlign = "LEFT"
+    BackColor = 0xc0c0c0
+    Width = 203
+    Enable = True
+    VertTextPos = "BOTTOM"
+    DisplayedMnemonic = ""
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Height = 43
+    Left = 6
+    DataField = 0
+    Icon = ""
+    Constraint = "null"
+    VertAlign = "CENTER"
+    HorizTextPos = "RIGHT"
+    Extended = ""
+    Name = "VSLabel1"
+    LabelFor = ""
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 15
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "fNoData8 ModulPopup style"
+  END
+  END
+]]></FormLayout>
+</Form>

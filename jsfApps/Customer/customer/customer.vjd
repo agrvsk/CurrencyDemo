@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:app="http://www.versata.com/6.0/application" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.1/notation" xmi:id="_tLUcUebrEeaHG-UsSRsxyw" type="Application" name="customer.vjd" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" xmi:id="_85vAgObsEeaHG-UsSRsxyw" type="1001">
+    <children xmi:type="notation:Node" xmi:id="_85vAg-bsEeaHG-UsSRsxyw" type="4001"/>
+    <children xmi:type="notation:Node" xmi:id="_85vnkObsEeaHG-UsSRsxyw" type="5001">
+      <children xmi:type="notation:Node" xmi:id="_85yq4ObsEeaHG-UsSRsxyw" type="2001">
+        <children xmi:type="notation:Node" xmi:id="_85zR8ObsEeaHG-UsSRsxyw" type="4002"/>
+        <children xmi:type="notation:Node" xmi:id="_85zR8ebsEeaHG-UsSRsxyw" type="5002">
+          <styles xmi:type="notation:DrawerStyle" xmi:id="_85zR8ubsEeaHG-UsSRsxyw"/>
+          <styles xmi:type="notation:SortingStyle" xmi:id="_85zR8-bsEeaHG-UsSRsxyw"/>
+          <styles xmi:type="notation:FilteringStyle" xmi:id="_85zR9ObsEeaHG-UsSRsxyw"/>
+        </children>
+        <styles xmi:type="notation:ShapeStyle" xmi:id="_85yq4ebsEeaHG-UsSRsxyw" fontName="Segoe UI"/>
+        <element xmi:type="app:DataControl" href="customer.vjp#//@dataControls.0"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_85yq4ubsEeaHG-UsSRsxyw" x="10" y="10"/>
+      </children>
+      <styles xmi:type="notation:DrawerStyle" xmi:id="_85vnkebsEeaHG-UsSRsxyw"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_85vnkubsEeaHG-UsSRsxyw"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_85vnk-bsEeaHG-UsSRsxyw"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" xmi:id="_85vAgebsEeaHG-UsSRsxyw" fontName="Segoe UI"/>
+    <element xmi:type="app:Page" href="customer.vjp#/"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_85vAgubsEeaHG-UsSRsxyw" x="136" y="114"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_tLUcUubrEeaHG-UsSRsxyw"/>
+  <element xmi:type="app:Application" href="customer.vjm#/"/>
+</notation:Diagram>

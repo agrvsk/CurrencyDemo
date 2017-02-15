@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE Repository SYSTEM "Repository.dtd">
+<Repository CustomHTMLArchetypeDirectory="C:\Versata\BRMS-2016\jboss71\..\studio\Pdx\PDXSystemFramelessHTMLArchetypes" DTDVersion="05.06.01" RepositoryVersion="05.06.01" UseQuotedIdentifiers="False">
+	<DataObjects>
+		<DataObject>DataObjects\Z_YesNo</DataObject>
+		<DataObject>DataObjects\User_USR</DataObject>
+		<DataObject>DataObjects\OrderItem_ORD</DataObject>
+		<DataObject>DataObjects\OrderBacklogPerMonth_OBT</DataObject>
+		<DataObject>DataObjects\OMR1</DataObject>
+		<DataObject>DataObjects\OMR</DataObject>
+		<DataObject>DataObjects\OBJ</DataObject>
+		<DataObject>DataObjects\EmiR_RAPPORT\EmiR_Z_RFU</DataObject>
+		<DataObject>DataObjects\Currency_CUR</DataObject>
+		<DataObject>DataObjects\CommonParms_COP</DataObject>
+	</DataObjects>
+	<QueryObjects>
+		<QueryObject>jsfCqms\customer\Currency_CUR_customer1</QueryObject>
+		<QueryObject>jsfCqms\customer\Currency_CUR_customer</QueryObject>
+		<QueryObject>DataObjects\Common_COP_Q</QueryObject>
+	</QueryObjects>
+	<Relationships>		
+		<Relationship>DataObjects\REL_OrderBacklogPerMonth_OBT-OrderItem_ORD</Relationship>		
+		<Relationship>DataObjects\REL_Currency_CUR-OrderItem_ORD</Relationship>		
+		<Relationship>DataObjects\REL_Currency_CUR-Currency_CUR</Relationship>
+	</Relationships>
+	<References>
+		<Reference IsRemote="False" Type="ServerClasses">
+			<FileName><![CDATA[Server Classes]]></FileName>
+		</Reference>
+		<Reference IsRemote="False" Type="CommonClientandServerClasses">
+			<FileName><![CDATA[Common Client and Server Classes]]></FileName>
+		</Reference>
+		<Reference IsRemote="False" Type="VersataVLSClasses">
+			<FileName><![CDATA[Versata Logic Server Classes]]></FileName>
+		</Reference>
+		<Reference IsRemote="False" Type="JDKClasses">
+			<FileName><![CDATA[JDK Classes]]></FileName>
+		</Reference>
+		<Reference IsRemote="False" Type="ORBClasses">
+			<FileName><![CDATA[WebSphere Classes]]></FileName>
+		</Reference>
+	</References>
+<JavaApplications>
+		<Application>JavaApp</Application>	
+	</JavaApplications>
+<HTMLApplications>
+		<Application>Project1</Application>	
+	</HTMLApplications>
+	<SourceFiles>
+	</SourceFiles>
+	<Groups>
+		<Group Name="jsfCqms">
+			<Group Name="customer">
+			</Group>
+		</Group>
+		<Group Name="DataObjects">
+			<Group Name="EmiR_RAPPORT">
+			</Group>
+		</Group>
+
+	</Groups>
+</Repository>

@@ -1,0 +1,82 @@
+BEGIN .VSForm TabSheetArchetypeDefault
+  ClassName = "VSForm"
+  BackColor = 0xc0c0c0
+  Width = 475
+  Title = "TabSheetArchetypeDefault"
+  Enable = True
+  ForeColor = 0x000000
+  HelpURL = ""
+  ToolTip = ""
+  Visible = True
+  Tag = ""
+  Height = 374
+  Style = "Child"
+  Name = "TabSheetArchetypeDefault"
+  DisplayTitleBar = True
+  BeginProperty VSFont 
+    FontName  = "Helvetica"
+    FontSize  = 12
+    FontStyleBold  = False
+    FontStyleItalic  = False
+  EndProperty 
+  BEGIN .VSTab tabTabSheetArchetypeDefault
+    Top = 7
+    ClassName = "VSTab"
+    BackColor = 0xc0c0c0
+    Width = 480
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    TabOrder = 0
+    Height = 336
+    Left = 5
+    TabStop = True
+    Name = "tabTabSheetArchetypeDefault"
+    Tabs = ""
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    BEGIN .VSTabSheet "TableCaption"
+      BEGIN .VSPanel IncludeRecSrcArchetypeAnyStyle
+        Top = 28
+        ClassName = "VSPanel"
+        BorderStyle = "GROUP_BORDER"
+        BackColor = 0xc0c0c0
+        Width = 480
+        Enable = True
+        ForeColor = 0x000000
+        HelpURL = ""
+        ToolTip = ""
+        Visible = True
+        Tag = ""
+        Height = 304
+        Left = 0
+        Name = "IncludeRecSrcArchetypeAnyStyle"
+        BeginProperty VSFont 
+          FontName  = "Helvetica"
+          FontSize  = 12
+          FontStyleBold  = False
+          FontStyleItalic  = False
+        EndProperty 
+        Label = ""
+        END
+      ENDTABSHEET
+    END
+  END
+<<BEGIN VSMACRO>>
+<<ArchetypeVersion 06.00.00.00>>
+'<<Begin IncludeRecSrcArchetypeAnyStyle>>
+     '<<If value(VSVBappFormRecSrcs!isTableDisplayed)>>
+      '<<If value(VSVBappFormRecSrcs!numDepRSDisplayed) > 0 >>
+        '<<Include RecSrcArchetypeSourceDependent>>
+      '<<Else>>
+        '<<include RecSrcArchetypeAnyStyle>>
+      '<<End if>>
+    '<<End if>>
+'<<End Include>>

@@ -1,0 +1,560 @@
+<?xml version="1.0"?>
+<!--
+	Id: $Id$
+	Created: $Date$
+	Copyright (c) Versata, Inc., 2000-2008. All Rights Reserved.
+
+	This script handles lights-out processing. Project is assumed to have all its model objects defined.
+	This script generates service objects, calls rcompile, generates EJB files, and builds HTML apps. It then
+	deploys the objects to a database, starts the appserver, deploys the ear then deploys process logic.
+-->
+
+<project name="com.versata.tl.studio.lightsout.build" default="build-all">
+
+	<import file="properties.xml"/>
+	<property file="lightsout.properties"/>
+	
+	<!-- Amount of time to wait (in seconds) for the server to come up -->
+	<property name="wait_time_for_server" value="60"/>
+	
+	<target name="-init-lightsout" if="${studio.deploy.home}" unless="lightsout.inited">
+		<taskdef resource="net/sf/antcontrib/antlib.xml"
+			classpath="${studio.deploy.home}/lib/ant-contrib.jar" />
+		<property name="lightsout.inited" value="true"/>
+	</target>
+	
+	<target name="build-all">
+		<echo message="Lights-out process started." />
+		
+		<property name="os" value="win32" />
+		<property name="ws" value="workspace" />
+		<property name="arch" value="x86" />
+		<!--
+		os: win32/linux/macosx
+		ws: win32/wpf/gtk/cocoa/carbon
+		arch: x86/x86_64
+		-->
+		
+		<echo message="eclipse.home=${eclipse.home}" />
+		<echo message="rcompile.home=${rcompile.home}" />
+		<echo message="java.library.path=${java.library.path}" />
+		<echo message="workspace.dir=${workspace.dir}" />
+		<echo message="project=${project}" />
+		<echo message="java.exe=${java.exe}" />
+		<echo message="equinox.launcher=${equinox.launcher}" />
+		<echo message="dataSources=${dataSources}" />
+	
+		<antcall target="build-model"/>
+		<antcall target="undeploy-ear"/>
+		<antcall target="deploy-db"/>
+		<antcall target="deploy-process"/>
+		<antcall target="prep-ear"/>
+		<antcall target="build-apps"/>
+		<antcall target="gen-event-adapters"/>
+		<antcall target="deploy-ear"/>
+		<antcall target="run-mockserver"/>
+		
+		
+		<echo message="Lights-out process complete." />
+	</target>
+	
+	<!-- Generate properties. -->
+	<target name="gen-props">
+		<antcall target="launch-eclipse">
+			<param name="class.name" value="com.versata.tl.studio.lightsout.actions.BuildLightsoutProperties" />
+		</antcall>	
+	</target>
+	
+	<!-- Rebuild Model. (Clean build)-->
+	<target name="build-model">
+		<antcall target="launch-eclipse">
+			<param name="class.name" value="com.versata.tl.studio.lightsout.actions.RebuildProject" />			
+			<param name="builders" value="${builders}" />
+		</antcall>
+	</target>
+	
+	<!-- Deploy database info. -->
+	<target name="deploy-db" depends="gen-props">
+		<property file="lightsout.properties"/>
+		
+		<taskdef resource="net/sf/antcontrib/antlib.xml" classpath="${studio.deploy.home}/lib/ant-contrib.jar" />
+
+		<foreach list="${dataSources}" param="data.source" target="deploy-one-db"/>
+	</target>
+
+	
+	<!-- Deploy database info. -->
+	<target name="deploy-one-db">
+		<echo message="deploy db ${data.source}"/>
+		<antcall target="launch-eclipse">
+			<param name="class.name" value="com.versata.tl.studio.lightsout.actions.PrepForDBDeployAll" />
+			<param name="-datasource" value="${data.source}" />
+		</antcall>
+		
+		<echo message="project.dir=${project.dir}"/>
+		
+		<ant antfile="${project.dir}/dbdeploy.xml"/>
+	</target>
+	
+	<!-- Generate service objects. -->
+	<target name="gen-services">
+		<antcall target="launch-eclipse">
+			<param name="class.name" value="com.versata.tl.service.popup.actions.ServiceGenerationRunnable" />
+		</antcall>	
+	</target>
+	
+	<!-- Deploy process info. -->
+	<target name="deploy-process" depends="-deploy-process-prep, -do-deploy-processes">
+	</target>
+
+	<target name="-deploy-process-prep" depends="gen-props">
+		<antcall target="launch-eclipse">
+			<param name="class.name" value="com.versata.tl.studio.lightsout.actions.PrepForProcessDeploy" />
+		</antcall>	
+		<available file="${project.dir}/deploy-processes.properties" property="do.process.deploy" />
+	</target>
+	
+
+	<target name="-do-deploy-processes" if="do.process.deploy">
+		<ant inheritall="false" antfile="${studio.deploy.home}/xml/deploy-processes.xml"
+			dir="${project.dir}">
+			<property name="project.dir" value="${project.dir}" />
+		</ant>
+	</target>
+	
+	<!-- Prep for deployment. -->
+	<target name="prep-deploy" depends="gen-props">
+		<antcall target="launch-eclipse">
+			<param name="class.name" value="com.versata.tl.studio.lightsout.actions.PrepForDeploy" />
+		</antcall>	
+	</target>
+	
+	<!-- Rebuild project. (Clean build)-->
+	<target name="rebuild-project" depends="prep-deploy">
+		<antcall target="launch-eclipse">
+			<param name="class.name" value="com.versata.tl.studio.lightsout.actions.RebuildProject" />
+		</antcall>	
+	</target>
+
+	<!-- Rebuild project Incrementally. -->
+	<target name="rebuild-project-incremental" depends="prep-deploy">
+		<antcall target="launch-eclipse">
+			<param name="class.name" value="com.versata.tl.studio.lightsout.actions.RebuildProject" />
+			<param name="buildclean" value="false" />
+		</antcall>	
+	</target>
+	
+	<!-- Build HTML apps. -->
+	<target name="build-apps" depends="-check-deploy-apps, gen-props" if="deploy.apps">
+		<echo message="Building HTML apps." />
+		<antcall target="rebuild-project" />
+		<ant inheritall="false" antfile="${studio.ui.home}/deployApps.xml"
+			dir="${project.dir}">
+			<property name="project.dir" value="${project.dir}" />
+		</ant>
+	</target>
+	
+	<!-- Generate Event Adapters -->
+	<target name="gen-event-adapters">
+		<echo message="Generating Event Adapters." />
+		<antcall target="launch-eclipse">
+			<param name="class.name" value="com.versata.tl.studio.lightsout.actions.EventAdapterGeneration" />
+			<param name="buildclean" value="false" />
+		</antcall>	
+	</target>
+	
+	<!-- Run MockServer-->
+	<target name="run-mockserver">
+		<antcall target="launch-eclipse">
+			<param name="class.name" value="com.versata.tl.studio.lightsout.actions.RunMockServer" />
+		</antcall>
+	</target>
+
+	<target name="-run-ant">
+		<antcall target="launch-eclipse">
+			<param name="class.name" value="com.versata.tl.service.popup.actions.ServiceGenerationRunnable" />
+			<param name="buildfile1" value="${eclipse.ant.script}" />
+			<param name="buildfile2" value="${eclipse.ant.target}" />
+		</antcall>	
+	</target>
+	
+	<target name="prep-ear" depends="gen-services">
+		<echo message="Publishing projects to build EAR." />
+		<antcall target="launch-eclipse">
+			<param name="class.name" value="com.versata.tl.studio.lightsout.actions.PublishProject" />
+		</antcall>	
+		<echo message="EAR ready to deploy." />
+	</target>
+
+	<target name="deploy-jboss" if="serverType.jboss">
+		<ant antfile="${versata.home}/../workbench/plugins/com.versata.tl.studio.j2ee_${com.versata.tl.studio.j2ee}/buildfiles/jboss326.xml" target="deploy.j2ee.ear">
+			<property name="project.working.dir" value="${workspace.dir}/.metadata/.plugins/org.eclipse.wst.server.core/tmp0"/>
+			<property name="module.dir" value="${workspace.dir}/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/${project}EAR"/>
+			<property name="module.name" value="${project}EAR"/>
+			<property name="server.publish.dir" value="${versata.home}/Config/server/default/deploy"/>
+		</ant>
+	</target>
+	<target name="deploy-jboss71" if="serverType.jboss71">
+			<ant antfile="${versata.home}/../workbench/plugins/com.versata.tl.studio.j2ee_${com.versata.tl.studio.j2ee}/buildfiles/jboss710.xml" target="deploy.j2ee.ear">
+				<property name="project.working.dir" value="${workspace.dir}/.metadata/.plugins/org.eclipse.wst.server.core/tmp0"/>
+				<property name="module.dir" value="${workspace.dir}/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/${project}EAR"/>
+				<property name="module.name" value="${project}EAR"/>
+				<property name="server.publish.dir" value="${versata.home}/Config/standalone/deployments"/>
+			</ant>
+		</target>
+
+	<target name="deploy-was" if="serverType.was">
+		<ant antfile="${versata.home}/../workbench/plugins/com.versata.tl.studio.j2ee_${com.versata.tl.studio.j2ee}/buildfiles/websphere61.x.xml" target="deploy.j2ee.ear" >
+			<property name="project.working.dir" value="${workspace.dir}/.metadata/.plugins/org.eclipse.wst.server.core/tmp0"/>
+			<property name="module.dir" value="${workspace.dir}/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/${project}EAR"/>
+			<property name="module.name" value="${project}EAR"/>
+			<property name="server.publish.dir" value="${versata.home}/Config/server/default/deploy"/>
+			<property name="was.home" value="${was.home}"/>
+			<property name="wasHome" value="${was.home}"/>
+			<property name="wasProfile" value="${was.profile}"/>
+			<property name="project.name" value="${project}"/>
+		</ant>
+	</target>
+
+	<target name="deploy-weblogic" if="serverType.weblogic">
+		<ant antfile="${versata.home}/../workbench/plugins/com.versata.tl.studio.j2ee_${com.versata.tl.studio.j2ee}/buildfiles/weblogic.xml" target="deploy.j2ee.ear" >
+			<property name="project.working.dir" value="${workspace.dir}/.metadata/.plugins/org.eclipse.wst.server.core/tmp0"/>
+			<property name="module.dir" value="${workspace.dir}/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/${project}EAR"/>
+			<property name="module.name" value="${project}EAR"/>
+			<property name="server.publish.dir" value="${versata.home}/Config/server/default/deploy"/>
+		</ant>
+	</target>
+
+
+	<target name="deploy-ear">
+		<echo message="Deploying on server"/>
+		<antcall target="deploy-jboss"/>
+		<antcall target="deploy-jboss71"/>
+		<antcall target="deploy-was"/>
+		<antcall target="deploy-weblogic"/>
+	</target>
+
+	
+	
+	<target name="undeploy-jboss" if="serverType.jboss">
+		<ant antfile="${versata.home}/../workbench/plugins/com.versata.tl.studio.j2ee_${com.versata.tl.studio.j2ee}/buildfiles/jboss326.xml" target="undeploy.j2ee.ear" >
+			<property name="project.working.dir" value="${workspace.dir}/.metadata/.plugins/org.eclipse.wst.server.core/tmp0"/>
+			<property name="module.dir" value="${workspace.dir}/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/${project}EAR"/>
+			<property name="module.name" value="${project}EAR"/>
+			<property name="server.publish.dir" value="${versata.home}/Config/server/default/deploy"/>
+		</ant>
+	</target>
+	
+	<target name="undeploy-jboss71" if="serverType.jboss71">
+			<ant antfile="${versata.home}/../workbench/plugins/com.versata.tl.studio.j2ee_${com.versata.tl.studio.j2ee}/buildfiles/jboss710.xml" target="undeploy.j2ee.ear" >
+				<property name="project.working.dir" value="${workspace.dir}/.metadata/.plugins/org.eclipse.wst.server.core/tmp0"/>
+				<property name="module.dir" value="${workspace.dir}/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/${project}EAR"/>
+				<property name="module.name" value="${project}EAR"/>
+				<property name="server.publish.dir" value="${versata.home}/Config/standalone/deployments"/>
+			</ant>
+		</target>
+
+	<target name="undeploy-was" if="serverType.was">
+		<ant antfile="${versata.home}/../workbench/plugins/com.versata.tl.studio.j2ee_${com.versata.tl.studio.j2ee}/buildfiles/websphere61.x.xml" target="undeploy.j2ee.ear" >
+			<property name="project.working.dir" value="${workspace.dir}/.metadata/.plugins/org.eclipse.wst.server.core/tmp0"/>
+			<property name="module.dir" value="${workspace.dir}/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/${project}EAR"/>
+			<property name="module.name" value="${project}EAR"/>
+			<property name="server.publish.dir" value="${versata.home}/Config/server/default/deploy"/>
+			<property name="was.home" value="${was.home}"/>
+			<property name="wasHome" value="${was.home}"/>
+			<property name="wasProfile" value="${was.profile}"/>
+		</ant>
+	</target>
+
+	<target name="undeploy-weblogic" if="serverType.weblogic">
+		<ant antfile="${versata.home}/../workbench/plugins/com.versata.tl.studio.j2ee_${com.versata.tl.studio.j2ee}/buildfiles/weblogic.xml" target="undeploy.j2ee.ear">
+			<property name="project.working.dir" value="${workspace.dir}/.metadata/.plugins/org.eclipse.wst.server.core/tmp0"/>
+			<property name="module.dir" value="${workspace.dir}/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/${project}EAR"/>
+			<property name="module.name" value="${project}EAR"/>
+			<property name="server.publish.dir" value="${versata.home}/Config/server/default/deploy"/>
+		</ant>
+	</target>
+
+
+	
+	<target name="undeploy-ear">
+		<echo message="Undeploying from server"/>
+		<antcall target="undeploy-jboss"/>
+		<antcall target="undeploy-jboss71"/>
+		<antcall target="undeploy-was"/>
+		<antcall target="undeploy-weblogic"/>
+	</target>
+	
+	<!-- Check if deploy apps - look for deployApps.properties. -->
+	<target name="-check-deploy-apps" depends="gen-props">
+		<available file="${project.dir}/deployApps.properties" property="deploy.apps"/>
+	</target>	
+	
+	<!-- Launch Eclipse @required ${class.name} -->
+	<target name="launch-eclipse">
+		
+		<echo message="java.exe=${java.exe}" />
+		<echo message="cmd=java ${equinox.launcher}/org.eclipse.core.launcher.Main" />
+
+		<echo message="workspace.dir=${workspace.dir}"/>
+		<echo message="project=${project}"/>
+		<echo message="class.name=${class.name}"/>
+		
+		<echo message="dataSources=${dataSources}"/>
+		<echo message="versata.home=${versata.home}"/>
+		<echo message="generatePluginProperties=${generatePluginProperties}"/>
+		<echo message="buildclean=${buildclean}"/>
+		<echo message="buildfile1=${buildfile1}"/>
+		<echo message="buildfile2=${buildfile2}"/>
+		<echo message="builders=${builders}"/>
+					
+			
+			
+			
+		<!--
+		<echo>${ant.version}</echo>
+		<echo>${ant.java.version}</echo>
+		-->
+		
+		<java classname="-version" classpath="."
+		        jvm="${java.exe}" fork="true"
+		        taskname="Javaversion" />
+		
+		<!--  set PATH=%~dp0;%JAVA_HOME%\bin;%PATH%;%~dp0plugins\com.versata.tl.rcompile_7.0.0.0\DLL  -->
+		
+		<java classname="org.eclipse.core.launcher.Main"
+			classpath="${equinox.launcher}"
+			 fork="true" failonerror="false" jvm="${java.exe}"  taskname="Why">
+			
+			<sysproperty key="DEBUG" value="true"/>
+
+			<env key="Path" path="${java.library.path}:${rcompile.home}/DLL"/>
+			
+			<jvmarg value="-mx256m"/>
+			
+			<!-- arg value="-verbose"/ -->
+			
+			<arg value="-noupdate"/>
+			<arg value="-data"/>
+			<arg value="${workspace.dir}"/>
+			<arg value="-application"/>
+			<arg value="com.versata.tl.studio.lightsout.runActionRunnable"/>
+			<arg value="-project"/>
+			<arg value="${project}"/>
+			<arg value="-project.dir"/>
+			<arg value="${project.dir}"/>
+			<arg value="-action"/>
+			<arg value="${class.name}"/>
+			<arg value="-datasource"/>
+			<arg value="${dataSources}"/>
+			<arg value="-versataHome"/>
+			<arg value="${versata.home}"/>
+			<arg value="-generatePluginProperties"/>
+			<arg value="${generatePluginProperties}"/>
+			<arg value="-deployData"/>
+			<arg value="false"/>			
+			<arg value="-buildclean"/>
+			<arg value="${buildclean}"/>
+			<arg value="-buildfile"/>
+			<arg value="${buildfile1}"/>
+			<arg value="${buildfile2}"/>
+			<arg value="-builders"/>
+			<arg value="${builders}"/>	
+
+		</java>
+	</target>	
+
+	<!--The following are related to the server and are not working-->
+	
+	<!-- Start application server if not already started. -->
+	<target name="start-appserver">
+		<echo message="Check url = ${check.url}" />
+		<condition property="server.running">
+		        <http url="${check.url}"/>
+		</condition>
+		<antcall target="-call-start-appserver" />
+		<antcall target="-appserver-running" />
+	</target>
+
+	<!-- Start application server. -->
+	<target name="-call-start-appserver" unless="server.running">
+		<echo message="Starting appserver...." />
+		<antcall target="-update-start-properties" />
+		<exec executable="cmd.exe" spawn="true">
+  			<arg line="/c start cmd /c ant -f ${earMetaInf.dir}/deploy.xml startServer"/>
+		</exec>
+
+		<echo message="Waiting for server to start (would wait for a max of ${wait_time_for_server} seconds)..."/>
+		<waitfor maxwait="${wait_time_for_server}" maxwaitunit="second" checkevery="2">
+			<http url="${check.url}"/>
+		</waitfor>
+		<condition property="server.startedbyme">
+			<http url="${check.url}"/>
+		</condition>
+		<antcall target="-check-if-server-running"/>
+		<antcall target="-check-if-server-not-running"/>
+
+		<antcall target="-replace-original-properties" />
+	</target>
+
+	<!-- Check if server was successfully started by this script -->
+	<target name="-check-if-server-running" if="server.startedbyme">
+		<echo message="Server was successfully started"/>
+	</target>
+	
+	<!-- Check if server could not be detected as successfully started by this script within the wait time -->
+    <target name="-check-if-server-not-running" unless="server.startedbyme">
+		<echo message="**********************************************************************************"/>
+		<echo message="     Waitied for ${wait_time_for_server} seconds. However server did not start by then!"/>
+		<echo message="**********************************************************************************"/>
+	</target>
+
+	<!-- For WebLogic need to ensure jdbc driver jar is on classpath. -->
+	<target name="-update-start-properties" if="jdbc.path">
+		<copy file="${earMetaInf.dir}/build.properties"
+			tofile="${earMetaInf.dir}/build.properties-bak" overwrite="true"/>
+		<replace file="${earMetaInf.dir}/build.properties"
+			token="adminToolPath="
+			value="adminToolPath=${jdbc.path};" />
+	</target>
+	
+	<!-- For WebLogic replace original properties file. -->
+	<target name="-replace-original-properties" if="jdbc.path">
+		<sleep seconds="2"/>
+		<copy file="${earMetaInf.dir}/build.properties-bak"
+			tofile="${earMetaInf.dir}/build.properties" overwrite="true"/>
+		<delete file="${earMetaInf.dir}/build.properties-bak" />
+	</target>
+
+	<!-- Application server already started. -->
+	<target name="-appserver-running" if="server.running">
+		<echo message="Server already running." />
+	</target>
+
+	<!-- Stop application server if running. -->
+	<target name="stop-appserver" depends="prep-deploy">
+		<echo message="Check url = ${check.url}" />
+		<condition property="server.needs.stopping">
+		        <http url="${check.url}"/>
+		</condition>
+		<antcall target="-call-stop-appserver" />
+		<antcall target="-appserver-not-running" />
+	</target>
+
+	<!-- Stop application server. -->
+	<target name="-call-stop-appserver" if="server.needs.stopping">
+		<echo message="Stopping appserver...." />
+		<antcall target="-stop-direct" />
+		<antcall target="-stop-through-antrunner" />
+	</target>
+		
+	<target name="-stop-direct" unless="java.bin">
+		<ant inheritall="false" antfile="${earMetaInf.dir}/deploy.xml"
+			dir="${earMetaInf.dir}" target="stopServer"/>
+	</target>
+
+	<target name="-stop-through-antrunner" if="java.bin">
+		<antcall target="-run-ant">
+			<param name="eclipse.ant.script" value="${earMetaInf.dir}/deploy.xml"/>
+			<param name="eclipse.ant.target" value="stopServer"/>
+		</antcall>
+	</target>
+
+	<!-- Application server already stopped. -->
+	<target name="-appserver-not-running" unless="server.needs.stopping">
+		<echo message="Server run running." />
+	</target>
+	
+	<!-- Deploy ear first checking for appserver. -->
+
+	<target name="deploy-ear-old">
+		<echo message="Check url = ${check.url}" />
+		<waitfor maxwait="60" maxwaitunit="second" 
+				timeoutproperty="server.not.started">
+		        <http url="${check.url}"/>
+		</waitfor>
+		<antcall target="-do-deploy-ear" />
+		<antcall target="-server-not-available" />
+	</target>
+
+	<!-- Undeploy ear first checking for appserver. -->
+	<target name="undeploy-ear-old">
+	    <antcall target="start-appserver" />
+		<echo message="Check url = ${check.url}" />
+		<waitfor maxwait="180" maxwaitunit="second" 
+				timeoutproperty="server.not.started">
+		        <http url="${check.url}"/>
+		</waitfor>
+		<antcall target="-do-undeploy-ear" />
+		<antcall target="-server-not-available" />
+		<antcall target="stop-appserver"/>
+	</target>
+
+	<target name="-server-not-available" if="server.not.started">
+		<echo message="Timed out waiting for server to be available." />
+	</target>
+	
+	<!-- Deploy ear. -->
+	<target name="-do-deploy-ear" depends="prep-deploy" unless="server.not.started">
+		<antcall target="rebuild-project" />
+		<antcall target="-include-deploy-mode" />
+		<antcall target="-deploy-direct" />
+		<antcall target="-deploy-through-antrunner" />
+	</target>
+
+	<!-- Undeploy ear. -->
+	<target name="-do-undeploy-ear" depends="prep-deploy" unless="server.not.started">
+		<antcall target="-include-deploy-mode" />
+		<antcall target="-undeploy-direct" />
+		<antcall target="-undeploy-through-antrunner" />
+	</target>
+	
+	<target name="-include-deploy-mode" if="deploy.mode">
+		<propertyfile file="${earMetaInf.dir}/build.properties" >
+			<entry key="mode" value="${deploy.mode}"/>
+		</propertyfile>
+	</target>
+
+	<target name="-deploy-direct" unless="java.bin">
+		<echo message="build file = ${earMetaInf.dir}/build.xml"/>
+		<antcall target="-undeploy-direct" />
+		<ant inheritall="false" antfile="${earMetaInf.dir}/build.xml"
+			dir="${earMetaInf.dir}" target="deploy"/>
+		<ant inheritall="false" antfile="${earMetaInf.dir}/build.xml"
+			dir="${earMetaInf.dir}" target="deployTool"/>
+	</target>
+
+	<target name="-undeploy-direct" unless="java.bin">
+		<echo message="build file = ${earMetaInf.dir}/build.xml"/>
+		<ant inheritall="false" antfile="${earMetaInf.dir}/build.xml"
+			dir="${earMetaInf.dir}" target="undeploy"/>
+		<ant inheritall="false" antfile="${earMetaInf.dir}/build.xml"
+			dir="${earMetaInf.dir}" target="undeployTool"/>
+	</target>
+
+	<target name="-deploy-through-antrunner" if="java.bin">
+		<echo message="build file = ${earMetaInf.dir}/build.xml"/>
+		<antcall target="-undeploy-through-antrunner" />
+		<antcall target="-run-ant">
+			<param name="eclipse.ant.script" value="${earMetaInf.dir}/build.xml"/>
+			<param name="eclipse.ant.target" value="deploy"/>
+		</antcall>
+		<antcall target="-run-ant">
+			<param name="eclipse.ant.script" value="${earMetaInf.dir}/build.xml"/>
+			<param name="eclipse.ant.target" value="deployTool"/>
+		</antcall>
+	</target>
+
+	<target name="-undeploy-through-antrunner" if="java.bin">
+		<echo message="build file = ${earMetaInf.dir}/build.xml"/>
+		<antcall target="-run-ant">
+			<param name="eclipse.ant.script" value="${earMetaInf.dir}/build.xml"/>
+			<param name="eclipse.ant.target" value="undeploy"/>
+		</antcall>
+		<antcall target="-run-ant">
+			<param name="eclipse.ant.script" value="${earMetaInf.dir}/build.xml"/>
+			<param name="eclipse.ant.target" value="undeployTool"/>
+		</antcall>
+	</target>
+	
+</project>

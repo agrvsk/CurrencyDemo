@@ -1,0 +1,366 @@
+<?xml version="1.0"?>
+<!DOCTYPE Form SYSTEM "Form.dtd">
+<Form
+	DTDVersion="05.06.00"
+	TargetLanguage="Java"
+	Archetype="NoDataDefault"
+	PositionTop="7"
+	PositionLeft="324"
+	PositionWidth="150"
+	PositionHeight="44"
+	IsAddedAfterGen="False"
+	HasCustomFormLayout="True"
+	ObjectsUnusedByFormLayout="False"
+	External="False"
+	NoDataForm="True"
+	>
+	<FormCaption><![CDATA[Login]]></FormCaption>
+	<FormLayout><![CDATA[BEGIN .VSForm fLogin
+  ImageFile = ""
+  ClassName = "VSForm"
+  BackColor = 0xc0c0c0
+  Width = 413
+  ImageDisplayStyle = Stretched
+  Title = "fLogin"
+  Enable = True
+  ForeColor = 0x000000
+  HelpURL = ""
+  ToolTip = ""
+  Visible = True
+  Tag = "_$$_"
+  Height = 171
+  AnchorForm = "NONE"
+  Constraint = "null"
+  Layout = ""
+  Style = "ModalPopup"
+  Name = "fLogin"
+  Extended = ""
+  DisplayTitleBar = True
+  BeginProperty VSFont 
+    FontName  = "Helvetica"
+    FontSize  = 12
+    FontStyleBold  = False
+    FontStyleItalic  = False
+  EndProperty 
+  BEGIN .VSButton btnLogin
+    Top = 118
+    ClassName = "VSButton"
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = ""
+    BackColor = 0xc6c6c6
+    Width = 108
+    ReportURL = ""
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Action = ""
+    TabOrder = 4
+    Height = 25
+    Left = 97
+    Constraint = "null"
+    TabStop = True
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnLogin"
+    FormTransition = 0
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "Login XXX"
+  END
+  BEGIN .VSLabel VSLabel4
+    Top = 91
+    ClassName = "VSLabel"
+    Opaque = False
+    StatusBarText = ""
+    BorderStyle = "NO_BORDER"
+    DataSource = ""
+    HorizAlign = "LEFT"
+    BackColor = 0xc0c0c0
+    Width = 96
+    Enable = True
+    VertTextPos = "BOTTOM"
+    DisplayedMnemonic = ""
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Height = 19
+    Left = 9
+    DataField = 0
+    Icon = ""
+    Constraint = "null"
+    VertAlign = "CENTER"
+    HorizTextPos = "RIGHT"
+    Extended = ""
+    Name = "VSLabel4"
+    LabelFor = ""
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "Server"
+  END
+  BEGIN .VSTextField txtServer
+    Top = 90
+    ClassName = "VSTextField"
+    StatusBarText = ""
+    HorizAlign = "LEFT"
+    EchoChar = ""
+    DataSource = ""
+    BackColor = 0xffffff
+    Width = 298
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Format = ""
+    Columns = 0
+    TabOrder = 3
+    Height = 20
+    Left = 98
+    DataField = 0
+    Constraint = "null"
+    TabStop = True
+    Editable = True
+    DisplayMode = "Data"
+    Extended = ""
+    Name = "txtServer"
+    Text = ""
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+  END
+  BEGIN .VSLabel VSLabel3
+    Top = 64
+    ClassName = "VSLabel"
+    Opaque = False
+    StatusBarText = ""
+    BorderStyle = "NO_BORDER"
+    DataSource = ""
+    HorizAlign = "LEFT"
+    BackColor = 0xc0c0c0
+    Width = 105
+    Enable = True
+    VertTextPos = "BOTTOM"
+    DisplayedMnemonic = ""
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Height = 19
+    Left = 9
+    DataField = 0
+    Icon = ""
+    Constraint = "null"
+    VertAlign = "CENTER"
+    HorizTextPos = "RIGHT"
+    Extended = ""
+    Name = "VSLabel3"
+    LabelFor = ""
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "VLSJNDIName"
+  END
+  BEGIN .VSTextField txtVLSJNDIName
+    Top = 63
+    ClassName = "VSTextField"
+    StatusBarText = ""
+    HorizAlign = "LEFT"
+    EchoChar = ""
+    DataSource = ""
+    BackColor = 0xffffff
+    Width = 298
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Format = ""
+    Columns = 0
+    TabOrder = 2
+    Height = 20
+    Left = 98
+    DataField = 0
+    Constraint = "null"
+    TabStop = True
+    Editable = True
+    DisplayMode = "Data"
+    Extended = ""
+    Name = "txtVLSJNDIName"
+    Text = ""
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+  END
+  BEGIN .VSLabel VSLabel2
+    Top = 37
+    ClassName = "VSLabel"
+    Opaque = False
+    StatusBarText = ""
+    BorderStyle = "NO_BORDER"
+    DataSource = ""
+    HorizAlign = "LEFT"
+    BackColor = 0xc0c0c0
+    Width = 70
+    Enable = True
+    VertTextPos = "BOTTOM"
+    DisplayedMnemonic = ""
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Height = 19
+    Left = 9
+    DataField = 0
+    Icon = ""
+    Constraint = "null"
+    VertAlign = "CENTER"
+    HorizTextPos = "RIGHT"
+    Extended = ""
+    Name = "VSLabel2"
+    LabelFor = ""
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "Password"
+  END
+  BEGIN .VSTextField txtPassword
+    Top = 36
+    ClassName = "VSTextField"
+    StatusBarText = ""
+    HorizAlign = "LEFT"
+    EchoChar = "*"
+    DataSource = ""
+    BackColor = 0xffffff
+    Width = 99
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Format = ""
+    Columns = 0
+    TabOrder = 1
+    Height = 20
+    Left = 98
+    DataField = 0
+    Constraint = "null"
+    TabStop = True
+    Editable = True
+    DisplayMode = "Data"
+    Extended = ""
+    Name = "txtPassword"
+    Text = ""
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+  END
+  BEGIN .VSLabel VSLabel1
+    Top = 12
+    ClassName = "VSLabel"
+    Opaque = False
+    StatusBarText = ""
+    BorderStyle = "NO_BORDER"
+    DataSource = ""
+    HorizAlign = "LEFT"
+    BackColor = 0xc0c0c0
+    Width = 49
+    Enable = True
+    VertTextPos = "BOTTOM"
+    DisplayedMnemonic = ""
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Height = 19
+    Left = 9
+    DataField = 0
+    Icon = ""
+    Constraint = "null"
+    VertAlign = "CENTER"
+    HorizTextPos = "RIGHT"
+    Extended = ""
+    Name = "VSLabel1"
+    LabelFor = ""
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "LoginId"
+  END
+  BEGIN .VSTextField txtLoginId
+    Top = 11
+    ClassName = "VSTextField"
+    StatusBarText = ""
+    HorizAlign = "LEFT"
+    EchoChar = ""
+    DataSource = ""
+    BackColor = 0xffffff
+    Width = 99
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Format = ""
+    Columns = 0
+    TabOrder = 0
+    Height = 20
+    Left = 98
+    DataField = 0
+    Constraint = "null"
+    TabStop = True
+    Editable = True
+    DisplayMode = "Data"
+    Extended = ""
+    Name = "txtLoginId"
+    Text = ""
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+  END
+  END
+]]></FormLayout>
+</Form>

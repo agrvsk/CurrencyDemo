@@ -1,0 +1,90 @@
+BEGIN .VSForm ButtonArchetypeEventCommand
+  ClassName = "VSForm"
+  BackColor = 0xffffff
+  Width = 475
+  Title = "ButtonArchetypeEventCommand"
+  Enable = True
+  ForeColor = 0x000000
+  HelpURL = ""
+  ToolTip = ""
+  Visible = True
+  Tag = ""
+  Height = 83
+  AnchorForm = "NONE"
+  Style = "Child"
+  Name = "ButtonArchetypeEventCommand"
+  Extended = ""
+  DisplayTitleBar = True
+  BeginProperty VSFont 
+    FontName  = "Helvetica"
+    FontSize  = 12
+    FontStyleBold  = False
+    FontStyleItalic  = False
+  EndProperty 
+  BEGIN .VSPanel fraButtonArchetypeEventCommand
+    Top = 5
+    ClassName = "VSPanel"
+    BorderStyle = "GROUP_BORDER"
+    BackColor = 0xffffff
+    Width = 90
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Height = 38
+    Left = 4
+    Extended = ""
+    Name = "fraButtonArchetypeEventCommand"
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "ButtonArchetypeEventCommand"
+    BEGIN .VSButton btnRSPrefixEventName
+      Top = 2
+      ClassName = "VSButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = "(Current)"
+      BackColor = 0xffffff
+      Width = 86
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "btnRSPrefixEventName"
+      Visible = True
+      Tag = ""
+      Action = ""
+      TabOrder = 0
+      Height = 35
+      Left = 6
+      TabStop = True
+      Extended = ""
+      Name = "btnRSPrefixEventName"
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      Label = "RSPrefixEventName"
+      END
+    END
+  END
+<<BEGIN VSMACRO>>
+<<ArchetypeVersion 06.00.00.00>>
+<<Replace btnRSPrefixEventName.DataSource >>
+           DataSource = datRSPrefixTableName
+<<End Replace>>
+<<Replace btnRSPrefixEventName.Action >>
+           Action = "userEvent_Value(VSVBTableEvents!Name)"
+<<End Replace>>
+<<Replace btnRSPrefixEventName.Label >>
+           Label = "Value(VSVBTableEvents!Caption)"
+<<End Replace>>
+

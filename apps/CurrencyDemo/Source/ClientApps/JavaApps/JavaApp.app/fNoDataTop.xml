@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE Form SYSTEM "Form.dtd">
+<Form
+	DTDVersion="05.06.00"
+	TargetLanguage="Java"
+	Archetype="NoDataDefault"
+	PositionTop="67"
+	PositionLeft="754"
+	PositionWidth="150"
+	PositionHeight="44"
+	IsAddedAfterGen="False"
+	HasCustomFormLayout="True"
+	ObjectsUnusedByFormLayout="False"
+	External="False"
+	NoDataForm="True"
+	>
+	<FormCaption><![CDATA[Top]]></FormCaption>
+	<FormLayout><![CDATA[BEGIN .VSForm fNoDataTop
+  ImageFile = ""
+  ClassName = "VSForm"
+  BackColor = 0xc0c0c0
+  Width = 579
+  ImageDisplayStyle = Stretched
+  Title = "fNoDataTop"
+  Enable = True
+  ForeColor = 0x000000
+  HelpURL = ""
+  ToolTip = ""
+  Visible = True
+  Tag = "_$$_"
+  Height = 55
+  AnchorForm = "TOP"
+  Constraint = "null"
+  Layout = ""
+  Style = "Child"
+  Name = "fNoDataTop"
+  Extended = ""
+  DisplayTitleBar = True
+  BeginProperty VSFont 
+    FontName  = "Helvetica"
+    FontSize  = 12
+    FontStyleBold  = False
+    FontStyleItalic  = False
+  EndProperty 
+END
+]]></FormLayout>
+</Form>

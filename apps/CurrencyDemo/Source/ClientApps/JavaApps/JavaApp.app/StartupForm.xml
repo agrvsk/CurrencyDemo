@@ -1,0 +1,980 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE Form SYSTEM "Form.dtd">
+<Form
+	DTDVersion="05.06.00"
+	TargetLanguage="Java"
+	Archetype="Startup"
+	PositionTop="38"
+	PositionLeft="32"
+	PositionWidth="150"
+	PositionHeight="44"
+	IsAddedAfterGen="False"
+	HasCustomFormLayout="True"
+	ObjectsUnusedByFormLayout="False"
+	External="False"
+	NoDataForm="False"
+	>
+	<FormCaption><![CDATA[StartupForm]]></FormCaption>
+	<Transition
+		FormTransNum="1"
+		Prefix="T1"
+		TargetFormName="fOrderItem_ORD"
+		IsTargetInitialQueryMode="False"
+		IsTargetInitialAddMode="False"
+		IsVisibleAppline="True"
+		IsAddedAfterGen="False"
+		ClassName="VSFormNavigation"
+		RSID="1"
+		BusinessObject="OrderItem_ORD"
+		RelnIsFromParent="True"
+		>
+		<OrderByClause><![CDATA[ ]]></OrderByClause>
+		<ParameterizedWhereClause><![CDATA[ ]]></ParameterizedWhereClause>
+		<AdditionalWhereClause><![CDATA[ ]]></AdditionalWhereClause>
+	</Transition>
+	<Transition
+		FormTransNum="1"
+		Prefix="T2"
+		TargetFormName="fCurrency_CUR_Grid"
+		IsTargetInitialQueryMode="False"
+		IsTargetInitialAddMode="False"
+		IsVisibleAppline="True"
+		IsAddedAfterGen="False"
+		ClassName="PageNavigation"
+		RSID="2"
+		BusinessObject="Currency_CUR"
+		RelnIsFromParent="True"
+		>
+		<OrderByClause><![CDATA[ ]]></OrderByClause>
+		<ParameterizedWhereClause><![CDATA[ ]]></ParameterizedWhereClause>
+		<AdditionalWhereClause><![CDATA[ ]]></AdditionalWhereClause>
+	</Transition>
+	<Transition
+		FormTransNum="1"
+		Prefix="T3"
+		TargetFormName="fOrderBacklogPerMonth_OBT_Grid"
+		IsTargetInitialQueryMode="False"
+		IsTargetInitialAddMode="False"
+		IsVisibleAppline="True"
+		IsAddedAfterGen="False"
+		ClassName="PageNavigation"
+		RSID="3"
+		BusinessObject="OrderBacklogPerMonth_OBT"
+		RelnIsFromParent="True"
+		>
+		<OrderByClause><![CDATA[ ]]></OrderByClause>
+		<ParameterizedWhereClause><![CDATA[ ]]></ParameterizedWhereClause>
+		<AdditionalWhereClause><![CDATA[ ]]></AdditionalWhereClause>
+	</Transition>
+	<Transition
+		FormTransNum="1"
+		Prefix="T4"
+		TargetFormName="fNoData"
+		IsTargetInitialQueryMode="False"
+		IsTargetInitialAddMode="False"
+		IsVisibleAppline="True"
+		IsAddedAfterGen="False"
+		ClassName="PageNavigation"
+		RSID="4"
+		BusinessObject="NoData"
+		RelnIsFromParent="True"
+		>
+		<OrderByClause><![CDATA[ ]]></OrderByClause>
+		<ParameterizedWhereClause><![CDATA[ ]]></ParameterizedWhereClause>
+		<AdditionalWhereClause><![CDATA[ ]]></AdditionalWhereClause>
+	</Transition>
+	<Transition
+		FormTransNum="1"
+		Prefix="T5"
+		TargetFormName="fNoDataTop"
+		IsTargetInitialQueryMode="False"
+		IsTargetInitialAddMode="False"
+		IsVisibleAppline="True"
+		IsAddedAfterGen="False"
+		FormTransCaption=" "
+		ClassName="PageNavigation"
+		RSID="5"
+		BusinessObject="NoData"
+		RelnIsFromParent="True"
+		>
+		<OrderByClause><![CDATA[ ]]></OrderByClause>
+		<ParameterizedWhereClause><![CDATA[ ]]></ParameterizedWhereClause>
+		<AdditionalWhereClause><![CDATA[ ]]></AdditionalWhereClause>
+	</Transition>
+	<Transition
+		FormTransNum="1"
+		Prefix="T6"
+		TargetFormName="fLogin"
+		IsTargetInitialQueryMode="False"
+		IsTargetInitialAddMode="False"
+		IsVisibleAppline="True"
+		IsAddedAfterGen="False"
+		FormTransCaption="Login"
+		ClassName="PageNavigation"
+		RSID="6"
+		BusinessObject="NoData"
+		RelnIsFromParent="True"
+		>
+		<OrderByClause><![CDATA[ ]]></OrderByClause>
+		<ParameterizedWhereClause><![CDATA[ ]]></ParameterizedWhereClause>
+		<AdditionalWhereClause><![CDATA[ ]]></AdditionalWhereClause>
+	</Transition>
+	<Transition
+		FormTransNum="1"
+		Prefix="T7"
+		TargetFormName="fCommonParms_COP"
+		IsTargetInitialQueryMode="False"
+		IsTargetInitialAddMode="False"
+		IsVisibleAppline="True"
+		IsAddedAfterGen="False"
+		FormTransCaption=" "
+		ClassName="VSFormNavigation"
+		RSID="7"
+		BusinessObject="CommonParms_COP"
+		RelnIsFromParent="True"
+		>
+		<OrderByClause><![CDATA[ ]]></OrderByClause>
+		<ParameterizedWhereClause><![CDATA[ ]]></ParameterizedWhereClause>
+		<AdditionalWhereClause><![CDATA[ ]]></AdditionalWhereClause>
+	</Transition>
+	<Transition
+		FormTransNum="1"
+		Prefix="T8"
+		TargetFormName="fAdapterTest"
+		IsTargetInitialQueryMode="False"
+		IsTargetInitialAddMode="False"
+		IsVisibleAppline="True"
+		IsAddedAfterGen="False"
+		FormTransCaption="Adaptertest"
+		ClassName="PageNavigation"
+		RSID="8"
+		BusinessObject="NoData"
+		RelnIsFromParent="True"
+		>
+		<OrderByClause><![CDATA[ ]]></OrderByClause>
+		<ParameterizedWhereClause><![CDATA[ ]]></ParameterizedWhereClause>
+		<AdditionalWhereClause><![CDATA[ ]]></AdditionalWhereClause>
+	</Transition>
+	<Transition
+		FormTransNum="1"
+		Prefix="T9"
+		TargetFormName="fCurrency_CUR"
+		IsTargetInitialQueryMode="False"
+		IsTargetInitialAddMode="False"
+		IsVisibleAppline="True"
+		IsAddedAfterGen="False"
+		FormTransCaption=" "
+		ClassName="PageNavigation"
+		RSID="9"
+		BusinessObject="Currency_CUR"
+		RelnIsFromParent="True"
+		>
+		<OrderByClause><![CDATA[ ]]></OrderByClause>
+		<ParameterizedWhereClause><![CDATA[ ]]></ParameterizedWhereClause>
+		<AdditionalWhereClause><![CDATA[ ]]></AdditionalWhereClause>
+	</Transition>
+	<Transition
+		FormTransNum="1"
+		Prefix="T10"
+		TargetFormName="fEmiR_Z_RFU"
+		IsTargetInitialQueryMode="False"
+		IsTargetInitialAddMode="False"
+		IsVisibleAppline="True"
+		IsAddedAfterGen="False"
+		FormTransCaption=" "
+		ClassName="PageNavigation"
+		RSID="10"
+		BusinessObject="EmiR_Z_RFU"
+		RelnIsFromParent="True"
+		>
+		<OrderByClause><![CDATA[ ]]></OrderByClause>
+		<ParameterizedWhereClause><![CDATA[ ]]></ParameterizedWhereClause>
+		<AdditionalWhereClause><![CDATA[ ]]></AdditionalWhereClause>
+	</Transition>
+	<Transition
+		FormTransNum="1"
+		Prefix="T11"
+		TargetFormName="fOBJ_Grid"
+		IsTargetInitialQueryMode="False"
+		IsTargetInitialAddMode="False"
+		IsVisibleAppline="True"
+		IsAddedAfterGen="False"
+		FormTransCaption=" "
+		ClassName="PageNavigation"
+		RSID="11"
+		BusinessObject="OBJ"
+		RelnIsFromParent="True"
+		>
+		<OrderByClause><![CDATA[ ]]></OrderByClause>
+		<ParameterizedWhereClause><![CDATA[ ]]></ParameterizedWhereClause>
+		<AdditionalWhereClause><![CDATA[ ]]></AdditionalWhereClause>
+	</Transition>
+	<Transition
+		FormTransNum="1"
+		Prefix="T12"
+		TargetFormName="fOMR_Grid"
+		IsTargetInitialQueryMode="False"
+		IsTargetInitialAddMode="False"
+		IsVisibleAppline="True"
+		IsAddedAfterGen="False"
+		FormTransCaption=" "
+		ClassName="PageNavigation"
+		RSID="12"
+		BusinessObject="OMR"
+		RelnIsFromParent="True"
+		>
+		<OrderByClause><![CDATA[ ]]></OrderByClause>
+		<ParameterizedWhereClause><![CDATA[ ]]></ParameterizedWhereClause>
+		<AdditionalWhereClause><![CDATA[ ]]></AdditionalWhereClause>
+	</Transition>
+	<Transition
+		FormTransNum="1"
+		Prefix="T13"
+		TargetFormName="fOrderItem_ORD15"
+		IsTargetInitialQueryMode="False"
+		IsTargetInitialAddMode="False"
+		IsVisibleAppline="True"
+		IsAddedAfterGen="False"
+		FormTransCaption=" "
+		ClassName="PageNavigation"
+		RSID="13"
+		BusinessObject="OrderItem_ORD"
+		RelnIsFromParent="True"
+		>
+		<OrderByClause><![CDATA[ ]]></OrderByClause>
+		<ParameterizedWhereClause><![CDATA[ ]]></ParameterizedWhereClause>
+		<AdditionalWhereClause><![CDATA[ ]]></AdditionalWhereClause>
+	</Transition>
+	<Transition
+		FormTransNum="1"
+		Prefix="T14"
+		TargetFormName="fUser_USR_Grid"
+		IsTargetInitialQueryMode="False"
+		IsTargetInitialAddMode="False"
+		IsVisibleAppline="True"
+		IsAddedAfterGen="False"
+		FormTransCaption=" "
+		ClassName="PageNavigation"
+		RSID="14"
+		BusinessObject="User_USR"
+		RelnIsFromParent="True"
+		>
+		<OrderByClause><![CDATA[ ]]></OrderByClause>
+		<ParameterizedWhereClause><![CDATA[ ]]></ParameterizedWhereClause>
+		<AdditionalWhereClause><![CDATA[ ]]></AdditionalWhereClause>
+	</Transition>
+	<Transition
+		FormTransNum="1"
+		Prefix="T15"
+		TargetFormName="fZ_YesNo_Grid"
+		IsTargetInitialQueryMode="False"
+		IsTargetInitialAddMode="False"
+		IsVisibleAppline="True"
+		IsAddedAfterGen="False"
+		FormTransCaption=" "
+		ClassName="PageNavigation"
+		RSID="15"
+		BusinessObject="Z_YesNo"
+		RelnIsFromParent="True"
+		>
+		<OrderByClause><![CDATA[ ]]></OrderByClause>
+		<ParameterizedWhereClause><![CDATA[ ]]></ParameterizedWhereClause>
+		<AdditionalWhereClause><![CDATA[ ]]></AdditionalWhereClause>
+	</Transition>
+	<Transition
+		FormTransNum="1"
+		Prefix="T16"
+		TargetFormName="fUser_USR"
+		IsTargetInitialQueryMode="False"
+		IsTargetInitialAddMode="False"
+		IsVisibleAppline="True"
+		IsAddedAfterGen="False"
+		FormTransCaption=" "
+		ClassName="PageNavigation"
+		RSID="16"
+		BusinessObject="User_USR"
+		RelnIsFromParent="True"
+		>
+		<OrderByClause><![CDATA[ ]]></OrderByClause>
+		<ParameterizedWhereClause><![CDATA[ ]]></ParameterizedWhereClause>
+		<AdditionalWhereClause><![CDATA[ ]]></AdditionalWhereClause>
+	</Transition>
+	<Transition
+		FormTransNum="1"
+		Prefix="T17"
+		TargetFormName="fOrderItem_ORD21_Grid"
+		IsTargetInitialQueryMode="False"
+		IsTargetInitialAddMode="False"
+		IsVisibleAppline="True"
+		IsAddedAfterGen="False"
+		FormTransCaption=" "
+		ClassName="PageNavigation"
+		RSID="17"
+		BusinessObject="OrderItem_ORD"
+		RelnIsFromParent="True"
+		>
+		<OrderByClause><![CDATA[ ]]></OrderByClause>
+		<ParameterizedWhereClause><![CDATA[ ]]></ParameterizedWhereClause>
+		<AdditionalWhereClause><![CDATA[ ]]></AdditionalWhereClause>
+	</Transition>
+	<FormLayout><![CDATA[BEGIN .VSForm StartupForm
+  ImageFile = ""
+  ClassName = "VSForm"
+  BackColor = 0xc0c0c0
+  Width = 129
+  ImageDisplayStyle = Stretched
+  Title = ""
+  Enable = True
+  ForeColor = 0x000000
+  HelpURL = ""
+  ToolTip = ""
+  Visible = True
+  Tag = "_$$_"
+  Height = 742
+  AnchorForm = "LEFT"
+  Constraint = "null"
+  Layout = ""
+  Style = "Child"
+  Name = "StartupForm"
+  Extended = ""
+  DisplayTitleBar = False
+  BeginProperty VSFont 
+    FontName  = "Helvetica"
+    FontSize  = 12
+    FontStyleBold  = False
+    FontStyleItalic  = False
+  EndProperty 
+  BEGIN .VSImageButton ibtT1fOrderItem_ORD
+    ImageFile = "order.jpg"
+    Top = 134
+    ClassName = "VSImageButton"
+    Opaque = True
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = ""
+    BackColor = 0xc0c0c0
+    Width = 114
+    ReportURL = ""
+    Enable = True
+    VertTextPos = "CENTER"
+    ForeColor = 0x000000
+    AutoToolTip = False
+    HelpURL = ""
+    ToolTip = "OrderItem_ORD"
+    Visible = True
+    Tag = "_$$_"
+    Action = ""
+    TabOrder = 0
+    Height = 85
+    Left = 10
+    AutoSize = False
+    Constraint = "null"
+    HorizTextPos = "CENTER"
+    TabStop = True
+    Border = "RAISED_BORDER"
+    Mnemonic = ""
+    Extended = ""
+    Name = "ibtT1fOrderItem_ORD"
+    AutoLabel = False
+    FormTransition = 10001,""
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    DisplayStyle = Stretched
+    Label = "OrderItem_ORD"
+  END
+  BEGIN .VSImageButton ibtT2fCurrency_CUR_Grid
+    ImageFile = "currency.jpg"
+    Top = 45
+    ClassName = "VSImageButton"
+    Opaque = True
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = ""
+    BackColor = 0xc0c0c0
+    Width = 114
+    ReportURL = ""
+    Enable = True
+    VertTextPos = "CENTER"
+    ForeColor = 0x000000
+    AutoToolTip = False
+    HelpURL = ""
+    ToolTip = "Currency_CUR(s)"
+    Visible = True
+    Tag = "_$$_"
+    Action = ""
+    TabOrder = 13
+    Height = 85
+    Left = 10
+    AutoSize = False
+    Constraint = "null"
+    HorizTextPos = "CENTER"
+    TabStop = True
+    Border = "RAISED_BORDER"
+    Mnemonic = ""
+    Extended = ""
+    Name = "ibtT2fCurrency_CUR_Grid"
+    AutoLabel = False
+    FormTransition = 20001,""
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    DisplayStyle = Stretched
+    Label = "Currency_CUR(s)"
+  END
+  BEGIN .VSImageButton ibtT3fOrderBacklogPerMonth_OBT_Grid
+    ImageFile = "orderstock.jpg"
+    Top = 224
+    ClassName = "VSImageButton"
+    Opaque = True
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = ""
+    BackColor = 0xc0c0c0
+    Width = 114
+    ReportURL = ""
+    Enable = True
+    VertTextPos = "CENTER"
+    ForeColor = 0x000000
+    AutoToolTip = False
+    HelpURL = ""
+    ToolTip = "OrderBacklogPerMonth_OBT(s)"
+    Visible = True
+    Tag = "_$$_"
+    Action = ""
+    TabOrder = 14
+    Height = 85
+    Left = 9
+    AutoSize = False
+    Constraint = "null"
+    HorizTextPos = "CENTER"
+    TabStop = True
+    Border = "RAISED_BORDER"
+    Mnemonic = ""
+    Extended = ""
+    Name = "ibtT3fOrderBacklogPerMonth_OBT_Grid"
+    AutoLabel = False
+    FormTransition = 30001,""
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    DisplayStyle = Stretched
+    Label = "OrderBacklogPerMonth_OBT(s)"
+  END
+  BEGIN .VSImageButton ibtT4fNoData
+    ImageFile = ""
+    Top = 313
+    ClassName = "VSImageButton"
+    Opaque = True
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = ""
+    BackColor = 0xc0c0c0
+    Width = 114
+    ReportURL = ""
+    Enable = True
+    VertTextPos = "CENTER"
+    ForeColor = 0x000000
+    AutoToolTip = False
+    HelpURL = ""
+    ToolTip = "NoData"
+    Visible = True
+    Tag = "_$$_"
+    Action = ""
+    TabOrder = 15
+    Height = 30
+    Left = 9
+    AutoSize = False
+    Constraint = "null"
+    HorizTextPos = "CENTER"
+    TabStop = True
+    Border = "RAISED_BORDER"
+    Mnemonic = ""
+    Extended = ""
+    Name = "ibtT4fNoData"
+    AutoLabel = False
+    FormTransition = 40001,""
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    DisplayStyle = Stretched
+    Label = "RemoteCall"
+  END
+  BEGIN .VSButton btnT5fNoDataTop
+    Top = 345
+    ClassName = "VSButton"
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = ""
+    BackColor = 0xffffff
+    Width = 114
+    ReportURL = ""
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = "Top"
+    Visible = True
+    Tag = "_$$_"
+    Action = ""
+    TabOrder = 12
+    Height = 30
+    Left = 9
+    Constraint = "null"
+    TabStop = True
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnT5fNoDataTop"
+    FormTransition = 50001,""
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "Anchor form Top"
+  END
+  BEGIN .VSButton btnT6fLogin
+    Top = 7
+    ClassName = "VSButton"
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = ""
+    BackColor = 0xffffff
+    Width = 114
+    ReportURL = ""
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = "Login"
+    Visible = True
+    Tag = "_$$_"
+    Action = ""
+    TabOrder = 11
+    Height = 30
+    Left = 11
+    Constraint = "null"
+    TabStop = True
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnT6fLogin"
+    FormTransition = 60001,""
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "Login XX"
+  END
+  BEGIN .VSButton btnT7fCommonParms_COP
+    Top = 379
+    ClassName = "VSButton"
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = ""
+    BackColor = 0xffffff
+    Width = 114
+    ReportURL = ""
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = "CommonParms_COP"
+    Visible = True
+    Tag = "_$$_"
+    Action = ""
+    TabOrder = 10
+    Height = 30
+    Left = 8
+    Constraint = "null"
+    TabStop = True
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnT7fCommonParms_COP"
+    FormTransition = 70001,""
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "CommonParms_COP"
+  END
+  BEGIN .VSButton btnT8fAdapterTest
+    Top = 410
+    ClassName = "VSButton"
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = ""
+    BackColor = 0xffffff
+    Width = 84
+    ReportURL = ""
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = "Adaptertest"
+    Visible = True
+    Tag = "_$$_"
+    Action = ""
+    TabOrder = 9
+    Height = 25
+    Left = 10
+    Constraint = "null"
+    TabStop = True
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnT8fAdapterTest"
+    FormTransition = 80001,""
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "Adaptertest"
+  END
+  BEGIN .VSButton btnT9fCurrency_CUR
+    Top = 436
+    ClassName = "VSButton"
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = ""
+    BackColor = 0xffffff
+    Width = 86
+    ReportURL = ""
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = "Currency_CUR"
+    Visible = True
+    Tag = "_$$_"
+    Action = ""
+    TabOrder = 6
+    Height = 25
+    Left = 6
+    Constraint = "null"
+    TabStop = True
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnT9fCurrency_CUR"
+    FormTransition = 90001,""
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "Currency_CUR"
+  END
+  BEGIN .VSButton btnT10fEmiR_Z_RFU
+    Top = 461
+    ClassName = "VSButton"
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = ""
+    BackColor = 0xffffff
+    Width = 86
+    ReportURL = ""
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = "fEmiR_Z_RFU"
+    Visible = True
+    Tag = "_$$_"
+    Action = ""
+    TabOrder = 5
+    Height = 25
+    Left = 5
+    Constraint = "null"
+    TabStop = True
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnT10fEmiR_Z_RFU"
+    FormTransition = 100001,""
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "fEmiR_Z_RFU"
+  END
+  BEGIN .VSButton btnT11fOBJ_Grid
+    Top = 512
+    ClassName = "VSButton"
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = ""
+    BackColor = 0xffffff
+    Width = 86
+    ReportURL = ""
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = "OBJ(s)"
+    Visible = True
+    Tag = "_$$_"
+    Action = ""
+    TabOrder = 4
+    Height = 25
+    Left = 4
+    Constraint = "null"
+    TabStop = True
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnT11fOBJ_Grid"
+    FormTransition = 110001,""
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "OBJ(s)"
+  END
+  BEGIN .VSButton btnT12fOMR_Grid
+    Top = 538
+    ClassName = "VSButton"
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = ""
+    BackColor = 0xffffff
+    Width = 86
+    ReportURL = ""
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = "OMR(s)"
+    Visible = True
+    Tag = "_$$_"
+    Action = ""
+    TabOrder = 3
+    Height = 25
+    Left = 4
+    Constraint = "null"
+    TabStop = True
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnT12fOMR_Grid"
+    FormTransition = 120001,""
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "OMR(s)"
+  END
+  BEGIN .VSButton btnT13fOrderItem_ORD15
+    Top = 573
+    ClassName = "VSButton"
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = ""
+    BackColor = 0xffffff
+    Width = 86
+    ReportURL = ""
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = "T13OrderItem_ORD"
+    Visible = True
+    Tag = "_$$_"
+    Action = ""
+    TabOrder = 2
+    Height = 25
+    Left = 6
+    Constraint = "null"
+    TabStop = True
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnT13fOrderItem_ORD15"
+    FormTransition = 130001,""
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "T13OrderItem_ORD"
+  END
+  BEGIN .VSButton btnT14fUser_USR_Grid
+    Top = 631
+    ClassName = "VSButton"
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = ""
+    BackColor = 0xffffff
+    Width = 86
+    ReportURL = ""
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = "User_USR(s)"
+    Visible = True
+    Tag = "_$$_"
+    Action = ""
+    TabOrder = 8
+    Height = 25
+    Left = 2
+    Constraint = "null"
+    TabStop = True
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnT14fUser_USR_Grid"
+    FormTransition = 140001,""
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "User_USR(s)"
+  END
+  BEGIN .VSButton btnT15fZ_YesNo_Grid
+    Top = 703
+    ClassName = "VSButton"
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = ""
+    BackColor = 0xffffff
+    Width = 86
+    ReportURL = ""
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = "Z_YesNo(s)"
+    Visible = True
+    Tag = "_$$_"
+    Action = ""
+    TabOrder = 7
+    Height = 25
+    Left = 4
+    Constraint = "null"
+    TabStop = True
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnT15fZ_YesNo_Grid"
+    FormTransition = 150001,""
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "Z_YesNo(s)"
+  END
+  BEGIN .VSButton btnT16fUser_USR
+    Top = 667
+    ClassName = "VSButton"
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = ""
+    BackColor = 0xffffff
+    Width = 86
+    ReportURL = ""
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = "User_USR"
+    Visible = True
+    Tag = "_$$_"
+    Action = ""
+    TabOrder = 1
+    Height = 25
+    Left = 3
+    Constraint = "null"
+    TabStop = True
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnT16fUser_USR"
+    FormTransition = 160001,""
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "User_USR"
+  END
+  BEGIN .VSButton btnT17fOrderItem_ORD21_Grid
+    Top = 486
+    ClassName = "VSButton"
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = ""
+    BackColor = 0xffffff
+    Width = 86
+    ReportURL = ""
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = "OrderItem_ORD(s)"
+    Visible = True
+    Tag = "_$$_"
+    Action = ""
+    TabOrder = 0
+    Height = 25
+    Left = 4
+    Constraint = "null"
+    TabStop = True
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnT17fOrderItem_ORD21_Grid"
+    FormTransition = 170001,""
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "OrderItem_ORD(s)"
+  END
+  END
+]]></FormLayout>
+</Form>

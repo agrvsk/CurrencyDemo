@@ -1,0 +1,80 @@
+BEGIN .VSForm RSGroupArchetypeTopTabbed
+  ClassName = "VSForm"
+  BackColor = 0xc0c0c0
+  Width = 475
+  Title = "RSGroupArchetypeTopTabbed"
+  Enable = True
+  ForeColor = 0x000000
+  HelpURL = ""
+  ToolTip = ""
+  Visible = True
+  Tag = ""
+  Height = 374
+  Style = "Child"
+  Name = "RSGroupArchetypeTopTabbed"
+  DisplayTitleBar = True
+  BeginProperty VSFont 
+    FontName  = "Helvetica"
+    FontSize  = 12
+    FontStyleBold  = False
+    FontStyleItalic  = False
+  EndProperty 
+  BEGIN .VSPanel fraRSGroupArchetypeTopTabbed
+    Top = 5
+    ClassName = "VSPanel"
+    BorderStyle = "GROUP_BORDER"
+    BackColor = 0xc0c0c0
+    Width = 480
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Height = 362
+    Left = 5
+    Name = "fraRSGroupArchetypeTopTabbed"
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = ""
+    BEGIN .VSTab tabRSPrefixTableName
+      Top = 7
+      ClassName = "VSTab"
+      BackColor = 0xc0c0c0
+      Width = 480
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = ""
+      Visible = True
+      Tag = ""
+      TabOrder = 0
+      Height = 336
+      Left = 5
+      TabStop = True
+      Name = "tabRSPrefixTableName"
+      Tabs = ""
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      BEGIN .VSTabSheet "IncludeTabSheetArchetypeDefault"
+        ENDTABSHEET
+      END
+    END
+  END
+<<BEGIN VSMACRO>>
+<<ArchetypeVersion 06.00.00.00>>
+'<<Begin IncludeTabSheetArchetypeDefault>>
+  '<<For each DependentRS>>
+      <<If value(VSVBAppFormRecSrcs!isTableDisplayed) >>
+          '<<Include TabSheetArchetypeDefault>>
+      <<End If>>
+   '<<Next>>
+'<<End Include>>

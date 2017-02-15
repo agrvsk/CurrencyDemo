@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<do:DataObject xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:do="http://www.versata.com/tl/6.0/dataobject" xmlns:dt="http://www.versata.com/tl/6.0/datatype" name="CommonParms_COP" metaModelVersion="6.2.0.0">
+  <xdaConnector xsi:nil="true"/>
+  <attribute name="COP_Id" caption="ID1" preventExternalUpdate="false" identity="true">
+    <dataType xsi:type="dt:DeclaredType"/>
+    <supertype xsi:type="dt:UserDefinedType" href="../system/system.vdd#Int64"/>
+  </attribute>
+  <attribute name="COP_Description" caption="Description" preventExternalUpdate="false">
+    <dataType xsi:type="dt:DeclaredType"/>
+    <supertype xsi:type="dt:UserDefinedType" href="../system/system.vdd#Text"/>
+  </attribute>
+  <attribute name="COP_Dummy" preventExternalUpdate="false">
+    <dataType xsi:type="dt:DeclaredType"/>
+    <supertype xsi:type="dt:UserDefinedType" href="../system/system.vdd#String"/>
+  </attribute>
+  <primaryKey name="PK1_COP_Id">
+    <attribute attribute="COP_Id"/>
+  </primaryKey>
+</do:DataObject>

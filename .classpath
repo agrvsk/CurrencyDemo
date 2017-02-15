@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="con" path="Versata/common"/>
+	<classpathentry exported="true" kind="con" path="Versata/emf"/>
+	<classpathentry exported="true" kind="con" path="Versata/client"/>
+	<classpathentry exported="true" kind="con" path="Versata/server"/>
+	<classpathentry exported="true" kind="con" path="Versata/decisionrules"/>
+	<classpathentry excluding="**/*.wsdd" kind="src" path="generated/gensrc"/>
+	<classpathentry kind="src" path="userSrc/modgensrc"/>
+	<classpathentry kind="src" path="generated/metadata"/>
+	<classpathentry kind="src" path="generated/presMetadata"/>
+	<classpathentry kind="src" path="userSrc/src"/>
+	<classpathentry kind="src" path="properties"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.generic.runtimeTarget/JBoss v7.1"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="src" path="generated/gensrcServices"/>
+	<classpathentry including="**/*.java" kind="src" output="apps/CurrencyDemo/Lib/ClientApps/JavaApps/JavaApp.app" path="apps/CurrencyDemo/Cache/ClientApps/JavaApps/JavaApp.app"/>
+	<classpathentry excluding="Archetypes/*" including="**/*.java|**/*.properties|CurrencyDemo/JavaApp/Images/*" kind="src" output="apps/CurrencyDemo/Lib/ClientApps/JavaApps/JavaApp.app" path="apps/CurrencyDemo/Source/ClientApps/JavaApps/JavaApp.app"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

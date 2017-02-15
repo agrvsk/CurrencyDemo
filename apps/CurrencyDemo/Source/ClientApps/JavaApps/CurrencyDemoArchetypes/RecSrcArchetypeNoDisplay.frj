@@ -1,0 +1,112 @@
+BEGIN .VSForm RecSrcArchetypeNoDisplay
+  ImageFile = ""
+  ClassName = "VSForm"
+  BackColor = 0xffffff
+  Width = 476
+  ImageDisplayStyle = Stretched
+  Title = "RecSrcArchetypeNoDisplay"
+  Enable = True
+  ForeColor = 0x000000
+  HelpURL = ""
+  ToolTip = ""
+  Visible = True
+  Tag = ""
+  Height = 367
+  AnchorForm = "NONE"
+  Style = "Child"
+  Name = "RecSrcArchetypeNoDisplay"
+  Extended = ""
+  DisplayTitleBar = True
+  BeginProperty VSFont 
+    FontName  = "Helvetica"
+    FontSize  = 12
+    FontStyleBold  = False
+    FontStyleItalic  = False
+  EndProperty 
+  BEGIN .VSPanel fraRecSrcArchetypeNoDisplay
+    Top = 5
+    ClassName = "VSPanel"
+    BorderStyle = "GROUP_BORDER"
+    BackColor = 0xffffff
+    Width = 467
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Height = 362
+    Left = 5
+    Extended = ""
+    Name = "fraRecSrcArchetypeNoDisplay"
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = ""
+    BEGIN .VSPanel IncludeColumnArchetypeAny
+      Top = 6
+      ClassName = "VSPanel"
+      BorderStyle = "GROUP_BORDER"
+      BackColor = 0xffffff
+      Width = 210
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = ""
+      Visible = True
+      Tag = ""
+      Height = 20
+      Left = 5
+      Extended = ""
+      Name = "IncludeColumnArchetypeAny"
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      Label = ""
+      END
+    BEGIN .VSJavaDataControl datRSPrefixTableName
+      Top = 332
+      ClassName = "VSJavaDataControl"
+      RecordSourceProperties = ""
+      StatusBarText = ""
+      AllowInsert = True
+      BackColor = 0xffffff
+      Width = 201
+      AllowUpdate = True
+      RecordSource = 0
+      Enable = True
+      ForeColor = 0x000000
+      AllowDelete = True
+      HelpURL = ""
+      ToolTip = ""
+      Visible = False
+      Tag = ""
+      MaxRowsPerFetch = 16
+      TabOrder = 0
+      Height = 25
+      Left = 137
+      SaveMode = "immediate"
+      TabStop = False
+      Extended = ""
+      Name = "datRSPrefixTableName"
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      Label = "TableCaption"
+      END
+    END
+  END
+<<BEGIN VSMACRO>>
+<<ArchetypeVersion 06.00.00.00>>
+<<ExcludeParentArchetypes="*Query*,*Startup*, *Qry*">>
+
+

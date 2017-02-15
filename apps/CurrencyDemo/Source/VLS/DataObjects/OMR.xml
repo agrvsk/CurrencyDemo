@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DataObject SYSTEM "DataObject.dtd">
+<DataObject
+	DTDVersion="05.06.00"
+	SurrId="0328804261.AdministratÃ¶r.0001"
+	CodedValuesList="False"
+	ImageReference=""
+	IsRemoteAccessible="False"
+	UseQuotedIdentifiers="False"
+	XdaConnector="com.versata.tl.vls.admin.security.F2KConnector"
+	SuperClass="com.versata.tl.vls.core.DataObject"
+	LockMode="AllApplicableAttributes"
+	>
+	<Attributes>
+		
+		<Attribute
+			Name="OMR_OMR"
+			ValueRequired="True"
+			LayoutByDefault="True"
+			Persistent="True"
+			PreventUserUpdates="False"
+			>
+			<DataType
+				DataType="VarChar"
+Size="6"
+			/>
+			<Validation
+				ValidationType="Condition"
+			/>
+			<Comments><![CDATA[]]></Comments>
+			<Format><![CDATA[]]></Format>
+			<Caption><![CDATA[Id]]></Caption>
+			<Description><![CDATA[OmrÃ¥de]]></Description>
+		</Attribute>
+		   
+		<Attribute
+			Name="OMR_BESK"
+			ValueRequired="False"
+			LayoutByDefault="True"
+			Persistent="True"
+			PreventUserUpdates="False"
+			>
+			<DataType
+				DataType="VarChar"
+Size="50"
+			/>
+			<Validation
+				ValidationType="Condition"
+			/>
+			<Comments><![CDATA[]]></Comments>
+			<Format><![CDATA[]]></Format>
+			<Caption><![CDATA[Beskrivning]]></Caption>
+		</Attribute>
+		   
+		<Attribute
+			Name="OMR_INGIOMR"
+			ValueRequired="False"
+			LayoutByDefault="True"
+			Persistent="True"
+			PreventUserUpdates="False"
+			>
+			<DataType
+				DataType="VarChar"
+Size="6"
+			/>
+			<Validation
+				ValidationType="Condition"
+			/>
+			<Comments><![CDATA[]]></Comments>
+			<Format><![CDATA[]]></Format>
+		</Attribute>
+		   
+	</Attributes>
+	<Indexes>
+		
+		   <Index
+		   		Name="OMR_PK"
+				Primary="True"
+				Unique="True"
+				IgnoreNulls="False"
+				>
+				
+				<Index_Attribute
+					Name="OMR_OMR"
+					Descending="False"
+				/>		   		
+		   </Index> 
+		   	<Index
+		   		Name="OMR_ALT_INGIOMR"
+				Primary="False"
+				Unique="False"
+				IgnoreNulls="False"
+				>
+				
+				<Index_Attribute
+					Name="OMR_INGIOMR"
+					Descending="False"
+				/>		   		
+		   	</Index>
+		   
+	</Indexes>
+	<SingularCaption><![CDATA[*]]></SingularCaption>
+	<PluralCaption><![CDATA[*]]></PluralCaption>
+	<VLSDeployment
+		DeploySecurityInfo="False"
+	/>
+	<Description><![CDATA[]]></Description>
+	<Comments><![CDATA[]]></Comments>
+	
+	<CodedValuesList
+		StoredAttribute=" "
+		DisplayAttribute=" "
+	/>
+	<Constraints></Constraints>
+</DataObject>

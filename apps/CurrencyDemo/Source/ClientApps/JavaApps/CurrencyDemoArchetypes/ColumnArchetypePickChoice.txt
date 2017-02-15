@@ -1,0 +1,1 @@
+a bound control to choose values from parent table via a drop down

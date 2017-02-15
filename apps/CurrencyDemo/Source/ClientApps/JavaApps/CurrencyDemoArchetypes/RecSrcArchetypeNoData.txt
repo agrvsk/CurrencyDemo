@@ -1,0 +1,1 @@
+Data control without any displayed bound controls. Used for Treeview record sources.

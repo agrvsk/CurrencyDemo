@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="CurrencyDemo">
+        <wb-resource deploy-path="/" source-path="/generated/gensrc"/>
+        <wb-resource deploy-path="/" source-path="/userSrc/modgensrc"/>
+        <wb-resource deploy-path="/" source-path="/generated/metadata"/>
+        <wb-resource deploy-path="/" source-path="/generated/presMetadata"/>
+        <wb-resource deploy-path="/" source-path="/userSrc/src"/>
+        <wb-resource deploy-path="/" source-path="/properties"/>
+        <wb-resource deploy-path="/" source-path="/generated/gensrcServices"/>
+        <wb-resource deploy-path="/" source-path="/apps/CurrencyDemo/Cache/ClientApps/JavaApps/JavaApp.app"/>
+        <wb-resource deploy-path="/" source-path="/apps/CurrencyDemo/Source/ClientApps/JavaApps/JavaApp.app"/>
+    </wb-module>
+</project-modules>

@@ -1,0 +1,1093 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE Form SYSTEM "Form.dtd">
+<Form
+	DTDVersion="05.06.00"
+	TargetLanguage="Java"
+	Archetype="Default"
+	PositionTop="524"
+	PositionLeft="253"
+	PositionWidth="171"
+	PositionHeight="44"
+	IsAddedAfterGen="False"
+	HasCustomFormLayout="False"
+	ObjectsUnusedByFormLayout="False"
+	External="False"
+	NoDataForm="False"
+	>
+	<FormCaption><![CDATA[OrderItem_ORD]]></FormCaption>
+	<RecordSource
+		RSID="1"
+		Prefix="T1"
+		BusinessObject="OrderItem_ORD"
+		RelnIsFromParent="False"
+		DoesSourceAffectMe="False"
+		DoIAffectSource="False"
+		IsAddedAfterGen="False"
+		RsAttributesDefault="True"
+		ClassName="DataSource"
+		RecordSourceArchetype="Display"
+		>
+		<ParameterizedWhereClause><![CDATA[ ]]></ParameterizedWhereClause>
+		<AdditionalWhereClause><![CDATA[ ]]></AdditionalWhereClause>
+		<OrderByClause><![CDATA[ ]]></OrderByClause>
+		<RSAttributesMeta>
+			<DefaultAttributes>
+				<RSDefaultAttribute ID="1" Name="ORD_Client" />
+				<RSDefaultAttribute ID="2" Name="ORD_OrderId" />
+				<RSDefaultAttribute ID="3" Name="ORD_Month" />
+				<RSDefaultAttribute ID="4" Name="ORD_CurrencyCode" />
+				<RSDefaultAttribute ID="5" Name="ORD_AmountInLocalCurrency" />
+				<RSDefaultAttribute ID="6" Name="ORD_AmountInUSD" />
+				<RSDefaultAttribute ID="7" Name="ORD_ExchangeRate" />
+				<RSDefaultAttribute ID="8" Name="ORD_Approved" />
+			</DefaultAttributes>
+			<ScalerAttributes>
+				<RSAttribute Name="ORD_Client" Displayed="True" UnPlaced="False" />
+				<RSAttribute Name="ORD_OrderId" Displayed="True" UnPlaced="False" />
+				<RSAttribute Name="ORD_Month" Displayed="True" UnPlaced="False" />
+				<RSAttribute Name="ORD_CurrencyCode" Displayed="True" UnPlaced="False" />
+				<RSAttribute Name="ORD_AmountInLocalCurrency" Displayed="True" UnPlaced="False" />
+				<RSAttribute Name="ORD_AmountInUSD" Displayed="True" UnPlaced="False" />
+				<RSAttribute Name="ORD_ExchangeRate" Displayed="True" UnPlaced="False" />
+				<RSAttribute Name="ORD_Approved" Displayed="True" UnPlaced="False" />
+			</ScalerAttributes>
+		</RSAttributesMeta>
+		<PickObject
+			RSID="2"
+			Prefix="T2"
+			BusinessObject="OrderBacklogPerMonth_OBT"
+			Relationship="pOBTfORD(OrderBacklogPerMonth_OBT)-cORDfOBT(OrderItem_ORD)"
+			RelnIsFromParent="False"
+			DoesSourceAffectMe="True"
+			DoIAffectSource="False"
+			IsAddedAfterGen="False"
+			RsAttributesDefault="True"
+			ClassName="Pick"
+			OnScreenPick="False"
+			>
+			<FKeyParamsClause><![CDATA[ [OBT_Client] = [?ORD_Client] and [OBT_Month] = [?ORD_Month]]]></FKeyParamsClause>
+			<AdditionalWhereClause><![CDATA[ ]]></AdditionalWhereClause>
+			<OrderByClause><![CDATA[ ]]></OrderByClause>
+			<RSAttributesMeta>
+				<DefaultAttributes>
+					<RSDefaultAttribute ID="1" Name="OBT_Client" />
+					<RSDefaultAttribute ID="2" Name="OBT_Month" />
+					<RSDefaultAttribute ID="3" Name="OBT_OrderValueUSD" />
+				</DefaultAttributes>
+				<GridAttributes>
+					<RSAttribute Name="OBT_Client" Displayed="True" UnPlaced="False" />
+					<RSAttribute Name="OBT_Month" Displayed="True" UnPlaced="False" />
+					<RSAttribute Name="OBT_OrderValueUSD" Displayed="True" UnPlaced="False" />
+				</GridAttributes>
+			</RSAttributesMeta>
+		</PickObject>
+		<PickObject
+			RSID="3"
+			Prefix="T3"
+			BusinessObject="Currency_CUR"
+			Relationship="pCURfORD(Currency_CUR)-cORDfCUR(OrderItem_ORD)"
+			RelnIsFromParent="False"
+			DoesSourceAffectMe="True"
+			DoIAffectSource="True"
+			IsAddedAfterGen="False"
+			RsAttributesDefault="True"
+			ClassName="Pick"
+			OnScreenPick="False"
+			>
+			<FKeyParamsClause><![CDATA[ [CUR_Client] = [?ORD_Client] and [CUR_CurrencyCode] = [?ORD_CurrencyCode]]]></FKeyParamsClause>
+			<AdditionalWhereClause><![CDATA[ ]]></AdditionalWhereClause>
+			<OrderByClause><![CDATA[ ]]></OrderByClause>
+			<RSAttributesMeta>
+				<DefaultAttributes>
+					<RSDefaultAttribute ID="1" Name="CUR_Client" />
+					<RSDefaultAttribute ID="2" Name="CUR_CurrencyCode" />
+					<RSDefaultAttribute ID="3" Name="CUR_ExchangeRate" />
+					<RSDefaultAttribute ID="4" Name="CUR_NumberOfOrders" />
+					<RSDefaultAttribute ID="5" Name="CUR_OrderValueUSD" />
+					<RSDefaultAttribute ID="6" Name="CUR_OrderAmountAverage" />
+					<RSDefaultAttribute ID="7" Name="CUR_Image" />
+					<RSDefaultAttribute ID="8" Name="CUR_Client_RelatedTo" />
+					<RSDefaultAttribute ID="9" Name="CUR_CurrencyCode_RelatedTo" />
+				</DefaultAttributes>
+				<GridAttributes>
+					<RSAttribute Name="CUR_Client" Displayed="True" UnPlaced="False" />
+					<RSAttribute Name="CUR_CurrencyCode" Displayed="True" UnPlaced="False" />
+					<RSAttribute Name="CUR_ExchangeRate" Displayed="True" UnPlaced="False" />
+					<RSAttribute Name="CUR_NumberOfOrders" Displayed="True" UnPlaced="False" />
+					<RSAttribute Name="CUR_OrderValueUSD" Displayed="True" UnPlaced="False" />
+					<RSAttribute Name="CUR_OrderAmountAverage" Displayed="True" UnPlaced="False" />
+					<RSAttribute Name="CUR_Image" Displayed="True" UnPlaced="False" />
+					<RSAttribute Name="CUR_Client_RelatedTo" Displayed="True" UnPlaced="False" />
+					<RSAttribute Name="CUR_CurrencyCode_RelatedTo" Displayed="True" UnPlaced="False" />
+				</GridAttributes>
+			</RSAttributesMeta>
+		</PickObject>
+	</RecordSource>
+	<FormLayout><![CDATA[BEGIN .VSForm fOrderItem_ORD15
+  ClassName = "VSForm"
+  BackColor = 0xc0c0c0
+Width=579
+  Title = "OrderItem_ORD"
+  Enable = True
+  ForeColor = 0x000000
+  HelpURL = ""
+  ToolTip = ""
+  Visible = True
+  Tag = "_$$_"
+Height=500
+  AnchorForm = "NONE"
+  Style = "Child"
+  Name = "fOrderItem_ORD15"
+  Extended = ""
+  DisplayTitleBar = True
+  BeginProperty VSFont 
+    FontName  = "Helvetica"
+    FontSize  = 12
+    FontStyleBold  = False
+    FontStyleItalic  = False
+  EndProperty 
+    BEGIN .VSImageButton btnInsert
+      ImageFile = "New.GIF"
+Top=7
+      ClassName = "VSImageButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = "(Current)"
+      BackColor = 0xc0c0c0
+Width=26
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "Insert"
+      Visible = True
+      Tag = "_$$_"
+      Action = "db_insert"
+TabOrder = 0
+Height=26
+Left=8
+      AutoSize = False
+      TabStop = True
+      Border = "AUTOSHOW_BORDER"
+      Extended = ""
+      Name = "btnInsert"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = ""
+      END
+    BEGIN .VSImageButton btnDelete
+      ImageFile = "delete.GIF"
+Top=7
+      ClassName = "VSImageButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = "(Current)"
+      BackColor = 0xc0c0c0
+Width=26
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "Delete"
+      Visible = True
+      Tag = "_$$_"
+      Action = "db_delete"
+TabOrder = 1
+Height=26
+Left=35
+      AutoSize = False
+      TabStop = True
+      Border = "AUTOSHOW_BORDER"
+      Extended = ""
+      Name = "btnDelete"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = ""
+      END
+    BEGIN .VSImageButton btnSave
+      ImageFile = "Save.GIF"
+Top=7
+      ClassName = "VSImageButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = "(Current)"
+      BackColor = 0xc0c0c0
+Width=26
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "Save"
+      Visible = True
+      Tag = "_$$_"
+      Action = "db_saveAll"
+TabOrder = 2
+Height=26
+Left=70
+      AutoSize = False
+      TabStop = True
+      Border = "AUTOSHOW_BORDER"
+      Extended = ""
+      Name = "btnSave"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = ""
+      END
+    BEGIN .VSImageButton btnUndo
+      ImageFile = "Undo.GIF"
+Top=7
+      ClassName = "VSImageButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = "(Current)"
+      BackColor = 0xc0c0c0
+Width=26
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "Undo"
+      Visible = True
+      Tag = "_$$_"
+      Action = "db_undoRecord"
+TabOrder = 3
+Height=26
+Left=97
+      AutoSize = False
+      TabStop = True
+      Border = "AUTOSHOW_BORDER"
+      Extended = ""
+      Name = "btnUndo"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = ""
+      END
+    BEGIN .VSImageButton btnMoveFirst
+      ImageFile = "First.GIF"
+Top=7
+      ClassName = "VSImageButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = "(Current)"
+      BackColor = 0xc0c0c0
+Width=26
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "MoveFirst"
+      Visible = True
+      Tag = "_$$_"
+      Action = "db_first"
+TabOrder = 4
+Height=26
+Left=137
+      AutoSize = False
+      TabStop = True
+      Border = "AUTOSHOW_BORDER"
+      Extended = ""
+      Name = "btnMoveFirst"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = ""
+      END
+    BEGIN .VSImageButton btnMovePrev
+      ImageFile = "previous.GIF"
+Top=7
+      ClassName = "VSImageButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = "(Current)"
+      BackColor = 0xc0c0c0
+Width=26
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "Move Previous"
+      Visible = True
+      Tag = "_$$_"
+      Action = "db_previous"
+TabOrder = 5
+Height=26
+Left=164
+      AutoSize = False
+      TabStop = True
+      Border = "AUTOSHOW_BORDER"
+      Extended = ""
+      Name = "btnMovePrev"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = ""
+      END
+    BEGIN .VSImageButton btnMoveNext
+      ImageFile = "Next.GIF"
+Top=7
+      ClassName = "VSImageButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = "(Current)"
+      BackColor = 0xc0c0c0
+Width=26
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "Move Next"
+      Visible = True
+      Tag = "_$$_"
+      Action = "db_next"
+TabOrder = 6
+Height=26
+Left=191
+      AutoSize = False
+      TabStop = True
+      Border = "AUTOSHOW_BORDER"
+      Extended = ""
+      Name = "btnMoveNext"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = ""
+      END
+    BEGIN .VSImageButton btnMoveLast
+      ImageFile = "Last.GIF"
+Top=7
+      ClassName = "VSImageButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = "(Current)"
+      BackColor = 0xc0c0c0
+Width=26
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "Move Last"
+      Visible = True
+      Tag = "_$$_"
+      Action = "db_last"
+TabOrder = 7
+Height=26
+Left=218
+      AutoSize = False
+      TabStop = True
+      Border = "AUTOSHOW_BORDER"
+      Extended = ""
+      Name = "btnMoveLast"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = ""
+      END
+    BEGIN .VSImageButton btnRunQuery
+      ImageFile = "runQuery.gif"
+Top=7
+      ClassName = "VSImageButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = "(Current)"
+      BackColor = 0xc0c0c0
+Width=26
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "Get Data"
+      Visible = True
+      Tag = "_$$_"
+      Action = "db_runQuery"
+TabOrder = 8
+Height=26
+Left=258
+      AutoSize = False
+      TabStop = True
+      Border = "AUTOSHOW_BORDER"
+      Extended = ""
+      Name = "btnRunQuery"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = ""
+      END
+    BEGIN .VSImageButton btnQueryMode
+      ImageFile = "QueryMode.GIF"
+Top=7
+      ClassName = "VSImageButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = "(Current)"
+      BackColor = 0xc0c0c0
+Width=26
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "Search Mode"
+      Visible = True
+      Tag = "_$$_"
+      Action = "db_queryMode"
+TabOrder = 9
+Height=26
+Left=293
+      AutoSize = False
+      TabStop = True
+      Border = "AUTOSHOW_BORDER"
+      Extended = ""
+      Name = "btnQueryMode"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = ""
+      END
+    BEGIN .VSImageButton btnQueryMode1
+      ImageFile = "clearQuery.gif"
+Top=7
+      ClassName = "VSImageButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = "(Current)"
+      BackColor = 0xc0c0c0
+Width=26
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "Clear Search"
+      Visible = True
+      Tag = "_$$_"
+      Action = "db_clearQuery"
+TabOrder = 10
+Height=26
+Left=320
+      AutoSize = False
+      TabStop = True
+      Border = "AUTOSHOW_BORDER"
+      Extended = ""
+      Name = "btnQueryMode1"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = ""
+      END
+    BEGIN .VSImageButton btnCancelQuery
+      ImageFile = "UndoQuery.GIF"
+Top=7
+      ClassName = "VSImageButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = "(Current)"
+      BackColor = 0xc0c0c0
+Width=26
+      Enable = False
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "Cancel Search"
+      Visible = True
+      Tag = "_$$_"
+      Action = "db_cancelQuery"
+TabOrder = 11
+Height=26
+Left=346
+      AutoSize = False
+      TabStop = True
+      Border = "AUTOSHOW_BORDER"
+      Extended = ""
+      Name = "btnCancelQuery"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = ""
+      END
+    BEGIN .VSImageButton btnEditSql
+      ImageFile = "EditQuery2.GIF"
+Top=7
+      ClassName = "VSImageButton"
+      StatusBarText = ""
+      FormTransitionProperties = ""
+      DataSource = "(Current)"
+      BackColor = 0xc0c0c0
+Width=26
+      Enable = False
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "Edit SQL"
+      Visible = True
+      Tag = "_$$_"
+      Action = "db_editSQL"
+TabOrder = 12
+Height=26
+Left=380
+      AutoSize = False
+      TabStop = True
+      Border = "AUTOSHOW_BORDER"
+      Extended = ""
+      Name = "btnEditSql"
+      AutoLabel = False
+      FormTransition = 0
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      DisplayStyle = Centered
+      Label = ""
+      END
+    BEGIN .VSPickChoice pckT1ORD_Client
+Top=42
+      ClassName = "VSPickChoice"
+    StatusBarText = ""
+    DataSource = datT1OrderItem_ORD
+      BackColor = 0xffffff
+Width=120
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "ORD_Client"
+      Visible = True
+      Tag = "_$$_"
+TabOrder = 13
+Height=20
+Left=111
+      PickObjectProperties = ""
+    DataField = 1,"ORD_Client"
+    PickObject = 2,"T2OrderBacklogPerMonth_OBT"
+      TabStop = True
+      Extended = ""
+      Name = "pckT1ORD_Client"
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      END
+    BEGIN .VSLabel lblT1ORD_Client
+Top=42
+      ClassName = "VSLabel"
+      StatusBarText = ""
+      Align = "LEFT"
+      DataSource = ""
+      BackColor = 0xc0c0c0
+Width=102
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = ""
+      Visible = True
+      Tag = "_$$_"
+Height=18
+Left=7
+      DataField = 0
+      Extended = ""
+      Name = "lblT1ORD_Client"
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      Label = "ORD_Client"
+      END
+    BEGIN .VSLabel lblT1ORD_OrderId
+Top=67
+      ClassName = "VSLabel"
+      StatusBarText = ""
+      Align = "LEFT"
+      DataSource = ""
+      BackColor = 0xc0c0c0
+Width=102
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = ""
+      Visible = True
+      Tag = "_$$_"
+Height=18
+Left=7
+      DataField = 0
+      Extended = ""
+      Name = "lblT1ORD_OrderId"
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      Label = "OrderId"
+      END
+    BEGIN .VSTextField txtT1ORD_OrderId
+Top=66
+      ClassName = "VSTextField"
+    StatusBarText = ""
+      EchoChar = ""
+    DataSource = datT1OrderItem_ORD
+      BackColor = 0xffffff
+Width=78
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = ""
+      Visible = True
+      Tag = "_$$_"
+    Format = ""
+TabOrder = 14
+Height=20
+Left=111
+    DataField = 2,"ORD_OrderId"
+      TabStop = True
+      Editable = True
+      Extended = ""
+      Name = "txtT1ORD_OrderId"
+      Text = ""
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      END
+    BEGIN .VSPickChoice pckT1ORD_Month
+Top=95
+      ClassName = "VSPickChoice"
+    StatusBarText = ""
+    DataSource = datT1OrderItem_ORD
+      BackColor = 0xffffff
+Width=120
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "Month"
+      Visible = True
+      Tag = "_$$_"
+TabOrder = 15
+Height=20
+Left=111
+      PickObjectProperties = ""
+    DataField = 3,"ORD_Month"
+    PickObject = 2,"T2OrderBacklogPerMonth_OBT"
+      TabStop = True
+      Extended = ""
+      Name = "pckT1ORD_Month"
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      END
+    BEGIN .VSLabel lblT1ORD_Month
+Top=95
+      ClassName = "VSLabel"
+      StatusBarText = ""
+      Align = "LEFT"
+      DataSource = ""
+      BackColor = 0xc0c0c0
+Width=102
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = ""
+      Visible = True
+      Tag = "_$$_"
+Height=18
+Left=7
+      DataField = 0
+      Extended = ""
+      Name = "lblT1ORD_Month"
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      Label = "Month"
+      END
+    BEGIN .VSPickChoice pckT1ORD_CurrencyCode
+Top=120
+      ClassName = "VSPickChoice"
+    StatusBarText = ""
+    DataSource = datT1OrderItem_ORD
+      BackColor = 0xffffff
+Width=120
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "CurrencyCode"
+      Visible = True
+      Tag = "_$$_"
+TabOrder = 16
+Height=20
+Left=111
+      PickObjectProperties = ""
+    DataField = 4,"ORD_CurrencyCode"
+    PickObject = 3,"T3Currency_CUR"
+      TabStop = True
+      Extended = ""
+      Name = "pckT1ORD_CurrencyCode"
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      END
+    BEGIN .VSLabel lblT1ORD_CurrencyCode
+Top=120
+      ClassName = "VSLabel"
+      StatusBarText = ""
+      Align = "LEFT"
+      DataSource = ""
+      BackColor = 0xc0c0c0
+Width=102
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = ""
+      Visible = True
+      Tag = "_$$_"
+Height=18
+Left=7
+      DataField = 0
+      Extended = ""
+      Name = "lblT1ORD_CurrencyCode"
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      Label = "CurrencyCode"
+      END
+    BEGIN .VSLabel lblT1ORD_AmountInLocalCurrency
+Top=145
+      ClassName = "VSLabel"
+      StatusBarText = ""
+      Align = "LEFT"
+      DataSource = ""
+      BackColor = 0xc0c0c0
+Width=102
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = ""
+      Visible = True
+      Tag = "_$$_"
+Height=18
+Left=7
+      DataField = 0
+      Extended = ""
+      Name = "lblT1ORD_AmountInLocalCurrency"
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      Label = "AmountInLocalCurrency"
+      END
+    BEGIN .VSTextField txtT1ORD_AmountInLocalCurrency
+Top=144
+      ClassName = "VSTextField"
+    StatusBarText = ""
+      EchoChar = ""
+    DataSource = datT1OrderItem_ORD
+      BackColor = 0xffffff
+Width=11
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = ""
+      Visible = True
+      Tag = "_$$_"
+    Format = ""
+TabOrder = 17
+Height=20
+Left=111
+    DataField = 5,"ORD_AmountInLocalCurrency"
+      TabStop = True
+      Editable = True
+      Extended = ""
+      Name = "txtT1ORD_AmountInLocalCurrency"
+      Text = ""
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      END
+    BEGIN .VSLabel lblT1ORD_AmountInUSD
+Top=173
+      ClassName = "VSLabel"
+      StatusBarText = ""
+      Align = "LEFT"
+      DataSource = ""
+      BackColor = 0xc0c0c0
+Width=102
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = ""
+      Visible = True
+      Tag = "_$$_"
+Height=18
+Left=7
+      DataField = 0
+      Extended = ""
+      Name = "lblT1ORD_AmountInUSD"
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      Label = "AmountInUSD"
+      END
+    BEGIN .VSTextField txtT1ORD_AmountInUSD
+Top=172
+      ClassName = "VSTextField"
+    StatusBarText = ""
+      EchoChar = ""
+    DataSource = datT1OrderItem_ORD
+      BackColor = 0xffffff
+Width=11
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = ""
+      Visible = True
+      Tag = "_$$_"
+    Format = ""
+TabOrder = 18
+Height=20
+Left=111
+    DataField = 6,"ORD_AmountInUSD"
+      TabStop = True
+      Editable = True
+      Extended = ""
+      Name = "txtT1ORD_AmountInUSD"
+      Text = ""
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      END
+    BEGIN .VSLabel lblT1ORD_ExchangeRate
+Top=201
+      ClassName = "VSLabel"
+      StatusBarText = ""
+      Align = "LEFT"
+      DataSource = ""
+      BackColor = 0xc0c0c0
+Width=102
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = ""
+      Visible = True
+      Tag = "_$$_"
+Height=18
+Left=7
+      DataField = 0
+      Extended = ""
+      Name = "lblT1ORD_ExchangeRate"
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      Label = "ORD_ExchangeRate"
+      END
+    BEGIN .VSTextField txtT1ORD_ExchangeRate
+Top=200
+      ClassName = "VSTextField"
+    StatusBarText = ""
+      EchoChar = ""
+    DataSource = datT1OrderItem_ORD
+      BackColor = 0xffffff
+Width=11
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = ""
+      Visible = True
+      Tag = "_$$_"
+    Format = ""
+TabOrder = 19
+Height=20
+Left=111
+    DataField = 7,"ORD_ExchangeRate"
+      TabStop = True
+      Editable = True
+      Extended = ""
+      Name = "txtT1ORD_ExchangeRate"
+      Text = ""
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      END
+    BEGIN .VSChoice vscT1ORD_Approved
+Top=227
+      ClassName = "VSChoice"
+    StatusBarText = ""
+    DataSource = datT1OrderItem_ORD
+      BackColor = 0xffffff
+Width=114
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = ""
+      Visible = True
+      Tag = "_$$_"
+TabOrder = 20
+Height=20
+Left=111
+    DataField = 8,"ORD_Approved"
+      TabStop = True
+      Extended = ""
+      Name = "vscT1ORD_Approved"
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      END
+    BEGIN .VSLabel lblT1ORD_Approved
+Top=229
+      ClassName = "VSLabel"
+      StatusBarText = ""
+      Align = "LEFT"
+      DataSource = ""
+      BackColor = 0xc0c0c0
+Width=102
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = ""
+      Visible = True
+      Tag = "_$$_"
+Height=18
+Left=7
+      DataField = 0
+      Extended = ""
+      Name = "lblT1ORD_Approved"
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      Label = "Approved"
+      END
+    BEGIN .VSJavaDataControl datT1OrderItem_ORD
+Top=420
+      ClassName = "VSJavaDataControl"
+      RecordSourceProperties = ""
+      StatusBarText = ""
+      AllowInsert = True
+      BackColor = 0xffffff
+Width=201
+      AllowUpdate = True
+    RecordSource = 1,"T1OrderItem_ORD"
+      Enable = True
+      ForeColor = 0x000000
+      AllowDelete = True
+      HelpURL = ""
+      ToolTip = ""
+      Visible = False
+      Tag = "_$$_"
+      MaxRowsPerFetch = 1
+TabOrder = 21
+Height=25
+Left=140
+      SaveMode = "immediate"
+      TabStop = False
+      Extended = ""
+      Name = "datT1OrderItem_ORD"
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      Label = "OrderItem_ORD"
+      END
+  END
+]]></FormLayout>
+</Form>

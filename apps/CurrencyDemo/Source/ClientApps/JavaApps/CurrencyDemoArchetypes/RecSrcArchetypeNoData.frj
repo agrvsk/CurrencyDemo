@@ -1,0 +1,90 @@
+BEGIN .VSForm RecSrcArchetypeNoData
+  ImageFile = ""
+  ClassName = "VSForm"
+  BackColor = 0xffffff
+  Width = 475
+  ImageDisplayStyle = Stretched
+  Title = "RecSrcArchetypeNoData"
+  Enable = True
+  ForeColor = 0x000000
+  HelpURL = ""
+  ToolTip = ""
+  Visible = True
+  Tag = ""
+  Height = 408
+  AnchorForm = "NONE"
+  Style = "Child"
+  Name = "RecSrcArchetypeNoData"
+  Extended = ""
+  DisplayTitleBar = False
+  BeginProperty VSFont 
+    FontName  = "Helvetica"
+    FontSize  = 12
+    FontStyleBold  = False
+    FontStyleItalic  = False
+  EndProperty 
+  BEGIN .VSPanel fraRecSrcArchetypeNoData
+    Top = 5
+    ClassName = "VSPanel"
+    BorderStyle = "GROUP_BORDER"
+    BackColor = 0xffffff
+    Width = 467
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Height = 40
+    Left = 5
+    Extended = ""
+    Name = "fraRecSrcArchetypeNoData"
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = ""
+    BEGIN .VSJavaDataControl datRSPRefixTableName
+      Top = 10
+      ClassName = "VSJavaDataControl"
+      RecordSourceProperties = ""
+      StatusBarText = ""
+      AllowInsert = True
+      BackColor = 0xffffff
+      Width = 252
+      AllowUpdate = True
+      RecordSource = 0
+      Enable = True
+      ForeColor = 0x000000
+      AllowDelete = True
+      HelpURL = ""
+      ToolTip = ""
+      Visible = False
+      Tag = ""
+      MaxRowsPerFetch = 16
+      TabOrder = 0
+      Height = 27
+      Left = 5
+      SaveMode = "buffered"
+      TabStop = False
+      Extended = ""
+      Name = "datRSPRefixTableName"
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      Label = "TableCaption"
+      END
+    END
+  END
+<<BEGIN VSMACRO>>
+<<ArchetypeVersion 06.00.00.00>>
+<<ExcludeParentArchetypes="*Startup*">>
+<<ExcludeChildArchetypes="Grid*">>
+<<Replace datRSPrefixTableName.RecordSource>>
+    RecordSource = Value(VSVBappFormRecSrcs!formRSNum),Value(VSVBappFormRecSrcs!tblName)
+<<End Replace>>

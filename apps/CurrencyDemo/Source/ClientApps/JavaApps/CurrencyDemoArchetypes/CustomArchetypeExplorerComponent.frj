@@ -1,0 +1,77 @@
+BEGIN .VSForm CustomArchetypeExplorerComponent
+  ImageFile = ""
+  ClassName = "VSForm"
+  BackColor = 0xffffff
+  Width = 262
+  ImageDisplayStyle = Stretched
+  Title = "fraCustomArchetypeExplorerComponent"
+  Enable = True
+  ForeColor = 0x000000
+  HelpURL = ""
+  ToolTip = ""
+  Visible = True
+  Tag = ""
+  Height = 246
+  AnchorForm = "NONE"
+  Style = "Child"
+  Name = "CustomArchetypeExplorerComponent"
+  Extended = ""
+  DisplayTitleBar = True
+  BeginProperty VSFont 
+    FontName  = "Helvetica"
+    FontSize  = 12
+    FontStyleBold  = False
+    FontStyleItalic  = False
+  EndProperty 
+  BEGIN .VSPanel fraCustomArchetypeExplorerComponent
+    Top = 5
+    ClassName = "VSPanel"
+    BorderStyle = "GROUP_BORDER"
+    BackColor = 0xffffff
+    Width = 191
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Height = 168
+    Left = 5
+    Extended = ""
+    Name = "fraCustomArchetypeExplorerComponent"
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = ""
+    BEGIN .VSBean "vision.vfc.beans.explorer.VSExplorer" VSExplorer1
+      Top = 14
+      ClassName = "vision.vfc.beans.explorer.VSExplorer"
+      "captionFieldName" = ""
+      Width = 178
+      "background" = 0x000000
+      "mapTypeFieldName" = ""
+      "dataSourceName" = ""
+      Height = 154
+      Left = 5
+      "visible" = True
+      "mapTypeToImageName" = ""
+      "foreground" = 0x000000
+      Name = "VSExplorer1"
+      "mapImageFieldName" = ""
+      BeginProperty VSFont  "font"
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      "enabled" = True
+      "typeFieldName" = ""
+      "formTransition" = ""
+      END
+    END
+  END
+<<BEGIN VSMACRO>>
+<<ArchetypeVersion 06.00.00.00>>

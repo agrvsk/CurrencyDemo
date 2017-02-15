@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dt:DataDictionary xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dt="http://www.versata.com/tl/6.0/datatype" name="system" metaModelVersion="6.2.0.0">
+	<userDefinedType name="Boolean">
+    <supertype xsi:type="dt:UserDefinedType" href="http://www.versata.com/tl/6.0/system.vdd#Boolean"/>
+  </userDefinedType>
+  <userDefinedType name="Int8">
+    <supertype xsi:type="dt:UserDefinedType" href="http://www.versata.com/tl/6.0/system.vdd#Int8"/>
+  </userDefinedType>
+  <userDefinedType name="Int16">
+    <supertype xsi:type="dt:UserDefinedType" href="http://www.versata.com/tl/6.0/system.vdd#Int16"/>
+  </userDefinedType>
+  <userDefinedType name="Int32">
+    <supertype xsi:type="dt:UserDefinedType" href="http://www.versata.com/tl/6.0/system.vdd#Int32"/>
+  </userDefinedType>
+  <userDefinedType name="Int64">
+    <supertype xsi:type="dt:UserDefinedType" href="http://www.versata.com/tl/6.0/system.vdd#Int64"/>
+  </userDefinedType>
+  <userDefinedType name="Single">
+    <supertype xsi:type="dt:UserDefinedType" href="http://www.versata.com/tl/6.0/system.vdd#Single"/>
+  </userDefinedType>
+  <userDefinedType name="Double">
+    <supertype xsi:type="dt:UserDefinedType" href="http://www.versata.com/tl/6.0/system.vdd#Double"/>
+  </userDefinedType>
+  <userDefinedType name="Numeric">
+    <supertype xsi:type="dt:UserDefinedType" href="http://www.versata.com/tl/6.0/system.vdd#Numeric"/>
+  </userDefinedType>
+  <userDefinedType name="Decimal">
+    <supertype xsi:type="dt:UserDefinedType" href="http://www.versata.com/tl/6.0/system.vdd#Decimal"/>
+  </userDefinedType>
+  <userDefinedType name="Currency">
+    <supertype xsi:type="dt:UserDefinedType" href="http://www.versata.com/tl/6.0/system.vdd#Currency"/>
+  </userDefinedType>
+  <userDefinedType name="LongBinary">
+    <supertype xsi:type="dt:UserDefinedType" href="http://www.versata.com/tl/6.0/system.vdd#LongBinary"/>
+  </userDefinedType>
+  <userDefinedType name="Char">
+    <supertype xsi:type="dt:UserDefinedType" href="http://www.versata.com/tl/6.0/system.vdd#Char"/>
+  </userDefinedType>
+  <userDefinedType name="String">
+    <supertype xsi:type="dt:UserDefinedType" href="http://www.versata.com/tl/6.0/system.vdd#String"/>
+  </userDefinedType>
+  <userDefinedType name="Text">
+    <supertype xsi:type="dt:UserDefinedType" href="http://www.versata.com/tl/6.0/system.vdd#Text"/>
+  </userDefinedType>
+  <userDefinedType name="Date">
+    <supertype xsi:type="dt:UserDefinedType" href="http://www.versata.com/tl/6.0/system.vdd#Date"/>
+  </userDefinedType>
+  <userDefinedType name="Time">
+    <supertype xsi:type="dt:UserDefinedType" href="http://www.versata.com/tl/6.0/system.vdd#Time"/>
+  </userDefinedType>
+  <userDefinedType name="DateTime">
+    <supertype xsi:type="dt:UserDefinedType" href="http://www.versata.com/tl/6.0/system.vdd#DateTime"/>
+  </userDefinedType>
+</dt:DataDictionary>

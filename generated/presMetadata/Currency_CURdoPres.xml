@@ -1,0 +1,169 @@
+<com.versata.tl.metadata.PresentationMetaDataDO>
+  <dataModelName>Currency_CUR</dataModelName>
+  <singularCaption>Currency  C U R</singularCaption>
+  <pluralCaption>Currency  C U R List</pluralCaption>
+  <attributeProperties>
+    <entry>
+      <string>CUR_CurrencyCode_RelatedTo</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>CUR_CurrencyCode_RelatedTo</attributeName>
+        <singularCaption>CurrencyCode_RelatedTo</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>3</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>CUR_OrderValueUSD</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>CUR_OrderValueUSD</attributeName>
+        <singularCaption>Order Value USD22</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>0</size>
+          <precision>10</precision>
+          <scale>2</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>CUR_Image</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>CUR_Image</attributeName>
+        <singularCaption>Image</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>255</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>CUR_Client_RelatedTo</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>CUR_Client_RelatedTo</attributeName>
+        <singularCaption>C U R  Client  Related To</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>5</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>CUR_NumberOfOrders</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>CUR_NumberOfOrders</attributeName>
+        <singularCaption>Number Of Orders</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>0</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>CUR_Client</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>CUR_Client</attributeName>
+        <singularCaption>C U R  Client</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>5</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>CUR_ExchangeRate</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>CUR_ExchangeRate</attributeName>
+        <singularCaption>Exchange Rate</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>0</size>
+          <precision>10</precision>
+          <scale>4</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>CUR_CurrencyCode</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>CUR_CurrencyCode</attributeName>
+        <singularCaption>Currency Code</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>3</size>
+          <precision>0</precision>
+          <scale>0</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+    <entry>
+      <string>CUR_OrderAmountAverage</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+        <attributeName>CUR_OrderAmountAverage</attributeName>
+        <singularCaption>Order Amount Average USD</singularCaption>
+        <required>false</required>
+        <attrSize>
+          <size>0</size>
+          <precision>10</precision>
+          <scale>2</scale>
+          <this_-1 reference="../.."/>
+        </attrSize>
+        <isLayoutByDefault>true</isLayoutByDefault>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-AttributeMetaData>
+    </entry>
+  </attributeProperties>
+  <associations>
+    <entry>
+      <string>cORDfCUR</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-Association>
+        <associationName>Currency_CUR(pCURfORD)-OrderItem_ORD(cORDfCUR)</associationName>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-Association>
+    </entry>
+    <entry>
+      <string>Currency_CURChild</string>
+      <com.versata.tl.metadata.PresentationMetaDataDO_-Association>
+        <associationName>Currency_CURParent(Currency_CURParent)-Currency_CURChild(Currency_CURChild)</associationName>
+        <parentDataModelCaption>p</parentDataModelCaption>
+        <childRoleCaption>c</childRoleCaption>
+        <outer-class reference="../../../.."/>
+      </com.versata.tl.metadata.PresentationMetaDataDO_-Association>
+    </entry>
+  </associations>
+</com.versata.tl.metadata.PresentationMetaDataDO>

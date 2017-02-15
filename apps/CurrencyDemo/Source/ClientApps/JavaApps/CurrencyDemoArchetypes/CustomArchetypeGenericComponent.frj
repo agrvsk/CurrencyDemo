@@ -1,0 +1,69 @@
+BEGIN .VSForm CustomArchetypeGenericComponent
+  ClassName = "VSForm"
+  BackColor = 0xffffff
+  Width = 178
+  Title = "fraCustomArchetypeGenericComponent"
+  Enable = True
+  ForeColor = 0x000000
+  HelpURL = ""
+  ToolTip = ""
+  Visible = True
+  Tag = ""
+  Height = 102
+  AnchorForm = "NONE"
+  Style = "Child"
+  Name = "CustomArchetypeGenericComponent"
+  Extended = ""
+  DisplayTitleBar = True
+  BeginProperty VSFont 
+    FontName  = "Helvetica"
+    FontSize  = 12
+    FontStyleBold  = False
+    FontStyleItalic  = False
+  EndProperty 
+  BEGIN .VSPanel fraCustomArchetypeGenericComponent
+    Top = 5
+    ClassName = "VSPanel"
+    BorderStyle = "GROUP_BORDER"
+    BackColor = 0xffffff
+    Width = 75
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Height = 65
+    Left = 5
+    Extended = ""
+    Name = "fraCustomArchetypeGenericComponent"
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = ""
+    BEGIN .Component Component1
+      Top = 5
+      ClassName = "YOUR_CLASS_NAME_HERE"
+      BackColor = 0xffffff
+      Width = 60
+      Enable = True
+      ForeColor = 0x000000
+      Visible = True
+      Height = 50
+      Left = 5
+      Extended = ""
+      Name = "Component1"
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      END
+    END
+  END
+<<BEGIN VSMACRO>>
+<<ArchetypeVersion 06.00.00.00>>

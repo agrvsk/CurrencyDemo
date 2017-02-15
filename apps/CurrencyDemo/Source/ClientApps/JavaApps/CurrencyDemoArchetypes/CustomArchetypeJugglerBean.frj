@@ -1,0 +1,69 @@
+BEGIN .VSForm CustomArchetypeJugglerBean
+  ClassName = "VSForm"
+  BackColor = 0xffffff
+  Width = 178
+  Title = "fraCustomArchetypeGenericComponent"
+  Enable = True
+  ForeColor = 0x000000
+  HelpURL = ""
+  ToolTip = ""
+  Visible = True
+  Tag = ""
+  Height = 172
+  AnchorForm = "NONE"
+  Style = "Child"
+  Name = "CustomArchetypeJugglerBean"
+  Extended = ""
+  DisplayTitleBar = True
+  BeginProperty VSFont 
+    FontName  = "Helvetica"
+    FontSize  = 12
+    FontStyleBold  = False
+    FontStyleItalic  = False
+  EndProperty 
+  BEGIN .VSPanel fraCustomArchetypeJugglerBean
+    Top = 5
+    ClassName = "VSPanel"
+    BorderStyle = "GROUP_BORDER"
+    BackColor = 0xffffff
+    Width = 141
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Height = 137
+    Left = 4
+    Extended = ""
+    Name = "fraCustomArchetypeJugglerBean"
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = ""
+    BEGIN .Component juggler1
+      Top = 8
+      ClassName = "Juggler"
+      BackColor = 0xffffff
+      Width = 133
+      Enable = True
+      ForeColor = 0x000000
+      Visible = True
+      Height = 128
+      Left = 4
+      Extended = "AnimationRate150"
+      Name = "juggler1"
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      END
+    END
+  END
+<<BEGIN VSMACRO>>
+<<ArchetypeVersion 06.00.00.00>>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE Form SYSTEM "Form.dtd">
+<Form
+	DTDVersion="05.06.00"
+	TargetLanguage="Java"
+	Archetype="NoDataDefault"
+	PositionTop="388"
+	PositionLeft="525"
+	PositionWidth="150"
+	PositionHeight="74"
+	IsAddedAfterGen="False"
+	HasCustomFormLayout="True"
+	ObjectsUnusedByFormLayout="False"
+	External="False"
+	NoDataForm="True"
+	>
+	<FormCaption><![CDATA[NoData]]></FormCaption>
+	<Transition
+		FormTransNum="1"
+		Prefix="T2"
+		TargetFormName="fNoData8"
+		IsTargetInitialQueryMode="False"
+		IsTargetInitialAddMode="False"
+		IsVisibleAppline="True"
+		IsAddedAfterGen="False"
+		FormTransCaption=" "
+		ClassName="PageNavigation"
+		RSID="2"
+		BusinessObject="NoData"
+		RelnIsFromParent="True"
+		>
+		<OrderByClause><![CDATA[ ]]></OrderByClause>
+		<ParameterizedWhereClause><![CDATA[ ]]></ParameterizedWhereClause>
+		<AdditionalWhereClause><![CDATA[ ]]></AdditionalWhereClause>
+	</Transition>
+	<FormLayout><![CDATA[BEGIN .VSForm fNoData5
+  ImageFile = ""
+  ClassName = "VSForm"
+  BackColor = 0xc0c0c0
+  Width = 435
+  ImageDisplayStyle = Stretched
+  Title = "fNoData5"
+  Enable = True
+  ForeColor = 0x000000
+  HelpURL = ""
+  ToolTip = ""
+  Visible = True
+  Tag = "_$$_"
+  Height = 271
+  AnchorForm = "NONE"
+  Constraint = "null"
+  Layout = ""
+  Style = "ModalPopup"
+  Name = "fNoData5"
+  Extended = ""
+  DisplayTitleBar = True
+  BeginProperty VSFont 
+    FontName  = "Helvetica"
+    FontSize  = 12
+    FontStyleBold  = False
+    FontStyleItalic  = False
+  EndProperty 
+  BEGIN .VSLabel VSLabel1
+    Top = 63
+    ClassName = "VSLabel"
+    Opaque = False
+    StatusBarText = ""
+    BorderStyle = "NO_BORDER"
+    DataSource = ""
+    HorizAlign = "LEFT"
+    BackColor = 0xc0c0c0
+    Width = 203
+    Enable = True
+    VertTextPos = "BOTTOM"
+    DisplayedMnemonic = ""
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Height = 28
+    Left = 44
+    DataField = 0
+    Icon = ""
+    Constraint = "null"
+    VertAlign = "CENTER"
+    HorizTextPos = "RIGHT"
+    Extended = ""
+    Name = "VSLabel1"
+    LabelFor = ""
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 15
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "fNoData5 ModulPopup style"
+  END
+  BEGIN .VSButton btnT2fNoData8
+    Top = 108
+    ClassName = "VSButton"
+    BorderPainted = True
+    ReportTarget = ""
+    StatusBarText = ""
+    FormTransitionProperties = ""
+    DataSource = ""
+    BackColor = 0xffffff
+    Width = 279
+    ReportURL = ""
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = "NoData"
+    Visible = True
+    Tag = "_$$_"
+    Action = ""
+    TabOrder = 0
+    Height = 42
+    Left = 41
+    Constraint = "null"
+    TabStop = True
+    Mnemonic = ""
+    Extended = ""
+    Name = "btnT2fNoData8"
+    FormTransition = 20001,""
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = "Transition to fNoData8 "
+  END
+  END
+]]></FormLayout>
+</Form>

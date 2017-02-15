@@ -1,0 +1,120 @@
+BEGIN .VSForm ColumnArchetypeOptionButton
+  ImageFile = ""
+  ClassName = "VSForm"
+  BackColor = 0xffffff
+  Width = 475
+  ImageDisplayStyle = Stretched
+  Title = "ColumnArchetypeOptionButton"
+  Enable = True
+  ForeColor = 0x000000
+  HelpURL = ""
+  ToolTip = ""
+  Visible = True
+  Tag = ""
+  Height = 168
+  AnchorForm = "NONE"
+  Style = "Child"
+  Name = "ColumnArchetypeOptionButton"
+  Extended = ""
+  DisplayTitleBar = True
+  BeginProperty VSFont 
+    FontName  = "Helvetica"
+    FontSize  = 12
+    FontStyleBold  = False
+    FontStyleItalic  = False
+  EndProperty 
+  BEGIN .VSPanel fraColumnArchetypeOptionButton
+    Top = 6
+    ClassName = "VSPanel"
+    BorderStyle = "GROUP_BORDER"
+    BackColor = 0xffffff
+    Width = 230
+    Enable = True
+    ForeColor = 0x000000
+    HelpURL = ""
+    ToolTip = ""
+    Visible = True
+    Tag = ""
+    Height = 130
+    Left = 47
+    Extended = ""
+    Name = "fraColumnArchetypeOptionButton"
+    BeginProperty VSFont 
+      FontName  = "Helvetica"
+      FontSize  = 12
+      FontStyleBold  = False
+      FontStyleItalic  = False
+    EndProperty 
+    Label = ""
+    BEGIN .VSRadioButtonPanel rbpRSPrefixColumnName
+      Top = 2
+      ClassName = "VSRadioButtonPanel"
+      StatusBarText = ""
+      BorderStyle = "GROUP_BORDER"
+      DataSource = ""
+      BackColor = 0xc0c0c0
+      Width = 221
+      Enable = True
+      ForeColor = 0x000000
+      HelpURL = ""
+      ToolTip = "Column Caption"
+      Visible = True
+      Tag = ""
+      TabOrder = 0
+      Height = 124
+      Left = 1
+      DataField = 0
+      TabStop = True
+      Extended = ""
+      Name = "rbpRSPrefixColumnName"
+      BeginProperty VSFont 
+        FontName  = "Helvetica"
+        FontSize  = 12
+        FontStyleBold  = False
+        FontStyleItalic  = False
+      EndProperty 
+      Label = "ColumnCaption"
+      BEGIN .VSRadioButton IncludeValueArchetypeOptionButton
+        Top = 7
+        ClassName = "VSRadioButton"
+        BackColor = 0xc0c0c0
+        Width = 120
+        Enable = True
+        ForeColor = 0x000000
+        HelpURL = ""
+        ToolTip = ""
+        Visible = True
+        Tag = ""
+        Height = 21
+        Left = 97
+        Value = ""
+        Extended = ""
+        Name = "IncludeValueArchetypeOptionButton"
+        BeginProperty VSFont 
+          FontName  = "Helvetica"
+          FontSize  = 12
+          FontStyleBold  = False
+          FontStyleItalic  = False
+        EndProperty 
+        Label = "IncludeValueArchetypeOptionButton"
+        END
+      END
+    END
+  END
+<<BEGIN VSMACRO>>
+<<ArchetypeVersion 06.00.00.00>>
+'<<Begin IncludeValueArchetypeOptionButton>>
+  '<<For each Value>>
+      '<<Include ValueArchetypeOptionButton>>
+  '<<Next>>
+'<<End Include>>
+'<<Set rbpRSPrefixColumnName.VSVBscaleSize = False>>
+<<Replace rbpRSPrefixColumnName.DataSource>>
+    DataSource = datRSPrefixTableName
+<<End Replace>>
+<<Replace rbpRSPrefixColumnName.DataField>>
+    DataField = Value(VSVBappFormColumns!colID),"ColumnName"
+<<End Replace>>
+<<Replace rbpRSPrefixColumnName.StatusBarText>>
+    StatusBarText = "Value(Field.Properties!MicroHelp)"
+<<End Replace>>
